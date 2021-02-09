@@ -21,6 +21,7 @@ export default {
   methods: {
     confirm() {
       this.$store.dispatch("setPoints", this.points);
+      this.$store.dispatch("setSequence", "holes");
     },
   },
 };

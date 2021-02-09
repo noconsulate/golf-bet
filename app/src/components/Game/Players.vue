@@ -24,6 +24,7 @@ export default {
   methods: {
     confirm() {
       this.$store.dispatch("setPlayers", this.players);
+      this.$store.dispatch("setSequence", "points");
     },
   },
 };
