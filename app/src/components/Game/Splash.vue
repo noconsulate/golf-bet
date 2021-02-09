@@ -14,7 +14,7 @@ export default {
   name: "Splash",
   methods: {
     goForward() {
-      this.$store.dispatch("setSequence", "points");
+      this.$store.dispatch("setSequence", "players");
     },
   },
 };

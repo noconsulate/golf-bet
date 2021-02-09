@@ -4,6 +4,6 @@
 
 @layer components {
   .btn {
-    @apply text-sm h-8 rounded border border-black shadow-md mx-1 px-1;
+    @apply text-sm h-8 rounded border border-black shadow-md px-1;
   }
 }

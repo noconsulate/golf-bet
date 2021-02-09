@@ -7,6 +7,9 @@
       <input v-model="players" type="number" />
       <button @click="confirm" class="btn">Confirm</button>
     </div>
+    <div>
+      (1-4 limit)
+    </div>
   </div>
 </template>
 
@@ -20,7 +23,7 @@ export default {
   },
   methods: {
     confirm() {
-      // this.$store.dispatch("setPlayers", this.players);
+      this.$store.dispatch("setPlayers", this.players);
     },
   },
 };
