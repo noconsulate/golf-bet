@@ -8,6 +8,7 @@ export default new Vuex.Store({
     sequence: "splash",
     players: "",
     points: "",
+    holes: "",
   },
   mutations: {
     UPDATE_SEQUENCE(state, payload) {
@@ -18,6 +19,9 @@ export default new Vuex.Store({
     },
     UPDATE_POINTS(state, payload) {
       state.points = payload;
+    },
+    UPDATE_HOLES(state, payload) {
+      state.holes = payload;
     },
   },
   actions: {
@@ -31,6 +35,10 @@ export default new Vuex.Store({
     setPoints(context, value) {
       context.commit("UPDATE_POINTS", value);
       context.commit("UPDATE_SEQUENCE", "holes");
+    },
+    setHoles(context, value) {
+      context.commit("UPDATE_HOLES", value);
+      context.commit("UPDATE_SEQUENCE", "confirmation");
     },
   },
   modules: {},
