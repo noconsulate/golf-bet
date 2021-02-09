@@ -40,6 +40,7 @@ export default {
     },
     goForward() {
       this.$store.dispatch("setHoles", this.holes);
+      this.$store.dispatch("setSequence", "confirmation");
     },
   },
 };

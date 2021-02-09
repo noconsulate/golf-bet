@@ -4,6 +4,7 @@
     <Players v-if="sequence == 'players'" />
     <Points v-if="sequence == 'points'" />
     <Holes v-if="sequence == 'holes'" />
+    <Confirmation v-if="sequence == 'confirmation'" />
   </div>
 </template>
 
@@ -12,6 +13,7 @@ import Splash from "../components/Game/Splash";
 import Players from "../components/Game/Players";
 import Points from "../components/Game/Points";
 import Holes from "../components/Game/Holes";
+import Confirmation from "../components/Game/Confirmation.vue";
 
 export default {
   name: "Home",
@@ -20,6 +22,7 @@ export default {
     Players,
     Points,
     Holes,
+    Confirmation,
   },
   // data: {},
   computed: {
