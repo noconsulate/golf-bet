@@ -1,14 +1,22 @@
 <template>
-  <div class="home">
-    golf bets
+  <div class="">
+    <Splash v-if="sequence == 'splash'" />
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
+import Splash from "../components/Game/Splash";
 
 export default {
   name: "Home",
-  components: {},
+  components: {
+    Splash: Splash,
+  },
+  // data: {},
+  computed: {
+    sequence() {
+      return this.$store.state.sequence;
+    },
+  },
 };
 </script>
