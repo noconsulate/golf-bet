@@ -3,12 +3,17 @@
     <div>
       Make it happen!
     </div>
-    <div><button class="btn">Confirm game</button></div>
+    <div><button class="btn" @click="confirm">Confirm game</button></div>
   </div>
 </template>
 
 <script>
 export default {
   name: "confirmation",
+  methods: {
+    confirm() {
+      this.$store.dispatch("setSequence", "gameplay");
+    },
+  },
 };
 </script>

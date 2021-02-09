@@ -5,8 +5,8 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    sequence: "splash",
-    players: "",
+    sequence: "confirmation",
+    players: "3",
     points: "",
     holes: "",
   },
