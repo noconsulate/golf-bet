@@ -6,6 +6,7 @@
     <Holes v-if="sequence == 'holes'" />
     <Confirmation v-if="sequence == 'confirmation'" />
     <Gameplay v-if="sequence == 'gameplay'" />
+    <Gameover v-if="sequence == 'gameover'" />
   </div>
 </template>
 
@@ -16,6 +17,7 @@ import Points from "../components/Game/Points";
 import Holes from "../components/Game/Holes";
 import Confirmation from "../components/Game/Confirmation.vue";
 import Gameplay from "../components/Game/Gameplay";
+import Gameover from "../components/Game/Gameover";
 
 export default {
   name: "Home",
@@ -26,6 +28,7 @@ export default {
     Holes,
     Confirmation,
     Gameplay,
+    Gameover,
   },
   // data: {},
   computed: {

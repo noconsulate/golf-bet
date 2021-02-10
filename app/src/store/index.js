@@ -5,10 +5,11 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    sequence: "confirmation",
-    players: "3",
+    sequence: "splash",
+    players: "",
     points: "",
     holes: "",
+    scores: [],
   },
   mutations: {
     UPDATE_SEQUENCE(state, payload) {
@@ -24,6 +25,11 @@ export default new Vuex.Store({
     UPDATE_HOLES(state, payload) {
       state.holes = payload;
     },
+    UPDATE_SCORES(state, payload) {
+      payload.map((item) => {
+        state.scores.push(Number(item));
+      });
+    },
   },
   actions: {
     setSequence(context, value) {
@@ -38,6 +44,9 @@ export default new Vuex.Store({
     },
     setHoles(context, value) {
       context.commit("UPDATE_HOLES", value);
+    },
+    setScores(context, value) {
+      context.commit("UPDATE_SCORES", value);
     },
   },
 
