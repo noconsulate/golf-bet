@@ -1,19 +1,18 @@
 <template>
   <div class="space-y-3">
-    <div>
+    <p>
       Gameplay
-    </div>
+    </p>
     <div :class="rowClass">
-      <div class="inline-block">Your score</div>
-      <input class="inline-block w-16" v-model="scores[0]" type="number" />
+      <div class="inline-block w-1/2">Your score</div>
+      <input class="inline-block w-1/4" v-model="scores[0]" type="number" />
     </div>
     <div v-for="index in players - 1" :key="index" :class="rowClass">
-      <div class="inline-block">0pponent {{ index }}</div>
-      <input class="inline-block w-16" v-model="scores[index]" type="number" />
+      <div class="inline-block w-1/2">Opponent {{ index }}</div>
+      <input class="inline-block w-1/4" v-model="scores[index]" type="number" />
     </div>
-    <div>
-      <button @click="confirm" class="btn">Confirm</button>
-    </div>
+
+    <button @click="confirm" class="btn">Confirm</button>
   </div>
 </template>
 

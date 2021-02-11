@@ -1,8 +1,8 @@
 <template>
   <div class="space-y-3">
-    <div>
+    <p>
       9 or 18 holes?
-    </div>
+    </p>
     <div class="space-x-3">
       <button
         :class="[holes == '9' ? activeClass : inactiveClass]"
@@ -17,9 +17,8 @@
         18
       </button>
     </div>
-    <div>
-      <button @click="goForward" class="btn">Confirm</button>
-    </div>
+
+    <button @click="goForward" class="btn">Confirm</button>
   </div>
 </template>
 

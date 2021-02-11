@@ -1,10 +1,8 @@
 <template>
   <div class="space-y-3">
-    <div>{{ bannerMessage }}</div>
-    <div>
-      {{ subBannerMessage }} {{ pointsWon }} points <br />
-      from everyone else
-    </div>
+    <p>{{ bannerMessage }}</p>
+    <div>{{ subBannerMessage }} {{ pointsWon }} points</div>
+    <div>from everyone else</div>
   </div>
 </template>
 
@@ -52,7 +50,10 @@ export default {
       this.subBannerMessage = "You won";
     } else {
       this.bannerMessage = "Sorry";
-      this.subBannerMessage = `${scoresComplex[0].player} won`;
+      this.subBannerMessage = `O${scoresComplex[0].player.slice(
+        1,
+        8
+      )} ${scoresComplex[0].player.slice(8)} won`;
     }
 
     this.pointsWon = this.$store.state.points * this.$store.state.players;

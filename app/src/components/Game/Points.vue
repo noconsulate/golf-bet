@@ -1,12 +1,11 @@
 <template>
   <div class="space-y-3">
-    <div>
+    <p>
       Number of points
-    </div>
-    <div>
-      <input v-model="points" type="number" />
-    </div>
-    <div><button @click="confirm" class="btn">Confirm</button></div>
+    </p>
+
+    <input v-model="points" type="number" class="w-2/3 block" />
+    <button @click="confirm" class="btn">Confirm</button>
   </div>
 </template>
 

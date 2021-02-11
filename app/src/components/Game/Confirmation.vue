@@ -1,9 +1,9 @@
 <template>
   <div class="space-y-3">
-    <div>
+    <p>
       Make it happen!
-    </div>
-    <div><button class="btn" @click="confirm">Confirm game</button></div>
+    </p>
+    <button class="btn" @click="confirm">Confirm game</button>
   </div>
 </template>
 
