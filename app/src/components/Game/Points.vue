@@ -4,7 +4,7 @@
       Number of points
     </p>
 
-    <input v-model="points" type="number" class="w-2/3 block" />
+    <input v-model="points" type="number" class="w-16 block" />
     <button @click="confirm" class="btn">Confirm</button>
   </div>
 </template>
