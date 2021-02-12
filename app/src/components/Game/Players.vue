@@ -21,5 +21,10 @@ export default {
       this.$store.dispatch("setSequence", "points");
     },
   },
+  created() {
+    if (this.$store.state.players != "") {
+      this.players = this.$store.state.players;
+    }
+  },
 };
 </script>

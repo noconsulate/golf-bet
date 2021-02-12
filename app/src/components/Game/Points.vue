@@ -6,6 +6,7 @@
 
     <input v-model="points" type="number" class="w-16 block" />
     <button @click="confirm" class="btn">Confirm</button>
+    <button @click="back" class="btn block">Back</button>
   </div>
 </template>
 
@@ -22,6 +23,14 @@ export default {
       this.$store.dispatch("setPoints", this.points);
       this.$store.dispatch("setSequence", "holes");
     },
+    back() {
+      this.$store.dispatch("setSequence", "players");
+    },
+  },
+  created() {
+    if (this.$store.state.points != "") {
+      this.points = this.$store.state.points;
+    }
   },
 };
 </script>

@@ -13,6 +13,7 @@
     </div>
 
     <button @click="confirm" class="btn">Confirm</button>
+    <button @click="back" class="btn block">Back</button>
   </div>
 </template>
 
@@ -35,6 +36,9 @@ export default {
     confirm() {
       this.$store.dispatch("setScores", this.scores);
       this.$store.dispatch("setSequence", "gameover");
+    },
+    back() {
+      this.$store.dispatch("setSequence", "confirmation");
     },
   },
 };

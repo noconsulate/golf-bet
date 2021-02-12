@@ -4,6 +4,7 @@
       Make it happen!
     </p>
     <button class="btn" @click="confirm">Confirm game</button>
+    <button @click="back" class="btn block">Back</button>
   </div>
 </template>
 
@@ -13,6 +14,9 @@ export default {
   methods: {
     confirm() {
       this.$store.dispatch("setSequence", "gameplay");
+    },
+    back() {
+      this.$store.dispatch("setSequence", "holes");
     },
   },
 };

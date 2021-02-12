@@ -4,7 +4,7 @@
       9 or 18 holes?
     </p>
     <div class="space-x-3">
-        <button
+      <button
         :class="[holes == '18' ? activeClass : inactiveClass]"
         @click="selectHoles('18')"
       >
@@ -19,6 +19,7 @@
     </div>
 
     <button @click="goForward" class="btn">Confirm</button>
+    <button @click="back" class="btn block">Back</button>
   </div>
 </template>
 
@@ -41,6 +42,14 @@ export default {
       this.$store.dispatch("setHoles", this.holes);
       this.$store.dispatch("setSequence", "confirmation");
     },
+    back() {
+      this.$store.dispatch("setSequence", "points");
+    },
+  },
+  created() {
+    if (this.$store.state.holes != "") {
+      this.holes = this.$store.state.holes;
+    }
   },
 };
 </script>
