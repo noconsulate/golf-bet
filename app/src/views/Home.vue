@@ -5,6 +5,7 @@
     <Points v-if="sequence == 'points'" />
     <Holes v-if="sequence == 'holes'" />
     <Confirmation v-if="sequence == 'confirmation'" />
+    <Share v-if="sequence == 'share'" />
     <Gameplay v-if="sequence == 'gameplay'" />
     <Gameover v-if="sequence == 'gameover'" />
   </div>
@@ -15,6 +16,7 @@ import Splash from "../components/Game/Splash";
 import Players from "../components/Game/Players";
 import Points from "../components/Game/Points";
 import Holes from "../components/Game/Holes";
+import Share from "../components/Game/Share";
 import Confirmation from "../components/Game/Confirmation.vue";
 import Gameplay from "../components/Game/Gameplay";
 import Gameover from "../components/Game/Gameover";
@@ -26,6 +28,7 @@ export default {
     Players,
     Points,
     Holes,
+    Share,
     Confirmation,
     Gameplay,
     Gameover,
