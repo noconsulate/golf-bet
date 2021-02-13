@@ -9,6 +9,7 @@
       <div class="flex justify-center">
         <button @click="goForward" class="btn">Continue</button>
       </div>
+      <img src="../../assets/ACTION-logo.png" />
     </div>
   </div>
 </template>
