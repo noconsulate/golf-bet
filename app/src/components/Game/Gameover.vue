@@ -3,6 +3,7 @@
     <p>{{ bannerMessage }}</p>
     <div>{{ subBannerMessage }} {{ pointsWon }} points</div>
     <div>from everyone else</div>
+    <button @click="restart">Start over</button>
   </div>
 </template>
 
@@ -16,6 +17,12 @@ export default {
     };
   },
   computed: {},
+  methods: {
+    restart() {
+      this.$store.dispatch("setSequence", "splash");
+      this.$store.dispatch("resetValues");
+    },
+  },
   created() {
     // here goes a really naive way to find the winner
 

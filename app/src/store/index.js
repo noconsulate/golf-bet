@@ -30,6 +30,12 @@ export default new Vuex.Store({
         state.scores.push(Number(item));
       });
     },
+    RESET_VALUES(state) {
+      state.players = "";
+      state.points = "";
+      state.holes = "";
+      state.scores = [];
+    },
   },
   actions: {
     setSequence(context, value) {
@@ -47,6 +53,9 @@ export default new Vuex.Store({
     },
     setScores(context, value) {
       context.commit("UPDATE_SCORES", value);
+    },
+    resetValues(context) {
+      context.commit("RESET_VALUES");
     },
   },
 
