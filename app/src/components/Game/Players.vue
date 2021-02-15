@@ -4,13 +4,13 @@
       <p>NUMBER OF PLAYERS</p>
     </div>
     <div class="flex justify-center">
-       <input v-model="players" type="number" class="w-16 block" />
+      <input v-model="players" type="number" class="w-16 block pl-2" />
     </div>
     <div class="flex justify-center">
-     <button @click="confirm" class="btn">Confirm</button>
+      <button @click="confirm" class="btn">Confirm</button>
     </div>
     <div class="flex justify-center">
-     <p>(2-4 Limit)</p>
+      <p>(2-4 Limit)</p>
     </div>
   </div>
 </template>

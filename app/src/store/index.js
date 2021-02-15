@@ -6,7 +6,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     sequence: "splash",
-    players: "",
+    players: "2",
     points: "",
     holes: "",
     scores: [],
