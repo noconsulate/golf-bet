@@ -1,9 +1,12 @@
 <template>
   <div class="space-y-3">
+        <div class="flex justify-center">
     <p>
-      9 or 18 holes?
+      NUMBER OF HOLES
     </p>
+        </div>
     <div class="space-x-3">
+          <div class="flex justify-center">
       <button
         :class="[holes == '18' ? activeClass : inactiveClass]"
         @click="selectHoles('18')"
@@ -16,10 +19,12 @@
       >
         9
       </button>
+          </div>
     </div>
-
+        <div class="flex justify-center">
     <button @click="goForward" class="btn">Confirm</button>
     <button @click="back" class="btn block">Back</button>
+        </div>
   </div>
 </template>
 

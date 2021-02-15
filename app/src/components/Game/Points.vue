@@ -2,7 +2,7 @@
   <div class="space-y-3">
     <div class="flex justify-center">
     <p>
-      Number of points
+      NUMBER OF POINTS
     </p>
     </div>
     <div class="flex justify-center">
