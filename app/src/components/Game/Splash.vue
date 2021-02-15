@@ -1,15 +1,10 @@
 <template>
   <div class="space-y-3">
-    <div class="flex justify-center bg-gray-200">
-      <p>
-        Welcome to Golf Bets
-      </p>
-    </div>
     <div class="flex justify-center">
-      <button @click="goForward" class="btn">Continue</button>
+      <img src="../../assets/ACTION-logo(1).png" />
     </div>
-    <div class="flex justify-center">
-      <img src="../../assets/ACTION-logo.png" />
+     <div class="flex justify-center">
+      <button @click="goForward" class="btn">GET STARTED</button>
     </div>
   </div>
 </template>
