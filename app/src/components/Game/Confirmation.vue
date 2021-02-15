@@ -1,13 +1,21 @@
 <template>
   <div class="space-y-3">
+        <div class="flex justify-center">
     <p>
-      Make it happen!
+      LET'S GO!
     </p>
-    <p>
-      (By clicking confirm you agree to handle disputes among your selves)
-    </p>
+        </div>
+            <div class="flex justify-center">
     <button class="btn" @click="confirm">Confirm game</button>
+            </div>
+        <div class="flex justify-center">
     <button @click="back" class="btn block">Back</button>
+            </div>
+        <div class="flex justify-center">
+     <p>
+      (By clicking confirm user agrees to terms of service. This application is not responsible for mitigating disputes. Disputed games will result in return of points to all parties.)
+    </p>
+            </div>
   </div>
 </template>
 
