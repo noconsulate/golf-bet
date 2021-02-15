@@ -13,7 +13,6 @@
     <button class="btn" @click="back">Back</button>
               </div>
             </div>
-  </div>
 </template>
 
 <script>
