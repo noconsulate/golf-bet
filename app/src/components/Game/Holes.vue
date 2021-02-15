@@ -1,30 +1,32 @@
 <template>
   <div class="space-y-3">
-        <div class="flex justify-center">
-    <p>
-      NUMBER OF HOLES
-    </p>
-        </div>
-    <div class="space-x-3">
-          <div class="flex justify-center">
-      <button
-        :class="[holes == '18' ? activeClass : inactiveClass]"
-        @click="selectHoles('18')"
-      >
-        18
-      </button>
-      <button
-        :class="[holes == '9' ? activeClass : inactiveClass]"
-        @click="selectHoles('9')"
-      >
-        9
-      </button>
-          </div>
+    <div class="flex justify-center">
+      <p>
+        NUMBER OF HOLES
+      </p>
     </div>
-        <div class="flex justify-center">
-    <button @click="goForward" class="btn">Confirm</button>
-    <button @click="back" class="btn block">Back</button>
-        </div>
+    <div class="space-x-3">
+      <div class="flex justify-center space-x-2">
+        <button
+          :class="[holes == '18' ? activeClass : inactiveClass]"
+          @click="selectHoles('18')"
+        >
+          18
+        </button>
+        <button
+          :class="[holes == '9' ? activeClass : inactiveClass]"
+          @click="selectHoles('9')"
+        >
+          9
+        </button>
+      </div>
+    </div>
+    <div class="flex justify-center">
+      <button @click="goForward" class="btn">Confirm</button>
+    </div>
+    <div class="flex justify-center">
+      <button @click="back" class="btn block">Back</button>
+    </div>
   </div>
 </template>
 

@@ -1,16 +1,19 @@
 <template>
   <div class="space-y-3">
     <div class="flex justify-center">
-    <p>{{ bannerMessage }}</p>
+      <p>{{ bannerMessage }}</p>
     </div>
     <div class="flex justify-center">
-    <div>{{ subBannerMessage }} {{ pointsWon }} points</div>
+      <div>{{ subBannerMessage }} {{ pointsWon }} points</div>
     </div>
     <div class="flex justify-center">
-    <div>from everyone else</div>
+      <div>from everyone else</div>
     </div>
     <div class="flex justify-center">
-    <button @click="restart">Start over</button>
+      <button @click="restart" class="btn">Start over</button>
+    </div>
+    <div class="flex justify-center">
+      <button @click="transferTokens" class="btn">Transfer Tokens</button>
     </div>
   </div>
 </template>
@@ -29,6 +32,9 @@ export default {
     restart() {
       this.$store.dispatch("setSequence", "splash");
       this.$store.dispatch("resetValues");
+    },
+    transferTokens() {
+      window.open("https://forelinx.com/dashboard/settings/billing");
     },
   },
   created() {
