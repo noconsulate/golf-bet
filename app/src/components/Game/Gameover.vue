@@ -61,7 +61,7 @@ export default {
     console.log(sortedScores);
 
     if (scoresComplex[0].player == "user") {
-      this.bannerMessage = "Contrats";
+      this.bannerMessage = "CONGRATS!";
       this.subBannerMessage = "You won";
     } else {
       this.bannerMessage = "Sorry";
