@@ -1,12 +1,19 @@
 <template>
   <div class="space-y-3">
+    <div class="flex justify-center">
     <p>
       Number of points
     </p>
-
+    </div>
+    <div class="flex justify-center">
     <input v-model="points" type="number" class="w-16 block" />
+    </div>
+        <div class="flex justify-center">
     <button @click="confirm" class="btn">Confirm</button>
+        </div>
+            <div class="flex justify-center">
     <button @click="back" class="btn block">Back</button>
+            </div>
   </div>
 </template>
 
