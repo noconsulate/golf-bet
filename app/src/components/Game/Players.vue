@@ -1,6 +1,7 @@
 <template>
-  <div class="space-y-3 flex justify-center">
+  <div class="space-y-3">
     <p>Number of players</p>
+    
     <input v-model="players" type="number" class="w-16 block" />
     <button @click="confirm" class="btn">Confirm</button>
     <p>(1-4 limit)</p>
