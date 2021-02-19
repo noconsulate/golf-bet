@@ -1,5 +1,6 @@
 <template>
   <div class="space-y-3">
+    <!-- "v-for" is a loop, in this case referencing the value "holes" found in the script under "data". -->
     <div id="holeCard" v-for="index in holes" :key="index">
       <div v-if="index == currentHole">
         <div class="flex justify-center">
