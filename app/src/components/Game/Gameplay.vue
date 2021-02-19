@@ -1,7 +1,8 @@
 <template>
-  <div class="space-y-3">
-    <!-- "v-for" is a loop, in this case referencing the value "holes" found in the script under "data". -->
-    <div id="holeCard" v-for="index in holes" :key="index">
+  <div class="">
+    <!-- @AUSTIN "v-for" is a loop, in this case referencing the value "holes" found in the script under "data". -->
+    <div v-for="index in holes" :key="index">
+      <!-- @AUSTIN the v-for above would normally repeat the same <div> a bunch of times with a few variances. So the following div has a "v-if" which means it will render only if its unique "index" == currentHole. currentHole gets incremented each timme "next hole" is clicked upon. -->
       <div v-if="index == currentHole">
         <div class="flex justify-center">
           <p>Hole {{ currentHole }}</p>
@@ -35,7 +36,7 @@ export default {
       // data
       myScore: [],
       opponentScore: [],
-      currentHole: 9,
+      currentHole: 1,
     };
   },
   computed: {

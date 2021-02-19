@@ -35,7 +35,7 @@ export default {
   name: "holes",
   data() {
     return {
-      holes: "18",
+      holes: 0,
       // classes
       activeClass: "rounded border border-black bg-blue-300 w-8",
       inactiveClass: "rounded border border-black w-8",
@@ -54,9 +54,7 @@ export default {
     },
   },
   created() {
-    if (this.$store.state.holes != "") {
-      this.holes = this.$store.state.holes;
-    }
+    this.holes = this.$store.state.holes;
   },
 };
 </script>
