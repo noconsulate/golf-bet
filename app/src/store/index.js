@@ -5,10 +5,10 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    sequence: "splash",
+    sequence: "gameplay",
     players: "2",
     points: "",
-    holes: "",
+    holes: "9",
     scores: [],
   },
   mutations: {
