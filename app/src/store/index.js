@@ -5,19 +5,40 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    // change this one to whatever particular "page" in the gameplay you want to see. "splash" is default because that's where the app starts. e.g. use
+    // @AUSTIN change this one to whatever particular "page" in the gameplay you want to see. "splash" is default because that's where the app starts. e.g. use
     // sequence: "finalScore",
     // to start it out at the Final Score page
-    sequence: "splash",
+    sequence: "finalScore",
     players: "2",
     points: "",
-    holes: "",
-    // uncomment the following lines for myScore and opponentScore to provide default values that will make the finalScore pages easier to work with so you don't have to input them in every time yourself. just make sure to comment out the two lines after it!
-    // myScore: [1, 2, 3, 4, 5, 6, 7, 8, 9],
-    // opponentScore: [1, 2, 3, 4, 5, 6, 7, 8, 9],
-    // comment out these next two lines if you uncomment the two above!
-    myScore: [],
-    opponentScore: [],
+    holes: "18",
+    // @AUSTIN uncomment the following entries for myScore and opponentScore to provide default values that will make the finalScore pages easier to work with so you don't have to input them in every time yourself. just make sure to comment out the two lines after it!
+
+    // @AUSTIN you can make a selection and do ctrl + / to comment/uncomment. or do ctrl + / when your to do so to a line where your curser is
+    myScore: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18],
+    opponentScore: [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+    ],
+    // @AUSTIN comment out these next two lines if you uncomment the two above!
+    // myScore: [],
+    // opponentScore: [],
   },
   mutations: {
     UPDATE_SEQUENCE(state, payload) {
