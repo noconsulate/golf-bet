@@ -9,7 +9,9 @@ export default new Vuex.Store({
     players: "2",
     points: "",
     holes: "9",
-    scores: [],
+    // scores: [],
+    myScore: [],
+    opponentScore: [],
   },
   mutations: {
     UPDATE_SEQUENCE(state, payload) {
@@ -26,8 +28,13 @@ export default new Vuex.Store({
       state.holes = payload;
     },
     UPDATE_SCORES(state, payload) {
-      payload.map((item) => {
-        state.scores.push(Number(item));
+      const { myScore, opponentScore } = payload;
+      console.log(myScore);
+      myScore.map((item) => {
+        state.myScore.push(Number(item));
+      });
+      opponentScore.map((item) => {
+        state.opponentScore.push(Number(item));
       });
     },
     RESET_VALUES(state) {

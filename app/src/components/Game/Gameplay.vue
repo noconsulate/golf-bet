@@ -1,5 +1,5 @@
 <template>
-  <div class>
+  <div class="space-y-3">
     <div id="holeCard" v-for="index in holes" :key="index">
       <div v-if="index == currentHole">
         <div class="flex justify-center">
@@ -19,6 +19,9 @@
         </div>
       </div>
     </div>
+    <div v-if="currentHole == holes">
+      <button @click="goForward" class="btn">Continue</button>
+    </div>
   </div>
 </template>
 
@@ -29,9 +32,9 @@ export default {
     return {
       // classes
       // data
-      myScore: [],
-      opponentScore: [],
-      currentHole: 1,
+      myScore: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      opponentScore: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      currentHole: 9,
     };
   },
   computed: {
@@ -49,6 +52,13 @@ export default {
       if (this.currentHole < this.holes) {
         this.currentHole++;
       }
+    },
+    goForward() {
+      const scoresObj = {
+        myScore: this.myScore,
+        opponentScore: this.opponentScore,
+      };
+      this.$store.dispatch("setScores", scoresObj);
     },
   },
 };
