@@ -7,6 +7,7 @@
     <Confirmation v-if="sequence == 'confirmation'" />
     <Share v-if="sequence == 'share'" />
     <Gameplay v-if="sequence == 'gameplay'" />
+    <FinalScore v-if="sequence == 'finalScore'" />
     <Intrastitial v-if="sequence == 'interstitial'" />
     <Gameover v-if="sequence == 'gameover'" />
   </div>
@@ -20,6 +21,7 @@ import Holes from "../components/Game/Holes";
 import Share from "../components/Game/Share";
 import Confirmation from "../components/Game/Confirmation.vue";
 import Gameplay from "../components/Game/Gameplay";
+import FinalScore from "../components/Game/FinalScore";
 import Intrastitial from "../components/Game/Intrastitial";
 import Gameover from "../components/Game/Gameover";
 
@@ -33,6 +35,7 @@ export default {
     Share,
     Confirmation,
     Gameplay,
+    FinalScore,
     Intrastitial,
     Gameover,
   },

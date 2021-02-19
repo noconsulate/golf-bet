@@ -32,8 +32,8 @@ export default {
     return {
       // classes
       // data
-      myScore: [1, 2, 3, 4, 5, 6, 7, 8, 9],
-      opponentScore: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      myScore: [],
+      opponentScore: [],
       currentHole: 9,
     };
   },
@@ -59,6 +59,7 @@ export default {
         opponentScore: this.opponentScore,
       };
       this.$store.dispatch("setScores", scoresObj);
+      this.$store.dispatch("setSequence", "finalScore");
     },
   },
 };

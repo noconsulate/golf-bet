@@ -5,13 +5,14 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    sequence: "gameplay",
+    sequence: "finalScore",
     players: "2",
     points: "",
     holes: "9",
-    // scores: [],
-    myScore: [],
-    opponentScore: [],
+    // myScore: [],
+    // opponentScore: [],
+    myScore: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+    opponentScore: [1, 2, 3, 4, 5, 6, 7, 8, 9],
   },
   mutations: {
     UPDATE_SEQUENCE(state, payload) {
