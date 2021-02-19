@@ -13,6 +13,10 @@
           <p>Opponent Score</p>
           <input type="number" v-model="opponentScore[index]" />
         </div>
+        <div>
+          <button @click="previous" class="btn">Previous Hole</button>
+          <button @click="next" class="btn">Next Hole</button>
+        </div>
       </div>
     </div>
   </div>
@@ -35,6 +39,17 @@ export default {
       return Number(this.$store.state.holes);
     },
   },
-  methods: {},
+  methods: {
+    previous() {
+      if (this.currentHole > 1) {
+        this.currentHole--;
+      }
+    },
+    next() {
+      if (this.currentHole < this.holes) {
+        this.currentHole++;
+      }
+    },
+  },
 };
 </script>
