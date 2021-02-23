@@ -1,7 +1,11 @@
 <template>
-  <div class="space-y-3 flex items-center flex-col">
+  <div>
     <!-- @AUSTIN "v-for" is a loop, in this case referencing the value "holes" found in the script under "data". -->
-    <div v-for="index in holes" :key="index">
+    <div
+      v-for="index in holes"
+      :key="index"
+      class="space-y-3 flex items-center flex-col"
+    >
       <!-- @AUSTIN the v-for above would normally repeat the same <div> a bunch of times with a few variances. So the following div has a "v-if" which means it will render only if its unique "index" == currentHole. currentHole gets incremented each timme "next hole" is clicked upon. -->
       <div
         v-if="index == currentHole"
