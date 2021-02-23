@@ -1,5 +1,5 @@
 <template>
-  <div class="space-y-3">
+  <div class="space-y-3 flex flex-col items-center">
     <p>Final Score</p>
 
     <!-- @AUSTIN Both tables use v-for in the <td> elements, referencing "holes" in the script as before. Vue creates individual and unique cells according to the number of holes
