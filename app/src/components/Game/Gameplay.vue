@@ -1,21 +1,18 @@
 <template>
-  <div class="">
+  <div class="space-y-3 flex items-center flex-col">
     <!-- @AUSTIN "v-for" is a loop, in this case referencing the value "holes" found in the script under "data". -->
     <div v-for="index in holes" :key="index">
       <!-- @AUSTIN the v-for above would normally repeat the same <div> a bunch of times with a few variances. So the following div has a "v-if" which means it will render only if its unique "index" == currentHole. currentHole gets incremented each timme "next hole" is clicked upon. -->
-      <div v-if="index == currentHole">
-        <div class="flex justify-center">
-          <p>Hole {{ currentHole }}</p>
-        </div>
-        <div class="flex flex-col">
-          <p>Your Score</p>
-          <input type="number" v-model="myScore[index]" />
-        </div>
-        <div class="flex flex-col">
-          <p>Opponent Score</p>
-          <input type="number" v-model="opponentScore[index]" />
-        </div>
-        <div>
+      <div
+        v-if="index == currentHole"
+        class="space-y-3 flex flex-col items-center"
+      >
+        <p>Hole {{ currentHole }}</p>
+        <p>Your Score</p>
+        <input type="number" v-model="myScore[index]" />
+        <p>Opponent Score</p>
+        <input type="number" v-model="opponentScore[index]" />
+        <div class="space-x-2">
           <button @click="previous" class="btn">Previous Hole</button>
           <button @click="next" class="btn">Next Hole</button>
         </div>
