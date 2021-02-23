@@ -8,7 +8,7 @@ export default new Vuex.Store({
     // @AUSTIN change this one to whatever particular "page" in the gameplay you want to see. "splash" is default because that's where the app starts. e.g. use
     // sequence: "finalScore",
     // to start it out at the Final Score page
-    sequence: "gameplay",
+    sequence: "splash",
     players: "2",
     points: "",
     // default for holes is actually in its component

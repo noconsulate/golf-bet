@@ -10,6 +10,7 @@
 </template>
 
 <script>
+import { db } from "../../utilities/firebase";
 export default {
   name: "Splash",
   methods: {
