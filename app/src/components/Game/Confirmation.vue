@@ -1,25 +1,16 @@
 <template>
-  <div class="space-y-3">
-    <div class="flex items-center flex-col">
-      <p>LET'S GO!</p>
-      <p>You're playing with {{ gameInfo.players }} players</p>
-      <p>{{ gameInfo.holes }} holes</p>
-      <p>for {{ gameInfo.points }} points.</p>
-    </div>
-    <div class="flex justify-center">
-      <button class="btn" @click="confirm">Confirm game</button>
-    </div>
-    <div class="flex justify-center"></div>
-    <div class="flex justify-center">
-      <button @click="back" class="btn block">Back</button>
-    </div>
-    <div class="flex justify-center">
-      <p>
-        (By clicking confirm user agrees to terms of service. This application
-        is not responsible for mitigating disputes. Disputed games will result
-        in return of points to all parties.)
-      </p>
-    </div>
+  <div class="space-y-3 flex items-center flex-col">
+    <p>LET'S GO!</p>
+    <p>You're playing with {{ gameInfo.players }} players</p>
+    <p>{{ gameInfo.holes }} holes</p>
+    <p>for {{ gameInfo.points }} points.</p>
+    <button class="btn" @click="confirm">Confirm game</button>
+    <button @click="back" class="btn block">Back</button>
+    <p>
+      (By clicking confirm user agrees to terms of service. This application is
+      not responsible for mitigating disputes. Disputed games will result in
+      return of points to all parties.)
+    </p>
   </div>
 </template>
 
