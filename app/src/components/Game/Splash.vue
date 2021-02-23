@@ -10,7 +10,6 @@
 </template>
 
 <script>
-import { db } from "../../utilities/firebase";
 export default {
   name: "Splash",
   methods: {
@@ -18,5 +17,6 @@ export default {
       this.$store.dispatch("setSequence", "players");
     },
   },
+  created() {},
 };
 </script>

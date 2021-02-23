@@ -8,9 +8,9 @@ export default new Vuex.Store({
     // @AUSTIN change this one to whatever particular "page" in the gameplay you want to see. "splash" is default because that's where the app starts. e.g. use
     // sequence: "finalScore",
     // to start it out at the Final Score page
-    sequence: "splash",
+    sequence: "confirmation",
     players: "2",
-    points: "",
+    points: "600",
     // default for holes is actually in its component
     holes: "18",
     // @AUSTIN uncomment the following entries for myScore and opponentScore to provide default values that will make the finalScore pages easier to work with so you don't have to input them in every time yourself. just make sure to comment out the two lines after it!
