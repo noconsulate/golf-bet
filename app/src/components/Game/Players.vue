@@ -1,17 +1,9 @@
 <template>
-  <div class="space-y-3">
-    <div class="flex justify-center">
-      <p>NUMBER OF PLAYERS</p>
-    </div>
-    <div class="flex justify-center">
-      <input v-model="players" type="number" class="w-16 block pl-2" />
-    </div>
-    <div class="flex justify-center">
-      <button @click="confirm" class="btn">Confirm</button>
-    </div>
-    <div class="flex justify-center">
-      <p>(2-4 Limit)</p>
-    </div>
+  <div class="space-y-3 flex flex-col items-center">
+    <p>NUMBER OF PLAYERS</p>
+    <input v-model="players" type="number" class="w-16 block pl-2" />
+    <button @click="confirm" class="btn">Confirm</button>
+    <p>(2-4 Limit)</p>
   </div>
 </template>
 
