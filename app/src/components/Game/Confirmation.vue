@@ -35,7 +35,7 @@ export default {
   methods: {
     async confirm() {
       let docRefId = await createGame(this.gameInfo);
-      this.$store.dispatch("setCreatedGameId", docRefId);
+      this.$store.dispatch("setGameId", docRefId);
 
       this.$store.dispatch("setSequence", "share");
     },

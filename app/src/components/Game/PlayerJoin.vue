@@ -26,11 +26,13 @@ export default {
     holes() {
       return this.$store.state.holes;
     },
+    gameId() {
+      return this.$store.state.gameId;
+    },
   },
   methods: {
     async confirm() {
-      const gameId = this.$store.state.gameId;
-      let joinGame = await playerConfirm(gameId);
+      let joinGame = await playerConfirm(this.gameId);
 
       if (joinGame == "success") {
         this.$store.dispatch("setSequence", "gameplay");

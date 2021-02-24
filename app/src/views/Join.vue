@@ -32,7 +32,7 @@ export default {
     let { gameInfo } = await joinGame(this.gameId);
     console.log(gameInfo);
 
-    this.$store.dispatch("setCreatedGameId", this.gameId);
+    this.$store.dispatch("setGameId", this.gameId);
     this.$store.dispatch("setPlayerNum", "2");
     this.$store.dispatch("setPlayers", gameInfo.players);
     this.$store.dispatch("setPoints", gameInfo.points);

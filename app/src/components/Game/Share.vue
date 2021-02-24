@@ -17,11 +17,11 @@ export default {
     };
   },
   computed: {
-    createdGameId() {
-      return this.$store.state.createdGameId;
+    gameId() {
+      return this.$store.state.gameId;
     },
     link2Share() {
-      return `${this.url}/join?game=${this.createdGameId}`;
+      return `${this.url}/join?game=${this.gameId}`;
     },
   },
   methods: {

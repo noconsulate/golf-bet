@@ -1,3 +1,4 @@
+import { firebase } from "@firebase/app";
 import { db } from "./firebase";
 
 export async function createGame(gameInfo) {
@@ -5,6 +6,7 @@ export async function createGame(gameInfo) {
   try {
     docRef = await db.collection("games").add({
       gameInfo: gameInfo,
+      playersJoined: [],
     });
     console.log(docRef.id);
   } catch (error) {
@@ -42,8 +44,8 @@ export async function playerConfirm(gameId) {
   let docRef = db.collection("games").doc(gameId);
 
   try {
-    await docRef.set({
-      player2Joined: true,
+    await docRef.update({
+      playersJoined: firebase.firestore.FieldValue.arrayUnion("2"),
     });
     console.log("player 2 joined the game");
     return "success";
