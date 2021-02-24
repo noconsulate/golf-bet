@@ -38,6 +38,7 @@ export default new Vuex.Store({
       18,
     ],
     createdGameId: "",
+    playerNum: "",
     // @AUSTIN comment out these next two lines if you uncomment the two above!
     // myScore: [],
     // opponentScore: [],
@@ -75,6 +76,9 @@ export default new Vuex.Store({
     UPDATE_CREATED_GAME_ID(state, payload) {
       state.createdGameId = payload;
     },
+    UPDATE_PLAYER_NUM(state, payload) {
+      state.playerNum = payload;
+    },
   },
   actions: {
     setSequence(context, value) {
@@ -98,6 +102,9 @@ export default new Vuex.Store({
     },
     setCreatedGameId(context, value) {
       context.commit("UPDATE_CREATED_GAME_ID", value);
+    },
+    setPlayerNum(context, value) {
+      context.commit("UPDATE_PLAYER_NUM", value);
     },
   },
 
