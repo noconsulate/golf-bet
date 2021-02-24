@@ -37,7 +37,7 @@ export default {
       let docRefId = await createGame(this.gameInfo);
       this.$store.dispatch("setCreatedGameId", docRefId);
 
-      // this.$store.dispatch("setSequence", "share");
+      this.$store.dispatch("setSequence", "share");
     },
     back() {
       this.$store.dispatch("setSequence", "holes");
