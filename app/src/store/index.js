@@ -8,7 +8,7 @@ export default new Vuex.Store({
     // @AUSTIN change this one to whatever particular "page" in the gameplay you want to see. "splash" is default because that's where the app starts. e.g. use
     // sequence: "finalScore",
     // to start it out at the Final Score page
-    sequence: "finalScore",
+    sequence: "confirmation",
     players: "2",
     points: "600",
     // default for holes is actually in its component
@@ -37,6 +37,7 @@ export default new Vuex.Store({
       17,
       18,
     ],
+    createdGameId: "",
     // @AUSTIN comment out these next two lines if you uncomment the two above!
     // myScore: [],
     // opponentScore: [],
@@ -71,6 +72,9 @@ export default new Vuex.Store({
       state.holes = "";
       state.scores = [];
     },
+    UPDATE_CREATED_GAME_ID(state, payload) {
+      state.createdGameId = payload;
+    },
   },
   actions: {
     setSequence(context, value) {
@@ -91,6 +95,9 @@ export default new Vuex.Store({
     },
     resetValues(context) {
       context.commit("RESET_VALUES");
+    },
+    setCreatedGameId(context, value) {
+      context.commit("UPDATE_CREATED_GAME_ID", value);
     },
   },
 

@@ -15,8 +15,7 @@
 </template>
 
 <script>
-import { db } from "../../utilities/firebase";
-
+import { createGame } from "../../utilities/bridges";
 export default {
   name: "confirmation",
   data() {
@@ -35,17 +34,8 @@ export default {
   },
   methods: {
     async confirm() {
-      let docRef;
-      try {
-        docRef = await db.collection("games").add({
-          thing: "game",
-        });
-        this.gameId = docRef.id;
-      } catch (error) {
-        console.log(error);
-      }
-
-      console.log(docRef.id);
+      let docRefId = await createGame(this.gameInfo);
+      this.$store.dispatch("setCreatedGameId", docRefId);
 
       // this.$store.dispatch("setSequence", "share");
     },
