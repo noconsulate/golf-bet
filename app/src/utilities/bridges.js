@@ -15,3 +15,24 @@ export async function createGame(gameInfo) {
 
   return docRef.id;
 }
+
+export async function getGame(gameId) {
+  let docRef = db.collection("games").doc(gameId);
+
+  let doc, gameData;
+
+  try {
+    doc = await docRef.get();
+    if (doc.exists) {
+      gameData = doc.data();
+    } else {
+      console.log("no such game");
+      throw "no such game";
+    }
+  } catch (error) {
+    console.log(error);
+  }
+
+  console.log(gameData);
+  return gameData;
+}

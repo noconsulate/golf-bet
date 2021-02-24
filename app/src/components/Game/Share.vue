@@ -21,7 +21,7 @@ export default {
       return this.$store.state.createdGameId;
     },
     link2Share() {
-      return `${this.url}/joingame?=${this.createdGameId}`;
+      return `${this.url}/join?game=${this.createdGameId}`;
     },
   },
   methods: {
