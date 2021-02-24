@@ -5,7 +5,7 @@
     <p>{{ players }} players</p>
     <p>for {{ points }} points</p>
     <p>playing {{ holes }} holes</p>
-    <button @click="confirm" class="btn">Confirm</button>
+    <button @click="confirm" class="btn">Join Game</button>
   </div>
 </template>
 

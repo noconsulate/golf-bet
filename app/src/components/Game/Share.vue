@@ -2,13 +2,13 @@
   <div class="space-y-3 flex items-center flex-col">
     <p>SHARE GAME</p>
     <p>{{ link2Share }}</p>
-    <img class="block w-48 h-full" src="../../assets/qr-code.png" />
-    <button class="btn block" @click="goForward">Continue</button>
+    <p>Waiting for Player 2 to join the game</p>
     <button class="btn" @click="back">Back</button>
   </div>
 </template>
 
 <script>
+import { db } from "../../utilities/firebase";
 export default {
   name: "share",
   data() {
@@ -25,12 +25,23 @@ export default {
     },
   },
   methods: {
-    goForward() {
-      this.$store.dispatch("setSequence", "gameplay");
-    },
     back() {
       this.$store.dispatch("setSequence", "confirmation");
     },
+  },
+  async created() {
+    // this listener needs to be put in bridges.js somehow
+    let docRef = db.collection("games").doc(this.gameId);
+
+    docRef.onSnapshot((doc) => {
+      const data = doc.data();
+      const playersJoined = data.playersJoined;
+      console.log(playersJoined.length);
+
+      if (playersJoined.length == 1) {
+        this.$store.dispatch("setSequence", "gameplay");
+      }
+    });
   },
 };
 </script>

@@ -54,3 +54,18 @@ export async function playerConfirm(gameId) {
     return "failuer";
   }
 }
+
+export function playersJoinedListener(gameId) {
+  console.log(gameId);
+  let docRef = db.collection("games").doc(gameId);
+
+  docRef.onSnapshot((doc) => {
+    const data = doc.data();
+    const playersJoined = data.playersJoined;
+    console.log(playersJoined.length);
+
+    if (playersJoined.length == 1) {
+      return;
+    }
+  });
+}
