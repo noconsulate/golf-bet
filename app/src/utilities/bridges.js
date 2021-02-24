@@ -16,7 +16,7 @@ export async function createGame(gameInfo) {
   return docRef.id;
 }
 
-export async function getGame(gameId) {
+export async function joinGame(gameId) {
   let docRef = db.collection("games").doc(gameId);
 
   let doc, gameData;
@@ -33,6 +33,22 @@ export async function getGame(gameId) {
     console.log(error);
   }
 
-  console.log(gameData);
+  // tell db player has arrived
+
   return gameData;
+}
+
+export async function playerConfirm(gameId) {
+  let docRef = db.collection("games").doc(gameId);
+
+  try {
+    await docRef.set({
+      player2Joined: true,
+    });
+    console.log("player 2 joined the game");
+    return "success";
+  } catch (error) {
+    console.log(error);
+    return "failuer";
+  }
 }

@@ -2,20 +2,23 @@
   <div>
     <PlayerJoin v-if="sequence == 'playerJoin'" />
     <Gameplay v-if="sequence == 'gameplay'" />
+    <FinalScore v-if="sequence == 'finalScore'" />
   </div>
 </template>
 
 <script>
-import { getGame } from "../utilities/bridges";
+import { joinGame } from "../utilities/bridges";
 
 import PlayerJoin from "../components/Game/PlayerJoin";
 import Gameplay from "../components/Game/Gameplay";
+import FinalScore from "../components/Game/FinalScore";
 
 export default {
   name: "join",
   components: {
     PlayerJoin,
     Gameplay,
+    FinalScore,
   },
   computed: {
     gameId() {
@@ -26,9 +29,10 @@ export default {
     },
   },
   async created() {
-    let { gameInfo } = await getGame(this.gameId);
+    let { gameInfo } = await joinGame(this.gameId);
     console.log(gameInfo);
 
+    this.$store.dispatch("setCreatedGameId", this.gameId);
     this.$store.dispatch("setPlayerNum", "2");
     this.$store.dispatch("setPlayers", gameInfo.players);
     this.$store.dispatch("setPoints", gameInfo.points);

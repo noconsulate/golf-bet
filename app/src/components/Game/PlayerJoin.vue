@@ -10,6 +10,7 @@
 </template>
 
 <script>
+import { playerConfirm } from "../../utilities/bridges";
 export default {
   name: "playerJoin",
   computed: {
@@ -27,8 +28,15 @@ export default {
     },
   },
   methods: {
-    confirm() {
-      this.$store.dispatch("setSequence", "gameplay");
+    async confirm() {
+      const gameId = this.$store.state.gameId;
+      let joinGame = await playerConfirm(gameId);
+
+      if (joinGame == "success") {
+        this.$store.dispatch("setSequence", "gameplay");
+      } else {
+        console.log("something went wrong with joining games");
+      }
     },
   },
 };

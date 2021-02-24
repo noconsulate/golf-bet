@@ -13,7 +13,7 @@ export default {
   name: "share",
   data() {
     return {
-      url: "localhost:8080",
+      url: "http://localhost:8080",
     };
   },
   computed: {
