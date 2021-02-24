@@ -1,5 +1,5 @@
 <template>
-  <div class="px-4 py-4">
+  <div class="">
     <Splash v-if="sequence == 'splash'" />
     <Players v-if="sequence == 'players'" />
     <Points v-if="sequence == 'points'" />
