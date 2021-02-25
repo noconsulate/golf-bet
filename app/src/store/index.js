@@ -42,6 +42,7 @@ export default new Vuex.Store({
     // @AUSTIN comment out these next two lines if you uncomment the two above!
     // myScore: [],
     // opponentScore: [],
+    playersJoined: false,
   },
   mutations: {
     UPDATE_SEQUENCE(state, payload) {
@@ -79,6 +80,9 @@ export default new Vuex.Store({
     UPDATE_PLAYER_NUM(state, payload) {
       state.playerNum = payload;
     },
+    UPDATE_PLAYERS_JOINED(state) {
+      state.playersJoined = true;
+    },
   },
   actions: {
     setSequence(context, value) {
@@ -105,6 +109,11 @@ export default new Vuex.Store({
     },
     setPlayerNum(context, value) {
       context.commit("UPDATE_PLAYER_NUM", value);
+    },
+    setPlayersJoined(context) {
+      context.commit("UPDATE_PLAYERS_JOINED");
+      console.log("setPlayersJoined");
+      context.commit("UPDATE_SEQUENCE", "gameplay");
     },
   },
 

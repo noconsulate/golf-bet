@@ -1,6 +1,8 @@
 import { firebase } from "@firebase/app";
 import { db } from "./firebase";
 
+import store from "../store/";
+
 export async function createGame(gameInfo) {
   let docRef;
   try {
@@ -55,6 +57,7 @@ export async function playerConfirm(gameId) {
   }
 }
 
+// this requires some learnin'/thinkin/
 export function playersJoinedListener(gameId) {
   console.log(gameId);
   let docRef = db.collection("games").doc(gameId);
@@ -65,7 +68,7 @@ export function playersJoinedListener(gameId) {
     console.log(playersJoined.length);
 
     if (playersJoined.length == 1) {
-      return;
+      store.dispatch("setPlayersJoined");
     }
   });
 }
