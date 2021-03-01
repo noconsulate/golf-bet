@@ -1,6 +1,8 @@
 <template>
   <div class="justify-center">
-    <div class="px-8 py-4 h-screen pt-8 justify-self-center bg-green-500">
+    <div
+      class="px-8 py-4 h-screen w-full pt-8 justify-self-center bg-green-500"
+    >
       <Splash v-if="sequence == 'splash'" />
       <Players v-if="sequence == 'players'" />
       <Points v-if="sequence == 'points'" />

@@ -1,16 +1,15 @@
 <template>
   <div>
-    <table>
+    <table class="table-fixed">
       <tbody>
         <tr>
-          <td colspan="5">HANDICAP</td>
+          <td :class="tableCell" colspan="4">HANDICAP</td>
         </tr>
         <tr>
-          <td>H</td>
-          <td>Gr</td>
-          <td>Rd</td>
-          <td>P</td>
-          <td>HR</td>
+          <td :class="tableCell">T</td>
+          <td :class="tableCell">Rd</td>
+          <td :class="tableCell">P</td>
+          <td :class="tableCell">HR</td>
         </tr>
       </tbody>
     </table>
@@ -20,6 +19,12 @@
 <script>
 export default {
   name: "scorecard",
+  data() {
+    return {
+      // classes
+      tableCell: "border",
+    };
+  },
   computed: {
     holes() {
       return 9;
