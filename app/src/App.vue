@@ -1,9 +1,7 @@
 <template>
   <div id="app">
-    <div
-      class="container mx-auto border flex justify-center bg-green-500 md:w-1/2 lg:w-1/3"
-    >
-      <router-view class="w-3/4 h-screen pt-8" />
+    <div class="container mx-auto flex md:w-1/2 lg:w-1/3">
+      <router-view class="" />
     </div>
   </div>
 </template>

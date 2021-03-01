@@ -1,15 +1,17 @@
 <template>
-  <div class="px-4 py-4">
-    <Splash v-if="sequence == 'splash'" />
-    <Players v-if="sequence == 'players'" />
-    <Points v-if="sequence == 'points'" />
-    <Holes v-if="sequence == 'holes'" />
-    <Confirmation v-if="sequence == 'confirmation'" />
-    <Share v-if="sequence == 'share'" />
-    <Gameplay v-if="sequence == 'gameplay'" />
-    <FinalScore v-if="sequence == 'finalScore'" />
-    <Intrastitial v-if="sequence == 'interstitial'" />
-    <Gameover v-if="sequence == 'gameover'" />
+  <div class="justify-center">
+    <div class="px-8 py-4 h-screen pt-8 justify-self-center bg-green-500">
+      <Splash v-if="sequence == 'splash'" />
+      <Players v-if="sequence == 'players'" />
+      <Points v-if="sequence == 'points'" />
+      <Holes v-if="sequence == 'holes'" />
+      <Confirmation v-if="sequence == 'confirmation'" />
+      <Share v-if="sequence == 'share'" />
+      <Gameplay v-if="sequence == 'gameplay'" />
+      <FinalScore v-if="sequence == 'finalScore'" />
+      <Intrastitial v-if="sequence == 'interstitial'" />
+      <Gameover v-if="sequence == 'gameover'" />
+    </div>
   </div>
 </template>
 
