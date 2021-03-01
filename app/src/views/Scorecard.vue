@@ -1,18 +1,21 @@
 <template>
   <div>
-    <table class="table-fixed">
-      <tbody>
-        <tr>
-          <td :class="tableCell" colspan="4">HANDICAP</td>
-        </tr>
-        <tr>
-          <td :class="tableCell">T</td>
-          <td :class="tableCell">Rd</td>
-          <td :class="tableCell">P</td>
-          <td :class="tableCell">HR</td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="grid grid-cols-8 gap-2">
+      <div :class="cell" class="col-span-4">Handicap</div>
+      <div :class="cell"></div>
+      <div :class="cell"></div>
+      <div :class="cell"></div>
+      <div :class="cell"></div>
+
+      <div :class="cell">Hole</div>
+      <div :class="cell">Tee</div>
+      <div :class="cell">Par</div>
+      <div :class="cell">HR</div>
+      <div :class="cell">P1</div>
+      <div :class="cell">P2</div>
+      <div :class="cell">P3</div>
+      <div :class="cell">P4</div>
+    </div>
   </div>
 </template>
 
@@ -22,7 +25,7 @@ export default {
   data() {
     return {
       // classes
-      tableCell: "border",
+      cell: "border",
     };
   },
   computed: {
