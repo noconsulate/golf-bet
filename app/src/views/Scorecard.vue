@@ -173,9 +173,9 @@ export default {
       }
       this.scores[this.activeHole - 1][this.activePlayer - 1] = this.score;
       if (this.activePlayer > 1) {
-        this.ActivePlayer--;
+        this.activePlayer--;
       } else {
-        this.activePlayer == this.players;
+        this.activePlayer = this.players;
         this.activeHole--;
       }
     },
