@@ -167,7 +167,18 @@ export default {
     enterScore() {
       console.log("what");
     },
-    prevPlayer() {},
+    prevPlayer() {
+      if (this.activePlayer == 1 && this.activeHole == 1) {
+        return;
+      }
+      this.scores[this.activeHole - 1][this.activePlayer - 1] = this.score;
+      if (this.activePlayer > 1) {
+        this.ActivePlayer--;
+      } else {
+        this.activePlayer == this.players;
+        this.activeHole--;
+      }
+    },
     nextPlayer() {
       if (this.activePlayer == this.players && this.activeHole == this.holes) {
         return;
@@ -179,6 +190,14 @@ export default {
         this.activePlayer = 1;
         this.activeHole++;
       }
+    },
+  },
+  watch: {
+    activePlayer: function(neww, old) {
+      this.score = this.scores[this.activeHole - 1][this.activePlayer - 1];
+    },
+    activeHole: function(neww, old) {
+      this.score = this.scores[this.activeHole - 1][this.activePlayer - 1];
     },
   },
 };
