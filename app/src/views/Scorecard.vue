@@ -124,10 +124,10 @@ export default {
       console.log();
     },
     holes() {
-      return 18;
+      return Number(this.$store.state.holes);
     },
     players() {
-      return 2;
+      return this.$store.state.players;
     },
     courseData() {
       return {

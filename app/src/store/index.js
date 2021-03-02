@@ -1,6 +1,8 @@
 import Vue from "vue";
 import Vuex from "vuex";
 
+import router from "../router/";
+
 Vue.use(Vuex);
 
 export default new Vuex.Store({
@@ -8,7 +10,7 @@ export default new Vuex.Store({
     // @AUSTIN change this one to whatever particular "page" in the gameplay you want to see. "splash" is default because that's where the app starts. e.g. use
     // sequence: "finalScore",
     // to start it out at the Final Score page
-    sequence: "splash",
+    sequence: "share",
     players: "2",
     points: "600",
     // default for holes is actually in its component
@@ -113,7 +115,8 @@ export default new Vuex.Store({
     setPlayersJoined(context) {
       context.commit("UPDATE_PLAYERS_JOINED");
       console.log("setPlayersJoined");
-      context.commit("UPDATE_SEQUENCE", "gameplay");
+      // context.commit("UPDATE_SEQUENCE", "gameplay");
+      router.push("/scorecard");
     },
   },
 

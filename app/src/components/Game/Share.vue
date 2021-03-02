@@ -8,7 +8,6 @@
 </template>
 
 <script>
-import { db } from "../../utilities/firebase";
 import { playersJoinedListener } from "../../utilities/bridges";
 export default {
   name: "share",
@@ -32,19 +31,7 @@ export default {
   },
   async created() {
     playersJoinedListener(this.gameId);
-
-    // this listener needs to be put in bridges.js somehow
-    // let docRef = db.collection("games").doc(this.gameId);
-
-    // docRef.onSnapshot((doc) => {
-    //   const data = doc.data();
-    //   const playersJoined = data.playersJoined;
-    //   console.log(playersJoined.length);
-
-    //   if (playersJoined.length == 1) {
-    //     this.$store.dispatch("setSequence", "gameplay");
-    //   }
-    // });
+    window.store = this.$store;
   },
 };
 </script>
