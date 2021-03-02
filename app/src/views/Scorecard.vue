@@ -32,17 +32,32 @@
         <div :class="[index == activeHole ? activeCell : cell]">
           {{ courseData.ratings[index - 1] }}
         </div>
-        <div :class="[index == activeHole ? activeCell : cell]"></div>
-        <div :class="[index == activeHole ? activeCell : cell]"></div>
-        <div :class="[index == activeHole ? activeCell : cell]"></div>
-        <div :class="[index == activeHole ? activeCell : cell]"></div>
+        <div :class="[index == activeHole ? activeCell : cell]">
+          {{ scores[index - 1][0] }}
+        </div>
+        <div :class="[index == activeHole ? activeCell : cell]">
+          {{ scores[index - 1][1] }}
+        </div>
+        <div :class="[index == activeHole ? activeCell : cell]">
+          {{ scores[index - 1][2] }}
+        </div>
+        <div :class="[index == activeHole ? activeCell : cell]">
+          {{ scores[index - 1][3] }}
+        </div>
       </template>
     </div>
-    <div class="flex justify-center border mt-2">
-      <div class="flex space-x-1">
+    <div class="flex flex-col border mt-2 space-y-2">
+      <div class="flex justify-center space-x-1">
         <button @click="prevHole" class="btn">previous hole</button>
         <button @click="enterScore" class="btn">enter score</button>
         <button @click="nextHole" class="btn">next hole</button>
+      </div>
+      <div class="flex justify-center">Hole {{ activeHole }}</div>
+      <div class="flex justify-center">Player {{ activePlayer }}</div>
+      <div class="flex justify-center space-x-1">
+        <button @click="prevPlayer" class="btn">prev. player</button>
+        <input type="number" class="border w-12" v-model="score" />
+        <button @click="nextPlayer" class="btn">next player</button>
       </div>
     </div>
   </div>
@@ -57,8 +72,29 @@ export default {
       cell: "border",
       activeCell: "border bg-gray-100",
 
-      // ui
       activeHole: 1,
+      activePlayer: 1,
+      score: null,
+      scores: [
+        [null, null, null, null],
+        [null, null, null, null],
+        [null, null, null, null],
+        [null, null, null, null],
+        [null, null, null, null],
+        [null, null, null, null],
+        [null, null, null, null],
+        [null, null, null, null],
+        [null, null, null, null],
+        [null, null, null, null],
+        [null, null, null, null],
+        [null, null, null, null],
+        [null, null, null, null],
+        [null, null, null, null],
+        [null, null, null, null],
+        [null, null, null, null],
+        [null, null, null, null],
+        [null, null, null, null],
+      ],
     };
   },
   computed: {
@@ -130,6 +166,19 @@ export default {
     },
     enterScore() {
       console.log("what");
+    },
+    prevPlayer() {},
+    nextPlayer() {
+      if (this.activePlayer == this.players && this.activeHole == this.holes) {
+        return;
+      }
+      this.scores[this.activeHole - 1][this.activePlayer - 1] = this.score;
+      if (this.activePlayer < this.players) {
+        this.activePlayer++;
+      } else {
+        this.activePlayer = 1;
+        this.activeHole++;
+      }
     },
   },
 };
