@@ -1,8 +1,10 @@
 <template>
-  <div>
-    <PlayerJoin v-if="sequence == 'playerJoin'" />
-    <Gameplay v-if="sequence == 'gameplay'" />
-    <FinalScore v-if="sequence == 'finalScore'" />
+  <div class="justify-center">
+    <div
+      class="px-8 py-4 h-screen w-full pt-8 justify-self-center bg-green-500"
+    >
+      <PlayerJoin v-if="sequence == 'playerJoin'" />
+    </div>
   </div>
 </template>
 
