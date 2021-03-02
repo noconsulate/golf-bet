@@ -18,30 +18,50 @@
 
       <template v-for="index in holes">
         <div
-          :class="[index == activeHole ? activeCell : cell]"
+          :class="[index == activeHole ? activeRow : cell]"
           @click="selectRow(index)"
         >
           {{ index }}
         </div>
-        <div :class="[index == activeHole ? activeCell : cell]">
+        <div :class="[index == activeHole ? activeRow : cell]">
           {{ courseData.tees[index - 1] }}
         </div>
-        <div :class="[index == activeHole ? activeCell : cell]">
+        <div :class="[index == activeHole ? activeRow : cell]">
           {{ courseData.pars[index - 1] }}
         </div>
-        <div :class="[index == activeHole ? activeCell : cell]">
+        <div :class="[index == activeHole ? activeRow : cell]">
           {{ courseData.ratings[index - 1] }}
         </div>
-        <div :class="[index == activeHole ? activeCell : cell]">
+        <div
+          :class="[
+            index == activeHole ? activeRow : cell,
+            index == activeHole && activePlayer == 1 ? activeCell : cell,
+          ]"
+        >
           {{ scores[index - 1][0] }}
         </div>
-        <div :class="[index == activeHole ? activeCell : cell]">
+        <div
+          :class="[
+            index == activeHole ? activeRow : cell,
+            index == activeHole && activePlayer == 2 ? activeCell : cell,
+          ]"
+        >
           {{ scores[index - 1][1] }}
         </div>
-        <div :class="[index == activeHole ? activeCell : cell]">
+        <div
+          :class="[
+            index == activeHole ? activeRow : cell,
+            index == activeHole && activePlayer == 3 ? activeCell : cell,
+          ]"
+        >
           {{ scores[index - 1][2] }}
         </div>
-        <div :class="[index == activeHole ? activeCell : cell]">
+        <div
+          :class="[
+            index == activeHole ? activeRow : cell,
+            index == activeHole && activePlayer == 4 ? activeCell : cell,
+          ]"
+        >
           {{ scores[index - 1][3] }}
         </div>
       </template>
@@ -70,7 +90,8 @@ export default {
     return {
       // classes
       cell: "border",
-      activeCell: "border bg-gray-100",
+      activeRow: "border bg-gray-100",
+      activeCell: "border bg-blue-100",
 
       activeHole: 1,
       activePlayer: 1,
