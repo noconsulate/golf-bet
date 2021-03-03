@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div class="container mx-auto px-4 flex justify-center md:w-1/2 lg:w-1/3">
+    <div class="container mx-auto flex justify-center md:w-1/2 lg:w-1/3">
       <router-view class="" />
     </div>
   </div>
