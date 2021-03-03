@@ -1,72 +1,76 @@
 <template>
-  <div class="w-full">
-    <div class="grid grid-cols-8">
-      <div :class="cell" class="col-span-4">Handicap</div>
-      <div :class="cell"></div>
-      <div :class="cell"></div>
-      <div :class="cell"></div>
-      <div :class="cell"></div>
+  <div class="w-full h-screen flex flex-col bg-red-300">
+    <div class="flex-grow min-w-full overflow-auto bg-yellow-400">
+      <div class="grid grid-cols-8 bg-green-200">
+        <div :class="cell" class="col-span-4">Handicap</div>
+        <div :class="cell"></div>
+        <div :class="cell"></div>
+        <div :class="cell"></div>
+        <div :class="cell"></div>
 
-      <div :class="cell">Hole</div>
-      <div :class="cell">Tee</div>
-      <div :class="cell">Par</div>
-      <div :class="cell">HR</div>
-      <div :class="cell">P1</div>
-      <div :class="cell">P2</div>
-      <div :class="cell">P3</div>
-      <div :class="cell">P4</div>
+        <div :class="cell">Hole</div>
+        <div :class="cell">Tee</div>
+        <div :class="cell">Par</div>
+        <div :class="cell">HR</div>
+        <div :class="cell">P1</div>
+        <div :class="cell">P2</div>
+        <div :class="cell">P3</div>
+        <div :class="cell">P4</div>
 
-      <template v-for="index in holes">
-        <div
-          :class="[index == activeHole ? activeRow : cell]"
-          @click="selectRow(index)"
-        >
-          {{ index }}
-        </div>
-        <div :class="[index == activeHole ? activeRow : cell]">
-          {{ courseData.tees[index - 1] }}
-        </div>
-        <div :class="[index == activeHole ? activeRow : cell]">
-          {{ courseData.pars[index - 1] }}
-        </div>
-        <div :class="[index == activeHole ? activeRow : cell]">
-          {{ courseData.ratings[index - 1] }}
-        </div>
-        <div
-          :class="[
-            index == activeHole ? activeRow : cell,
-            index == activeHole && activePlayer == 1 ? activeCell : cell,
-          ]"
-        >
-          {{ scores[index - 1][0] }}
-        </div>
-        <div
-          :class="[
-            index == activeHole ? activeRow : cell,
-            index == activeHole && activePlayer == 2 ? activeCell : cell,
-          ]"
-        >
-          {{ scores[index - 1][1] }}
-        </div>
-        <div
-          :class="[
-            index == activeHole ? activeRow : cell,
-            index == activeHole && activePlayer == 3 ? activeCell : cell,
-          ]"
-        >
-          {{ scores[index - 1][2] }}
-        </div>
-        <div
-          :class="[
-            index == activeHole ? activeRow : cell,
-            index == activeHole && activePlayer == 4 ? activeCell : cell,
-          ]"
-        >
-          {{ scores[index - 1][3] }}
-        </div>
-      </template>
+        <template v-for="index in holes">
+          <div
+            :class="[index == activeHole ? activeRow : cell]"
+            @click="selectRow(index)"
+          >
+            {{ index }}
+          </div>
+          <div :class="[index == activeHole ? activeRow : cell]">
+            {{ courseData.tees[index - 1] }}
+          </div>
+          <div :class="[index == activeHole ? activeRow : cell]">
+            {{ courseData.pars[index - 1] }}
+          </div>
+          <div :class="[index == activeHole ? activeRow : cell]">
+            {{ courseData.ratings[index - 1] }}
+          </div>
+          <div
+            :class="[
+              index == activeHole ? activeRow : cell,
+              index == activeHole && activePlayer == 1 ? activeCell : cell,
+            ]"
+          >
+            {{ scores[index - 1][0] }}
+          </div>
+          <div
+            :class="[
+              index == activeHole ? activeRow : cell,
+              index == activeHole && activePlayer == 2 ? activeCell : cell,
+            ]"
+          >
+            {{ scores[index - 1][1] }}
+          </div>
+          <div
+            :class="[
+              index == activeHole ? activeRow : cell,
+              index == activeHole && activePlayer == 3 ? activeCell : cell,
+            ]"
+          >
+            {{ scores[index - 1][2] }}
+          </div>
+          <div
+            :class="[
+              index == activeHole ? activeRow : cell,
+              index == activeHole && activePlayer == 4 ? activeCell : cell,
+            ]"
+          >
+            {{ scores[index - 1][3] }}
+          </div>
+        </template>
+      </div>
     </div>
-    <div class="flex flex-col border mt-2 space-y-2">
+    <div
+      class="flex flex-col border space-y-2 object-none object-bottom bg-green-400 "
+    >
       <div class="flex justify-center space-x-1">
         <button @click="prevHole" class="btn">previous hole</button>
         <button @click="enterScore" class="btn">enter score</button>

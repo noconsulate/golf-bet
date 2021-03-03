@@ -1,10 +1,6 @@
 <template>
-  <div class="justify-center">
-    <div
-      class="px-8 py-4 h-screen w-full pt-8 justify-self-center bg-green-500"
-    >
-      <PlayerJoin v-if="sequence == 'playerJoin'" />
-    </div>
+  <div class="bg-green-500 w-full flex justify-center pt-8 h-screen">
+    <PlayerJoin v-if="sequence == 'playerJoin'" />
   </div>
 </template>
 
