@@ -27,8 +27,8 @@ export default {
     },
   },
   async created() {
-    let { gameInfo } = await joinGame(this.gameId);
-    console.log(gameInfo);
+    let { gameInfo, playersJoined } = await joinGame(this.gameId);
+    console.log(gameInfo, playersJoined);
 
     this.$store.dispatch("setGameId", this.gameId);
     this.$store.dispatch("setPlayerNum", "2");

@@ -8,7 +8,7 @@ export async function createGame(gameInfo) {
   try {
     docRef = await db.collection("games").add({
       gameInfo: gameInfo,
-      playersJoined: [],
+      playersJoined: [1],
     });
     console.log(docRef.id);
   } catch (error) {
@@ -44,12 +44,30 @@ export async function joinGame(gameId) {
 
 export async function playerConfirm(gameId) {
   let docRef = db.collection("games").doc(gameId);
+  let doc, gameData, maxPlayer;
+
+  try {
+    doc = await docRef.get();
+    if (doc.exists) {
+      gameData = doc.data();
+      maxPlayer = Math.max(...gameData.playersJoined);
+    } else {
+      console.log("no such game");
+      throw "no such game";
+    }
+  } catch (error) {
+    console.log(error);
+  }
+
+  maxPlayer++;
+  console.log(maxPlayer);
+  store.dispatch("setPlayerNum", maxPlayer);
 
   try {
     await docRef.update({
-      playersJoined: firebase.firestore.FieldValue.arrayUnion("2"),
+      playersJoined: firebase.firestore.FieldValue.arrayUnion(maxPlayer),
     });
-    console.log("player 2 joined the game");
+    console.log(`player ${maxPlayer} joined the game`);
     return "success";
   } catch (error) {
     console.log(error);
@@ -59,6 +77,8 @@ export async function playerConfirm(gameId) {
 
 // this requires some learnin'/thinkin/
 export function playersJoinedListener(gameId) {
+  const players = store.state.players;
+
   console.log(gameId);
   let docRef = db.collection("games").doc(gameId);
 
@@ -67,7 +87,7 @@ export function playersJoinedListener(gameId) {
     const playersJoined = data.playersJoined;
     console.log(playersJoined.length);
 
-    if (playersJoined.length == 1) {
+    if (playersJoined.length == players) {
       store.dispatch("setPlayersJoined");
     }
   });
