@@ -66,6 +66,14 @@
             {{ scores[index - 1][3] }}
           </div>
         </template>
+        <div :class="cell">Total</div>
+        <div :class="cell">{{ courseData.teesTotal() }}</div>
+        <div :class="cell">{{ courseData.parsTotal() }}</div>
+        <div :class="cell">{{ courseData.ratingsTotal() }}</div>
+        <div :class="cell">{{ totalScores.player1() }}</div>
+        <div :class="cell">{{ totalScores.player2() }}</div>
+        <div :class="cell">{{ totalScores.player3() }}</div>
+        <div :class="cell">{{ totalScores.player4() }}</div>
       </div>
     </div>
     <div
@@ -155,7 +163,17 @@ export default {
           316,
           118,
         ],
+        teesTotal: function() {
+          let total = 0;
+          this.tees.map((tee) => (total += tee));
+          return total;
+        },
         pars: [4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4],
+        parsTotal: function() {
+          let total = 0;
+          this.pars.map((par) => (total += par));
+          return total;
+        },
         ratings: [
           12,
           18,
@@ -176,6 +194,44 @@ export default {
           12,
           12,
         ],
+        ratingsTotal: function() {
+          let total = 0;
+          this.ratings.map((rating) => (total += rating));
+          return total;
+        },
+      };
+    },
+    totalScores() {
+      return {
+        scores: this.scores,
+        player1: function() {
+          let total = 0;
+          this.scores.map((hole) => {
+            total += Number(hole[0]);
+          });
+          return total;
+        },
+        player2: function() {
+          let total = 0;
+          this.scores.map((hole) => {
+            total += Number(hole[1]);
+          });
+          return total;
+        },
+        player3: function() {
+          let total = 0;
+          this.scores.map((hole) => {
+            total += Number(hole[2]);
+          });
+          return total;
+        },
+        player4: function() {
+          let total = 0;
+          this.scores.map((hole) => {
+            total += Number(hole[3]);
+          });
+          return total;
+        },
       };
     },
   },
