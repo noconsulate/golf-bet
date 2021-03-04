@@ -5,7 +5,8 @@
     <p>{{ players }} players</p>
     <p>for {{ points }} points</p>
     <p>playing {{ holes }} holes</p>
-    <button @click="confirm" class="btn">Join Game</button>
+    <button v-if="!waiting" @click="confirm" class="btn">Join Game</button>
+    <p v-if="waiting">Waiting for the other players to join...</p>
   </div>
 </template>
 
@@ -13,6 +14,11 @@
 import { playerConfirm, playersJoinedListener } from "../../utilities/bridges";
 export default {
   name: "playerJoin",
+  data() {
+    return {
+      waiting: false,
+    };
+  },
   computed: {
     playerNum() {
       return this.$store.state.playerNum;
@@ -38,6 +44,7 @@ export default {
 
       if (joinGame == "success") {
         console.log("you joined the game");
+        this.waiting = true;
       } else {
         console.log("something went wrong with joining games");
       }
