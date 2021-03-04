@@ -1,7 +1,7 @@
 <template>
-  <div class="w-full h-screen flex flex-col bg-red-300">
-    <div class="flex-grow min-w-full overflow-auto bg-yellow-400">
-      <div class="grid grid-cols-8 bg-green-200">
+  <div class="w-full h-screen flex flex-col \">
+    <div class="flex-grow min-w-full overflow-auto \">
+      <div class="grid grid-cols-8 \">
         <div :class="cell" class="col-span-4">Handicap</div>
         <div :class="cell"></div>
         <div :class="cell"></div>
@@ -76,9 +76,7 @@
         <div :class="cell">{{ totalScores.player4() }}</div>
       </div>
     </div>
-    <div
-      class="flex flex-col border space-y-2 object-none object-bottom bg-green-400 "
-    >
+    <div class="flex flex-col border space-y-2 object-none object-bottom">
       <div class="flex justify-center space-x-1">
         <button @click="prevHole" class="btn">previous hole</button>
         <button @click="enterScore" class="btn">enter score</button>
