@@ -253,6 +253,7 @@ export default {
       this.scores[this.activeHole - 1][this.activePlayer - 1] = this.score;
       if (this.activePlayer > 1) {
         this.activePlayer--;
+        this.$refs.score.focus();
       } else {
         this.activePlayer = this.players;
         this.activeHole--;
@@ -264,8 +265,9 @@ export default {
       }
       this.scores[this.activeHole - 1][this.activePlayer - 1] = this.score;
       if (this.activePlayer < this.players) {
+        console.log("next player");
         this.activePlayer++;
-        this.$refs.score.$el.focus();
+        this.$refs.score.focus();
       } else {
         this.activePlayer = 1;
         this.activeHole++;
