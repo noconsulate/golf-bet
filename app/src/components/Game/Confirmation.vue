@@ -4,10 +4,10 @@
     <p>You're playing with {{ gameInfo.players }} players</p>
     <p>{{ gameInfo.holes }} holes</p>
     <p>for {{ gameInfo.points }} points.</p>
-    <button class="btn" @click="confirm">Confirm game</button>
-    <button @click="back" class="btn block">Back</button>
-    <p>
-      (By clicking confirm user agrees to terms of service. This application is
+    <button class="btn" @click="confirm">Confirm gam6e</button>
+    <button @click="back" class="btn">Back</button>
+    <p class="px-12 text-center">
+      6 (By clicking confirm user agrees to terms of service. This applicationis
       not responsible for mitigating disputes. Disputed games will result in
       return of points to all parties.)
     </p>

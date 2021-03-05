@@ -1,7 +1,7 @@
 <template>
   <div class="space-y-3 flex items-center flex-col">
     <p>SHARE GAME</p>
-    <p>{{ link2Share }}</p>
+    <p class="text-center">{{ link2Share }}</p>
     <p>Waiting for Player 2 to join the game</p>
     <button class="btn" @click="back">Back</button>
   </div>
@@ -13,7 +13,8 @@ export default {
   name: "share",
   data() {
     return {
-      url: "http://localhost:8080",
+      // url: "http://localhost:8080",
+      url: "https://golf-bets.web.app/",
     };
   },
   computed: {
