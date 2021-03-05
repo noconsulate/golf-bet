@@ -86,7 +86,7 @@
       <div class="flex justify-center">Player {{ activePlayer }}</div>
       <div class="flex justify-center space-x-1">
         <button @click="prevPlayer" class="btn">prev. player</button>
-        <input type="number" class="border w-12" v-model="score" />
+        <input ref="score" type="number" class="border w-12" v-model="score" />
         <button @click="nextPlayer" class="btn">next player</button>
       </div>
     </div>
@@ -265,6 +265,7 @@ export default {
       this.scores[this.activeHole - 1][this.activePlayer - 1] = this.score;
       if (this.activePlayer < this.players) {
         this.activePlayer++;
+        this.$refs.score.$el.focus();
       } else {
         this.activePlayer = 1;
         this.activeHole++;
