@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import Join from "../views/Join.vue";
 import Scorecard from "../views/Scorecard.vue";
+import Game from "../views/Game.vue";
 
 Vue.use(VueRouter);
 
@@ -21,6 +22,11 @@ const routes = [
     path: "/scorecard",
     name: "scorecard",
     component: Scorecard,
+  },
+  {
+    path: "/game",
+    name: "game",
+    component: Game,
   },
 ];
 
