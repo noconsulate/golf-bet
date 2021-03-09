@@ -2,10 +2,7 @@
   <div class="flex flex-col">
     <div class="controller-title">Select Number of Points</div>
     <div class="controller-panel">
-      <div
-        class="bg-purple-500 px-3 flex items-center cursor-pointer"
-        @click="prev"
-      >
+      <div class="controller-prev" @click="prev">
         prev
       </div>
       <div
@@ -13,10 +10,7 @@
       >
         <input type="number" v-model="points" class="h-8 w-16" />
       </div>
-      <div
-        class="bg-red-300 px-3 flex items-center cursor-pointer"
-        @click="next"
-      >
+      <div class="controller-next" @click="next">
         next
       </div>
     </div>

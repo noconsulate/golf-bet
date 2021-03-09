@@ -14,4 +14,10 @@
   .controller-panel {
     @apply flex h-24 border-blue-600 border-double;
   }
+  .controller-prev {
+    @apply bg-purple-500 px-3 flex items-center cursor-pointer;
+  }
+  .controller-next {
+    @apply bg-red-300 px-3 flex items-center cursor-pointer;
+  }
 }

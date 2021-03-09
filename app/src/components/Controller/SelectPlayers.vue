@@ -2,7 +2,7 @@
   <div class="flex flex-col">
     <div class="controller-title">Select Number of Players</div>
     <div class="controller-panel">
-      <div class="bg-purple-500 px-3 flex items-center cursor-pointer">
+      <div class="controller-prev">
         <button>prev</button>
       </div>
       <div class="grid grid-cols-2 bg-yellow-400 flex-grow">
@@ -35,10 +35,7 @@
           4
         </div>
       </div>
-      <div
-        class="bg-red-300 px-3 flex items-center cursor-pointer"
-        @click="next"
-      >
+      <div class="controller-next" @click="next">
         next
       </div>
     </div>
