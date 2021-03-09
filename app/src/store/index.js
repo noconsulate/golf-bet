@@ -13,7 +13,7 @@ export default new Vuex.Store({
     sequence: "splash",
     controller: "selectPlayers",
     players: "",
-    points: "600",
+    points: "",
     // default for holes is actually in its component
     holes: "18",
     // @AUSTIN uncomment the following entries for myScore and opponentScore to provide default values that will make the finalScore pages easier to work with so you don't have to input them in every time yourself. just make sure to comment out the two lines after it!

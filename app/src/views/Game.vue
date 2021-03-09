@@ -14,11 +14,14 @@
         </div>
         <div class="col-span-7 invisible">/</div>
         <div class="col-span-3" />
-        <div class="col-span-3">
+        <div
+          class="col-span-3"
+          :class="[controller == 'selectPoints' ? activeGroup : null]"
+        >
           Number of Points
         </div>
         <div>
-          /
+          {{ points }}
         </div>
         <div class="col-span-7 invisible">/</div>
 

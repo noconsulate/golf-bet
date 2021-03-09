@@ -1,39 +1,17 @@
 <template>
   <div class="flex flex-col">
-    <div class="flex justify-center py-4">Select Number of Players</div>
-    <div class="flex border border-blue-600">
-      <div class="bg-purple-500 px-3 flex items-center cursor-pointer">
-        <button>prev</button>
+    <div class="flex justify-center py-4">Select Number of Points</div>
+    <div class="flex h-24 border border-blue-600">
+      <div
+        class="bg-purple-500 px-3 flex items-center cursor-pointer"
+        @click="prev"
+      >
+        prev
       </div>
-      <div class="grid grid-cols-2 bg-yellow-400 flex-grow">
-        <div
-          class="flex justify-center text-4xl cursor-pointer"
-          :class="[players == 1 ? selected : null]"
-          @click="select(1)"
-        >
-          1
-        </div>
-        <div
-          class="flex justify-center text-4xl cursor-pointer"
-          :class="[players == 2 ? selected : null]"
-          @click="select(2)"
-        >
-          2
-        </div>
-        <div
-          class="flex justify-center text-4xl cursor-pointer"
-          :class="[players == 3 ? selected : null]"
-          @click="select(3)"
-        >
-          3
-        </div>
-        <div
-          class="flex justify-center text-4xl cursor-pointer"
-          :class="[players == 4 ? selected : null]"
-          @click="select(4)"
-        >
-          4
-        </div>
+      <div
+        class="bg-yellow-400 flex-grow flex flex-wrap justify-center content-center"
+      >
+        <input type="number" v-model="points" class="h-8 w-16" />
       </div>
       <div
         class="bg-red-300 px-3 flex items-center cursor-pointer"
@@ -51,16 +29,20 @@ export default {
     return {
       // classes
       selected: "border",
-      players: null,
+      points: null,
     };
   },
   methods: {
-    select(num) {
-      this.players = num;
+    prev() {
+      this.$store.dispatch("setController", "selectPlayers");
     },
     next() {
-      this.$store.dispatch("setPlayers", this.players);
-      this.$store.dispatch("setController", "selectPoints");
+      if (this.points != null) {
+        this.$store.dispatch("setPoints", this.points);
+        this.$store.dispatch("setController", "selectHoles");
+      } else {
+        console.log("select some points");
+      }
     },
   },
 };
