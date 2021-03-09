@@ -59,12 +59,8 @@ export default {
       this.players = num;
     },
     next() {
-      if (this.players != null) {
-        this.$store.dispatch("setPlayers", this.players);
-        this.$store.dispatch("setController", "selectPoints");
-      } else {
-        console.log("need to select players");
-      }
+      this.$store.dispatch("setPlayers", this.players);
+      this.$store.dispatch("setController", "selectPoints");
     },
   },
 };

@@ -56,7 +56,6 @@ export default new Vuex.Store({
     },
     UPDATE_PLAYERS(state, payload) {
       state.players = payload;
-      console.log("updateplayers" + payload);
     },
     UPDATE_POINTS(state, payload) {
       state.points = payload;
@@ -98,7 +97,6 @@ export default new Vuex.Store({
       context.commit("UPDATE_CONTROLLER", value);
     },
     setPlayers(context, value) {
-      console.log(value);
       context.commit("UPDATE_PLAYERS", value);
     },
     setPoints(context, value) {
