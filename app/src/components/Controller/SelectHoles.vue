@@ -47,6 +47,7 @@ export default {
     next() {
       if (this.holes != null) {
         this.$store.dispatch("setHoles", this.holes);
+        this.$store.dispatch("setController", "confirmGame");
       }
     },
   },

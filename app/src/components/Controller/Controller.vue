@@ -3,6 +3,7 @@
     <SelectPlayers v-if="controller == 'selectPlayers'" />
     <SelectPoints v-if="controller == 'selectPoints'" />
     <SelectHoles v-if="controller == 'selectHoles'" />
+    <ConfirmGame v-if="controller == 'confirmGame'" />
   </div>
 </template>
 
@@ -10,6 +11,7 @@
 import SelectPlayers from "./SelectPlayers";
 import SelectPoints from "./SelectPoints";
 import SelectHoles from "./SelectHoles";
+import ConfirmGame from "./ConfirmGame";
 
 export default {
   name: "controller",
@@ -17,6 +19,7 @@ export default {
     SelectPlayers,
     SelectPoints,
     SelectHoles,
+    ConfirmGame,
   },
   computed: {
     controller() {
