@@ -45,7 +45,8 @@ export default new Vuex.Store({
     // @AUSTIN comment out these next two lines if you uncomment the two above!
     // myScore: [],
     // opponentScore: [],
-    playersJoined: false,
+    playersJoined: [],
+    allPlayersJoined: false,
   },
   mutations: {
     UPDATE_SEQUENCE(state, payload) {
@@ -85,8 +86,11 @@ export default new Vuex.Store({
     UPDATE_PLAYER_NUM(state, payload) {
       state.playerNum = payload;
     },
-    UPDATE_PLAYERS_JOINED(state) {
-      state.playersJoined = true;
+    UPDATE_PLAYERS_JOINED(state, payload) {
+      state.playersJoined = payload;
+    },
+    UPDATE_ALL_PLAYERS_JOINED(state) {
+      state.players;
     },
   },
   actions: {
@@ -117,10 +121,12 @@ export default new Vuex.Store({
     setPlayerNum(context, value) {
       context.commit("UPDATE_PLAYER_NUM", value);
     },
-    setPlayersJoined(context) {
-      context.commit("UPDATE_PLAYERS_JOINED");
+    setPlayersJoined(context, payload) {
+      context.commit("UPDATE_PLAYERS_JOINED", payload);
       console.log("setPlayersJoined");
-      // context.commit("UPDATE_SEQUENCE", "gameplay");
+    },
+    setAllPlayersJoined(context) {
+      context.commit("UPDATE_ALL_PLAYERS_JOINED");
       router.push("/scorecard");
     },
   },

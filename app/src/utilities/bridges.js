@@ -86,9 +86,10 @@ export function playersJoinedListener(gameId) {
     const data = doc.data();
     const playersJoined = data.playersJoined;
     console.log(playersJoined.length);
+    store.dispatch("setPlayersJoined", playersJoined);
 
     if (playersJoined.length == players) {
-      store.dispatch("setPlayersJoined");
+      store.dispatch("setAllPlayersJoined");
     }
   });
 }

@@ -1,5 +1,5 @@
 <template>
-  <div class="space-y-3 flex flex-col py-2">
+  <div class="space-y-4 flex flex-col py-2">
     <p class="text-center text-2xl">SHARE GAME</p>
     <p class="text-center">{{ link2Share }}</p>
     <div class="flex justify-center">
