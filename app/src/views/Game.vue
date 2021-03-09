@@ -1,31 +1,24 @@
 <template>
-  <div class="h-screen bg-blue-600 flex flex-col">
-    <div class="flex-grow">
+  <div class="h-screen w-screen bg-blue-200 flex flex-col">
+    <div class="flex-grow ">
       <div class="grid grid-cols-7 pt-8">
         <div class="col-span-3" />
-        <div class="col-span-3">
-          <label for="players">Number of Players</label>
+        <div
+          class="col-span-3"
+          :class="[controller == 'selectPlayers' ? activeGroup : null]"
+        >
+          Number of Players
         </div>
         <div>
-          <input
-            id="players"
-            type="number"
-            v-model="players"
-            class="border w-full"
-          />
+          {{ players }}
         </div>
         <div class="col-span-7 invisible">/</div>
         <div class="col-span-3" />
         <div class="col-span-3">
-          <label for="points">Number of Points</label>
+          Number of Points
         </div>
         <div>
-          <input
-            id="points"
-            type="number"
-            v-model="points"
-            class="border w-full"
-          />
+          /
         </div>
         <div class="col-span-7 invisible">/</div>
 
@@ -64,14 +57,25 @@ export default {
   },
   data() {
     return {
-      players: null,
-      points: null,
-      holes: null,
-
       // classes
+      activeGroup: "underline",
       activeClass: "rounded border border-black bg-blue-300 w-12",
       inactiveClass: "rounded border border-black w-12",
     };
+  },
+  computed: {
+    controller() {
+      return this.$store.state.controller;
+    },
+    players() {
+      return this.$store.state.players;
+    },
+    holes() {
+      return this.$store.state.holes;
+    },
+    points() {
+      return this.$store.state.points;
+    },
   },
   methods: {
     selectHoles(holes) {

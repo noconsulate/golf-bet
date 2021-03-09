@@ -11,7 +11,8 @@ export default new Vuex.Store({
     // sequence: "finalScore",
     // to start it out at the Final Score page
     sequence: "splash",
-    players: "2",
+    controller: "selectPlayers",
+    players: "",
     points: "600",
     // default for holes is actually in its component
     holes: "18",
@@ -49,6 +50,9 @@ export default new Vuex.Store({
   mutations: {
     UPDATE_SEQUENCE(state, payload) {
       state.sequence = payload;
+    },
+    UPDATE_CONTROLLER(state, payload) {
+      state.controller = payload;
     },
     UPDATE_PLAYERS(state, payload) {
       state.players = payload;
@@ -89,6 +93,9 @@ export default new Vuex.Store({
   actions: {
     setSequence(context, value) {
       context.commit("UPDATE_SEQUENCE", value);
+    },
+    setController(context, value) {
+      context.commit("UPDATE_CONTROLLER", value);
     },
     setPlayers(context, value) {
       console.log(value);
