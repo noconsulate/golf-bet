@@ -37,8 +37,11 @@
         </div>
       </div>
     </div>
-    <div v-if="controller == 'confirmGame'" class="bg-green-700 flex flex-col">
-      <p class="text-2xl flex py-2 justify-center">Let's go!!</p>
+    <div
+      v-if="controller == 'confirmGame'"
+      class="bg-green-700 flex flex-col py-2"
+    >
+      <p class="text-2xl flexjustify-center">Let's go!!</p>
     </div>
     <Share v-if="controller == 'waitingForPlayers'" />
     <div class="bg-purple-500 flex-grow"></div>

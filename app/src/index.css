@@ -6,7 +6,7 @@
 
 @layer components {
   .btn {
-    @apply text-sm h-8 rounded border border-black shadow-md px-1 bg-white;
+    @apply text-sm  rounded border border-black shadow-md px-1 bg-white;
   }
   .controller-title {
     @apply flex justify-center py-4;
