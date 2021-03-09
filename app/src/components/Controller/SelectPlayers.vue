@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col">
-    <div class="flex justify-center py-4">Select Number of Players</div>
-    <div class="flex border border-blue-600">
+    <div class="controller-title">Select Number of Players</div>
+    <div class="controller-panel">
       <div class="bg-purple-500 px-3 flex items-center cursor-pointer">
         <button>prev</button>
       </div>

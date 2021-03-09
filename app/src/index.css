@@ -8,4 +8,10 @@
   .btn {
     @apply text-sm h-8 rounded border border-black shadow-md px-1 bg-white;
   }
+  .controller-title {
+    @apply flex justify-center py-4;
+  }
+  .controller-panel {
+    @apply flex h-24 border-blue-600 border-double;
+  }
 }
