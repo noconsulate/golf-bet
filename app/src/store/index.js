@@ -15,7 +15,7 @@ export default new Vuex.Store({
     players: "",
     points: "",
     // default for holes is actually in its component
-    holes: "18",
+    holes: "",
     // @AUSTIN uncomment the following entries for myScore and opponentScore to provide default values that will make the finalScore pages easier to work with so you don't have to input them in every time yourself. just make sure to comment out the two lines after it!
 
     // @AUSTIN you can make a selection and do ctrl + / to comment/uncomment. or do ctrl + / when your to do so to a line where your curser is

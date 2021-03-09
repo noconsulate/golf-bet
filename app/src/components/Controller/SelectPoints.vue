@@ -23,7 +23,7 @@ export default {
     return {
       // classes
       selected: "border",
-      points: null,
+      points: 600,
     };
   },
   methods: {

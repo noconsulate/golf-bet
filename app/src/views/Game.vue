@@ -25,26 +25,15 @@
         </div>
         <div class="col-span-7 invisible">/</div>
 
-        <div class="row-span-3 col-span-3 " />
+        <div class="col-span-3 " />
         <div
-          class="col-span-3 row-span-3  flex items-center"
+          class="col-span-3  flex items-center"
           :class="[controller == 'selectHoles' ? activeGroup : null]"
         >
           Number of Holes
         </div>
-        <div class=" row-span-3 col-span-1 flex flex-col">
-          <button
-            :class="[holes == '18' ? activeClass : inactiveClass]"
-            @click="selectHoles('18')"
-          >
-            18
-          </button>
-          <button
-            :class="[holes == '9' ? activeClass : inactiveClass]"
-            @click="selectHoles('9')"
-          >
-            9
-          </button>
+        <div class="col-span-1 flex flex-col">
+          {{ holes }}
         </div>
       </div>
     </div>
@@ -83,13 +72,7 @@ export default {
       return this.$store.state.points;
     },
   },
-  methods: {
-    selectHoles(holes) {
-      this.holes = holes;
-    },
-  },
-  created() {
-    this.holes = this.$store.state.holes;
-  },
+  methods: {},
+  created() {},
 };
 </script>

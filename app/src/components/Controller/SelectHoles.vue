@@ -1,0 +1,54 @@
+<template>
+  <div class="flex flex-col">
+    <div class="controller-title">Select Number of Holes</div>
+    <div class="controller-panel">
+      <div class="controller-prev" @click="prev">
+        prev
+      </div>
+      <div class="grid grid-cols-2 bg-yellow-400 flex-grow ">
+        <div
+          class="flex  justify-center items-center text-4xl cursor-pointer"
+          :class="[holes == '9' ? selected : null]"
+          @click="select('9')"
+        >
+          9
+        </div>
+        <div
+          class="flex justify-center items-center text-4xl cursor-pointer"
+          :class="[holes == '18' ? selected : null]"
+          @click="select('18')"
+        >
+          18
+        </div>
+      </div>
+      <div class="controller-next" @click="next">
+        next
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      //classes
+      selected: "border",
+      holes: null,
+    };
+  },
+  methods: {
+    select(num) {
+      this.holes = num;
+    },
+    prev() {
+      this.$store.dispatch("setController", "selectPoints");
+    },
+    next() {
+      if (this.holes != null) {
+        this.$store.dispatch("setHoles", this.holes);
+      }
+    },
+  },
+};
+</script>
