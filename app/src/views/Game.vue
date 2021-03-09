@@ -9,7 +9,7 @@
         >
           Number of Players
         </div>
-        <div>
+        <div class="cursor-pointer" @click="focus('selectPlayers')">
           {{ players }}
         </div>
         <div class="col-span-7 invisible">/</div>
@@ -20,7 +20,7 @@
         >
           Number of Points
         </div>
-        <div>
+        <div class="cursor-pointer" @click="focus('selectPoints')">
           {{ points }}
         </div>
         <div class="col-span-7 invisible">/</div>
@@ -32,7 +32,7 @@
         >
           Number of Holes
         </div>
-        <div class="col-span-1 flex flex-col">
+        <div class="cursor-pointer" @click="focus('selectHoles')">
           {{ holes }}
         </div>
       </div>
@@ -72,7 +72,11 @@ export default {
       return this.$store.state.points;
     },
   },
-  methods: {},
+  methods: {
+    focus(group) {
+      this.$store.dispatch("setController", group);
+    },
+  },
   created() {},
 };
 </script>
