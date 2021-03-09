@@ -37,6 +37,7 @@ export default {
       holes: null,
     };
   },
+
   methods: {
     select(num) {
       this.holes = num;
@@ -45,11 +46,18 @@ export default {
       this.$store.dispatch("setController", "selectPoints");
     },
     next() {
-      if (this.holes != null) {
+      if (
+        this.holes != null &&
+        this.$store.state.players != null &&
+        this.$store.state.points != null
+      ) {
         this.$store.dispatch("setHoles", this.holes);
         this.$store.dispatch("setController", "confirmGame");
       }
     },
+  },
+  created() {
+    this.holes = this.$store.state.holes;
   },
 };
 </script>

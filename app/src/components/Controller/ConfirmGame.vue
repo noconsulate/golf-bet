@@ -18,14 +18,28 @@
 </template>
 
 <script>
+import { createGame } from "../../utilities/bridges";
+
 export default {
   name: "confirmGame",
+  computed: {
+    gameInfo() {
+      return {
+        players: this.$store.state.players,
+        points: this.$store.state.points,
+        holes: this.$store.state.holes,
+      };
+    },
+  },
   methods: {
     prev() {
       this.$store.dispatch("setController", "selectHoles");
     },
-    confirm() {
-      console.log("yay");
+    async confirm() {
+      const docRefId = await createGame(this.gameInfo);
+      this.$store.dispatch("setGameId", docRefId);
+      this.$store.dispatch("setPlayerNum", 1);
+      this.$store.dispatch("setController", "waitingForPlayers");
     },
   },
 };
