@@ -26,8 +26,11 @@
         <div class="col-span-7 invisible">/</div>
 
         <div class="row-span-3 col-span-3 " />
-        <div class="col-span-3 row-span-3  flex items-center">
-          <label for="holes">Number of Holes</label>
+        <div
+          class="col-span-3 row-span-3  flex items-center"
+          :class="[controller == 'selectHoles' ? activeGroup : null]"
+        >
+          Number of Holes
         </div>
         <div class=" row-span-3 col-span-1 flex flex-col">
           <button
