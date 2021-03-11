@@ -96,6 +96,9 @@ export default {
     points() {
       return this.$store.state.points;
     },
+    scoringStyle() {
+      return this.$store.state.scoringStyle;
+    },
   },
   methods: {
     focus(group) {

@@ -6,8 +6,21 @@
         prev
       </div>
       <div class="bg-yellow-400 flex-grow flex flex-col">
-        <div>I'll keep track</div>
-        <div>Classic style</div>
+        <div
+          :class="[scoringStyle == 'solo' ? activeClass : null, selectorClass]"
+          @click="select('solo')"
+        >
+          I'll keep track
+        </div>
+        <div
+          :class="[
+            scoringStyle == 'classic' ? activeClass : null,
+            selectorClass,
+          ]"
+          @click="select('classic')"
+        >
+          Classic style
+        </div>
       </div>
       <div class="controller-next" @click="next">next</div>
     </div>
@@ -19,6 +32,9 @@ export default {
   name: "selectScoring",
   data() {
     return {
+      selectorClass:
+        "flex-auto flex justify-center items-center cursor-pointer",
+      activeClass: "border",
       scoringStyle: null,
     };
   },
@@ -28,8 +44,12 @@ export default {
     },
     next() {
       if (this.scoringStyle != null) {
+        this.$store.dispatch("setScoringStyle", this.scoringStyle);
         this.$store.dispatch("setController", "confirmGame");
       }
+    },
+    select(mode) {
+      this.scoringStyle = mode;
     },
   },
 };

@@ -28,7 +28,20 @@ export default {
         players: this.$store.state.players,
         points: this.$store.state.points,
         holes: this.$store.state.holes,
+        scoringStyle: this.$store.state.scoringStyle,
       };
+    },
+    players() {
+      return this.$store.state.players;
+    },
+    points() {
+      return this.$store.state.points;
+    },
+    holes() {
+      return this.$store.state.holes;
+    },
+    scoringStyle() {
+      return this.$store.state.scoringStyle;
     },
   },
   methods: {
@@ -36,6 +49,16 @@ export default {
       this.$store.dispatch("setController", "selectHoles");
     },
     async confirm() {
+      if (
+        this.players == "" ||
+        this.holes == "" ||
+        this.points == "" ||
+        this.scoringStyle == ""
+      ) {
+        alert("finish setting up game, loser");
+        return;
+      }
+
       const docRefId = await createGame(this.gameInfo);
       this.$store.dispatch("setGameId", docRefId);
       this.$store.dispatch("setPlayerNum", 1);
