@@ -34,22 +34,25 @@ export default {
     return {
       //classes
       selected: "border",
-      holes: null,
     };
   },
-
+  computed: {
+    holes() {
+      return this.$store.state.holes;
+    },
+  },
   methods: {
     select(num) {
-      this.holes = num;
+      this.$store.dispatch("setHoles", num);
     },
     prev() {
       this.$store.dispatch("setController", "selectPoints");
     },
     next() {
       if (
-        this.holes != null &&
-        this.$store.state.players != null &&
-        this.$store.state.points != null
+        this.holes != "" &&
+        this.$store.state.players != "" &&
+        this.$store.state.points != ""
       ) {
         this.$store.dispatch("setHoles", this.holes);
         this.$store.dispatch("setController", "selectScoring");
