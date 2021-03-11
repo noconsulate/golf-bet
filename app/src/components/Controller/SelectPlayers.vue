@@ -9,28 +9,28 @@
         <div
           class="flex justify-center text-4xl cursor-pointer"
           :class="[players == 1 ? selected : null]"
-          @click="select(1)"
+          @click="select('1')"
         >
           1
         </div>
         <div
           class="flex justify-center text-4xl cursor-pointer"
           :class="[players == 2 ? selected : null]"
-          @click="select(2)"
+          @click="select('2')"
         >
           2
         </div>
         <div
           class="flex justify-center text-4xl cursor-pointer"
           :class="[players == 3 ? selected : null]"
-          @click="select(3)"
+          @click="select('3')"
         >
           3
         </div>
         <div
           class="flex justify-center text-4xl cursor-pointer"
           :class="[players == 4 ? selected : null]"
-          @click="select(4)"
+          @click="select('4')"
         >
           4
         </div>
@@ -48,16 +48,19 @@ export default {
     return {
       // classes
       selected: "border",
-      players: null,
     };
+  },
+  computed: {
+    players() {
+      return this.$store.state.players;
+    },
   },
   methods: {
     select(num) {
-      this.players = num;
+      this.$store.dispatch("setPlayers", num);
     },
     next() {
-      if (this.players != null) {
-        this.$store.dispatch("setPlayers", this.players);
+      if (this.players != "") {
         this.$store.dispatch("setController", "selectPoints");
       } else {
         console.log("need to select players");
