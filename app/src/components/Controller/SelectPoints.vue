@@ -10,9 +10,10 @@
       >
         <input type="number" v-model="points" class="h-8 w-16" />
       </div>
-      <div class="controller-next" @click="next">
+      <div v-if="isReady" class="controller-next-ready" @click="next">
         next
       </div>
+      <div v-else class="controller-next-notReady">next</div>
     </div>
   </div>
 </template>
@@ -25,6 +26,11 @@ export default {
       selected: "border",
       points: "",
     };
+  },
+  computed: {
+    isReady() {
+      return this.$store.state.players != "" && this.points != "";
+    },
   },
   methods: {
     prev() {

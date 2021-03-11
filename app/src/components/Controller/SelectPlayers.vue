@@ -35,7 +35,10 @@
           4
         </div>
       </div>
-      <div class="controller-next" @click="next">
+      <div v-if="isReady" class="controller-next-ready" @click="next">
+        next
+      </div>
+      <div v-else class="controller-next-notReady" @click="next">
         next
       </div>
     </div>
@@ -53,6 +56,9 @@ export default {
   computed: {
     players() {
       return this.$store.state.players;
+    },
+    isReady() {
+      return this.players != "";
     },
   },
   methods: {

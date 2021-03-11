@@ -21,9 +21,10 @@
           18
         </div>
       </div>
-      <div class="controller-next" @click="next">
+      <div v-if="isReady" class="controller-next-ready" @click="next">
         next
       </div>
+      <div v-else class="controller-next-notReady">next</div>
     </div>
   </div>
 </template>
@@ -39,6 +40,13 @@ export default {
   computed: {
     holes() {
       return this.$store.state.holes;
+    },
+    isReady() {
+      return (
+        this.$store.state.players != "" &&
+        this.$store.state.points != "" &&
+        this.$store.state.holes != ""
+      );
     },
   },
   methods: {

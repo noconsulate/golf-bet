@@ -22,7 +22,10 @@
           Classic style
         </div>
       </div>
-      <div class="controller-next" @click="next">next</div>
+      <div v-if="ready" class="controller-next-ready" @click="next">
+        next
+      </div>
+      <div v-else class="controller-next-notReady">next</div>
     </div>
   </div>
 </template>
@@ -41,7 +44,7 @@ export default {
     scoringStyle() {
       return this.$store.state.scoringStyle;
     },
-    ready() {
+    isReady() {
       return (
         this.$store.state.players != "" &&
         this.$store.state.points != "" &&
@@ -55,7 +58,7 @@ export default {
       this.$store.dispatch("setController", "selectHoles");
     },
     next() {
-      if (this.ready) {
+      if (this.isReady) {
         this.$store.dispatch("setController", "confirmGame");
       }
     },

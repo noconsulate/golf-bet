@@ -39,7 +39,7 @@ export default new Vuex.Store({
     // opponentScore: [],
     playersJoined: [],
     allPlayersJoined: false,
-    scoringStyle: null,
+    scoringStyle: "",
   },
   mutations: {
     UPDATE_CONTROLLER(state, payload) {
