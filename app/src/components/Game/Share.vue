@@ -7,6 +7,9 @@
         Copy to clipboard
       </button>
     </div>
+    <p class="text-center text-xl">
+      Waiting for {{ waitingForPlayers }} to join.
+    </p>
   </div>
 </template>
 
@@ -16,8 +19,8 @@ export default {
   name: "share",
   data() {
     return {
-      // url: "http://localhost:8080",
-      url: "https://golf-bets.web.app/",
+      url: "http://localhost:8080",
+      // url: "https://golf-bets.web.app/",
     };
   },
   computed: {
@@ -26,6 +29,14 @@ export default {
     },
     link2Share() {
       return `${this.url}/join?game=${this.gameId}`;
+    },
+
+    waitingForPlayers() {
+      return (
+        this.$store.state.players -
+        this.$store.state.playersJoined.length +
+        " players"
+      );
     },
   },
   methods: {
