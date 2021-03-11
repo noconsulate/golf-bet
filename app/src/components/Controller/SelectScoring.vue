@@ -35,8 +35,12 @@ export default {
       selectorClass:
         "flex-auto flex justify-center items-center cursor-pointer",
       activeClass: "border",
-      scoringStyle: null,
     };
+  },
+  computed: {
+    scoringStyle() {
+      return this.$store.state.scoringStyle;
+    },
   },
   methods: {
     prev() {
@@ -44,12 +48,12 @@ export default {
     },
     next() {
       if (this.scoringStyle != null) {
-        this.$store.dispatch("setScoringStyle", this.scoringStyle);
         this.$store.dispatch("setController", "confirmGame");
       }
     },
     select(mode) {
       this.scoringStyle = mode;
+      this.$store.dispatch("setScoringStyle", mode);
     },
   },
 };

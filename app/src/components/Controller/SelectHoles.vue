@@ -54,7 +54,6 @@ export default {
         this.$store.state.players != "" &&
         this.$store.state.points != ""
       ) {
-        this.$store.dispatch("setHoles", this.holes);
         this.$store.dispatch("setController", "selectScoring");
       }
     },

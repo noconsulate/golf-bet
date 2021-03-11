@@ -39,5 +39,8 @@ export default {
       }
     },
   },
+  created() {
+    this.points = this.$store.state.points;
+  },
 };
 </script>
