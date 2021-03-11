@@ -41,13 +41,21 @@ export default {
     scoringStyle() {
       return this.$store.state.scoringStyle;
     },
+    ready() {
+      return (
+        this.$store.state.players != "" &&
+        this.$store.state.points != "" &&
+        this.$store.state.holes != "" &&
+        this.$store.state.scoringStyle != ""
+      );
+    },
   },
   methods: {
     prev() {
       this.$store.dispatch("setController", "selectHoles");
     },
     next() {
-      if (this.scoringStyle != null) {
+      if (this.ready) {
         this.$store.dispatch("setController", "confirmGame");
       }
     },
