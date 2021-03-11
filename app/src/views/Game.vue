@@ -35,8 +35,21 @@
         <div class="cursor-pointer" @click="focus('selectHoles')">
           {{ holes }}
         </div>
+        <div class="col-span-7 invisible">/</div>
+        <div class="col-span-3" />
+        <div
+          class="col-span-3 flexs intems-center"
+          :class="[controller == 'selectScoring' ? activeGroup : null]"
+        >
+          Scoring Style
+        </div>
+        <div class="cursor-pointer" @click="focus('selectScoring')">
+          {{ scoringStyle }}
+        </div>
+        `
       </div>
     </div>
+
     <div class="py-8">
       <div
         v-if="controller == 'confirmGame'"

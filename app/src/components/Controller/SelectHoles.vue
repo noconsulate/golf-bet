@@ -52,7 +52,7 @@ export default {
         this.$store.state.points != null
       ) {
         this.$store.dispatch("setHoles", this.holes);
-        this.$store.dispatch("setController", "confirmGame");
+        this.$store.dispatch("setController", "selectScoring");
       }
     },
   },
