@@ -24,7 +24,7 @@ const routes = [
     component: Scorecard,
   },
   {
-    path: "/game",
+    path: "/",
     name: "game",
     component: Game,
   },
