@@ -9,25 +9,31 @@
       >
         &#9776;
       </button>
-      <router-view class="" />
+      <router-view :class="open ? 'opacity-25' : 'opacity-100'" />
     </div>
     <nav
       :class="open ? 'navbar-open' : 'navbar-close'"
-      class="navbar w-64 absolute overflow-x-scroll bg-gray-700 top-0 h-screen"
+      class="navbar w-64 absolute overflow-x-scroll bg-gray-100 top-0 h-screen"
     >
       <div class="flex pr-2 justify-end">
-        <button @click="tog()" class="p-2 text-white text-xl font-bold">
+        <button @click="tog()" class="p-2  text-xl font-bold">
           &#9747;
         </button>
       </div>
-      <h1 class="text-xl text-center font-bold pt-5">Menu</h1>
-      <ul class="list-none text-white text-center">
-        <li class="my-8"><a href="#"></a>Teams</li>
-        <li class="my-8"><a href="#"></a>Projects</li>
-        <li class="my-8"><a href="#"></a>Favourites</li>
-        <li class="my-8"><a href="#"></a>Notifications</li>
-        <li class="my-8"><a href="#"></a>Members</li>
-      </ul>
+      <div class="bg-green-400 h-screen flex items-center">
+        <div
+          class="w-full grid grid-cols-4 gap-3 pl-4 justity-items-auto bg-red-500"
+        >
+          <div class="col-span-1 justify-self-center">X</div>
+          <div class="col-span-3">Player</div>
+          <div class="col-span-4 invisible">X</div>
+          <div class="col-span-1 justify-self-center">X</div>
+          <div class="col-span-3">Setup</div>
+          <div class="col-span-4 invisible">X</div>
+          <div class="col-span-1 justify-self-center">X</div>
+          <div class="col-span-3">Scorecard</div>
+        </div>
+      </div>
     </nav>
   </div>
 </template>
