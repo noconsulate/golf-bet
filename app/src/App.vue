@@ -1,12 +1,15 @@
 <template>
   <div id="app">
-    <div class="absolute top-0 left-0 h-screen w-screen">
-      <button @click="tog()" class="text-black text-2xl p-2 font-bold">
+    <div
+      class="relative h-screen w-screen container mx-auto  md:w-1/2 lg:w-1/3"
+    >
+      <button
+        @click="tog()"
+        class="text-black text-2xl p-2 font-bold absolute top-0 right-0"
+      >
         &#9776;
       </button>
-      <div class="container mx-auto flex justify-center md:w-1/2 lg:w-1/3">
-        <router-view class="" />
-      </div>
+      <router-view class="" />
     </div>
     <nav
       :class="open ? 'navbar-open' : 'navbar-close'"
