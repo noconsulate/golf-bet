@@ -7,6 +7,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
+    navOpen: false,
     controller: "selectPlayers",
     players: "",
     points: "",
@@ -42,6 +43,9 @@ export default new Vuex.Store({
     scoringStyle: "",
   },
   mutations: {
+    UPDATE_NAV_OPEN(state) {
+      state.navOpen = !state.navOpen;
+    },
     UPDATE_CONTROLLER(state, payload) {
       state.controller = payload;
     },
@@ -87,6 +91,9 @@ export default new Vuex.Store({
     },
   },
   actions: {
+    toggleNavOpen(context) {
+      context.commit("UPDATE_NAV_OPEN");
+    },
     setSequence(context, value) {
       context.commit("UPDATE_SEQUENCE", value);
     },

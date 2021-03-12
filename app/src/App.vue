@@ -34,13 +34,19 @@ export default {
   name: "app",
   data() {
     return {
-      open: false,
+      // open: false,
     };
+  },
+  computed: {
+    open() {
+      return this.$store.state.navOpen;
+    },
   },
   methods: {
     tog() {
       console.log("hey");
-      this.open = !this.open;
+      // this.open = !this.open;
+      this.$store.dispatch("toggleNavOpen");
     },
   },
   created() {
