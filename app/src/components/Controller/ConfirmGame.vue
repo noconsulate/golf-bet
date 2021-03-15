@@ -12,7 +12,7 @@
       >
         LET'S GO!!
       </div>
-      <div class="controller-next" @click="confirm">next</div>
+      <div class="controller-next-ready" @click="confirm">next</div>
     </div>
   </div>
 </template>

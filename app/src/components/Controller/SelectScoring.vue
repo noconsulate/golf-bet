@@ -22,7 +22,7 @@
           Classic style
         </div>
       </div>
-      <div v-if="ready" class="controller-next-ready" @click="next">
+      <div v-if="isReady" class="controller-next-ready" @click="next">
         next
       </div>
       <div v-else class="controller-next-notReady">next</div>
@@ -63,7 +63,6 @@ export default {
       }
     },
     select(mode) {
-      this.scoringStyle = mode;
       this.$store.dispatch("setScoringStyle", mode);
     },
   },

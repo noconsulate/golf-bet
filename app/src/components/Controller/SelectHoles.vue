@@ -67,7 +67,7 @@ export default {
     },
   },
   created() {
-    this.holes = this.$store.state.holes;
+    // this.holes = this.$store.state.holes;
   },
 };
 </script>
