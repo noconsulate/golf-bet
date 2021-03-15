@@ -4,8 +4,8 @@
       <div class="grid grid-cols-7 pt-8">
         <div class="col-span-3" />
         <div
-          class="col-span-3"
-          :class="[controller == 'selectPlayers' ? activeGroup : null]"
+          :class="[group, controller == 'selectPlayers' ? activeGroup : null]"
+          @click="focus('selectPlayers')"
         >
           Number of Players
         </div>
@@ -15,8 +15,8 @@
         <div class="col-span-7 invisible">/</div>
         <div class="col-span-3" />
         <div
-          class="col-span-3"
-          :class="[controller == 'selectPoints' ? activeGroup : null]"
+          :class="[group, controller == 'selectPoints' ? activeGroup : null]"
+          @click="focus('selectPoints')"
         >
           Number of Points
         </div>
@@ -27,8 +27,8 @@
 
         <div class="col-span-3 " />
         <div
-          class="col-span-3  flex items-center"
-          :class="[controller == 'selectHoles' ? activeGroup : null]"
+          :class="[group, controller == 'selectHoles' ? activeGroup : null]"
+          @click="focus('selectHoles')"
         >
           Number of Holes
         </div>
@@ -38,8 +38,8 @@
         <div class="col-span-7 invisible">/</div>
         <div class="col-span-3" />
         <div
-          class="col-span-3 flexs intems-center"
-          :class="[controller == 'selectScoring' ? activeGroup : null]"
+          :class="[group, controller == 'selectScoring' ? activeGroup : null]"
+          @click="focus('selectScoring')"
         >
           Scoring Style
         </div>
@@ -78,6 +78,7 @@ export default {
   data() {
     return {
       // classes
+      group: "col-span-3 cursor-pointer",
       activeGroup: "underline",
       activeClass: "rounded border border-black bg-blue-300 w-12",
       inactiveClass: "rounded border border-black w-12",

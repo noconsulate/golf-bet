@@ -18,7 +18,7 @@
           </button>
         </div>
         <div
-          class="w-full grid grid-cols-4 gap-3 pl-4 justity-items-auto bg-red-500"
+          class="w-full grid grid-cols-4 gap-3 pl-4 justity-items-auto text-3xl"
         >
           <div class="col-span-4 row-span-6 bg-yellow-300 invisible">X</div>
           <div class="col-span-4 row-span-6 bg-yellow-300 invisible">X</div>
@@ -26,7 +26,7 @@
           <div class="col-span-4 row-span-6 bg-yellow-300 invisible">X</div>
 
           <div class="col-span-1 justify-self-center">X</div>
-          <div class="col-span-3 text-2xl">Player</div>
+          <div class="col-span-3">Player</div>
           <div class="col-span-4 invisible">X</div>
           <div class="col-span-1 justify-self-center">X</div>
           <div class="col-span-3">Setup</div>
