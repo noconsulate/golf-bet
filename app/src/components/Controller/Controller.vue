@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="border border-black">
     <SelectPlayers v-if="controller == 'selectPlayers'" />
     <SelectPoints v-if="controller == 'selectPoints'" />
     <SelectHoles v-if="controller == 'selectHoles'" />

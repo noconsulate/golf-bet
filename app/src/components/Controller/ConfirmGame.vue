@@ -7,7 +7,7 @@
         prev
       </div>
       <div
-        class="flex flex-grow bg-yellow-400 cursor-pointer justify-center items-center text-4xl"
+        class="flex flex-grow cursor-pointer justify-center items-center text-4xl"
         @click="confirm"
       >
         LET'S GO!!

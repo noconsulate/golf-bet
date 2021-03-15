@@ -1,5 +1,5 @@
 <template>
-  <div class="h-screen w-screen bg-blue-200 flex flex-col">
+  <div class="h-screen w-screen flex flex-col">
     <div class="">
       <div class="grid grid-cols-7 pt-8">
         <div class="col-span-3" />
@@ -51,16 +51,13 @@
     </div>
 
     <div class="py-8">
-      <div
-        v-if="controller == 'confirmGame'"
-        class="bg-green-700 flex flex-col"
-      >
+      <div v-if="controller == 'confirmGame'" class=" flex flex-col">
         <p class="text-2xl flex justify-center">Let's go!!</p>
       </div>
       <Share v-if="controller == 'waitingForPlayers'" />
     </div>
-    <div class="bg-purple-500 flex-grow"></div>
-    <div class="bg-pink-200 h-40 object-none object-bottom">
+    <div class=" flex-grow"></div>
+    <div class=" h-40 object-none object-bottom">
       <Controller />
     </div>
   </div>
@@ -80,7 +77,7 @@ export default {
       // classes
       group: "col-span-3 cursor-pointer",
       activeGroup: "underline",
-      activeClass: "rounded border border-black bg-blue-300 w-12",
+      activeClass: "rounded border border-black  w-12",
       inactiveClass: "rounded border border-black w-12",
     };
   },

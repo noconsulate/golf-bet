@@ -5,7 +5,7 @@
       <div class="controller-prev" @click="prev">
         prev
       </div>
-      <div class="bg-yellow-400 flex-grow flex flex-col">
+      <div class="flex-grow flex flex-col">
         <div
           :class="[scoringStyle == 'solo' ? activeClass : null, selectorClass]"
           @click="select('solo')"

@@ -5,7 +5,7 @@
       <div class="controller-prev">
         <button>prev</button>
       </div>
-      <div class="grid grid-cols-2 bg-yellow-400 flex-grow">
+      <div class="grid grid-cols-2 flex-grow">
         <div
           class="flex justify-center text-4xl cursor-pointer"
           :class="[players == 1 ? selected : null]"

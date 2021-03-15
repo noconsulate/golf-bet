@@ -5,10 +5,8 @@
       <div class="controller-prev" @click="prev">
         prev
       </div>
-      <div
-        class="bg-yellow-400 flex-grow flex flex-wrap justify-center content-center"
-      >
-        <input type="number" v-model="points" class="h-8 w-16" />
+      <div class="flex-grow flex flex-wrap justify-center content-center">
+        <input type="number" v-model="points" class="h-8 w-16 border" />
       </div>
       <div v-if="isReady" class="controller-next-ready" @click="next">
         next
