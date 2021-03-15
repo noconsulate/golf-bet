@@ -44,7 +44,9 @@ export default new Vuex.Store({
   },
   mutations: {
     UPDATE_NAV_OPEN(state) {
+      console.log(state.navOpen);
       state.navOpen = !state.navOpen;
+      console.log(state.navOpen);
     },
     UPDATE_CONTROLLER(state, payload) {
       state.controller = payload;
