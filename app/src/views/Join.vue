@@ -1,6 +1,6 @@
 <template>
-  <div class="bg-green-500 w-full flex justify-center pt-8 h-screen">
-    <PlayerJoin v-if="sequence == 'playerJoin'" />
+  <div>
+    <PlayerJoin />
   </div>
 </template>
 
@@ -31,11 +31,14 @@ export default {
     console.log(gameInfo, playersJoined);
 
     this.$store.dispatch("setGameId", this.gameId);
-    this.$store.dispatch("setPlayerNum", "2");
+    this.$store.dispatch(
+      "setPlayerNum",
+      playersJoined[playersJoined.length - 1] + 1
+    );
     this.$store.dispatch("setPlayers", gameInfo.players);
     this.$store.dispatch("setPoints", gameInfo.points);
     this.$store.dispatch("setHoles", gameInfo.holes);
-    this.$store.dispatch("setSequence", "playerJoin");
+    this.$store.dispatch("setScoringStyle", gameInfo.scoringStyle);
   },
 };
 </script>

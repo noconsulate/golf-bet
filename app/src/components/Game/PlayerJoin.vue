@@ -1,19 +1,59 @@
 <template>
-  <div class="space-y-3 flex flex-col items-center">
-    <p>Welcome Player {{ playerNum }}</p>
-    <p>This game has</p>
-    <p>{{ players }} players</p>
-    <p>for {{ points }} points</p>
-    <p>playing {{ holes }} holes</p>
-    <button v-if="!waiting" @click="confirm" class="btn">Join Game</button>
-    <p v-if="waiting">Waiting for the other players to join...</p>
+  <div class="h-screen w-screen flex flex-col">
+    <div class="text-center pt-4">Welcome player {{ playerNum }}</div>
+    <div class="grid grid-cols-7 pt-4">
+      <div class="col-span-3" />
+      <div class="col-span-3">
+        Number of Players
+      </div>
+      <div class="">
+        {{ players }}
+      </div>
+      <div class="col-span-7 invisible">/</div>
+      <div class="col-span-3" />
+      <div class="col-span-3">
+        Number of Points
+      </div>
+      <div class="">
+        {{ points }}
+      </div>
+      <div class="col-span-7 invisible">/</div>
+      <div class="col-span-3" />
+      <div class="col-span-3">
+        Number of Holes
+      </div>
+      <div class="">
+        {{ holes }}
+      </div>
+      <div class="col-span-7 invisible">/</div>
+      <div class="col-span-3" />
+      <div class="col-span-3">
+        Scoring Style
+      </div>
+      <div class="">
+        {{ scoringStyle }}
+      </div>
+      <div class="col-span-7 invisible">/</div>
+    </div>
+    <Share v-if="waiting == true" />
+    <div class=" flex-grow"></div>
+
+    <div class=" h-40 object-none object-bottom">
+      <Controller />
+    </div>
   </div>
 </template>
 
 <script>
 import { playerConfirm, playersJoinedListener } from "../../utilities/bridges";
+import Controller from "../Controller/Controller";
+import Share from "../../components/Game/Share";
 export default {
   name: "playerJoin",
+  components: {
+    Share,
+    Controller,
+  },
   data() {
     return {
       waiting: false,
@@ -32,6 +72,9 @@ export default {
     holes() {
       return this.$store.state.holes;
     },
+    scoringStyle() {
+      return this.$store.state.scoringStyle;
+    },
     gameId() {
       return this.$store.state.gameId;
     },
@@ -49,6 +92,9 @@ export default {
         console.log("something went wrong with joining games");
       }
     },
+  },
+  created() {
+    this.$store.dispatch("setController", "joinGame");
   },
 };
 </script>

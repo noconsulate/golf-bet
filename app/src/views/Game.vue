@@ -1,52 +1,49 @@
 <template>
   <div class="h-screen w-screen flex flex-col">
-    <div class="">
-      <div class="grid grid-cols-7 pt-8">
-        <div class="col-span-3" />
-        <div
-          :class="[group, controller == 'selectPlayers' ? activeGroup : null]"
-          @click="focus('selectPlayers')"
-        >
-          Number of Players
-        </div>
-        <div class="cursor-pointer" @click="focus('selectPlayers')">
-          {{ players }}
-        </div>
-        <div class="col-span-7 invisible">/</div>
-        <div class="col-span-3" />
-        <div
-          :class="[group, controller == 'selectPoints' ? activeGroup : null]"
-          @click="focus('selectPoints')"
-        >
-          Number of Points
-        </div>
-        <div class="cursor-pointer" @click="focus('selectPoints')">
-          {{ points }}
-        </div>
-        <div class="col-span-7 invisible">/</div>
+    <div class="grid grid-cols-7 pt-8">
+      <div class="col-span-3" />
+      <div
+        :class="[group, controller == 'selectPlayers' ? activeGroup : null]"
+        @click="focus('selectPlayers')"
+      >
+        Number of Players
+      </div>
+      <div class="cursor-pointer" @click="focus('selectPlayers')">
+        {{ players }}
+      </div>
+      <div class="col-span-7 invisible">/</div>
+      <div class="col-span-3" />
+      <div
+        :class="[group, controller == 'selectPoints' ? activeGroup : null]"
+        @click="focus('selectPoints')"
+      >
+        Number of Points
+      </div>
+      <div class="cursor-pointer" @click="focus('selectPoints')">
+        {{ points }}
+      </div>
+      <div class="col-span-7 invisible">/</div>
 
-        <div class="col-span-3 " />
-        <div
-          :class="[group, controller == 'selectHoles' ? activeGroup : null]"
-          @click="focus('selectHoles')"
-        >
-          Number of Holes
-        </div>
-        <div class="cursor-pointer" @click="focus('selectHoles')">
-          {{ holes }}
-        </div>
-        <div class="col-span-7 invisible">/</div>
-        <div class="col-span-3" />
-        <div
-          :class="[group, controller == 'selectScoring' ? activeGroup : null]"
-          @click="focus('selectScoring')"
-        >
-          Scoring Style
-        </div>
-        <div class="cursor-pointer" @click="focus('selectScoring')">
-          {{ scoringStyle }}
-        </div>
-        `
+      <div class="col-span-3 " />
+      <div
+        :class="[group, controller == 'selectHoles' ? activeGroup : null]"
+        @click="focus('selectHoles')"
+      >
+        Number of Holes
+      </div>
+      <div class="cursor-pointer" @click="focus('selectHoles')">
+        {{ holes }}
+      </div>
+      <div class="col-span-7 invisible">/</div>
+      <div class="col-span-3" />
+      <div
+        :class="[group, controller == 'selectScoring' ? activeGroup : null]"
+        @click="focus('selectScoring')"
+      >
+        Scoring Style
+      </div>
+      <div class="cursor-pointer" @click="focus('selectScoring')">
+        {{ scoringStyle }}
       </div>
     </div>
 
