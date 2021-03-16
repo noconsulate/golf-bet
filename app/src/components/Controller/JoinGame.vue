@@ -43,6 +43,9 @@ export default {
     scoringStyle() {
       return this.$store.state.scoringStyle;
     },
+    gameId() {
+      return this.$store.state.gameId;
+    },
   },
   methods: {
     async join() {
@@ -51,6 +54,7 @@ export default {
       if (joinGame) {
         console.log("joinGame success");
       } else {
+        this.$store.dispatch("setError", "joinError");
         console.log("joinGame fail");
       }
       this.$store.dispatch("setController", "waitingForPlayers");

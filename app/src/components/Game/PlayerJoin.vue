@@ -35,6 +35,9 @@
       </div>
       <div class="col-span-7 invisible">/</div>
     </div>
+    <div v-if="error == 'joinError'" class="text-red-600 text-center">
+      There was an error joining the game.
+    </div>
     <Share v-if="waiting == true" />
     <div class=" flex-grow"></div>
 
@@ -77,6 +80,9 @@ export default {
     },
     gameId() {
       return this.$store.state.gameId;
+    },
+    error() {
+      return this.$store.state.error;
     },
   },
   methods: {

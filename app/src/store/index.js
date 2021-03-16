@@ -41,6 +41,7 @@ export default new Vuex.Store({
     playersJoined: [],
     allPlayersJoined: false,
     scoringStyle: "",
+    error: "",
   },
   mutations: {
     UPDATE_NAV_OPEN(state) {
@@ -91,6 +92,9 @@ export default new Vuex.Store({
     UPDATE_SCORING_STYLE(state, payload) {
       state.scoringStyle = payload;
     },
+    UPDATE_ERROR(state, payload) {
+      state.error = payload;
+    },
   },
   actions: {
     toggleNavOpen(context) {
@@ -133,6 +137,9 @@ export default new Vuex.Store({
     },
     setScoringStyle(context, value) {
       context.commit("UPDATE_SCORING_STYLE", value);
+    },
+    setError(context, value) {
+      context.commit("UPDATE_ERROR", value);
     },
   },
 
