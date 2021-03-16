@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import { createGame } from "../../utilities/bridges";
+import { playerConfirm } from "../../utilities/bridges";
 
 export default {
   name: "confirmGame",
@@ -45,8 +45,15 @@ export default {
     },
   },
   methods: {
-    join() {
-      alert("join");
+    async join() {
+      let joinGame = await playerConfirm(this.gameId);
+
+      if (joinGame) {
+        console.log("joinGame success");
+      } else {
+        console.log("joinGame fail");
+      }
+      this.$store.dispatch("setController", "waitingForPlayers");
     },
   },
 };

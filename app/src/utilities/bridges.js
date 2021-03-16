@@ -50,10 +50,10 @@ export async function playerConfirm(gameId) {
     doc = await docRef.get();
     if (doc.exists) {
       gameData = doc.data();
-      maxPlayer = Math.max(...gameData.playersJoined);
+      maxPlayer = gameData.playersJoined[gameData.playersjoined.length - 1];
     } else {
       console.log("no such game");
-      throw "no such game";
+      return false;
     }
   } catch (error) {
     console.log(error);
@@ -68,10 +68,10 @@ export async function playerConfirm(gameId) {
       playersJoined: firebase.firestore.FieldValue.arrayUnion(maxPlayer),
     });
     console.log(`player ${maxPlayer} joined the game`);
-    return "success";
+    return true;
   } catch (error) {
     console.log(error);
-    return "failuer";
+    return false;
   }
 }
 
