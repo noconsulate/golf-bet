@@ -52,7 +52,7 @@ export async function playerConfirm(gameId) {
       gameData = doc.data();
       const { playersJoined } = gameData;
       console.log(playersJoined);
-      maxPlayer = Math.max(..playersJoined)
+      maxPlayer = Math.max(...playersJoined);
     } else {
       console.log("no such game");
       return false;

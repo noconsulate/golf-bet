@@ -31,10 +31,6 @@ export default {
     console.log(gameInfo, playersJoined);
 
     this.$store.dispatch("setGameId", this.gameId);
-    this.$store.dispatch(
-      "setPlayerNum",
-      playersJoined[playersJoined.length - 1] + 1
-    );
     this.$store.dispatch("setPlayers", gameInfo.players);
     this.$store.dispatch("setPoints", gameInfo.points);
     this.$store.dispatch("setHoles", gameInfo.holes);

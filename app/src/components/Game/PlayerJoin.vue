@@ -38,7 +38,7 @@
     <div v-if="error == 'joinError'" class="text-red-600 text-center">
       There was an error joining the game.
     </div>
-    <Share v-if="waiting == true" />
+    <Share v-if="controller == 'waitingForPlayers'" />
     <div class=" flex-grow"></div>
 
     <div class=" h-40 object-none object-bottom">
@@ -80,6 +80,9 @@ export default {
     },
     gameId() {
       return this.$store.state.gameId;
+    },
+    controller() {
+      return this.$store.state.controller;
     },
     error() {
       return this.$store.state.error;

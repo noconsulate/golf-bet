@@ -53,11 +53,11 @@ export default {
 
       if (joinGame) {
         console.log("joinGame success");
+        this.$store.dispatch("setController", "waitingForPlayers");
       } else {
         this.$store.dispatch("setError", "joinError");
         console.log("joinGame fail");
       }
-      this.$store.dispatch("setController", "waitingForPlayers");
     },
   },
 };
