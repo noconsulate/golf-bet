@@ -9,7 +9,7 @@ export default new Vuex.Store({
   state: {
     navOpen: false,
     controller: "selectPlayers",
-    players: "1",
+    players: "4",
     points: "20",
     holes: "18",
 
@@ -35,7 +35,7 @@ export default new Vuex.Store({
       18,
     ],
     gameId: "",
-    playerNum: "",
+    playerNum: "1",
     // myScore: [],
     // opponentScore: [],
     playersJoined: [],

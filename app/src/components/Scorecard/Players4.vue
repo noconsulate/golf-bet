@@ -3,19 +3,19 @@
     <div class="flex-grow min-w-full overflow-auto \">
       <div class="grid grid-cols-8 \">
         <div :class="cell" class="col-span-4">Handicap</div>
-        <div :class="cell"></div>
-        <div :class="cell"></div>
-        <div :class="cell"></div>
-        <div :class="cell"></div>
+        <div :class="[scoringFor.includes(1) ? activeCol : cell]"></div>
+        <div :class="[scoringFor.includes(2) ? activeCol : cell]"></div>
+        <div :class="[scoringFor.includes(3) ? activeCol : cell]"></div>
+        <div :class="[scoringFor.includes(4) ? activeCol : cell]"></div>
 
         <div :class="cell">Hole</div>
         <div :class="cell">Tee</div>
         <div :class="cell">Par</div>
         <div :class="cell">HR</div>
-        <div :class="cell">P1</div>
-        <div :class="cell">P2</div>
-        <div :class="cell">P3</div>
-        <div :class="cell">P4</div>
+        <div :class="[scoringFor.includes(1) ? activeCol : cell]">P1</div>
+        <div :class="[scoringFor.includes(2) ? activeCol : cell]">P2</div>
+        <div :class="[scoringFor.includes(3) ? activeCol : cell]">P3</div>
+        <div :class="[scoringFor.includes(4) ? activeCol : cell]">P4</div>
 
         <template v-for="index in holes">
           <div
@@ -37,6 +37,7 @@
             :class="[
               index == activeHole ? activeRow : cell,
               index == activeHole && activePlayer == 1 ? activeCell : cell,
+              scoringFor.includes(1) ? activeCol : null,
             ]"
           >
             {{ scores[index - 1][0] }}
@@ -45,6 +46,7 @@
             :class="[
               index == activeHole ? activeRow : cell,
               index == activeHole && activePlayer == 2 ? activeCell : cell,
+              scoringFor.includes(2) ? activeCol : null,
             ]"
           >
             {{ scores[index - 1][1] }}
@@ -53,6 +55,7 @@
             :class="[
               index == activeHole ? activeRow : cell,
               index == activeHole && activePlayer == 3 ? activeCell : cell,
+              scoringFor.includes(3) ? activeCol : null,
             ]"
           >
             {{ scores[index - 1][2] }}
@@ -61,6 +64,7 @@
             :class="[
               index == activeHole ? activeRow : cell,
               index == activeHole && activePlayer == 4 ? activeCell : cell,
+              scoringFor.includes(4) ? activeCol : null,
             ]"
           >
             {{ scores[index - 1][3] }}
@@ -70,10 +74,18 @@
         <div :class="cell">{{ courseData.teesTotal() }}</div>
         <div :class="cell">{{ courseData.parsTotal() }}</div>
         <div :class="cell">{{ courseData.ratingsTotal() }}</div>
-        <div :class="cell">{{ totalScores.player1() }}</div>
-        <div :class="cell">{{ totalScores.player2() }}</div>
-        <div :class="cell">{{ totalScores.player3() }}</div>
-        <div :class="cell">{{ totalScores.player4() }}</div>
+        <div :class="[scoringFor.includes(1) ? activeCol : cell]">
+          {{ totalScores.player1() }}
+        </div>
+        <div :class="[scoringFor.includes(2) ? activeCol : cell]">
+          {{ totalScores.player2() }}
+        </div>
+        <div :class="[scoringFor.includes(3) ? activeCol : cell]">
+          {{ totalScores.player3() }}
+        </div>
+        <div :class="[scoringFor.includes(4) ? activeCol : cell]">
+          {{ totalScores.player4() }}
+        </div>
       </div>
     </div>
     <div class="flex flex-col border space-y-2 object-none object-bottom">
@@ -103,6 +115,7 @@ export default {
       cell: "border",
       activeRow: "border bg-gray-100",
       activeCell: "border bg-blue-100",
+      activeCol: "border bg-gray-400",
 
       activeHole: 1,
       activePlayer: 1,
@@ -139,6 +152,20 @@ export default {
     },
     players() {
       return this.$store.state.players;
+    },
+
+    scoringFor() {
+      const thisPlayer = this.$store.state.playerNum;
+      switch (thisPlayer) {
+        case "1":
+          return [1, 2];
+        case "2":
+          return [2, 3];
+        case "3":
+          return [3, 4];
+        case "4":
+          return [4, 1];
+      }
     },
     courseData() {
       return {
