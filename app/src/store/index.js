@@ -9,7 +9,7 @@ export default new Vuex.Store({
   state: {
     navOpen: false,
     controller: "selectPlayers",
-    players: "",
+    players: "4",
     points: "",
     holes: "",
 
