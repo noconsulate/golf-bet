@@ -118,7 +118,7 @@ export default {
       activeCol: "border bg-gray-400",
 
       activeHole: 1,
-      activePlayer: 1,
+      activePlayer: null,
       score: null,
       scores: [
         [null, null, null, null],
@@ -157,13 +157,13 @@ export default {
     scoringFor() {
       const thisPlayer = this.$store.state.playerNum;
       switch (thisPlayer) {
-        case "1":
+        case 1:
           return [1, 2];
-        case "2":
+        case 2:
           return [2, 3];
-        case "3":
+        case 3:
           return [3, 4];
-        case "4":
+        case 4:
           return [4, 1];
       }
     },
@@ -326,6 +326,9 @@ export default {
     activeHole: function(neww, old) {
       this.score = this.scores[this.activeHole - 1][this.activePlayer - 1];
     },
+  },
+  created() {
+    this.activePlayer = this.scoringFor[0];
   },
 };
 </script>
