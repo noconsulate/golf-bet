@@ -288,18 +288,38 @@ export default {
       }
     },
     nextPlayer() {
-      if (this.activePlayer == this.players && this.activeHole == this.holes) {
+      const thisPlayer = this.scoringFor[0];
+      const otherPlayer = this.scoringFor[1];
+
+      this.scores[this.activeHole - 1][this.activePlayer - 1] = this.score;
+
+      if (this.activePlayer == otherPlayer && this.activeHole == this.holes) {
+        this.activePlayer = thisPlayer;
+        this.activeHole = 1;
+        this.$refs.score.focus();
         return;
       }
-      this.scores[this.activeHole - 1][this.activePlayer - 1] = this.score;
-      if (this.activePlayer < this.players) {
-        console.log("next player");
-        this.activePlayer++;
+
+      if (this.activePlayer == thisPlayer) {
+        this.activePlayer = otherPlayer;
         this.$refs.score.focus();
       } else {
-        this.activePlayer = 1;
+        this.activePlayer = thisPlayer;
         this.activeHole++;
       }
+
+      //   if (this.activePlayer == this.players && this.activeHole == this.holes) {
+      //     return;
+      //   }
+      //   this.scores[this.activeHole - 1][this.activePlayer - 1] = this.score;
+      //   if (this.activePlayer < this.players) {
+      //     console.log("next player");
+      //     this.activePlayer++;
+      //     this.$refs.score.focus();
+      //   } else {
+      //     this.activePlayer = 1;
+      //     this.activeHole++;
+      //   }
     },
   },
   watch: {
