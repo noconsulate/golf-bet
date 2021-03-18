@@ -106,7 +106,10 @@
 </template>
 
 <script>
-import { blankScoresGen } from "../../utilities/functions.js";
+import {
+  blankScoresGen,
+  blankScoresObject,
+} from "../../utilities/functions.js";
 
 export default {
   name: "players4",
@@ -122,26 +125,7 @@ export default {
       activeHole: 1,
       activePlayer: null,
       score: null,
-      scores: [
-        [null, null, null, null],
-        [null, null, null, null],
-        [null, null, null, null],
-        [null, null, null, null],
-        [null, null, null, null],
-        [null, null, null, null],
-        [null, null, null, null],
-        [null, null, null, null],
-        [null, null, null, null],
-        [null, null, null, null],
-        [null, null, null, null],
-        [null, null, null, null],
-        [null, null, null, null],
-        [null, null, null, null],
-        [null, null, null, null],
-        [null, null, null, null],
-        [null, null, null, null],
-        [null, null, null, null],
-      ],
+      scores: [],
     };
   },
   computed: {
@@ -332,8 +316,10 @@ export default {
   created() {
     this.activePlayer = this.scoringFor[0];
 
-    const scores = blankScoresGen(this.players, Number(this.holes));
-    console.log(scores);
+    this.scores = blankScoresGen(this.players, Number(this.holes));
+
+    const scoresObj = blankScoresObject(this.players, Number(this.holes));
+    console.log(scoresObj);
   },
 };
 </script>

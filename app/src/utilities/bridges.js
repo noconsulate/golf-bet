@@ -1,14 +1,21 @@
 import { firebase } from "@firebase/app";
 import { db } from "./firebase";
+import { blankScoresGen, blankScoresObj } from "./functions";
 
 import store from "../store/";
 
 export async function createGame(gameInfo) {
+  const scores = blankScoresObj(
+    Number(gameInfo.players),
+    Number(gameInfo.holes)
+  );
+  console.log(scores);
   let docRef;
   try {
     docRef = await db.collection("games").add({
       gameInfo: gameInfo,
       playersJoined: [1],
+      scores: scores,
     });
     console.log(docRef.id);
   } catch (error) {
