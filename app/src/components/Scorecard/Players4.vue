@@ -106,10 +106,7 @@
 </template>
 
 <script>
-import {
-  blankScoresGen,
-  blankScoresObject,
-} from "../../utilities/functions.js";
+import { blankScoresGen, blankScoresObj } from "../../utilities/functions.js";
 
 export default {
   name: "players4",
@@ -126,6 +123,7 @@ export default {
       activePlayer: null,
       score: null,
       scores: [],
+      scoresObj: {},
     };
   },
   computed: {
@@ -318,8 +316,10 @@ export default {
 
     this.scores = blankScoresGen(this.players, Number(this.holes));
 
-    const scoresObj = blankScoresObject(this.players, Number(this.holes));
-    console.log(scoresObj);
+    const scoresObj = blankScoresObj(this.players, Number(this.holes));
+    this.scoresObj = scoresObj;
+
+    window.scores = scoresObj;
   },
 };
 </script>

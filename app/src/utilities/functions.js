@@ -1,5 +1,4 @@
 export function blankScoresGen(players, holes) {
-  console.log(players, holes);
   let scores = [];
 
   for (let i = 0; i < holes; i++) {
@@ -13,7 +12,6 @@ export function blankScoresGen(players, holes) {
 }
 
 export function blankScoresObj(players, holes) {
-  console.log("hi");
   let scores = {};
   for (let i = 1; i <= holes; i++) {
     let hole = {};
