@@ -40,7 +40,7 @@
               scoringFor.includes(1) ? activeCol : null,
             ]"
           >
-            {{ scores[index - 1][0] }}
+            {{ scoresObj[index][1] }}
           </div>
           <div
             :class="[
@@ -49,7 +49,7 @@
               scoringFor.includes(2) ? activeCol : null,
             ]"
           >
-            {{ scores[index - 1][1] }}
+            {{ scoresObj[index][2] }}
           </div>
           <div
             :class="[
@@ -58,7 +58,7 @@
               scoringFor.includes(3) ? activeCol : null,
             ]"
           >
-            {{ scores[index - 1][2] }}
+            {{ scoresObj[index][3] }}
           </div>
           <div
             :class="[
@@ -67,7 +67,7 @@
               scoringFor.includes(4) ? activeCol : null,
             ]"
           >
-            {{ scores[index - 1][3] }}
+            {{ scoresObj[index][4] }}
           </div>
         </template>
         <div :class="cell">Total</div>
