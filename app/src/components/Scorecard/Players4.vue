@@ -307,19 +307,6 @@ export default {
         this.activePlayer = thisPlayer;
         this.activeHole++;
       }
-
-      //   if (this.activePlayer == this.players && this.activeHole == this.holes) {
-      //     return;
-      //   }
-      //   this.scores[this.activeHole - 1][this.activePlayer - 1] = this.score;
-      //   if (this.activePlayer < this.players) {
-      //     console.log("next player");
-      //     this.activePlayer++;
-      //     this.$refs.score.focus();
-      //   } else {
-      //     this.activePlayer = 1;
-      //     this.activeHole++;
-      //   }
     },
   },
   watch: {
