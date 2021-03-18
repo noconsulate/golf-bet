@@ -275,16 +275,25 @@ export default {
       console.log("what");
     },
     prevPlayer() {
-      if (this.activePlayer == 1 && this.activeHole == 1) {
+      const thisPlayer = this.scoringFor[0];
+      const otherPlayer = this.scoringFor[1];
+
+      this.scores[this.activeHole - 1][this.activePlayer - 1] = this.score;
+
+      if (this.activePlayer == thisPlayer && this.activeHole == 1) {
+        this.activePlayer = otherPlayer;
+        this.activeHole = this.holes;
+        this.$refs.score.focus();
         return;
       }
-      this.scores[this.activeHole - 1][this.activePlayer - 1] = this.score;
-      if (this.activePlayer > 1) {
-        this.activePlayer--;
+
+      if (this.activePlayer == otherPlayer) {
+        this.activePlayer = thisPlayer;
         this.$refs.score.focus();
       } else {
-        this.activePlayer = this.players;
+        this.activePlayer = otherPlayer;
         this.activeHole--;
+        this.$refs.score.focus();
       }
     },
     nextPlayer() {
@@ -306,6 +315,7 @@ export default {
       } else {
         this.activePlayer = thisPlayer;
         this.activeHole++;
+        this.$refs.score.focus();
       }
     },
   },
