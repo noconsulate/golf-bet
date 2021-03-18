@@ -106,6 +106,8 @@
 </template>
 
 <script>
+import { blankScoresGen } from "../../utilities/functions.js";
+
 export default {
   name: "players4",
 
@@ -329,6 +331,9 @@ export default {
   },
   created() {
     this.activePlayer = this.scoringFor[0];
+
+    const scores = blankScoresGen(this.players, Number(this.holes));
+    console.log(scores);
   },
 };
 </script>
