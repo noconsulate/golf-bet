@@ -1,6 +1,7 @@
 <template>
   <div>
-    <PlayerJoin />
+    <GameFull v-if="gameFull" />
+    <PlayerJoin v-else />
   </div>
 </template>
 
@@ -8,6 +9,7 @@
 import { joinGame } from "../utilities/bridges";
 
 import PlayerJoin from "../components/Game/PlayerJoin";
+import GameFull from "../components/Game/GameFull";
 import Gameplay from "../components/Game/Gameplay";
 import FinalScore from "../components/Game/FinalScore";
 
@@ -15,6 +17,7 @@ export default {
   name: "join",
   components: {
     PlayerJoin,
+    GameFull,
     Gameplay,
     FinalScore,
   },
@@ -26,9 +29,18 @@ export default {
       return this.$store.state.sequence;
     },
   },
+  data() {
+    return {
+      gameFull: false,
+    };
+  },
   async created() {
     let { gameInfo, playersJoined } = await joinGame(this.gameId);
     console.log(gameInfo, playersJoined);
+
+    if (playersJoined.length == Number(gameInfo.players)) {
+      this.gameFull = true;
+    }
 
     this.$store.dispatch("setGameId", this.gameId);
     this.$store.dispatch("setPlayers", gameInfo.players);
