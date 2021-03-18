@@ -262,7 +262,7 @@ export default {
       const thisPlayer = this.scoringFor[0];
       const otherPlayer = this.scoringFor[1];
 
-      this.scores[this.activeHole - 1][this.activePlayer - 1] = this.score;
+      this.scoresObj[this.activeHole][this.activePlayer] = this.score;
 
       if (this.activePlayer == thisPlayer && this.activeHole == 1) {
         this.activePlayer = otherPlayer;
@@ -284,7 +284,7 @@ export default {
       const thisPlayer = this.scoringFor[0];
       const otherPlayer = this.scoringFor[1];
 
-      this.scores[this.activeHole - 1][this.activePlayer - 1] = this.score;
+      this.scoresObj[this.activeHole][this.activePlayer] = this.score;
 
       if (this.activePlayer == otherPlayer && this.activeHole == this.holes) {
         this.activePlayer = thisPlayer;
@@ -305,21 +305,16 @@ export default {
   },
   watch: {
     activePlayer: function(neww, old) {
-      this.score = this.scores[this.activeHole - 1][this.activePlayer - 1];
+      this.score = this.scoresObj[this.activeHole][this.activePlayer];
     },
     activeHole: function(neww, old) {
-      this.score = this.scores[this.activeHole - 1][this.activePlayer - 1];
+      this.score = this.scoresObj[this.activeHole][this.activePlayer];
     },
   },
   created() {
     this.activePlayer = this.scoringFor[0];
 
-    this.scores = blankScoresGen(this.players, Number(this.holes));
-
-    const scoresObj = blankScoresObj(this.players, Number(this.holes));
-    this.scoresObj = scoresObj;
-
-    window.scores = scoresObj;
+    this.scoresObj = blankScoresObj(this.players, Number(this.holes));
   },
 };
 </script>
