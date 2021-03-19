@@ -107,6 +107,7 @@
 
 <script>
 import { blankScoresGen, blankScoresObj } from "../../utilities/functions.js";
+import { submitScores } from "../../utilities/bridges";
 
 export default {
   name: "players4",
@@ -137,7 +138,9 @@ export default {
     players() {
       return this.$store.state.players;
     },
-
+    gameId() {
+      return this.$store.state.gameId;
+    },
     scoringFor() {
       const thisPlayer = this.$store.state.playerNum;
       switch (thisPlayer) {
@@ -256,7 +259,18 @@ export default {
       ++this.activeHole;
     },
     enterScore() {
-      console.log("what");
+      const scores = this.scoresObj[this.activeHole];
+
+      // if local scores are null, don't do anything
+      if (
+        scores[this.scoringFor[0]] == null &&
+        scores[this.scoringFor[1]] == null
+      ) {
+        console.log("nothing to submit");
+        return;
+      }
+
+      submitScores(this.gameId, this.activeHole, scores);
     },
     prevPlayer() {
       const thisPlayer = this.scoringFor[0];
@@ -315,6 +329,9 @@ export default {
     this.activePlayer = this.scoringFor[0];
 
     this.scoresObj = blankScoresObj(this.players, Number(this.holes));
+
+    this.scoresObj[1][2] = 3;
+    this.scoresObj[1][3] = 4;
   },
 };
 </script>

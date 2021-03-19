@@ -102,3 +102,40 @@ export function playersJoinedListener(gameId) {
     }
   });
 }
+
+function compareScores(remote, local) {
+  const nullCheck = true;
+  let result = {};
+  for (var p in remote) {
+    // check if ALL remote scores are null
+    remote[p] != null ? nullCheck == false : null;
+    // check agreement of scores
+    result[p] = remote[p] == local[p];
+  }
+  if (nullCheck) return nullCheck;
+  else return result;
+}
+
+export async function submitScores(gameId, holeNumber, localHole) {
+  let docRef = db.collection("games").doc(gameId);
+  let scoresObj;
+
+  try {
+    let doc = await docRef.get();
+    if (doc.exists) {
+      const data = doc.data();
+      scoresObj = data.scores;
+    } else {
+      console.log("no such game");
+    }
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
+
+  const remoteHole = scoresObj[holeNumber];
+  console.log(remoteHole, localHole);
+
+  const compared = compareScores(remoteHole, localHole);
+  console.log(compared);
+}
