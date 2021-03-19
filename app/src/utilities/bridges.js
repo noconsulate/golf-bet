@@ -91,7 +91,9 @@ export function playersJoinedListener(gameId) {
   console.log(gameId);
   let docRef = db.collection("games").doc(gameId);
 
-  docRef.onSnapshot((doc) => {
+  // !!!!! not sure if this is going to work, check here if listener stops working
+
+  var unsubscribe = docRef.onSnapshot((doc) => {
     const data = doc.data();
     const playersJoined = data.playersJoined;
     console.log(playersJoined.length);
@@ -99,21 +101,26 @@ export function playersJoinedListener(gameId) {
 
     if (playersJoined.length == players) {
       store.dispatch("setAllPlayersJoined");
+      unsubscribe();
     }
   });
 }
 
 function compareScores(remote, local) {
-  console.log("local:" + local);
-  const nullCheck = true;
+  let nullCheck = true;
+  let allEqualCheck = true;
   let result = {};
   for (var p in remote) {
     // check if ALL remote scores are null
-    remote[p] != null ? nullCheck == false : null;
-    // check agreement of scores
+    remote[p] != null ? (nullCheck = false) : null;
+    // check agreement of individual score
     result[p] = remote[p] == local[p];
+    // check if all scores are equal between remote and local
+    !result[p] ? (allEqualCheck = false) : null;
   }
+
   if (nullCheck) return "remote is null";
+  else if (allEqualCheck) return "all scores equal";
   else return result;
 }
 
@@ -149,5 +156,6 @@ export async function submitScores(gameId, holeNumber, localHole) {
     } catch (error) {
       console.log(error);
     }
-  }
+    return "scores updated";
+  } else return compared;
 }

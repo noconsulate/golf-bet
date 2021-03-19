@@ -258,7 +258,7 @@ export default {
     nextHole() {
       ++this.activeHole;
     },
-    enterScore() {
+    async enterScore() {
       const scores = this.scoresObj[this.activeHole];
 
       // if local scores are null, don't do anything
@@ -270,7 +270,8 @@ export default {
         return;
       }
 
-      submitScores(this.gameId, this.activeHole, scores);
+      const result = await submitScores(this.gameId, this.activeHole, scores);
+      console.log(result);
     },
     prevPlayer() {
       const thisPlayer = this.scoringFor[0];
