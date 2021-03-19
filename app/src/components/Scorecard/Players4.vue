@@ -270,7 +270,12 @@ export default {
         return;
       }
 
-      const result = await submitScores(this.gameId, this.activeHole, scores);
+      const result = await submitScores(
+        this.gameId,
+        this.activeHole,
+        scores,
+        this.scoringFor[0]
+      );
       console.log(result);
     },
     prevPlayer() {

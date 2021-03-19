@@ -111,6 +111,8 @@ function compareScores(remote, local) {
   let allEqualCheck = true;
   let result = {};
   for (var p in remote) {
+    // skip this key if it's a string
+    if (typeof remote[p] == "string") continue;
     // check if ALL remote scores are null
     remote[p] != null ? (nullCheck = false) : null;
     // check agreement of individual score
@@ -119,12 +121,14 @@ function compareScores(remote, local) {
     !result[p] ? (allEqualCheck = false) : null;
   }
 
+  console.log(result);
+
   if (nullCheck) return "remote is null";
   else if (allEqualCheck) return "all scores equal";
   else return result;
 }
 
-export async function submitScores(gameId, holeNumber, localHole) {
+export async function submitScores(gameId, holeNumber, localHole, player) {
   let docRef = db.collection("games").doc(gameId);
   let scoresObj;
 
@@ -142,15 +146,17 @@ export async function submitScores(gameId, holeNumber, localHole) {
   }
 
   const remoteHole = scoresObj[holeNumber];
-  console.log(remoteHole, localHole);
 
   const compared = compareScores(remoteHole, localHole);
   console.log(compared);
 
   if (compared === "remote is null") {
+    // this player 'signs' the scores for the hole since he's first to submit
+    let localHoleCopy = localHole;
+    localHoleCopy.submittedBy = "player" + player;
     try {
       await docRef.update({
-        [`scores.${holeNumber}`]: localHole,
+        [`scores.${holeNumber}`]: localHoleCopy,
       });
       console.log("updated!");
     } catch (error) {
