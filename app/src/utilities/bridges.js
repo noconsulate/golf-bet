@@ -104,6 +104,7 @@ export function playersJoinedListener(gameId) {
 }
 
 function compareScores(remote, local) {
+  console.log("local:" + local);
   const nullCheck = true;
   let result = {};
   for (var p in remote) {
@@ -112,7 +113,7 @@ function compareScores(remote, local) {
     // check agreement of scores
     result[p] = remote[p] == local[p];
   }
-  if (nullCheck) return nullCheck;
+  if (nullCheck) return "remote is null";
   else return result;
 }
 
@@ -138,4 +139,15 @@ export async function submitScores(gameId, holeNumber, localHole) {
 
   const compared = compareScores(remoteHole, localHole);
   console.log(compared);
+
+  if (compared === "remote is null") {
+    try {
+      await docRef.update({
+        [`scores.${holeNumber}`]: localHole,
+      });
+      console.log("updated!");
+    } catch (error) {
+      console.log(error);
+    }
+  }
 }
