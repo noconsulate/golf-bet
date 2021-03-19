@@ -259,24 +259,54 @@ export default {
       ++this.activeHole;
     },
     async enterScore() {
-      const scores = this.scoresObj[this.activeHole];
+      // const scores = this.scoresObj[this.activeHole];
+
+      const scores = [
+        {
+          player: this.scoringFor[0],
+          score: this.scoresObj[this.activeHole][this.scoringFor[0]],
+        },
+        {
+          player: this.scoringFor[1],
+          score: this.scoresObj[this.activeHole][this.scoringFor[1]],
+        },
+      ];
+
+      // scores[this.scoringFor[0]] = this.scoresObj[this.activeHole][
+      //   this.scoringFor[0]
+      // ];
+      // scores[this.scoringFor[1]] = this.scoresObj[this.activeHole][
+      //   this.scoringFor[1]
+      // ];
+
+      console.log(scores);
 
       // if local scores are null, don't do anything
-      if (
-        scores[this.scoringFor[0]] == null &&
-        scores[this.scoringFor[1]] == null
-      ) {
-        console.log("nothing to submit");
+      if (scores[0].score == null || scores[1].score == null) {
+        console.log("at least one score is nullt");
         return;
       }
 
-      const result = await submitScores(
-        this.gameId,
-        this.activeHole,
-        scores,
-        this.scoringFor[0]
-      );
+      const result = await submitScores(this.gameId, this.activeHole, scores);
+
       console.log(result);
+
+      // // if local scores are null, don't do anything
+      // if (
+      //   scores[this.scoringFor[0]] == null &&
+      //   scores[this.scoringFor[1]] == null
+      // ) {
+      //   console.log("nothing to submit");
+      //   return;
+      // }
+
+      // const result = await submitScores(
+      //   this.gameId,
+      //   this.activeHole,
+      //   scores,
+      //   this.scoringFor[0]
+      // );
+      // console.log(result);
     },
     prevPlayer() {
       const thisPlayer = this.scoringFor[0];

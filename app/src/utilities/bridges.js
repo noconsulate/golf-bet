@@ -128,7 +128,7 @@ function compareScores(remote, local) {
   else return result;
 }
 
-export async function submitScores(gameId, holeNumber, localHole, player) {
+export async function submitScores(gameId, hole, localScores) {
   let docRef = db.collection("games").doc(gameId);
   let scoresObj;
 
@@ -145,23 +145,54 @@ export async function submitScores(gameId, holeNumber, localHole, player) {
     return error;
   }
 
-  const remoteHole = scoresObj[holeNumber];
+  const remoteHole = scoresObj[hole];
+  console.log(remoteHole);
 
-  const compared = compareScores(remoteHole, localHole);
-  console.log(compared);
-
-  if (compared === "remote is null") {
-    // this player 'signs' the scores for the hole since he's first to submit
-    let localHoleCopy = localHole;
-    localHoleCopy.submittedBy = "player" + player;
-    try {
-      await docRef.update({
-        [`scores.${holeNumber}`]: localHoleCopy,
-      });
-      console.log("updated!");
-    } catch (error) {
-      console.log(error);
-    }
-    return "scores updated";
-  } else return compared;
+  if (!remoteHole) {
+  }
+  try {
+    await docRef.update({
+      [`scores.${hole}.${localScores[0].player}, ${localScores[1].player}`]: localScores,
+    });
+  } catch (error) {
+    console.log(error);
+  }
 }
+
+// export async function submitScores(gameId, holeNumber, localHole, player) {
+//   let docRef = db.collection("games").doc(gameId);
+//   let scoresObj;
+
+//   try {
+//     let doc = await docRef.get();
+//     if (doc.exists) {
+//       const data = doc.data();
+//       scoresObj = data.scores;
+//     } else {
+//       console.log("no such game");
+//     }
+//   } catch (error) {
+//     console.log(error);
+//     return error;
+//   }
+
+//   const remoteHole = scoresObj[holeNumber];
+
+//   const compared = compareScores(remoteHole, localHole);
+//   console.log(compared);
+
+//   if (compared === "remote is null") {
+//     // this player 'signs' the scores for the hole since he's first to submit
+//     let localHoleCopy = localHole;
+//     localHoleCopy.submittedBy = "player" + player;
+//     try {
+//       await docRef.update({
+//         [`scores.${holeNumber}`]: localHoleCopy,
+//       });
+//       console.log("updated!");
+//     } catch (error) {
+//       console.log(error);
+//     }
+//     return "scores updated";
+//   } else return compared;
+// }
