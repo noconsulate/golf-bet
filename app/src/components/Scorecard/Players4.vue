@@ -264,17 +264,24 @@ export default {
     async enterScore() {
       // const scores = this.scoresObj[this.activeHole];
 
-      const scores = [
-        {
-          player: this.scoringFor[0],
-          score: this.scoresObj[this.activeHole][this.scoringFor[0]],
-        },
-        {
-          player: this.scoringFor[1],
-          score: this.scoresObj[this.activeHole][this.scoringFor[1]],
-        },
-      ];
+      // const scores = [
+      //   {
+      //     player: this.scoringFor[0],
+      //     score: this.scoresObj[this.activeHole][this.scoringFor[0]],
+      //   },
+      //   {
+      //     player: this.scoringFor[1],
+      //     score: this.scoresObj[this.activeHole][this.scoringFor[1]],
+      //   },
+      // ];
 
+      let scores = {};
+      scores[this.scoringFor[0]] = this.scoresObj[this.activeHole][
+        this.scoringFor[0]
+      ];
+      scores[this.scoringFor[1]] = this.scoresObj[this.activeHole][
+        this.scoringFor[1]
+      ];
       console.log(scores);
 
       // scores[this.scoringFor[0]] = this.scoresObj[this.activeHole][
@@ -284,11 +291,11 @@ export default {
       //   this.scoringFor[1]
       // ];
 
-      // if local scores are null, don't do anything
-      if (scores[0].score == null || scores[1].score == null) {
-        console.log("at least one score is nullt");
-        return;
-      }
+      // // if local scores are null, don't do anything
+      // if (scores[0].score == null || scores[1].score == null) {
+      //   console.log("at least one score is nullt");
+      //   return;
+      // }
 
       const result = await checkAndSubmitScores(
         this.gameId,
@@ -378,6 +385,11 @@ export default {
     this.scoresObj[1][2] = 4;
     this.scoresObj[1][3] = 5;
     this.scoresObj[1][4] = 6;
+
+    this.scoresObj[2][1] = 3;
+    this.scoresObj[2][2] = 4;
+    this.scoresObj[2][3] = 5;
+    this.scoresObj[2][4] = 6;
 
     this.scoresObj[3][1] = 3;
     this.scoresObj[3][2] = 4;

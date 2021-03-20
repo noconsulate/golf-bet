@@ -17,7 +17,6 @@ export function blankScoresDatabaseGen(players, holes) {
         };
         scores[i] = hole;
       }
-      console.log(scores);
       return scores;
   }
 }
@@ -37,13 +36,26 @@ export function blankScoresObj(players, holes) {
 }
 
 export async function checkAndSubmitScores(gameId, hole, localHole, players) {
+  // don't do anything if local scores are null
+  for (item in localHole) {
+    console.log(item.value);
+    if (localHole[item] == null) {
+      return "can't submit any null scores";
+    }
+  }
+
   // get scores from DB
   const remoteScores = await getScores(gameId);
   const remoteHole = remoteScores[hole][players];
-  window.hole = remoteHole;
   console.log(remoteHole);
-
-  console.log(localHole, remoteHole);
+  console.log(localHole);
 
   // if remote scores null submit local scores
+  let allScoresNull = true;
+  const scoresLength = Object.keys(remoteHole).length;
+  for (let i = i; i <= scoresLength; i++) {
+    if (remoteScore[i] != null) !allScoresNull;
+  }
+  console.log(allScoresNull);
+  // if(allScoresNull) submitScores(gameId, hole, players, localHole)
 }
