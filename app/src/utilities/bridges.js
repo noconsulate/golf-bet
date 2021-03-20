@@ -128,7 +128,7 @@ function compareScores(remote, local) {
   else return result;
 }
 
-export async function submitScores(gameId, hole, localScores) {
+export async function getScores(gameId) {
   let docRef = db.collection("games").doc(gameId);
   let scoresObj;
 
@@ -145,17 +145,20 @@ export async function submitScores(gameId, hole, localScores) {
     return error;
   }
 
-  const remoteHole = scoresObj[hole];
-  console.log(remoteHole);
+  return scoresObj;
+}
 
-  if (!remoteHole) {
-  }
+export async function submitScores(gameId, hole, players, scores) {
+  let docRef = db.collection("games").doc(gameId);
+
   try {
     await docRef.update({
-      [`scores.${hole}.${localScores[0].player}, ${localScores[1].player}`]: localScores,
+      [`scores.${hole}.${players}`]: scores,
     });
+    console.log("scores submitted");
+    return;
   } catch (error) {
-    console.log(error);
+    console.log("scores not submitted ERROROROROR");
   }
 }
 

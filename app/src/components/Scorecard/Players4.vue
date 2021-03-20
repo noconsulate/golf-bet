@@ -106,7 +106,10 @@
 </template>
 
 <script>
-import { blankScoresGen, blankScoresObj } from "../../utilities/functions.js";
+import {
+  checkAndSubmitScores,
+  blankScoresObj,
+} from "../../utilities/functions.js";
 import { submitScores } from "../../utilities/bridges";
 
 export default {
@@ -272,6 +275,8 @@ export default {
         },
       ];
 
+      console.log(scores);
+
       // scores[this.scoringFor[0]] = this.scoresObj[this.activeHole][
       //   this.scoringFor[0]
       // ];
@@ -279,15 +284,18 @@ export default {
       //   this.scoringFor[1]
       // ];
 
-      console.log(scores);
-
       // if local scores are null, don't do anything
       if (scores[0].score == null || scores[1].score == null) {
         console.log("at least one score is nullt");
         return;
       }
 
-      const result = await submitScores(this.gameId, this.activeHole, scores);
+      const result = await checkAndSubmitScores(
+        this.gameId,
+        this.activeHole,
+        scores,
+        String(this.scoringFor)
+      );
 
       console.log(result);
 
@@ -368,6 +376,13 @@ export default {
 
     this.scoresObj[1][1] = 3;
     this.scoresObj[1][2] = 4;
+    this.scoresObj[1][3] = 5;
+    this.scoresObj[1][4] = 6;
+
+    this.scoresObj[3][1] = 3;
+    this.scoresObj[3][2] = 4;
+    this.scoresObj[3][3] = 5;
+    this.scoresObj[3][4] = 6;
   },
 };
 </script>
