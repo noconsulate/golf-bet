@@ -1,14 +1,23 @@
-export function blankScoresGen(players, holes) {
-  let scores = [];
+export function blankScoresDatabaseGen(players, holes) {
+  let scores = {};
 
-  for (let i = 0; i < holes; i++) {
-    scores.push([]);
-    for (let j = 0; j < players; j++) {
-      scores[i].push(null);
-    }
+  switch (players) {
+    case 4:
+      for (let i = 1; i <= holes; i++) {
+        let hole = {};
+        hole["1, 2"] = {
+          "1": null,
+          "2": null,
+        };
+        hole["3, 4"] = {
+          "3": null,
+          "4": null,
+        };
+        scores[i] = hole;
+      }
+      console.log(scores);
+      return scores;
   }
-
-  return scores;
 }
 
 export function blankScoresObj(players, holes) {
@@ -24,3 +33,5 @@ export function blankScoresObj(players, holes) {
   }
   return scores;
 }
+
+export async function checkAndSubmitScores(gameId, hole, localScores) {}

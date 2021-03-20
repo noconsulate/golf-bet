@@ -1,11 +1,11 @@
 import { firebase } from "@firebase/app";
 import { db } from "./firebase";
-import { blankScoresGen, blankScoresObj } from "./functions";
+import { blankScoresDatabaseGen, blankScoresObj } from "./functions";
 
 import store from "../store/";
 
 export async function createGame(gameInfo) {
-  const scores = blankScoresObj(
+  const scores = blankScoresDatabaseGen(
     Number(gameInfo.players),
     Number(gameInfo.holes)
   );

@@ -147,11 +147,11 @@ export default {
         case 1:
           return [1, 2];
         case 2:
-          return [2, 3];
+          return [1, 2];
         case 3:
           return [3, 4];
         case 4:
-          return [4, 1];
+          return [3, 4];
       }
     },
     courseData() {
@@ -366,8 +366,8 @@ export default {
 
     this.scoresObj = blankScoresObj(this.players, Number(this.holes));
 
-    this.scoresObj[1][2] = 3;
-    this.scoresObj[1][3] = 4;
+    this.scoresObj[1][1] = 3;
+    this.scoresObj[1][2] = 4;
   },
 };
 </script>
