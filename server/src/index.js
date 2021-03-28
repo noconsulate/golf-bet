@@ -2,7 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import 'dotenv/config';
 
-import { client } from "./client";
+import { db } from "./client";
 
 import routes from './routes'
 
@@ -26,16 +26,20 @@ app.listen(process.env.PORT, () => {
   console.log('Listening on ' + process.env.PORT)
 });
 
-async function connectDb() {
+// async function connectDb() {
 
-try {
-  const connected = await client.connect()
-  if (connected) {
-    console.log("connected to Mongo");
-  }
-} finally {
-  client.close();
-}
-}
+// try {
+//   const connected = await client.connect()
+//   if (connected) {
+//     console.log("connected to Mongo");
+//   }
+// } finally {
+//   client.close();
+// }
+// }
 
-connectDb().catch(console.error);
+// connectDb().catch(console.error);
+
+db.once('open', () => {
+  console.log('connected to database')
+})

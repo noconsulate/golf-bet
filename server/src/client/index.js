@@ -1,10 +1,17 @@
 import 'dotenv/config';
-import { MongoClient } from 'mongodb';
+import mongoose from 'mongoose';
+
 
 const { VPS_IP, MONGO_PORT, MONGO_USER, MONGO_PW } = process.env
 
-// const uri = `mongodb://${MONGO_USER}:${MONGO_PW}@${VPS_IP}:${MONGO_PORT}`;
+const uri = `mongodb://${MONGO_USER}:${MONGO_PW}@${VPS_IP}:27017/`;
 
-const uri = `mongodb://myUserAdmin:floofer@${VPS_IP}:27017`;
+// const uri = `mongodb://myUserAdmin:floofer@${VPS_IP}:27017/`;
 
-export const client = new MongoClient(uri);
+
+mongoose.connect(uri, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+
+export const db = mongoose.connection;
