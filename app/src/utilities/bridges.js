@@ -1,30 +1,24 @@
-import { firebase } from "@firebase/app";
-import { db } from "./firebase";
+import axios from "axios";
+
 import { blankScoresDatabaseGen, blankScoresObj } from "./functions";
 
 import store from "../store/";
 
+const serverUrl = "http://localhost:3000";
+
 export async function createGame(gameInfo) {
-  const scores = blankScoresDatabaseGen(
+  const scores = blankScoresObj(
     Number(gameInfo.players),
     Number(gameInfo.holes)
   );
+  console.log(gameInfo);
   console.log(scores);
-  let docRef;
-  try {
-    docRef = await db.collection("games").add({
-      gameInfo: gameInfo,
-      playersJoined: [1],
-      scores: scores,
-    });
-    console.log(docRef.id);
-  } catch (error) {
-    console.log(error);
-  }
 
-  console.log(docRef.id);
+  const res = await axios.post(`${serverUrl}/games`, {
+    gameInfo: gameInfo,
+  });
 
-  return docRef.id;
+  console.log(res);
 }
 
 export async function joinGame(gameId) {
