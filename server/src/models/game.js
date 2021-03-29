@@ -1,11 +1,14 @@
 import mongoose from "mongoose";
-// import 'dotenv/config';
 
-// const { VPS_IP, MONGO_PORT, MONGO_USER, MONGO_PW } = process.env;
+const gameSchema = new mongoose.Schema({
+  gameInfo: {
+    players: Number,
+    holes: Number,
+    points: Number,
+    scoringStyle: String,
+  },
+});
 
-// const uri = `mongodb://${MONGO_USER}:${MONGO_PASSWORD}@${VPS_IP}:27017/`;
+const Game = mongoose.model("Game", gameSchema);
 
-// mongoose.connect(uri, {
-//   useNewUrlParser: true,
-//   useUnifiedTopology: true,
-// });
+export default Game;

@@ -2,9 +2,7 @@ import express from "express";
 import cors from "cors";
 import "dotenv/config";
 
-import { db } from "./client";
-import { connectDb } from "./models";
-
+import models, { connectDb } from "./models";
 import routes from "./routes";
 
 const app = express();
@@ -15,35 +13,16 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// app.get('/', (req, res) => {
-//   res.send('Hello World!');
-// });
+// put models into request
 
-// Routes
+app.use((req, res, next) => {
+  req.context = { models };
+  next();
+});
+
+// routes
 
 app.use("/games", routes.game);
-
-// app.listen(process.env.PORT, () => {
-//   console.log("Listening on " + process.env.PORT);
-// });
-
-// async function connectDb() {
-
-// try {
-//   const connected = await client.connect()
-//   if (connected) {
-//     console.log("connected to Mongo");
-//   }
-// } finally {
-//   client.close();
-// }
-// }
-
-// connectDb().catch(console.error);
-
-// db.once("open", () => {
-//   console.log("connected to database");
-// });
 
 // start db and listen
 
