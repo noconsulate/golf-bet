@@ -7,7 +7,7 @@ router.get("/", (req, res) => {
 });
 
 router.post("/", async (req, res) => {
-  console.log(req.body.players);
+  console.log(req.body);
   const game = await req.context.models.Game.create({
     gameInfo: {
       players: req.body.players,
