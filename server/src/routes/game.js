@@ -9,16 +9,14 @@ router.get("/", (req, res) => {
 router.post("/", async (req, res) => {
   console.log(req.body);
   const game = await req.context.models.Game.create({
-    gameInfo: {
-      players: req.body.players,
-      points: req.body.points,
-      holes: req.body.holes,
-      scoringStyle: req.body.scoringStyle,
-    },
+    gameInfo: req.body.gameInfo,
     playersJoined: [1],
+    scores: req.body.scores,
   });
 
-  return res.send(game);
+  console.log(game);
+  console.log("###***777%%");
+  return res.send(game._id);
 });
 
 export default router;

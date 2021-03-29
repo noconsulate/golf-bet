@@ -2,12 +2,13 @@ import mongoose from "mongoose";
 
 const gameSchema = new mongoose.Schema({
   gameInfo: {
-    players: Number,
-    holes: Number,
-    points: Number,
+    players: String,
+    holes: String,
+    points: String,
     scoringStyle: String,
   },
   playersJoined: Array,
+  scores: Object,
 });
 
 const Game = mongoose.model("Game", gameSchema);

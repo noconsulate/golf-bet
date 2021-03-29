@@ -16,6 +16,7 @@ export async function createGame(gameInfo) {
 
   const res = await axios.post(`${serverUrl}/games`, {
     gameInfo: gameInfo,
+    scores: scores,
   });
 
   console.log(res);
