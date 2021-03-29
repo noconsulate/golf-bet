@@ -1,10 +1,11 @@
-import express from 'express';
-import cors from 'cors';
-import 'dotenv/config';
+import express from "express";
+import cors from "cors";
+import "dotenv/config";
 
 import { db } from "./client";
+import { connectDb } from "./models";
 
-import routes from './routes'
+import routes from "./routes";
 
 const app = express();
 
@@ -20,11 +21,11 @@ app.use(express.urlencoded({ extended: true }));
 
 // Routes
 
-app.use('/games', routes.game);
+app.use("/games", routes.game);
 
-app.listen(process.env.PORT, () => {
-  console.log('Listening on ' + process.env.PORT)
-});
+// app.listen(process.env.PORT, () => {
+//   console.log("Listening on " + process.env.PORT);
+// });
 
 // async function connectDb() {
 
@@ -40,6 +41,18 @@ app.listen(process.env.PORT, () => {
 
 // connectDb().catch(console.error);
 
-db.once('open', () => {
-  console.log('connected to database')
-})
+// db.once("open", () => {
+//   console.log("connected to database");
+// });
+
+// start db and listen
+
+connectDb()
+  .then(async () => {
+    app.listen(process.env.PORT, () => {
+      console.log("listening on port: " + process.env.PORT);
+    });
+  })
+  .catch((err) => {
+    console.log(err);
+  });
