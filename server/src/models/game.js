@@ -7,6 +7,7 @@ const gameSchema = new mongoose.Schema({
     points: Number,
     scoringStyle: String,
   },
+  playersJoined: Array,
 });
 
 const Game = mongoose.model("Game", gameSchema);

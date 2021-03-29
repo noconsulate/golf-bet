@@ -15,6 +15,7 @@ router.post("/", async (req, res) => {
       holes: req.body.holes,
       scoringStyle: req.body.scoringStyle,
     },
+    playersJoined: [1],
   });
 
   return res.send(game);
