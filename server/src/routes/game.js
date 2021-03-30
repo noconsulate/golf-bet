@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { nanoid } from "nanoid";
 
 const router = Router();
 
@@ -8,7 +9,9 @@ router.get("/", (req, res) => {
 
 router.post("/", async (req, res) => {
   console.log(req.body);
+
   const game = await req.context.models.Game.create({
+    _id: nanoid(7),
     gameInfo: req.body.gameInfo,
     playersJoined: [1],
     scores: req.body.scores,

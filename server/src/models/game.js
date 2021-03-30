@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 
 const gameSchema = new mongoose.Schema({
+  _id: String,
   gameInfo: {
     players: String,
     holes: String,
