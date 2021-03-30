@@ -7,6 +7,14 @@ router.get("/", (req, res) => {
   return res.send("games route");
 });
 
+router.get("/:gameId", async (req, res) => {
+  console.log(req.params.gameId);
+
+  const game = await req.context.models.Game.findById(req.params.gameId);
+
+  return res.send(game);
+});
+
 router.post("/", async (req, res) => {
   console.log(req.body);
 

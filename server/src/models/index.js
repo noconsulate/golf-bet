@@ -7,7 +7,10 @@ const { VPS_IP, MONGO_PORT, MONGO_USER, MONGO_PASSWORD } = process.env;
 
 // mongodb://myUserAdmin:floofer@165.232.158.150:27017
 
-const uri = `mongodb://${MONGO_USER}:${MONGO_PASSWORD}@${VPS_IP}:${MONGO_PORT}`;
+const uri =
+  "mongodb+srv://janssen:janssen@cluster0.skdbh.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+
+//const uri = `mongodb://${MONGO_USER}:${MONGO_PASSWORD}@${VPS_IP}:${MONGO_PORT}`;
 
 const connectDb = () => {
   return mongoose.connect(uri, {

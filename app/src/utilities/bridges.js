@@ -19,7 +19,9 @@ export async function createGame(gameInfo) {
     scores: scores,
   });
 
-  console.log(res);
+  const gameId = res.data;
+  console.log(gameId);
+  return gameId;
 }
 
 export async function joinGame(gameId) {
@@ -82,23 +84,14 @@ export async function playerConfirm(gameId) {
 // this requires some learnin'/thinkin/
 export function playersJoinedListener(gameId) {
   const players = store.state.players;
+  let playersJoined = 0;
 
-  console.log(gameId);
-  let docRef = db.collection("games").doc(gameId);
+  console.log("in listener");
 
-  // !!!!! not sure if this is going to work, check here if listener stops working
-
-  var unsubscribe = docRef.onSnapshot((doc) => {
-    const data = doc.data();
-    const playersJoined = data.playersJoined;
-    console.log(playersJoined.length);
-    store.dispatch("setPlayersJoined", playersJoined);
-
-    if (playersJoined.length == players) {
-      store.dispatch("setAllPlayersJoined");
-      unsubscribe();
-    }
-  });
+  function interval() {
+    console.log("hi");
+  }
+  setInterval(interval, 1000);
 }
 
 function compareScores(remote, local) {

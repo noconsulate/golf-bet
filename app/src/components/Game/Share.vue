@@ -45,6 +45,7 @@ export default {
     },
   },
   async created() {
+    console.log('before listener in Share')
     playersJoinedListener(this.gameId);
   },
 };
