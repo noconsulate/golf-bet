@@ -24,3 +24,6 @@ const models = { Game };
 
 export { connectDb };
 export default models;
+
+// posgresql connection string
+// uri = "postrgres://golfbet:golfbet@165.232.158.150:5432/golfbet"
