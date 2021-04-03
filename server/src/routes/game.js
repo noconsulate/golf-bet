@@ -18,16 +18,29 @@ router.get("/:gameId", async (req, res) => {
 router.post("/", async (req, res) => {
   console.log(req.body);
 
-  const game = await req.context.models.Game.create({
-    _id: nanoid(7),
-    gameInfo: req.body.gameInfo,
-    playersJoined: [1],
-    scores: req.body.scores,
+  // const game = await req.context.models.Game.create({
+  //   _id: nanoid(7),
+  //   gameInfo: req.body.gameInfo,
+  //   playersJoined: [1],
+  //   scores: req.body.scores,
+  // });
+
+  // console.log(game);
+  // console.log("###***777%%");
+  // return res.send(game._id);
+
+  console.log(req.context);
+
+  const game = await req.context.game.create({
+    data: {
+      players: req.body.players,
+      holes: req.body.holes,
+      points: req.body.points,
+      scoringStyle: req.body.scoringStyle,
+    },
   });
 
   console.log(game);
-  console.log("###***777%%");
-  return res.send(game._id);
 });
 
 export default router;
