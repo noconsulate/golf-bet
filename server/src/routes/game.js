@@ -18,7 +18,7 @@ router.get("/:gameId", async (req, res) => {
 router.post("/", async (req, res) => {
   console.log(req.body);
 
-  console.log(req.context.prisma);
+  // console.log(req.context.prisma);
 
   const game = await req.context.prisma.game.create({
     data: {
