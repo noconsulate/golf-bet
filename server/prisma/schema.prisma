@@ -11,7 +11,7 @@ generator client {
 }
 
 model Game {
-  id           Int    @id @default(autoincrement())
+  id           String @id @default(uuid())
   players      Int
   holes        Int
   points       Int
