@@ -3,7 +3,6 @@ import cors from "cors";
 import "dotenv/config";
 import { PrismaClient } from "@prisma/client";
 
-import models, { connectDb } from "./models";
 import routes from "./routes";
 
 const app = express();
@@ -17,7 +16,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(async (req, res, next) => {
-  // const prisma = await new PrismaClient();
   req.context = { prisma };
   next();
 });
@@ -26,7 +24,7 @@ app.use(async (req, res, next) => {
 
 app.use("/games", routes.game);
 
-// start db and listen
+// listen
 
 app.listen(process.env.PORT, () => {
   console.log("listening on port: " + process.env.PORT);
