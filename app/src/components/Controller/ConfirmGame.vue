@@ -62,7 +62,7 @@ export default {
       const docRefId = await createGame(this.gameInfo);
       this.$store.dispatch("setGameId", docRefId);
       this.$store.dispatch("setPlayerNum", 1);
-      // this.$store.dispatch("setController", "waitingForPlayers");
+      this.$store.dispatch("setController", "waitingForPlayers");
     },
   },
 };

@@ -35,12 +35,8 @@ export default {
     };
   },
   async created() {
-    let { gameInfo, playersJoined } = await joinGame(this.gameId);
-    console.log(gameInfo, playersJoined);
-
-    if (playersJoined.length == Number(gameInfo.players)) {
-      this.gameFull = true;
-    }
+    let gameInfo = await joinGame(this.gameId);
+    console.log(gameInfo);
 
     this.$store.dispatch("setGameId", this.gameId);
     this.$store.dispatch("setPlayers", gameInfo.players);

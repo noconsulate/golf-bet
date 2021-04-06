@@ -18,8 +18,9 @@ class Game extends Parse.Object {
     game.set("players", Number(gameInfo.players));
     game.set("points", Number(gameInfo.points));
     game.set("holes", Number(gameInfo.holes));
-    game.set("scoringStyle", gameInfo.scoringStytle);
+    game.set("scoringStyle", gameInfo.scoringStyle);
     game.set("scores", scores);
+    game.set("playersJoined", 1);
 
     return game;
   }
@@ -56,31 +57,28 @@ export async function createGame(gameInfo) {
   try {
     const result = await game.save();
     console.log(result.id);
+    return result.id;
   } catch (e) {
     console.log("error", e);
   }
 }
 
 export async function joinGame(gameId) {
-  let docRef = db.collection("games").doc(gameId);
-
-  let doc, gameData;
-
+  const GameObj = Parse.Object.extend("Game");
+  const query = new Parse.Query(GameObj);
   try {
-    doc = await docRef.get();
-    if (doc.exists) {
-      gameData = doc.data();
-    } else {
-      console.log("no such game");
-      throw "no such game";
-    }
-  } catch (error) {
-    console.log(error);
+    const result = await query.get(gameId);
+    console.log(result.attributes);
+    const gameInfo = {
+      players: result.attributes.players,
+      points: result.attributes.points,
+      holes: result.attributes.holes,
+      scoringStyle: result.attributes.scoringStyle,
+    };
+    return gameInfo;
+  } catch (e) {
+    console.log(e);
   }
-
-  // tell db player has arrived
-
-  return gameData;
 }
 
 export async function playerConfirm(gameId) {

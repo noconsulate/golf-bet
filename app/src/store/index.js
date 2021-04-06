@@ -137,6 +137,7 @@ export default new Vuex.Store({
     },
     setScoringStyle(context, value) {
       context.commit("UPDATE_SCORING_STYLE", value);
+      console.log("scoringstyle action", value);
     },
     setError(context, value) {
       context.commit("UPDATE_ERROR", value);
