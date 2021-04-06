@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import "dotenv/config";
 const ParseServer = require("parse-server").ParseServer;
+import ParseDashboard from "parse-dashboard";
 
 import routes from "./routes";
 
@@ -12,8 +13,27 @@ const parseAPI = new ParseServer({
   databaseURI: "mongodb+srv://user1:user1@cluster0.skdbh.mongodb.net/golfbet",
   appId: "1234",
   masterKey: "1234",
-  serverURL: "http://localhost:1337/parse",
+  serverURL: `http://localhost:${process.env.PORT}/parse`,
 });
+
+// Parse dashboard (needs security)
+const options = { allowInsecureHTTP: false };
+
+const dashboard = new ParseDashboard(
+  {
+    apps: [
+      {
+        serverURL: "mongodb+srv://user1:user1@cluster0.skdbh.mongodb.net/test",
+        appId: "1234",
+        masterKey: "1234",
+
+        serverURL: `http://localhost:${process.env.PORT}/parse`,
+        appName: "MyApp",
+      },
+    ],
+  },
+  options
+);
 
 // Middleware
 
@@ -24,6 +44,8 @@ app.use(express.urlencoded({ extended: true }));
 // Serve Parse API
 app.use("/parse", parseAPI);
 
+// Serve parse dashboard
+app.use("/dashboard", dashboard);
 // listen
 
 app.listen(process.env.PORT, () => {
