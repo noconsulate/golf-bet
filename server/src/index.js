@@ -1,13 +1,19 @@
 import express from "express";
 import cors from "cors";
 import "dotenv/config";
-import { PrismaClient } from "@prisma/client";
+const ParseServer = require("parse-server").ParseServer;
 
 import routes from "./routes";
 
 const app = express();
 
-const prisma = new PrismaClient();
+// Config ParseServer
+const parseAPI = new ParseServer({
+  databaseURI: "mongodb+srv://user1:user1@cluster0.skdbh.mongodb.net/golfbet",
+  appId: "1234",
+  masterKey: "1234",
+  serverURL: "http://localhost:1337/parse",
+});
 
 // Middleware
 
@@ -15,14 +21,8 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use(async (req, res, next) => {
-  req.context = { prisma };
-  next();
-});
-
-// routes
-
-app.use("/games", routes.game);
+// Serve Parse API
+app.use("/parse", parseAPI);
 
 // listen
 
