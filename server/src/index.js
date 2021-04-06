@@ -14,6 +14,9 @@ const parseAPI = new ParseServer({
   appId: "1234",
   masterKey: "1234",
   serverURL: `http://localhost:${process.env.PORT}/parse`,
+  liveQuery: {
+    classNames: ["Game"],
+  },
 });
 
 // Parse dashboard (needs security)
@@ -48,6 +51,11 @@ app.use("/parse", parseAPI);
 app.use("/dashboard", dashboard);
 // listen
 
-app.listen(process.env.PORT, () => {
-  console.log("listening on port: " + process.env.PORT);
-});
+// normal way to listen to server
+// app.listen(process.env.PORT, () => {
+//   console.log("listening on port: " + process.env.PORT);
+// });
+
+let httpServer = require("http").createServer(app);
+httpServer.listen(2000);
+var parseLiveQueryServer = ParseServer.createLiveQueryServer(httpServer);
