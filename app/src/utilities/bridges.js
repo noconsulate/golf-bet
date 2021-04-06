@@ -26,31 +26,8 @@ class Game extends Parse.Object {
   }
 }
 
-export async function parsey() {
-  console.log("time to parse");
-  Parse.initialize("1234");
-  Parse.serverURL = "http://localhost:2000/parse";
-
-  const Game = Parse.Object.extend("Game");
-
-  const game = new Game();
-
-  game.set("players", 2);
-
-  game.save().then(
-    (res) => {
-      alert("new object created with id" + res.id);
-    },
-    (error) => {
-      console.log("error");
-    }
-  );
-}
-
 export async function createGame(gameInfo) {
-  console.log(gameInfo);
   const scores = blankScoresObj(gameInfo.players, gameInfo.holes);
-  console.log(scores);
 
   const game = Game.newGame(gameInfo, scores);
 
