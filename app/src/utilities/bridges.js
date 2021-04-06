@@ -1,10 +1,32 @@
 import axios from "axios";
+import Parse from "parse";
 
 import { blankScoresDatabaseGen, blankScoresObj } from "./functions";
 
 import store from "../store/";
 
-const serverUrl = "http://localhost:3000";
+const serverUrl = "http://localhost:2000";
+
+export async function parsey() {
+  console.log("time to parse");
+  Parse.initialize("1234");
+  Parse.serverURL = "http://localhost:2000/parse";
+
+  const Game = Parse.Object.extend("Game");
+
+  const game = new Game();
+
+  game.set("players", 2);
+
+  game.save().then(
+    (res) => {
+      alert("new object created with id" + res.id);
+    },
+    (error) => {
+      console.log("error");
+    }
+  );
+}
 
 export async function createGame(gameInfo) {
   const scores = blankScoresObj(
@@ -82,17 +104,7 @@ export async function playerConfirm(gameId) {
 }
 
 // this requires some learnin'/thinkin/
-export function playersJoinedListener(gameId) {
-  const players = store.state.players;
-  let playersJoined = 0;
-
-  console.log("in listener");
-
-  function interval() {
-    console.log("hi");
-  }
-  setInterval(interval, 1000);
-}
+export function playersJoinedListener(gameId) {}
 
 function compareScores(remote, local) {
   let nullCheck = true;

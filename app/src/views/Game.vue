@@ -57,12 +57,14 @@
     <div class=" h-40 object-none object-bottom">
       <Controller />
     </div>
+    <button @click="test">something!</button>
   </div>
 </template>
 
 <script>
 import Controller from "../components/Controller/Controller";
 import Share from "../components/Game/Share";
+import {parsey} from "../utilities/bridges"
 export default {
   name: "game",
   components: {
@@ -99,6 +101,9 @@ export default {
     focus(group) {
       this.$store.dispatch("setController", group);
     },
+    async test() {
+      parsey()
+    }
   },
   created() {},
 };
