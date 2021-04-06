@@ -7,6 +7,24 @@ import store from "../store/";
 
 const serverUrl = "http://localhost:2000";
 
+Parse.initialize("1234");
+Parse.serverURL = "http://localhost:2000/parse";
+class Game extends Parse.Object {
+  constructor() {
+    super("Game");
+  }
+  static newGame(gameInfo, scores) {
+    const game = new Game();
+    game.set("players", Number(gameInfo.players));
+    game.set("points", Number(gameInfo.points));
+    game.set("holes", Number(gameInfo.holes));
+    game.set("scoringStyle", gameInfo.scoringStytle);
+    game.set("scores", scores);
+
+    return game;
+  }
+}
+
 export async function parsey() {
   console.log("time to parse");
   Parse.initialize("1234");
@@ -29,21 +47,18 @@ export async function parsey() {
 }
 
 export async function createGame(gameInfo) {
-  const scores = blankScoresObj(
-    Number(gameInfo.players),
-    Number(gameInfo.holes)
-  );
   console.log(gameInfo);
+  const scores = blankScoresObj(gameInfo.players, gameInfo.holes);
   console.log(scores);
 
-  const res = await axios.post(`${serverUrl}/games`, {
-    gameInfo: gameInfo,
-    scores: scores,
-  });
+  const game = Game.newGame(gameInfo, scores);
 
-  const gameId = res.data;
-  console.log(gameId);
-  return gameId;
+  try {
+    const result = await game.save();
+    console.log(result.id);
+  } catch (e) {
+    console.log("error", e);
+  }
 }
 
 export async function joinGame(gameId) {
