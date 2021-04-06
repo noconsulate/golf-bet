@@ -82,38 +82,30 @@ export async function joinGame(gameId) {
 }
 
 export async function playerConfirm(gameId) {
-  let docRef = db.collection("games").doc(gameId);
-  let doc, gameData, maxPlayer;
+  let maxPlayer;
 
+  const thisGame = Parse.Object.extend("Game");
+  const query = new Parse.Query(thisGame);
   try {
-    doc = await docRef.get();
-    if (doc.exists) {
-      gameData = doc.data();
-      const { playersJoined } = gameData;
-      console.log(playersJoined);
-      maxPlayer = Math.max(...playersJoined);
-    } else {
-      console.log("no such game");
-      return false;
+    const game = await query.get(gameId);
+    try {
+      game.increment("playersJoined");
+      maxPlayer = game.get("playersJoined");
+      console.log(maxPlayer);
+      await game.save();
+
+      store.dispatch("setPlayerNum", maxPlayer);
+      return "success";
+    } catch (e) {
+      console.log("inner try error", e);
     }
-  } catch (error) {
-    console.log(error);
+  } catch (e) {
+    console.log("outter try error", e);
   }
 
   maxPlayer++;
   console.log(maxPlayer);
   store.dispatch("setPlayerNum", maxPlayer);
-
-  try {
-    await docRef.update({
-      playersJoined: firebase.firestore.FieldValue.arrayUnion(maxPlayer),
-    });
-    console.log(`player ${maxPlayer} joined the game`);
-    return true;
-  } catch (error) {
-    console.log(error);
-    return false;
-  }
 }
 
 // this requires some learnin'/thinkin/
