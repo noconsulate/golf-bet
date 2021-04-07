@@ -15,7 +15,7 @@ const parseAPI = new ParseServer({
   masterKey: "1234",
   serverURL: `http://localhost:${process.env.PORT}/parse`,
   liveQuery: {
-    classNames: ["Game"],
+    classNames: ["Match"],
   },
 });
 

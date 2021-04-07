@@ -78,7 +78,19 @@ export async function playerConfirm(matchId) {
 }
 
 // this requires some learnin'/thinkin/
-export function playersJoinedListener(gameId) {}
+export async function playersJoinedListener(matchId) {
+  const Match = Parse.Object.extend("Match");
+  const query = new Parse.Query("Match");
+  const subscription = await query.subscribe();
+
+  subscription.on("open", () => {
+    console.log("subscription opened");
+  });
+
+  subscription.on("create", (object) => {
+    console.log("object created", object);
+  });
+}
 
 function compareScores(remote, local) {
   let nullCheck = true;

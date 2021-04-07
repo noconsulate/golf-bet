@@ -44,9 +44,9 @@ export default {
       navigator.clipboard.writeText(this.link2Share);
     },
   },
-  async created() {
+  async beforeMount() {
     console.log('before listener in Share')
-    playersJoinedListener(this.gameId);
+    playersJoinedListener(this.matchId);
   },
 };
 </script>

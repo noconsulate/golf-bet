@@ -1,0 +1,19 @@
+{"level":"info","message":"Create new client: 3e94e543-13ba-487d-96cf-686380a4519a","timestamp":"2021-04-07T19:58:19.437Z"}
+{"level":"info","message":"Create new client: e175b07f-9b33-4916-a4c5-78e75154c6df","timestamp":"2021-04-07T20:00:13.461Z"}
+{"level":"info","message":"Client disconnect: e175b07f-9b33-4916-a4c5-78e75154c6df","timestamp":"2021-04-07T20:00:47.845Z"}
+{"level":"info","message":"Create new client: c9d857e9-bde6-42f2-a18e-2f33b5c6c9da","timestamp":"2021-04-07T20:01:14.018Z"}
+{"level":"info","message":"Client disconnect: c9d857e9-bde6-42f2-a18e-2f33b5c6c9da","timestamp":"2021-04-07T20:02:27.947Z"}
+{"level":"info","message":"Create new client: bd9821cc-876b-4eab-b5b2-c082e47b90db","timestamp":"2021-04-07T20:02:30.960Z"}
+{"level":"info","message":"Parse LiveQuery Server starts running","timestamp":"2021-04-07T20:04:38.476Z"}
+{"level":"info","message":"Create new client: 2e10b6d6-bfc8-4a7a-b368-4a54da0e84c3","timestamp":"2021-04-07T20:04:39.858Z"}
+{"level":"info","message":"Create new client: 93febf36-ec8f-4af0-a2c8-cbf29e9a73fc","timestamp":"2021-04-07T20:04:39.888Z"}
+{"level":"info","message":"Client disconnect: 93febf36-ec8f-4af0-a2c8-cbf29e9a73fc","timestamp":"2021-04-07T20:04:42.604Z"}
+{"level":"info","message":"Create new client: c3f3d716-a34b-498e-9b34-a2295618bc10","timestamp":"2021-04-07T20:04:45.033Z"}
+{"level":"info","message":"Client disconnect: 2e10b6d6-bfc8-4a7a-b368-4a54da0e84c3","timestamp":"2021-04-07T20:04:48.131Z"}
+{"level":"info","message":"Create new client: 54415d56-a2b1-4044-b0b7-a55819d7d07d","timestamp":"2021-04-07T20:04:50.277Z"}
+{"level":"info","message":"Client disconnect: 54415d56-a2b1-4044-b0b7-a55819d7d07d","timestamp":"2021-04-07T20:04:57.527Z"}
+{"level":"info","message":"Create new client: 03cae89c-aae1-4afb-8e5e-1a60d07c9324","timestamp":"2021-04-07T20:04:59.952Z"}
+{"level":"info","message":"Client disconnect: 03cae89c-aae1-4afb-8e5e-1a60d07c9324","timestamp":"2021-04-07T20:05:26.212Z"}
+{"level":"info","message":"Create new client: c2e4b656-46c0-454b-89e4-ec7de56b76a9","timestamp":"2021-04-07T20:05:28.352Z"}
+{"level":"info","message":"Client disconnect: c2e4b656-46c0-454b-89e4-ec7de56b76a9","timestamp":"2021-04-07T20:07:48.297Z"}
+{"level":"info","message":"Create new client: e3940e45-6426-492a-8f6d-b43f1d2fd7ad","timestamp":"2021-04-07T20:07:53.051Z"}
