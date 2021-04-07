@@ -18,12 +18,12 @@
 </template>
 
 <script>
-import { createGame } from "../../utilities/bridges";
+import { createMatch } from "../../utilities/bridges";
 
 export default {
   name: "confirmGame",
   computed: {
-    gameInfo() {
+    matchInfo() {
       return {
         players: this.$store.state.players,
         points: this.$store.state.points,
@@ -59,8 +59,9 @@ export default {
         return;
       }
 
-      const docRefId = await createGame(this.gameInfo);
-      this.$store.dispatch("setGameId", docRefId);
+      console.log(this.matchInfo)
+      const matchId = await createMatch(this.matchInfo);
+      this.$store.dispatch("setMatchId", matchId);
       this.$store.dispatch("setPlayerNum", 1);
       this.$store.dispatch("setController", "waitingForPlayers");
     },

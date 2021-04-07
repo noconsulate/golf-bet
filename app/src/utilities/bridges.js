@@ -9,7 +9,7 @@ const serverUrl = "http://localhost:2000";
 
 Parse.initialize("1234");
 Parse.serverURL = "http://localhost:2000/parse";
-class Game extends Parse.Object {
+class Match extends Parse.Object {
   constructor() {
     super("Game");
   }
@@ -26,17 +26,26 @@ class Game extends Parse.Object {
   }
 }
 
-export async function createGame(gameInfo) {
-  const scores = blankScoresObj(gameInfo.players, gameInfo.holes);
+export async function createMatch(matchInfo) {
+  const scores = blankScoresObj(matchInfo.players, matchInfo.holes);
 
-  const game = Game.newGame(gameInfo, scores);
+  const Match = Parse.Object.extend("Match");
+  const match = new Match();
 
+  console.log(matchInfo);
   try {
-    const result = await game.save();
-    console.log(result.id);
-    return result.id;
+    const doc = await match.save({
+      players: Number(matchInfo.players),
+      points: Number(matchInfo.points),
+      holes_18: Number(matchInfo.holes == 18 ? true : false),
+      soloScoring: matchInfo.scoringStyle == "solo" ? true : false,
+      scores: scores,
+      playersJoined: 1,
+    });
+    console.log(doc.id);
+    return doc.id;
   } catch (e) {
-    console.log("error", e);
+    console.log(e);
   }
 }
 
