@@ -24,11 +24,11 @@ export default {
     };
   },
   computed: {
-    gameId() {
-      return this.$store.state.gameId;
+    matchId() {
+      return this.$store.state.matchId;
     },
     link2Share() {
-      return `${this.url}/join?game=${this.gameId}`;
+      return `${this.url}/join?match=${this.matchId}`;
     },
 
     waitingForPlayers() {

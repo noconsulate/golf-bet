@@ -37,8 +37,8 @@ export async function createMatch(matchInfo) {
     const doc = await match.save({
       players: Number(matchInfo.players),
       points: Number(matchInfo.points),
-      holes_18: Number(matchInfo.holes == 18 ? true : false),
-      soloScoring: matchInfo.scoringStyle == "solo" ? true : false,
+      is18Holes: Number(matchInfo.holes == 18 ? true : false),
+      isSoloScoring: matchInfo.scoringStyle == "solo" ? true : false,
       scores: scores,
       playersJoined: 1,
     });
@@ -49,19 +49,18 @@ export async function createMatch(matchInfo) {
   }
 }
 
-export async function joinGame(gameId) {
-  const GameObj = Parse.Object.extend("Game");
-  const query = new Parse.Query(GameObj);
+export async function joinMatch(matchId) {
+  const Match = Parse.Object.extend("Match");
+  const query = new Parse.Query(Match);
   try {
-    const result = await query.get(gameId);
-    console.log(result.attributes);
-    const gameInfo = {
+    const result = await query.get(matchId);
+    const matchInfo = {
       players: result.attributes.players,
       points: result.attributes.points,
-      holes: result.attributes.holes,
-      scoringStyle: result.attributes.scoringStyle,
+      holes: result.attributes.is18Holes ? 18 : 9,
+      scoringStyle: result.attributes.isSoloScoring ? "solo" : "classic",
     };
-    return gameInfo;
+    return matchInfo;
   } catch (e) {
     console.log(e);
   }

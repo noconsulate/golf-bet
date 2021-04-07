@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import { joinGame } from "../utilities/bridges";
+import { joinMatch } from "../utilities/bridges";
 
 import PlayerJoin from "../components/Game/PlayerJoin";
 import GameFull from "../components/Game/GameFull";
@@ -22,8 +22,8 @@ export default {
     FinalScore,
   },
   computed: {
-    gameId() {
-      return this.$route.query.game;
+  matchId() {
+      return this.$route.query.match;
     },
     sequence() {
       return this.$store.state.sequence;
@@ -35,14 +35,13 @@ export default {
     };
   },
   async created() {
-    let gameInfo = await joinGame(this.gameId);
-    console.log(gameInfo);
+    let matchInfo = await joinMatch(this.matchId);
 
-    this.$store.dispatch("setGameId", this.gameId);
-    this.$store.dispatch("setPlayers", gameInfo.players);
-    this.$store.dispatch("setPoints", gameInfo.points);
-    this.$store.dispatch("setHoles", gameInfo.holes);
-    this.$store.dispatch("setScoringStyle", gameInfo.scoringStyle);
+    this.$store.dispatch("setMatchId", this.matchId);
+    this.$store.dispatch("setPlayers", matchInfo.players);
+    this.$store.dispatch("setPoints", matchInfo.points);
+    this.$store.dispatch("setHoles", matchInfo.holes);
+    this.$store.dispatch("setScoringStyle", matchInfo.scoringStyle);
   },
 };
 </script>

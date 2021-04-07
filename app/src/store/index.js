@@ -35,7 +35,7 @@ export default new Vuex.Store({
       17,
       18,
     ],
-    gameId: "",
+    matchId: "",
     playerNum: "1",
     // myScore: [],
     // opponentScore: [],
@@ -78,7 +78,7 @@ export default new Vuex.Store({
       state.scores = [];
     },
     UPDATE_MATCH_ID(state, payload) {
-      state.gameId = payload;
+      state.matchId = payload;
     },
     UPDATE_PLAYER_NUM(state, payload) {
       state.playerNum = payload;
