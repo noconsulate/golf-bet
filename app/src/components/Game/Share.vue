@@ -45,7 +45,6 @@ export default {
     },
   },
   async beforeMount() {
-    console.log('before listener in Share')
     playersJoinedListener(this.matchId);
   },
 };

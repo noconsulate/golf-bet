@@ -79,8 +79,11 @@ export async function playerConfirm(matchId) {
 
 // this requires some learnin'/thinkin/
 export async function playersJoinedListener(matchId) {
+  const players = store.state.players;
+
   const Match = Parse.Object.extend("Match");
   const query = new Parse.Query("Match");
+  query.equalTo("objectId", matchId);
   const subscription = await query.subscribe();
 
   subscription.on("open", () => {
@@ -89,6 +92,14 @@ export async function playersJoinedListener(matchId) {
 
   subscription.on("create", (object) => {
     console.log("object created", object);
+  });
+
+  subscription.on("update", (object) => {
+    console.log("update", object.attributes);
+    console.log(object.get("players"));
+    if (object.get("players") >= players) {
+      console.log("all players joined");
+    }
   });
 }
 
