@@ -64,7 +64,13 @@ export async function playerConfirm(matchId) {
       await match.save();
 
       store.dispatch("setPlayerNum", maxPlayer);
-      return "success";
+
+      console.log(maxPlayer, store.state.players);
+
+      if (maxPlayer >= store.state.players) {
+        return "doNotListen";
+      }
+      return "doListen";
     } catch (e) {
       console.log("inner try error", e);
     }
@@ -96,9 +102,13 @@ export async function playersJoinedListener(matchId) {
 
   subscription.on("update", (object) => {
     console.log("update", object.attributes);
-    console.log(object.get("players"));
-    if (object.get("players") >= players) {
+    console.log(
+      "playersJoined: " + object.get("playersJoined"),
+      "players: " + players
+    );
+    if (object.get("playersJoined") >= players) {
       console.log("all players joined");
+      store.dispatch("setAllPlayersJoined");
     }
   });
 }

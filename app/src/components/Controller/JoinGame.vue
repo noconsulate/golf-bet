@@ -51,9 +51,12 @@ export default {
     async join() {
       let joinGame = await playerConfirm(this.matchId);
 
-      if (joinGame) {
+      if (joinGame == 'doListen') {
         console.log("joinGame success");
         this.$store.dispatch("setController", "waitingForPlayers");
+      } else if (joinGame == 'doNotListen') {
+        console.log("joingame success, going to /scorecard")
+        this.$store.dispatch("setAllPlayersJoined"); 
       } else {
         this.$store.dispatch("setError", "joinError");
         console.log("joinGame fail");
