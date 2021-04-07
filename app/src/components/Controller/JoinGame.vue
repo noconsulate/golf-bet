@@ -43,13 +43,13 @@ export default {
     scoringStyle() {
       return this.$store.state.scoringStyle;
     },
-    gameId() {
-      return this.$store.state.gameId;
+    matchId() {
+      return this.$store.state.matchId;
     },
   },
   methods: {
     async join() {
-      let joinGame = await playerConfirm(this.gameId);
+      let joinGame = await playerConfirm(this.matchId);
 
       if (joinGame) {
         console.log("joinGame success");

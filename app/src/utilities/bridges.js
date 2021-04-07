@@ -66,18 +66,22 @@ export async function joinMatch(matchId) {
   }
 }
 
-export async function playerConfirm(gameId) {
+export async function playerConfirm(matchId) {
   let maxPlayer;
 
+  console.log(matchId);
   const thisGame = Parse.Object.extend("Game");
-  const query = new Parse.Query(thisGame);
+  // const query = new Parse.Query(thisGame);
+
+  const Match = Parse.Object.extend("Match");
+  const query = new Parse.Query(Match);
   try {
-    const game = await query.get(gameId);
+    const match = await query.get(matchId);
     try {
-      game.increment("playersJoined");
-      maxPlayer = game.get("playersJoined");
+      match.increment("playersJoined");
+      maxPlayer = match.get("playersJoined");
       console.log(maxPlayer);
-      await game.save();
+      await match.save();
 
       store.dispatch("setPlayerNum", maxPlayer);
       return "success";

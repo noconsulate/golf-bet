@@ -78,8 +78,8 @@ export default {
     scoringStyle() {
       return this.$store.state.scoringStyle;
     },
-    gameId() {
-      return this.$store.state.gameId;
+    matchId() {
+      return this.$store.state.matchId;
     },
     controller() {
       return this.$store.state.controller;
@@ -90,16 +90,16 @@ export default {
   },
   methods: {
     async confirm() {
-      playersJoinedListener(this.gameId);
+      // playersJoinedListener(this.matchId);
+    // console.log(this.matchId, "lalal WTF")
+    //   let joinGame = await playerConfirm(this.matchId);
 
-      let joinGame = await playerConfirm(this.gameId);
-
-      if (joinGame == "success") {
-        console.log("you joined the game");
-        this.waiting = true;
-      } else {
-        console.log("something went wrong with joining games");
-      }
+    //   if (joinGame == "success") {
+    //     console.log("you joined the game");
+    //     this.waiting = true;
+    //   } else {
+    //     console.log("something went wrong with joining games");
+    //   }
     },
   },
   created() {
