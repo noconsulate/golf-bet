@@ -9,22 +9,6 @@ const serverUrl = "http://localhost:2000";
 
 Parse.initialize("1234");
 Parse.serverURL = "http://localhost:2000/parse";
-class Match extends Parse.Object {
-  constructor() {
-    super("Game");
-  }
-  static newGame(gameInfo, scores) {
-    const game = new Game();
-    game.set("players", Number(gameInfo.players));
-    game.set("points", Number(gameInfo.points));
-    game.set("holes", Number(gameInfo.holes));
-    game.set("scoringStyle", gameInfo.scoringStyle);
-    game.set("scores", scores);
-    game.set("playersJoined", 1);
-
-    return game;
-  }
-}
 
 export async function createMatch(matchInfo) {
   const scores = blankScoresObj(matchInfo.players, matchInfo.holes);
@@ -68,10 +52,6 @@ export async function joinMatch(matchId) {
 
 export async function playerConfirm(matchId) {
   let maxPlayer;
-
-  console.log(matchId);
-  const thisGame = Parse.Object.extend("Game");
-  // const query = new Parse.Query(thisGame);
 
   const Match = Parse.Object.extend("Match");
   const query = new Parse.Query(Match);
