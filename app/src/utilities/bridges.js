@@ -1,4 +1,3 @@
-import axios from "axios";
 import Parse from "parse";
 
 import { blankScoresDatabaseGen, blankScoresObj } from "./functions";
