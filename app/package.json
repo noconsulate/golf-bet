@@ -7,6 +7,7 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^1.9.0",
     "autoprefixer": "^9.8.6",
     "core-js": "^3.6.5",
     "parse": "^3.1.0",

@@ -1,4 +1,5 @@
 import Parse from "parse";
+import { createClient } from "@supabase/supabase-js";
 
 import { blankScoresDatabaseGen, blankScoresObj } from "./functions";
 
@@ -167,3 +168,46 @@ export async function submitScores(gameId, hole, players, scores) {
     console.log("scores not submitted ERROROROROR");
   }
 }
+const supabase = createClient(
+  "https://jmbttvgyclmljkuzemvq.supabase.co",
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTYxNzgxODEwNCwiZXhwIjoxOTMzMzk0MTA0fQ.LJUy3zUrdXgqQ7dwDqb-iKnSJ_YiQ98FeQJg2mhan1k"
+);
+// test
+const insert = async function() {
+  const scores = blankScoresObj(4, 18);
+  console.log("yes");
+
+  const { data, error } = await supabase.from("matches").insert([
+    {
+      players: 3,
+      points: 69420,
+      is18Holes: true,
+      isSoloScoring: true,
+      scores: scores,
+    },
+  ]);
+  console.log(data);
+  console.log(error);
+};
+
+window.insert = insert;
+
+const read = async function() {
+  const { data, error } = await supabase
+    .from("matches")
+    .select('scores->"1"')
+    .eq("id", 6);
+
+  console.log(data, error);
+};
+window.read = read;
+
+const subscribe = async function() {
+  const subscription = supabase
+    .from("*")
+    .on("*", (payload) => {
+      console.log("change received", payload);
+    })
+    .subscribe();
+};
+window.subscribe = subscribe;
