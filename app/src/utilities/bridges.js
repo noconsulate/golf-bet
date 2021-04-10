@@ -192,20 +192,28 @@ const insert = async function() {
 
 window.insert = insert;
 
-const read = async function() {
+const read = async function(id) {
   const { data, error } = await supabase
     .from("matches")
-    .select('scores->"1"')
-    .eq("id", 6);
+    .select("*")
+    .eq("id", id);
 
   console.log(data, error);
 };
 window.read = read;
 
-const subscribe = async function() {
+const update = async function(id) {
+  const { data, error } = await supabase
+    .from("matches")
+    .update({ playersJoined: 420 })
+    .match({ id: id });
+};
+window.update = update;
+
+const subscribe = async function(id) {
   const subscription = supabase
-    .from("*")
-    .on("*", (payload) => {
+    .from(`matches:id=eq.${id}`)
+    .on("UPDATE", (payload) => {
       console.log("change received", payload);
     })
     .subscribe();

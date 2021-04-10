@@ -1,0 +1,35 @@
+** postgresql function to insert new rows in 'match' and 'score'
+
+-- insert new match
+-- insert new score with match.id
+create or replace function new_game(
+  players_num integer,
+  points_num integer,
+  is18 boolean,
+  is_classic boolean
+)
+returns integer
+language plpgsql
+as $$
+declare
+  id_match integer;
+begin
+  insert into match(players, points, is_18_holes, is_classic_scoring, players_joined)
+  values(players_num, points_num, is18, is_classic, 1)
+  returning id into id_match;
+
+  -- create rows in score_x for each player
+  if is18 = false then
+    for counter in 1..players_num loop
+      insert into score_9(match_id, player)
+      values(id_match, counter);
+    end loop;
+  else
+     for counter in 1..players_num loop
+      insert into score_18(match_id, player)
+      values(id_match, counter);
+      end loop;
+  end if;
+return id_match;
+
+end; $$;
