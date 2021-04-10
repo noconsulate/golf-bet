@@ -177,13 +177,12 @@ const insert = async function() {
   const scores = blankScoresObj(4, 18);
   console.log("yes");
 
-  const { data, error } = await supabase.from("matches").insert([
+  const { data, error } = await supabase.from("match").insert([
     {
       players: 3,
       points: 69420,
-      is18Holes: true,
-      isSoloScoring: true,
-      scores: scores,
+      is_18_holes: true,
+      is_classic_scoring: true,
     },
   ]);
   console.log(data);
@@ -191,6 +190,20 @@ const insert = async function() {
 };
 
 window.insert = insert;
+
+const newMatch = async function() {
+  const { data, error } = await supabase.rpc("new_match", {
+    players_num: 4,
+    points_num: 30000,
+    is18: true,
+    is_classic: false,
+  });
+
+  console.log(error);
+  console.log(data);
+};
+
+window.newMatch = newMatch;
 
 const read = async function(id) {
   const { data, error } = await supabase
