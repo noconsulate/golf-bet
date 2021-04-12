@@ -26,7 +26,7 @@
           <div class="col-span-4 row-span-6 bg-yellow-300 invisible">X</div>
 
           <div class="col-span-1 justify-self-center">X</div>
-          <div class="col-span-3">Player</div>
+          <div class="col-span-3 cursor-pointer" @click="openPlayer">Player</div>
           <div class="col-span-4 invisible">X</div>
           <div class="col-span-1 justify-self-center">X</div>
           <div class="col-span-3">Setup</div>
@@ -58,6 +58,9 @@ export default {
       // this.open = !this.open;
       this.$store.dispatch("toggleNavOpen");
     },
+    openPlayer() {
+      this.$router.push('/player');
+    }
   },
   created() {
     document.title = "Golf Bets";

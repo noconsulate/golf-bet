@@ -45,9 +45,7 @@ export default new Vuex.Store({
   },
   mutations: {
     UPDATE_NAV_OPEN(state) {
-      console.log(state.navOpen);
       state.navOpen = !state.navOpen;
-      console.log(state.navOpen);
     },
     UPDATE_CONTROLLER(state, payload) {
       state.controller = payload;
@@ -71,12 +69,12 @@ export default new Vuex.Store({
         state.opponentScore.push(Number(item));
       });
     },
-    RESET_VALUES(state) {
-      state.players = "";
-      state.points = "";
-      state.holes = "";
-      state.scores = [];
-    },
+    // RESET_VALUES(state) {
+    //   state.players = "";
+    //   state.points = "";
+    //   state.holes = "";
+    //   state.scores = [];
+    // },
     UPDATE_MATCH_ID(state, payload) {
       state.matchId = payload;
     },
@@ -118,9 +116,9 @@ export default new Vuex.Store({
     setScores(context, value) {
       context.commit("UPDATE_SCORES", value);
     },
-    resetValues(context) {
-      context.commit("RESET_VALUES");
-    },
+    // resetValues(context) {
+    //   context.commit("RESET_VALUES");
+    // },
     setMatchId(context, value) {
       context.commit("UPDATE_MATCH_ID", value);
     },
