@@ -232,3 +232,13 @@ const subscribe = async function(id) {
     .subscribe();
 };
 window.subscribe = subscribe;
+
+async function signup() {
+  const { user, session, error } = await supabase.auth.signUp({
+    email: "poo@pee.org",
+    password: "peepee",
+  });
+  console.log(user, session, error);
+}
+
+window.signup = signup;
