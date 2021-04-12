@@ -29,7 +29,7 @@
           <div class="col-span-3 cursor-pointer" @click="openPlayer">Player</div>
           <div class="col-span-4 invisible">X</div>
           <div class="col-span-1 justify-self-center">X</div>
-          <div class="col-span-3">Setup</div>
+          <div class="col-span-3 cursor-pointer" @click="openSetup">Setup</div>
           <div class="col-span-4 invisible">X</div>
           <div class="col-span-1 justify-self-center">X</div>
           <div class="col-span-3">Scorecard</div>
@@ -61,7 +61,10 @@ export default {
     },
     openPlayer() {
       this.$router.push('/player');
-    }
+    },
+    openSetup() {
+      this.$router.push('/');
+    },
   },
   created() {
     document.title = "Golf Bets";

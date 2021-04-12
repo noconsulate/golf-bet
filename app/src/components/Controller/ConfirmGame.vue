@@ -19,6 +19,7 @@
 
 <script>
 import { createMatch } from "../../utilities/bridges";
+import { newMatch} from "../../utilities/bridges/match"
 
 export default {
   name: "confirmGame",
@@ -29,6 +30,7 @@ export default {
         points: this.$store.state.points,
         holes: this.$store.state.holes,
         scoringStyle: this.$store.state.scoringStyle,
+        owner: this.$store.state.user.id
       };
     },
     players() {
@@ -40,9 +42,24 @@ export default {
     holes() {
       return this.$store.state.holes;
     },
+    is18Holes() {
+      if (this.$store.state.holes == 18) 
+      return true
+      else
+      return false
+    },
     scoringStyle() {
       return this.$store.state.scoringStyle;
     },
+    isClassicScoring() {
+      if (this.$store.state.scoringStyle == 'classic')
+      return true;
+      else
+      return false;
+    },
+    creator() {
+      return this.$store.state.user.id;
+    }
   },
   methods: {
     prev() {
@@ -60,8 +77,15 @@ export default {
       }
 
       console.log(this.matchInfo)
-      const matchId = await createMatch(this.matchInfo);
-      this.$store.dispatch("setMatchId", matchId);
+      // const matchId = await createMatch(this.matchInfo);
+      const {data, error} = await newMatch(
+        this.players, this.points, this.is18Holes, this.isClassicScoring, this.creator
+      )
+      if (error) {
+        console.error(error)
+        return;
+      }
+      this.$store.dispatch("setMatchId", data.match_id);
       this.$store.dispatch("setPlayerNum", 1);
       this.$store.dispatch("setController", "waitingForPlayers");
     },
