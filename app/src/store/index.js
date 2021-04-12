@@ -42,6 +42,7 @@ export default new Vuex.Store({
     playersJoined: [],
     allPlayersJoined: false,
     error: "",
+    user: null,
   },
   mutations: {
     UPDATE_NAV_OPEN(state) {
@@ -93,6 +94,9 @@ export default new Vuex.Store({
     UPDATE_ERROR(state, payload) {
       state.error = payload;
     },
+    UPDATE_USER(state, payload) {
+      state.user = payload;
+    },
   },
   actions: {
     toggleNavOpen(context) {
@@ -139,6 +143,9 @@ export default new Vuex.Store({
     },
     setError(context, value) {
       context.commit("UPDATE_ERROR", value);
+    },
+    setUser(context, value) {
+      context.commit("UPDATE_USER", value);
     },
   },
 

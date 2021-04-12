@@ -40,6 +40,7 @@
 </template>
 
 <script>
+import {currentUser} from "./utilities/bridges/auth"
 export default {
   name: "app",
   data() {
@@ -64,6 +65,10 @@ export default {
   },
   created() {
     document.title = "Golf Bets";
+
+    const user = currentUser();
+    console.log(user);
+    this.$store.dispatch("setUser", user)
   },
 };
 </script>

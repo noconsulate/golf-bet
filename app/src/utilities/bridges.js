@@ -242,3 +242,5 @@ async function signup() {
 }
 
 window.signup = signup;
+
+window.supabase = supabase;

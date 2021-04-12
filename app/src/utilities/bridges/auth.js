@@ -18,3 +18,8 @@ export async function signUpWithEmail(email, password) {
 
   return { user, session };
 }
+
+export function currentUser() {
+  const session = supabase.auth.user();
+  return session;
+}

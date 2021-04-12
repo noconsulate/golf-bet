@@ -1,5 +1,7 @@
 <template>
   <div class="h-screen w-screen flex flex-col">
+    <p>Current user</p>
+    <p> {{user}}
     <p>Sign Up</p>
     <p>Email</p>
     <input class="border w-full" v-model="email" />
@@ -17,6 +19,11 @@ export default {
     return {
       email: null,
       password: null,
+    }
+  },
+  computed: {
+    user() {
+      return this.$store.state.user.email;
     }
   },
   methods: {
