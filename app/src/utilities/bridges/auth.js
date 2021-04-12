@@ -12,14 +12,25 @@ export async function signUpWithEmail(email, password) {
     password: password,
   });
 
-  if (error) throw error;
-
-  console.log(user, session, error);
-
-  return { user, session };
+  return { user, session, error };
 }
 
 export function currentUser() {
-  const session = supabase.auth.user();
-  return session;
+  const user = supabase.auth.user();
+  return user;
+}
+
+export async function signOut() {
+  const error = await supabase.auth.signOut();
+
+  return error;
+}
+
+export async function signIn(email, password) {
+  const { user, session, error } = await supabase.auth.signIn({
+    email,
+    password,
+  });
+
+  return { user, session, error };
 }

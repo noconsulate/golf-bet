@@ -42,7 +42,7 @@ export default new Vuex.Store({
     playersJoined: [],
     allPlayersJoined: false,
     error: "",
-    user: null,
+    user: {},
   },
   mutations: {
     UPDATE_NAV_OPEN(state) {
