@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import { playersJoinedListener } from "../../utilities/bridges";
+import { playersJoinedListener } from "../../utilities/bridges/match";
 export default {
   name: "share",
   data() {

@@ -1,35 +1,94 @@
-** postgresql function to insert new rows in 'match' and 'score'
-
--- insert new match
+ ** postgresql RCP **
+ 
+ -- insert new match
 -- insert new score with match.id
-create or replace function new_game(
-  players_num integer,
-  points_num integer,
-  is18 boolean,
-  is_classic boolean
+create or replace function new_match(
+  players integer,
+  points integer,
+  is_18_holes boolean,
+  is_classic_scoring boolean,
+  creator uuid,
+  
+  out match_id int,
+  out score_id_1 int,
+  out score_id_2 int,
+  out score_id_3 int,
+  out score_id_4 int
+
 )
-returns integer
+-- returns integer
 language plpgsql
 as $$
 declare
-  id_match integer;
+  match_id_ret integer;
+  score_id_1_ret int;
+  score_id_2_ret int;
+  score_id_3_ret int;
+  score_id_4_ret int;
 begin
-  insert into match(players, points, is_18_holes, is_classic_scoring, players_joined)
-  values(players_num, points_num, is18, is_classic, 1)
-  returning id into id_match;
+  insert into match(players, points, is_18_holes, is_classic_scoring, creator, players_joined)
+  values(players, points, is_18_holes, is_classic_scoring, creator, 1)
+  returning id into match_id_ret;
+
+  match_id = match_id_ret;
 
   -- create rows in score_x for each player
-  if is18 = false then
-    for counter in 1..players_num loop
+  if is_18_holes = false then
+
+    insert into score_9(match_id, player)
+    values(match_id, 1)
+    returning id into score_id_1_ret;
+    score_id_1 = score_id_1_ret;
+
+    if players > 1 then
       insert into score_9(match_id, player)
-      values(id_match, counter);
-    end loop;
-  else
-     for counter in 1..players_num loop
+      values(match_id, 2)
+      returning id into score_id_2_ret;
+      score_id_2 = score_id_2_ret;
+    end if;
+
+    if players > 2 then
+      insert into score_9(match_id, player)
+      values(match_id, 3)
+      returning id into score_id_3_ret;
+      score_id_3 = score_id_3_ret;
+    end if;
+
+    if players > 3 then
+      insert into score_9(match_id, player)
+      values(match_id, 4)
+      returning id into score_id_4_ret;
+      score_id_4 = score_id_4_ret;
+    end if;
+
+  else 
+  
+    insert into score_18(match_id, player)
+    values(match_id, 1)
+    returning id into score_id_1_ret;
+    score_id_1 = score_id_1_ret;
+
+    if players > 1 then
       insert into score_18(match_id, player)
-      values(id_match, counter);
-      end loop;
+      values(match_id, 2)
+      returning id into score_id_2_ret;
+      score_id_2 = score_id_2_ret;
+    end if;
+
+    if players > 2 then
+      insert into score_18(match_id, player)
+      values(match_id, 3)
+      returning id into score_id_3_ret;
+      score_id_3 = score_id_3_ret;
+    end if;
+
+    if players > 3 then
+      insert into score_18(match_id, player)
+      values(match_id, 4)
+      returning id into score_id_4_ret;
+      score_id_4 = score_id_4_ret;
+    end if;
+
   end if;
-return id_match;
 
 end; $$;
