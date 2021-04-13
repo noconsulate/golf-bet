@@ -71,3 +71,13 @@ export async function getMatch(id) {
   console.log(data, error);
   return { data, error };
 }
+
+export async function confirmJoin(match_id, player_id) {
+  console.log(match_id, player_id);
+  const { data, error } = await supabase.rpc("join_match", {
+    match_id,
+    player_id,
+  });
+
+  console.log(data, error);
+}

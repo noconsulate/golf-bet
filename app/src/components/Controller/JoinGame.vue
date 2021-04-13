@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import { playerConfirm } from "../../utilities/bridges";
+import {confirmJoin} from "../../utilities/bridges/match"
 
 export default {
   name: "confirmGame",
@@ -46,21 +46,28 @@ export default {
     matchId() {
       return this.$store.state.matchId;
     },
+    uuid() {
+      console.log(this.$store.state.user.id)
+
+      return this.$store.state.user.id;
+    }
   },
   methods: {
     async join() {
-      let joinGame = await playerConfirm(this.matchId);
+      const joinGame = await confirmJoin(this.matchId, this.uuid)
 
-      if (joinGame == 'doListen') {
-        console.log("joinGame success");
-        this.$store.dispatch("setController", "waitingForPlayers");
-      } else if (joinGame == 'doNotListen') {
-        console.log("joingame success, going to /scorecard")
-        this.$store.dispatch("setAllPlayersJoined"); 
-      } else {
-        this.$store.dispatch("setError", "joinError");
-        console.log("joinGame fail");
-      }
+      // let joinGame = await playerConfirm(this.matchId);
+
+      // if (joinGame == 'doListen') {
+      //   console.log("joinGame success");
+      //   this.$store.dispatch("setController", "waitingForPlayers");
+      // } else if (joinGame == 'doNotListen') {
+      //   console.log("joingame success, going to /scorecard")
+      //   this.$store.dispatch("setAllPlayersJoined"); 
+      // } else {
+      //   this.$store.dispatch("setError", "joinError");
+      //   console.log("joinGame fail");
+      // }
     },
   },
 };
