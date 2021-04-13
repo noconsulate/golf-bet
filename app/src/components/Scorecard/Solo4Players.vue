@@ -44,30 +44,48 @@
               P
             </div>
             <div 
-            :class="[index == activeHole ? activeRow : cell]"
+            :class="[index == activeHole ? activeRow : cell,
+            index == activeHole && activePlayer == 1 ? activeCell : cell]"
             :key="String(index) + '4'"
             >
               {{scores[0][index]}}
             </div>
             <div
-            :class="[index == activeHole ? activeRow : cell]"
+            :class="[index == activeHole ? activeRow : cell,
+            index == activeHole && activePlayer == 2 ? activeCell : cell]"
             :key="String(index) + '5'"
             >
               {{scores[1][index]}}
             </div>
             <div 
-            :class="[index == activeHole ? activeRow : cell]"
+            :class="[index == activeHole ? activeRow : cell,
+            index == activeHole && activePlayer == 3 ? activeCell : cell]"
             :key="String(index) + '6'"
             >
               {{scores[2][index]}}
             </div>
             <div 
-            :class="[index == activeHole ? activeRow : cell]"
+            :class="[index == activeHole ? activeRow : cell,
+            index == activeHole && activePlayer == 4 ? activeCell : cell]"
             :key="String(index) + '7'"
             >
               {{scores[3][index]}}
             </div>
         </template>
+      </div>
+    </div>
+    <div class="flex flex-col border space-y-2 object-none object-bottom">
+      <div class="flex justify-center space-x-1">
+        <button @click="prevHole" class="btn">previous hole</button>
+        <button @click="enterScore" class="btn">enter score</button>
+        <button @click="nextHole" class="btn">next hole</button>
+      </div>
+      <div class="flex justify-center">Hole {{ activeHole }}</div>
+      <div class="flex justify-center">Player {{ activePlayer }}</div>
+      <div class="flex justify-center space-x-1">
+        <button @click="prevPlayer" class="btn">prev. player</button>
+        <input ref="score" type="number" class="border w-12" v-model="scoreInput" />
+        <button @click="nextPlayer" class="btn">next player</button>
       </div>
     </div>
   </div>
@@ -82,10 +100,13 @@ export default {
       // styles
       cell: "border",
       activeRow: "border bg-gray-100",
+      activeCell: "border bg-blue-100",
       // other
       activeHole: 1,
+      activePlayer: 1,
       key: 1,
       loaded: false,
+      scoreInput: null,
     }
   },
   computed: {
@@ -98,6 +119,9 @@ export default {
     holes() {
       return Number(this.$store.state.holes);
     },
+    players() {
+      return this.$store.state.players;
+    }
     // useKey() {
     //   console.log(this.key)
     //   this.key = this.key + 1;
@@ -108,6 +132,28 @@ export default {
   methods: {
     selectRow(hole) {
       this.activeHole = hole
+    },
+    prevHole() {
+      console.log('prev')
+    },
+    nextHole() {
+      console.log('hello');
+    },
+    prevPlayer() {
+      console.log('sfd')
+    },
+    nextPlayer() {
+      if (this.activePlayer < this.players) {
+        this.activePlayer++
+      } else {
+        if (this.activeHole < this.holes) {
+          this.activePlayer = 1;
+          this.activeHole++;
+        }
+      }
+    },
+    enterScore() {
+      console.log('enter')
     }
   },
   async beforeMount() {
