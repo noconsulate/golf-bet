@@ -52,3 +52,22 @@ export const playersJoinedListener = async function() {
 
   return subscription;
 };
+
+const read = async function(id) {
+  const { data, error } = await supabase
+    .from("matches")
+    .select("*")
+    .eq("id", id);
+
+  console.log(data, error);
+};
+
+export async function getMatch(id) {
+  const { data, error } = await supabase
+    .from("match")
+    .select("*")
+    .match({ id: id });
+
+  console.log(data, error);
+  return { data, error };
+}

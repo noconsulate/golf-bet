@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import { joinMatch } from "../utilities/bridges";
+import { getMatch } from "../utilities/bridges/match";
 
 import PlayerJoin from "../components/Game/PlayerJoin";
 import GameFull from "../components/Game/GameFull";
@@ -35,13 +35,15 @@ export default {
     };
   },
   async created() {
-    let matchInfo = await joinMatch(this.matchId);
-
+    // let matchInfo = await joinMatch(this.matchId);
+    const {data, error} = await getMatch(this.matchId);
+    const {players, points, is_18_holes, is_classic_scoring} = data[0]
+    
     this.$store.dispatch("setMatchId", this.matchId);
-    this.$store.dispatch("setPlayers", matchInfo.players);
-    this.$store.dispatch("setPoints", matchInfo.points);
-    this.$store.dispatch("setHoles", matchInfo.holes);
-    this.$store.dispatch("setScoringStyle", matchInfo.scoringStyle);
+    this.$store.dispatch("setPlayers", players);
+    this.$store.dispatch("setPoints", points);
+    this.$store.dispatch("setHoles", (is_18_holes ? 18 : 9));
+    this.$store.dispatch("setScoringStyle", (is_classic_scoring ? 'classic' : 'solo'));
   },
 };
 </script>
