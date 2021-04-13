@@ -43,6 +43,7 @@ export default new Vuex.Store({
     allPlayersJoined: false,
     error: "",
     user: {},
+    listener_manager: "",
   },
   mutations: {
     UPDATE_NAV_OPEN(state) {

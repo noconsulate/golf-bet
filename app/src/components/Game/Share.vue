@@ -38,6 +38,7 @@ export default {
         " players"
       );
     },
+    
   },
   methods: {
     copy2Clipboard() {
@@ -45,7 +46,7 @@ export default {
     },
   },
   async beforeMount() {
-    playersJoinedListener(this.matchId);
+    const subscription = playersJoinedListener();
   },
 };
 </script>
