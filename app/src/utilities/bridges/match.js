@@ -53,6 +53,21 @@ export const playersJoinedListener = async function() {
   return subscription;
 };
 
+async function checkConfirmed(id) {
+  const player = store.state.user.id;
+  console.log(player, id);
+
+  let { data, error } = await supabase
+    .from("score")
+    .select("*")
+    .match({ match_id: id, player_id: player });
+
+  console.log(data, error);
+
+  if (data.length == 0) return false;
+  else return true;
+}
+
 export async function getMatch(id) {
   const { data, error } = await supabase
     .from("match")
@@ -60,6 +75,12 @@ export async function getMatch(id) {
     .match({ id: id });
 
   console.log(data, error);
+
+  if (await checkConfirmed(id)) {
+    console.log("player already present");
+    store.dispatch("setController", "waitingForPlayers");
+  }
+
   return { data, error };
 }
 
