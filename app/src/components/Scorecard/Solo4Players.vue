@@ -18,28 +18,53 @@
         <div :class="cell">P4</div>
 
         <template v-for="index in holes" >
-            <div :class="cell" :key="String(index) + '0'">
+            <div 
+            :class="[index == activeHole ? activeRow : cell]"
+            @click="selectRow(index)"
+            :key="String(index) + '0'"
+            >
               {{index}}
             </div>
-            <div :class="cell" :key="String(index) + '1'">
+            <div 
+            :class="[index == activeHole ? activeRow : cell]"
+            :key="String(index) + '1'"
+            >
               H
             </div>
-            <div :class="cell" :key="String(index) + '2'">
+            <div 
+            :class="[index == activeHole ? activeRow : cell]"
+            :key="String(index) + '2'"
+            >
               T
             </div>
-            <div :class="cell" :key="String(index) + '3'">
+            <div 
+            :class="[index == activeHole ? activeRow : cell]"
+            :key="String(index) + '3'"
+            >
               P
             </div>
-            <div :class="cell" :key="String(index) + '4'">
+            <div 
+            :class="[index == activeHole ? activeRow : cell]"
+            :key="String(index) + '4'"
+            >
               {{scores[0][index]}}
             </div>
-            <div :class="cell" :key="String(index) + '5'">
+            <div
+            :class="[index == activeHole ? activeRow : cell]"
+            :key="String(index) + '5'"
+            >
               {{scores[1][index]}}
             </div>
-            <div :class="cell" :key="String(index) + '6'">
+            <div 
+            :class="[index == activeHole ? activeRow : cell]"
+            :key="String(index) + '6'"
+            >
               {{scores[2][index]}}
             </div>
-            <div :class="cell" :key="String(index) + '7'">
+            <div 
+            :class="[index == activeHole ? activeRow : cell]"
+            :key="String(index) + '7'"
+            >
               {{scores[3][index]}}
             </div>
         </template>
@@ -56,6 +81,7 @@ export default {
     return {
       // styles
       cell: "border",
+      activeRow: "border bg-gray-100",
       // other
       activeHole: 1,
       key: 1,
@@ -80,7 +106,9 @@ export default {
     // }
   },
   methods: {
-
+    selectRow(hole) {
+      this.activeHole = hole
+    }
   },
   async beforeMount() {
     const {data, error} = await getScores(this.matchId);
