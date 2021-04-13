@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Solo4PlayersScoring v-if="
+    <Solo4Players v-if="
       players == '4' && scoringStyle == 'solo' && playerNum == '1' 
     " />
     <Classic4Players v-if="
@@ -11,12 +11,12 @@
 
 <script>
 import Classic4Players from "../components/Scorecard/Classic4Players.vue";
-import Solo4PlayersScoring from "../components/Scorecard/Solo4PlayersScoring"
+import Solo4Players from "../components/Scorecard/Solo4Players"
 export default {
   name: "scoredcard",
   components: {
     Classic4Players,
-    Solo4PlayersScoring
+    Solo4Players
   },
   computed: {
     players() {

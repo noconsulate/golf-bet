@@ -13,32 +13,8 @@ export default new Vuex.Store({
     points: "20",
     holes: "18",
     scoringStyle: "solo",
-
-    myScore: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18],
-    opponentScore: [
-      1,
-      2,
-      3,
-      4,
-      5,
-      6,
-      7,
-      8,
-      9,
-      10,
-      11,
-      12,
-      13,
-      14,
-      15,
-      16,
-      17,
-      18,
-    ],
-    matchId: "",
+    matchId: 97,
     playerNum: "1",
-    // myScore: [],
-    // opponentScore: [],
     playersJoined: [],
     allPlayersJoined: false,
     error: "",
@@ -60,15 +36,8 @@ export default new Vuex.Store({
     UPDATE_HOLES(state, payload) {
       state.holes = payload;
     },
-    UPDATE_SCORES(state, payload) {
-      const { myScore, opponentScore } = payload;
-      console.log(myScore);
-      myScore.map((item) => {
-        state.myScore.push(Number(item));
-      });
-      opponentScore.map((item) => {
-        state.opponentScore.push(Number(item));
-      });
+    INITIALIZE_SCORES(state, payload) {
+      state.scores = payload;
     },
     // RESET_VALUES(state) {
     //   state.players = "";
@@ -86,7 +55,7 @@ export default new Vuex.Store({
       state.playersJoined = payload;
     },
     UPDATE_ALL_PLAYERS_JOINED(state) {
-      state.players;
+      state.allPlayersJoined = true;
     },
     UPDATE_SCORING_STYLE(state, payload) {
       state.scoringStyle = payload;
@@ -117,8 +86,8 @@ export default new Vuex.Store({
     setHoles(context, value) {
       context.commit("UPDATE_HOLES", value);
     },
-    setScores(context, value) {
-      context.commit("UPDATE_SCORES", value);
+    initScores(context, value) {
+      context.commit("INITIALIZE_SCORES", value);
     },
     // resetValues(context) {
     //   context.commit("RESET_VALUES");
