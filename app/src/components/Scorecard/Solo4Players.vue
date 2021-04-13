@@ -1,8 +1,7 @@
 <template>
   <div class="w-full h-screen flex flex-col">
-
     <div class="flex-grow min-w-full overflow-auto">
-      <div class="grid grid-cols-8" >
+      <div class="grid grid-cols-8" v-if="loaded" >
         <div :class="cell" class="col-span-4">Handicap</div>
         <div :class="cell"></div>
         <div :class="cell"></div>
@@ -18,30 +17,30 @@
         <div :class="cell">P3</div>
         <div :class="cell">P4</div>
 
-        <template v-for="index in holes">
-            <div :class="cell" :key="index">
+        <template v-for="index in holes" >
+            <div :class="cell" :key="String(index) + '0'">
               {{index}}
             </div>
-            <div :class="cell" :key="index * Math.random()">
+            <div :class="cell" :key="String(index) + '1'">
               H
             </div>
-            <div :class="cell" :key="index * Math.random()">
+            <div :class="cell" :key="String(index) + '2'">
               T
             </div>
-            <div :class="cell" :key="index * Math.random">
+            <div :class="cell" :key="String(index) + '3'">
               P
             </div>
-            <div :class="cell" :key="scores[0][index]">
-              S
+            <div :class="cell" :key="String(index) + '4'">
+              {{scores[0][index]}}
             </div>
-            <div :class="cell" :key="scores[0][index]">
-              S
+            <div :class="cell" :key="String(index) + '5'">
+              {{scores[1][index]}}
             </div>
-            <div :class="cell" :key="scores[0][index]">
-              S
+            <div :class="cell" :key="String(index) + '6'">
+              {{scores[2][index]}}
             </div>
-            <div :class="cell" :key="scores[0][index]">
-              S
+            <div :class="cell" :key="String(index) + '7'">
+              {{scores[3][index]}}
             </div>
         </template>
       </div>
@@ -60,6 +59,7 @@ export default {
       // other
       activeHole: 1,
       key: 1,
+      loaded: false,
     }
   },
   computed: {
@@ -86,6 +86,9 @@ export default {
     const {data, error} = await getScores(this.matchId);
     if (error) console.error(error);
     if (data) this.$store.dispatch("initScores", data)
+    this.loaded = true;
+
+    window.scores = data;
   }
 }
 </script>
