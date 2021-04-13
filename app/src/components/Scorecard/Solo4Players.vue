@@ -92,7 +92,7 @@
 </template>
 
 <script>
-import {getScores} from '../../utilities/bridges/match'
+import {getScores} from '../../utilities/bridges/score'
 export default {
   name: "solo4Players",
   data() {

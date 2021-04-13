@@ -94,15 +94,3 @@ export async function confirmJoin(match_id, player_id) {
   console.log(data, error);
   return { data, error };
 }
-
-export async function getScores(match_id) {
-  const { data, error } = await supabase
-    .from("score")
-    .select("*")
-    .match({ match_id })
-    .order("player_num", { ascending: true });
-
-  console.log(data, error);
-
-  return { data, error };
-}
