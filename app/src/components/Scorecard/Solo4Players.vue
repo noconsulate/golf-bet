@@ -92,7 +92,7 @@
 </template>
 
 <script>
-import {getScores} from '../../utilities/bridges/score'
+import {getScores, updateScore} from '../../utilities/bridges/score'
 export default {
   name: "solo4Players",
   data() {
@@ -106,7 +106,7 @@ export default {
       activePlayer: 1,
       key: 1,
       loaded: false,
-      scoreInput: null,
+      scoreInput: 3,
     }
   },
   computed: {
@@ -165,6 +165,7 @@ export default {
     },
     enterScore() {
       console.log('enter')
+      updateScore(this.matchId, this.activePlayer, this.activeHole, this.scoreInput)
     }
   },
   async beforeMount() {
