@@ -61,9 +61,13 @@ export default {
     },
     openPlayer() {
       this.$router.push('/player');
+      this.$store.dispatch("toggleNavOpen");
+
     },
     openSetup() {
       this.$router.push('/');
+      this.$store.dispatch("toggleNavOpen");
+
     },
   },
   created() {

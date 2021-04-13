@@ -1,6 +1,6 @@
 <template>
   <div class="h-screen w-screen flex flex-col">
-    <div class="text-center pt-4">Welcome player {{ playerNum }}</div>
+    <div class="text-center pt-4">Welcome {{ email }}</div>
     <div class="grid grid-cols-7 pt-4">
       <div class="col-span-3" />
       <div class="col-span-3">
@@ -87,6 +87,9 @@ export default {
     error() {
       return this.$store.state.error;
     },
+    email() {
+      return this.$store.state.user.email;
+    }
   },
   methods: {
     async confirm() {
