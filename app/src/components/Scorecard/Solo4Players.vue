@@ -134,10 +134,14 @@ export default {
       this.activeHole = hole
     },
     prevHole() {
-      console.log('prev')
+      if (this.activeHole > 1) {
+        this.activeHole--;
+      }
     },
     nextHole() {
-      console.log('hello');
+      if (this.activeHole < this.holes) {
+        this.activeHole++
+      } 
     },
     prevPlayer() {
       if (this.activePlayer > 1) {
