@@ -54,7 +54,21 @@ export default {
   },
   methods: {
     async join() {
-      const joinGame = await confirmJoin(this.matchId, this.uuid)
+      const {data, error} = await confirmJoin(this.matchId, this.uuid)
+
+      // game is full according to database
+      if (data.score_id == 0) {
+        console.error('GAME FULL');
+        return;
+      }
+
+      if (data.players_joined_out < this.players) {
+        console.log('game confirmed');
+        this.$store.dispatch("setController", "waitingForPlayers");
+      } else {
+        console.log("All aboard! All players here");
+        this.$store.dispatch("setAllPlayersJoined");
+      }
 
       // let joinGame = await playerConfirm(this.matchId);
 

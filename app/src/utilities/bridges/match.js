@@ -53,15 +53,6 @@ export const playersJoinedListener = async function() {
   return subscription;
 };
 
-const read = async function(id) {
-  const { data, error } = await supabase
-    .from("matches")
-    .select("*")
-    .eq("id", id);
-
-  console.log(data, error);
-};
-
 export async function getMatch(id) {
   const { data, error } = await supabase
     .from("match")
@@ -80,4 +71,5 @@ export async function confirmJoin(match_id, player_id) {
   });
 
   console.log(data, error);
+  return { data, error };
 }

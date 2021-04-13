@@ -39,7 +39,8 @@ end; $$;
 create or replace function join_match(
   match_id int, 
   player_id uuid,
-  out score_id int
+  out score_id int,
+  out players_joined_out int
 )
 
 language plpgsql
@@ -60,6 +61,7 @@ begin
     if match_rec.players_joined < match_rec.players then 	
     
     	my_player_num = match_rec.players_joined + 1;
+        players_joined_out = my_player_num;
         
         -- create new scores row
         insert into score(match_id, player_num, player_id)
@@ -79,3 +81,4 @@ begin
     
 end
 $$
+
