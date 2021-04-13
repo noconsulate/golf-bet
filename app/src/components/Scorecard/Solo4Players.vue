@@ -140,7 +140,14 @@ export default {
       console.log('hello');
     },
     prevPlayer() {
-      console.log('sfd')
+      if (this.activePlayer > 1) {
+        this.activePlayer--;
+      } else {
+        if (this.activeHole > 1) {
+          this.activePlayer = this.players;
+          this.activeHole--;
+        }
+      }
     },
     nextPlayer() {
       if (this.activePlayer < this.players) {
