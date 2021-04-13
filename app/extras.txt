@@ -1,7 +1,6 @@
  ** postgresql RCP **
- 
- -- insert new match
--- insert new score with match.id
+
+-- new match 
 create or replace function new_match(
   players integer,
   points integer,
@@ -10,85 +9,73 @@ create or replace function new_match(
   creator uuid,
   
   out match_id int,
-  out score_id_1 int,
-  out score_id_2 int,
-  out score_id_3 int,
-  out score_id_4 int
-
+  out score_id int
 )
 -- returns integer
 language plpgsql
 as $$
 declare
   match_id_ret integer;
-  score_id_1_ret int;
-  score_id_2_ret int;
-  score_id_3_ret int;
-  score_id_4_ret int;
+  score_id_ret int;
+ 
 begin
   insert into match(players, points, is_18_holes, is_classic_scoring, creator, players_joined)
   values(players, points, is_18_holes, is_classic_scoring, creator, 1)
   returning id into match_id_ret;
 
   match_id = match_id_ret;
-
-  -- create rows in score_x for each player
-  if is_18_holes = false then
-
-    insert into score_9(match_id, player)
-    values(match_id, 1)
-    returning id into score_id_1_ret;
-    score_id_1 = score_id_1_ret;
-
-    if players > 1 then
-      insert into score_9(match_id, player)
-      values(match_id, 2)
-      returning id into score_id_2_ret;
-      score_id_2 = score_id_2_ret;
-    end if;
-
-    if players > 2 then
-      insert into score_9(match_id, player)
-      values(match_id, 3)
-      returning id into score_id_3_ret;
-      score_id_3 = score_id_3_ret;
-    end if;
-
-    if players > 3 then
-      insert into score_9(match_id, player)
-      values(match_id, 4)
-      returning id into score_id_4_ret;
-      score_id_4 = score_id_4_ret;
-    end if;
-
-  else 
   
-    insert into score_18(match_id, player)
-    values(match_id, 1)
-    returning id into score_id_1_ret;
-    score_id_1 = score_id_1_ret;
-
-    if players > 1 then
-      insert into score_18(match_id, player)
-      values(match_id, 2)
-      returning id into score_id_2_ret;
-      score_id_2 = score_id_2_ret;
-    end if;
-
-    if players > 2 then
-      insert into score_18(match_id, player)
-      values(match_id, 3)
-      returning id into score_id_3_ret;
-      score_id_3 = score_id_3_ret;
-    end if;
-
-    if players > 3 then
-      insert into score_18(match_id, player)
-      values(match_id, 4)
-      returning id into score_id_4_ret;
-      score_id_4 = score_id_4_ret;
-    end if;
-
-  end if;
+  -- create score
+  
+  insert into score(match_id, player_num, player_id)
+  values(match_id, 1, creator)
+  returning id into score_id_ret;
+  
+  score_id = score_id_ret;
 
 end; $$;
+
+-- join match
+create or replace function join_match(
+  match_id int, 
+  player_id uuid,
+  out score_id int
+)
+
+language plpgsql
+as $$
+declare
+match_rec record;
+my_player_num int;
+score_id_ret int;
+begin
+	-- get info from match
+	select players, players_joined
+    from match
+    where id = match_id
+    into match_rec;
+    
+    -- if there's room in the game, continue
+    
+    if match_rec.players_joined < match_rec.players then 	
+    
+    	my_player_num = match_rec.players_joined + 1;
+        
+        -- create new scores row
+        insert into score(match_id, player_num, player_id)
+        values(match_id, my_player_num, player_id)
+        returning id into score_id_ret;
+    
+    	score_id = score_id_ret;
+        
+        -- update players_joined in match 
+        update match
+        set players_joined = my_player_num
+        where id = match_id;
+		    
+  	else
+    	score_id = 0;
+    end if;
+    
+end
+$$
