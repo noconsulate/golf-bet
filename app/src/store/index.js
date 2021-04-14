@@ -19,6 +19,7 @@ export default new Vuex.Store({
     allPlayersJoined: false,
     error: "",
     user: {},
+    scores: [],
   },
   mutations: {
     UPDATE_NAV_OPEN(state) {
@@ -37,7 +38,11 @@ export default new Vuex.Store({
       state.holes = payload;
     },
     INITIALIZE_SCORES(state, payload) {
-      state.scores = payload;
+      console.log(payload);
+      window.payload = payload;
+      payload.map((item) => {
+        state.scores.push(item);
+      });
     },
     // RESET_VALUES(state) {
     //   state.players = "";

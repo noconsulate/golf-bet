@@ -74,6 +74,8 @@
         </template>
       </div>
     </div>
+        {{scores[0]}}
+
     <div class="flex flex-col border space-y-2 object-none object-bottom">
       <div class="flex justify-center space-x-1">
         <button @click="prevHole" class="btn">previous hole</button>
