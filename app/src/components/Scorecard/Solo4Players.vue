@@ -80,6 +80,14 @@
               {{scores[3][index]}}
             </div>
         </template>
+          <div :class="cell">Total</div>
+        <div :class="cell">TT</div>
+        <div :class="cell">PP</div>
+        <div :class="cell">RR</div>
+        <div :class="cell">{{totalScore(1)}}</div>
+        <div :class="cell">{{totalScore(2)}}</div>
+        <div :class="cell">{{totalScore(3)}}</div>
+        <div :class="cell">{{totalScore(4)}}</div>
       </div>
     </div>
     <div class="flex flex-col border space-y-2 object-none object-bottom">
@@ -138,6 +146,17 @@ export default {
     selectCell(player, hole) {
       this.activePlayer = player;
       this.activeHole = hole;
+    },
+    totalScore(player) {
+      
+      const index = player - 1;
+      let total = 0
+      for (let i = 1; i <= this.holes; i++) {
+        console.log(this.scores[index][i]);
+        let value = this.scores[index][i];
+        if (Number.isFinite(value)) total += value
+      }
+      return total;
     },
     prevHole() {
       if (this.activeHole > 1) {
