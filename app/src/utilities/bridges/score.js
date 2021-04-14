@@ -13,8 +13,6 @@ export async function getScores(match_id) {
     .match({ match_id })
     .order("player_num", { ascending: true });
 
-  console.log(data, error);
-
   return { data, error };
 }
 
@@ -56,7 +54,6 @@ export const playersJoinedListener = async function() {
 
 export async function scoreListener() {
   const match_id = store.state.matchId;
-  console.log(match_id);
 
   const subscription = supabase
     .from(`score:match_id=eq.${match_id}`)

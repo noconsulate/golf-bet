@@ -23,10 +23,18 @@ export default new Vuex.Store({
   },
   getters: {
     scores: (state) => {
-      return state.scores;
-
       let scores = [];
-      const index = Number(state.holes);
+      const holes = Number(state.holes);
+      state.scores.map((item) => {
+        let scoreObj = { player_num: item.player_num };
+        for (let i = 1; i <= holes; i++) {
+          scoreObj[i] = item[i];
+        }
+        // scoreObj[player_num] = item.player_num;
+        scores.push(scoreObj);
+      });
+
+      return scores;
     },
   },
   mutations: {
@@ -46,7 +54,6 @@ export default new Vuex.Store({
       state.holes = payload;
     },
     INITIALIZE_SCORES(state, payload) {
-      console.log(payload);
       window.payload = payload;
       payload.map((item) => {
         state.scores.push(item);
@@ -84,8 +91,6 @@ export default new Vuex.Store({
       const index = payload.player - 1;
       state.scores[index] = payload.score;
       state.scores = [...state.scores];
-      console.log(payload.score);
-      console.log(state.scores[payload.player]);
     },
   },
   actions: {
