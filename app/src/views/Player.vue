@@ -4,6 +4,8 @@
     <p> {{user}}</p>
     <button class="btn" @click="signOut">Sign out</button>
     <p>Sign Up</p>
+    <p>Handle</p>
+    <input class="border w-full" v-model="handle" />
     <p>Email</p>
     <input class="border w-full" v-model="email" />
     <p>Password</p>
@@ -19,11 +21,12 @@
 </template>
 
 <script>
-import {signUpWithEmail, signOut, signIn} from "../utilities/bridges/auth";
+import {signUpWithEmail, insertUserDetails, signOut, signIn} from "../utilities/bridges/auth";
 export default {
   name: "player",
   data() {
     return {
+      handle: null,
       email: null,
       password: null,
     }
@@ -42,6 +45,20 @@ export default {
       const {user, session, error} = await signUpWithEmail( this.email, this.password)
       
       if (error) console.log(error);
+
+      console.log(user, session)
+
+      // * handle error *
+      if (error) {
+        console.error('handle dat', error)
+      }
+
+      const { data, error2} = await insertUserDetails({
+        user_id: user.id, handle: this.handle, balance: 6000000
+      })
+
+      console.log(data, error2)
+
       if (user) this.$store.dispatch("setUser", user);
     },
     async signOut() {

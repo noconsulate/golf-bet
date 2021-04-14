@@ -148,11 +148,9 @@ export default {
       this.activeHole = hole;
     },
     totalScore(player) {
-      
       const index = player - 1;
       let total = 0
       for (let i = 1; i <= this.holes; i++) {
-        console.log(this.scores[index][i]);
         let value = this.scores[index][i];
         if (Number.isFinite(value)) total += value
       }
