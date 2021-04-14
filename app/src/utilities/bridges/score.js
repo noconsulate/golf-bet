@@ -21,12 +21,7 @@ export async function updateScore(match_id, player_num, hole, score) {
   console.log(match_id, player_num, hole, score);
   const { data, error } = await supabase
     .from("score")
-    .update(
-      // { 1: 3 } ** what I'm trying to do
-      `{
-        ${hole}: ${score}
-    }`
-    )
+    .update({ [hole]: score })
     .match({ match_id, player_num });
 
   console.log(data, error);
