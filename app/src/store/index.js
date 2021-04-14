@@ -66,6 +66,11 @@ export default new Vuex.Store({
     UPDATE_USER(state, payload) {
       state.user = payload;
     },
+    UPDATE_SCORE_ROW(state, payload) {
+      state.scores[payload.player - 1] = payload.score;
+      console.log(payload.score);
+      console.log(state.scores[payload.player]);
+    },
   },
   actions: {
     toggleNavOpen(context) {
@@ -115,6 +120,9 @@ export default new Vuex.Store({
     },
     setUser(context, value) {
       context.commit("UPDATE_USER", value);
+    },
+    setScoreRow(context, value) {
+      context.commit("UPDATE_SCORE_ROW", value);
     },
   },
 

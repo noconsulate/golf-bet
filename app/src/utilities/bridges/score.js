@@ -65,6 +65,7 @@ export async function scoreListener() {
       const { player_num } = payload.new;
       console.log(store.state.scores[player_num - 1]);
       console.log(payload.new);
+      store.dispatch("setScoreRow", { player: player_num, score: payload.new });
     })
     // .from("*")
     // .on("*", (payload) => {
