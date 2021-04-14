@@ -92,7 +92,7 @@
 </template>
 
 <script>
-import {getScores, updateScore} from '../../utilities/bridges/score'
+import {getScores, updateScore, scoreListener} from '../../utilities/bridges/score'
 export default {
   name: "solo4Players",
   data() {
@@ -175,6 +175,8 @@ export default {
     this.loaded = true;
 
     window.scores = data;
+
+    const subscription = scoreListener();
   }
 }
 </script>
