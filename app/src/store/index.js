@@ -24,6 +24,9 @@ export default new Vuex.Store({
   getters: {
     scores: (state) => {
       return state.scores;
+
+      let scores = [];
+      const index = Number(state.holes);
     },
   },
   mutations: {
@@ -47,6 +50,7 @@ export default new Vuex.Store({
       window.payload = payload;
       payload.map((item) => {
         state.scores.push(item);
+        // Vue.set(state.scores, item.index, item);
       });
     },
     // RESET_VALUES(state) {
@@ -77,7 +81,9 @@ export default new Vuex.Store({
       state.user = payload;
     },
     UPDATE_SCORE_ROW(state, payload) {
-      state.scores[payload.player - 1] = payload.score;
+      const index = payload.player - 1;
+      state.scores[index] = payload.score;
+      state.scores = [...state.scores];
       console.log(payload.score);
       console.log(state.scores[payload.player]);
     },
