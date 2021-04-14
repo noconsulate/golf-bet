@@ -21,6 +21,11 @@ export default new Vuex.Store({
     user: {},
     scores: [],
   },
+  getters: {
+    scores: (state) => {
+      return state.scores;
+    },
+  },
   mutations: {
     UPDATE_NAV_OPEN(state) {
       state.navOpen = !state.navOpen;
@@ -133,3 +138,32 @@ export default new Vuex.Store({
 
   modules: {},
 });
+
+// eeggghh
+
+// scores: [
+// {
+//   1: null,
+//   2: null,
+//   3: null,
+//   4: null,
+//   5: null,
+//   6: null,
+//   7: null,
+//   8: null,
+//   9: null,
+//   id: null,
+//   match_id: null,
+//   player_id: null,
+//   player_num: null,
+//   // 10: null,
+//   // 11: null,
+//   // 12: null,
+//   // 13: null,
+//   // 14: null,
+//   // 15: null,
+//   // 16: null,
+//   // 17: null,
+//   // 18: null,
+// },
+// ],

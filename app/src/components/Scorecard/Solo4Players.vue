@@ -116,7 +116,7 @@ export default {
       return this.$store.state.matchId;
     },
     scores() {
-      return this.$store.state.scores;
+      return this.$store.getters.scores;
     },
     holes() {
       return Number(this.$store.state.holes);
