@@ -44,29 +44,37 @@
               P
             </div>
             <div 
+            class="cursor-pointer"
             :class="[index == activeHole ? activeRow : cell,
             index == activeHole && activePlayer == 1 ? activeCell : cell]"
+            @click="selectCell(1, index)"
             :key="String(index) + '4'"
             >
               {{scores[0][index]}}
             </div>
             <div
+            class="cursor-pointer"
             :class="[index == activeHole ? activeRow : cell,
             index == activeHole && activePlayer == 2 ? activeCell : cell]"
+            @click="selectCell(2, index)"
             :key="String(index) + '5'"
             >
               {{scores[1][index]}}
             </div>
             <div 
+            class="cursor-pointer"
             :class="[index == activeHole ? activeRow : cell,
             index == activeHole && activePlayer == 3 ? activeCell : cell]"
+            @click="selectCell(3, index)"
             :key="String(index) + '6'"
             >
               {{scores[2][index]}}
             </div>
             <div 
+            class="cursor-pointer"
             :class="[index == activeHole ? activeRow : cell,
             index == activeHole && activePlayer == 4 ? activeCell : cell]"
+            @click="selectCell(4, index)"
             :key="String(index) + '7'"
             >
               {{scores[3][index]}}
@@ -74,8 +82,6 @@
         </template>
       </div>
     </div>
-        {{scores[0]}}
-
     <div class="flex flex-col border space-y-2 object-none object-bottom">
       <div class="flex justify-center space-x-1">
         <button @click="prevHole" class="btn">previous hole</button>
@@ -124,16 +130,14 @@ export default {
     players() {
       return this.$store.state.players;
     }
-    // useKey() {
-    //   console.log(this.key)
-    //   this.key = this.key + 1;
-    //   console.log(this.key)
-    //   return this.key
-    // }
   },
   methods: {
     selectRow(hole) {
       this.activeHole = hole
+    },
+    selectCell(player, hole) {
+      this.activePlayer = player;
+      this.activeHole = hole;
     },
     prevHole() {
       if (this.activeHole > 1) {
