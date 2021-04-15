@@ -13,22 +13,15 @@ export async function newMatch(
   is_classic_scoring,
   creator
 ) {
-  console.log(players, points, is_18_holes, is_classic_scoring, creator);
+  const { data, error } = await supabase.rpc("new_match", {
+    players,
+    points,
+    is_18_holes,
+    is_classic_scoring,
+    creator,
+  });
 
-  const { data, error } = await supabase
-    .from("match")
-    .insert({ players, points, is_18_holes, is_classic_scoring, creator });
-
-  // const { data, error } = await supabase.rpc("new_match", {
-  //   players,
-  //   points,
-  //   is_18_holes,
-  //   is_classic_scoring,
-  //   creator,
-  // });
-
-  console.log(data, error);
-  // return { data, error };
+  return { data, error };
 }
 
 export const playersJoinedListener = async function() {
