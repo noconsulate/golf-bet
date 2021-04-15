@@ -8,17 +8,17 @@
     <button class="btn" @click="signOut">Sign out</button>
     <p>Sign Up</p>
     <p>Handle</p>
-    <input class="border w-full" v-model="handle" />
+    <input class="border w-full" v-model="handleInput" />
     <p>Email</p>
-    <input class="border w-full" v-model="email" />
+    <input class="border w-full" v-model="emailInput" />
     <p>Password</p>
-    <input class="border w-full" v-model="password" />
+    <input class="border w-full" v-model="passwordInput" />
     <button class="btn" @click="signUpEmail">Submit</button>
     <p>Sign in</p>
     <p>Email</p>
-    <input class="border w-full" v-model="email" />
+    <input class="border w-full" v-model="emailInput" />
     <p>Password</p>
-    <input class="border w-full" v-model="password" type="password" />
+    <input class="border w-full" v-model="passwordInput" type="password" />
     <button class="btn" @click="signIn">Sign in</button>
   </div>
 </template>
@@ -29,9 +29,9 @@ export default {
   name: "player",
   data() {
     return {
-      handle: 'abraham',
-      email: 'aali@bech.net',
-      password: 'shitfaced',
+      handleInput: 'abraham',
+      emailInput: 'aali@bech.net',
+      passwordInput: 'shitfaced',
     }
   },
   computed: {
@@ -51,7 +51,7 @@ export default {
   },
   methods: {
     async signUpEmail() {
-      const {user, session, error} = await signUpWithEmail( this.email, this.password)
+      const {user, session, error} = await signUpWithEmail( this.emailInput, this.passwordInput)
       
       // todo: handle signup error
       if (error) console.log("signup login problem", error);
@@ -62,7 +62,7 @@ export default {
       const BALANCE = 6000000
 
       const { data, error2} = await insertUserDetails({
-        user_id: user.id, handle: this.handle, balance: BALANCE
+        id: user.id, handle: this.handleInput, balance: BALANCE
       })
 
       console.log(data, error2)
@@ -71,8 +71,8 @@ export default {
 
       if (data) {
         const userDetails = {
+          id: user.id,
           email: user.email,
-          uuid: user.id,
           handle: data.handle,
           userDetailsId: data.id,
           balance: data.balance
@@ -90,7 +90,7 @@ export default {
       }
     },
     async signIn() {
-      const {user, session, error} = await signIn(this.email, this.password)
+      const {user, session, error} = await signIn(this.emailInput, this.passwordInput)
 
       if (error) console.log(error);
       if (user) this.$store.dispatch("setUser", user);

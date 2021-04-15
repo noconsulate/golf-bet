@@ -13,7 +13,7 @@ export async function newMatch(
   is_classic_scoring,
   creator
 ) {
-  console.log(players, is_18_holes);
+  console.log(players, points, is_18_holes, is_classic_scoring, creator);
 
   const { data, error } = await supabase.rpc("new_match", {
     players,

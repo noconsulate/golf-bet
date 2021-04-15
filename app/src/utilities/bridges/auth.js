@@ -17,12 +17,12 @@ export async function signUpWithEmail(email, password) {
 
 export async function insertUserDetails(args) {
   console.log(args);
-  const { user_id, handle, balance } = args;
-  const { data, error } = await supabase
-    .from("user_details")
-    .insert({ user_id, handle, balance });
+  const { id, handle, balance } = args;
+  const { data, error2 } = await supabase
+    .from("user")
+    .insert({ id, handle, balance });
 
-  return { data, error };
+  return { data, error2 };
 }
 
 export function currentUser() {
@@ -30,11 +30,12 @@ export function currentUser() {
   return user;
 }
 
-export async function getUserDetails(user_id) {
+export async function getUserDetails(id) {
   const { data, error } = await supabase
-    .from("user_details")
+    .from("user")
     .select("*")
-    .match({ user_id });
+    .match({ id });
+  console.log(data, error);
 
   return { data: data[0], error: error };
 }
