@@ -30,7 +30,14 @@ export function currentUser() {
   return user;
 }
 
-export function getUserDetails() {}
+export async function getUserDetails(user_id) {
+  const { data, error } = await supabase
+    .from("user_details")
+    .select("*")
+    .match({ user_id });
+
+  return { data: data[0], error: error };
+}
 
 export async function signOut() {
   const error = await supabase.auth.signOut();

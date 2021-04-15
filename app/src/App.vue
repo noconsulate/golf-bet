@@ -40,7 +40,7 @@
 </template>
 
 <script>
-import {currentUser} from "./utilities/bridges/auth"
+import {currentUser, getUserDetails} from "./utilities/bridges/auth"
 export default {
   name: "app",
   data() {
@@ -70,12 +70,21 @@ export default {
 
     },
   },
-  created() {
+  async created() {
     document.title = "Golf Bets";
 
+    // get user from supabase.auth
     const user = currentUser();
-    console.log(user);
     this.$store.dispatch("setUser", user)
+
+    // get user details
+    const {data, error} = await getUserDetails(user.id)
+    if (error) {
+      console.error(error)
+    }
+    if (data) {
+      this.$store.dispatch("setUserDetails", data)
+    }
   },
 };
 </script>
