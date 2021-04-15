@@ -26,9 +26,9 @@ export default {
   name: "player",
   data() {
     return {
-      handle: null,
-      email: null,
-      password: null,
+      handle: 'abraham',
+      email: 'aali@bech.net',
+      password: 'shitfaced',
     }
   },
   computed: {
@@ -44,14 +44,11 @@ export default {
     async signUpEmail() {
       const {user, session, error} = await signUpWithEmail( this.email, this.password)
       
-      if (error) console.log(error);
+      // todo: handle signup error
+      if (error) console.log("signup login problem", error);
+      if (user) this.$store.dispatch("setUser", user);
 
-      console.log(user, session)
-
-      // * handle error *
-      if (error) {
-        console.error('handle dat', error)
-      }
+      console.log(user, session, error)
 
       const { data, error2} = await insertUserDetails({
         user_id: user.id, handle: this.handle, balance: 6000000
@@ -59,7 +56,19 @@ export default {
 
       console.log(data, error2)
 
-      if (user) this.$store.dispatch("setUser", user);
+      if (error2) console.error("user details insert problem", error2)
+
+      if (data) {
+        const userDetails = {
+          email: user.email,
+          uuid: user.id,
+          handle: data.handle,
+          userDetailsId: data.id,
+          balance: data.balance
+        }
+        this.$store.dispatch("setUserDetails", userDetails);
+      }
+
     },
     async signOut() {
       const {error} = await signOut();

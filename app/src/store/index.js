@@ -19,6 +19,7 @@ export default new Vuex.Store({
     allPlayersJoined: false,
     error: "",
     user: {},
+    userDetails: {},
     scores: [],
   },
   getters: {
@@ -87,6 +88,9 @@ export default new Vuex.Store({
     UPDATE_USER(state, payload) {
       state.user = payload;
     },
+    UPDATE_USER_DETAILS(state, payload) {
+      state.userDetails = payload;
+    },
     UPDATE_SCORE_ROW(state, payload) {
       const index = payload.player - 1;
       state.scores[index] = payload.score;
@@ -141,6 +145,9 @@ export default new Vuex.Store({
     },
     setUser(context, value) {
       context.commit("UPDATE_USER", value);
+    },
+    setUserDetails(context, value) {
+      context.commit("UPDATE_USER_DETAILS", value);
     },
     setScoreRow(context, value) {
       context.commit("UPDATE_SCORE_ROW", value);

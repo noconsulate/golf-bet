@@ -15,10 +15,22 @@ export async function signUpWithEmail(email, password) {
   return { user, session, error };
 }
 
+export async function insertUserDetails(args) {
+  console.log(args);
+  const { user_id, handle, balance } = args;
+  const { data, error } = await supabase
+    .from("user_details")
+    .insert({ user_id, handle, balance });
+
+  return { data, error };
+}
+
 export function currentUser() {
   const user = supabase.auth.user();
   return user;
 }
+
+export function getUserDetails() {}
 
 export async function signOut() {
   const error = await supabase.auth.signOut();
