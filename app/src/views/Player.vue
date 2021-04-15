@@ -1,7 +1,10 @@
 <template>
   <div class="h-screen w-1/2 flex flex-col">
     <p>Current user</p>
-    <p> {{user}}</p>
+    <p> {{handle}}</p>
+    <p> {{email}}</p>
+    <p>Balance</p>
+    <p>{{balance}}</p>
     <button class="btn" @click="signOut">Sign out</button>
     <p>Sign Up</p>
     <p>Handle</p>
@@ -32,12 +35,18 @@ export default {
     }
   },
   computed: {
-    user() {
+    email() {
       if (this.$store.state.user) {
         return this.$store.state.user.email
       } else {
         return "no user"
       }
+    },
+    handle() {
+      return this.$store.state.userDetails.handle;
+    },
+    balance() {
+      return this.$store.state.userDetails.balance;
     }
   },
   methods: {
@@ -49,9 +58,11 @@ export default {
       if (user) this.$store.dispatch("setUser", user);
 
       console.log(user, session, error)
+      
+      const BALANCE = 6000000
 
       const { data, error2} = await insertUserDetails({
-        user_id: user.id, handle: this.handle, balance: 6000000
+        user_id: user.id, handle: this.handle, balance: BALANCE
       })
 
       console.log(data, error2)
