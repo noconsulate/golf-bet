@@ -8,14 +8,14 @@ create or replace function new_match(
   is_classic_scoring boolean,
   creator uuid,
   
-  out match_id int,
+  out match_id text,
   out score_id int
 )
 -- returns integer
 language plpgsql
 as $$
 declare
-  match_id_ret integer;
+  match_id_ret text;
   score_id_ret int;
  
 begin
@@ -177,3 +177,25 @@ $$ language 'plpgsql';
 ** SQL line to fix permission error
 grant usage  on schema extensions to anon, authenticated, service_role; **
 ****
+
+
+// ** turn OFF reatlime for AUTH database ** //
+/*
+/**
+ * REALTIME SUBSCRIPTIONS
+ * Only allow realtime listening on public tables.
+
+begin; 
+  -- remove the realtime publication
+  drop publication if exists supabase_realtime; 
+
+  -- re-create the publication but don't enable it for any tables
+  create publication supabase_realtime;  
+commit;
+
+-- add a table to the publication
+alter publication supabase_realtime add table products;
+
+-- add other tables to the publication
+alter publication supabase_realtime add table posts;
+ */
