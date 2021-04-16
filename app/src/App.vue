@@ -75,9 +75,10 @@ export default {
 
     // get user from supabase.auth
     const user = currentUser();
+    if (user) {
     this.$store.dispatch("setUser", user)
 
-    // get user details
+     // get user details
     const {data, error} = await getUserDetails(user.id)
     if (error) {
       console.error(error)
@@ -85,6 +86,8 @@ export default {
     if (data) {
       this.$store.dispatch("setUserDetails", data)
     }
+    }
+   
   },
 };
 </script>

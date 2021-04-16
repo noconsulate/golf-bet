@@ -54,8 +54,13 @@ export const playersJoinedListener = async function() {
 };
 
 async function checkConfirmed(id) {
+  if (!id) return false;
+
   const player = store.state.user.id;
   console.log(player, id);
+
+  // to be handled better when no user is generally handled
+  if (!player) return false;
 
   let { data, error } = await supabase
     .from("score")
