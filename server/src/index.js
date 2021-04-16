@@ -15,12 +15,16 @@ app.get('/', (req, res) => {
 app.post('/make_winner/:matchId', async (req, res) => {
   const matchId = req.params.matchId;
   
-  const { data, error } = await supabase
+ let result  = await supabase
     .from('match')
-    .select()
+    .select('scores')
     .match({id: matchId})
 
-  console.log (data, error);
+  console.log (result);
+
+  const scores = result.data[0].scores
+  console.log(scores)
+  let participants = [];
 
   return res.send('make winner resource ' + matchId)
 });
