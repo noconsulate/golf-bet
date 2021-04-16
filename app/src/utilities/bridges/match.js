@@ -3,8 +3,11 @@ import store from "../../store";
 
 const supabase = createClient(
   "https://jmbttvgyclmljkuzemvq.supabase.co",
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTYxNzgxODEwNCwiZXhwIjoxOTMzMzk0MTA0fQ.LJUy3zUrdXgqQ7dwDqb-iKnSJ_YiQ98FeQJg2mhan1k"
+  process.env.VUE_APP_SUPABASE_KEY
 );
+
+// FOR DEV
+window.supabase = supabase;
 
 export async function newMatch(
   players,

@@ -32,6 +32,11 @@ begin
   returning id into score_id_ret;
   
   score_id = score_id_ret;
+  
+  -- insert score row id into match
+  
+  insert into match(scores)
+  values( array[score_id_ret]);
 
 end; $$;
 

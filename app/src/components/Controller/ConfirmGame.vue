@@ -18,7 +18,6 @@
 </template>
 
 <script>
-import { createMatch } from "../../utilities/bridges";
 import { newMatch} from "../../utilities/bridges/match"
 
 export default {
@@ -77,7 +76,6 @@ export default {
       }
 
       console.log(this.matchInfo)
-      // const matchId = await createMatch(this.matchInfo);
       const {data, error} = await newMatch(
         this.players, this.points, this.is18Holes, this.isClassicScoring, this.creator
       )

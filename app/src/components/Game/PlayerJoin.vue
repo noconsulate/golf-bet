@@ -48,7 +48,6 @@
 </template>
 
 <script>
-import { playerConfirm, playersJoinedListener } from "../../utilities/bridges";
 import Controller from "../Controller/Controller";
 import Share from "../../components/Game/Share";
 export default {

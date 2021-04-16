@@ -110,7 +110,6 @@ import {
   checkAndSubmitScores,
   blankScoresObj,
 } from "../../utilities/functions.js";
-import { submitScores } from "../../utilities/bridges";
 
 export default {
   name: "players4",
