@@ -1,22 +1,20 @@
-import express from "express";
-import cors from "cors";
-import "dotenv/config";
-
-import routes from "./routes";
+import express from 'express';
+import 'dotenv/config';
+import cors from 'cors';
 
 const app = express();
 
-// Middleware
-
 app.use(cors());
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 
-app.use("/", routes);
+app.get('/', (req, res) => {
+  res.send('Hello from the server')
+});
 
-// listen
+app.post('/make_winner/:matchId', (req, res) => {
+  const matchId = req.params.matchId;
+  return res.send('make winner resource ' + matchId)
+});
 
-// normal way to listen to server
 app.listen(process.env.PORT, () => {
-  console.log("listening on port: " + process.env.PORT);
+  console.log(`Listening on ${process.env.PORT}`)
 });
