@@ -35,8 +35,9 @@ begin
   
   -- insert score row id into match
   
-  insert into match(scores)
-  values( array[score_id_ret]);
+  update match 
+  set scores = array[score_id_ret]
+  where id = match_id_ret;
 
 end; $$;
 
