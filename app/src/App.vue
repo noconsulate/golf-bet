@@ -87,6 +87,9 @@ export default {
       this.$store.dispatch("setUserDetails", data)
     }
     }
+    
+    //just leaving this here to remind me i have this global property
+    console.log(this.$hostname);
    
   },
 };
