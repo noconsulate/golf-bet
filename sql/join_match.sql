@@ -1,7 +1,7 @@
 create or replace function join_match(
   match_id text, 
   player_id uuid,
-  out score_id int,
+  out score_id uuid,
   out players_joined_out int
 )
 
@@ -10,8 +10,8 @@ as $$
 declare
 match_rec record;
 my_player_num int;
-score_id_ret int;
-scores_var int[];
+score_id_ret uuid;
+scores_var uuid[];
 participants_var uuid[];
 begin
 	-- get info from match
