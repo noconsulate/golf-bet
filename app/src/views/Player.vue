@@ -8,35 +8,52 @@
       <p>{{balance}}</p>
     <button class="btn" @click="signOut">Sign out</button>
     </div>
-    <p>Sign Up</p>
-    <p>Handle</p>
-    <input class="border w-full" v-model="handleInput" />
-    <p>Email</p>
-    <input class="border w-full" v-model="emailInput" />
-    <p>Password</p>
-    <input class="border w-full" v-model="passwordInput" />
-    <button class="btn" @click="signUpEmail">Submit</button>
-    <p>Sign in</p>
-    <p>Email</p>
-    <input class="border w-full" v-model="emailInput" />
-    <p>Password</p>
-    <input class="border w-full" v-model="passwordInput" type="password" />
-    <button class="btn" @click="signIn">Sign in</button>
+  <button v-if="!signupOpen" @click="toggleSignup" class="btn">Sign Up</button>
+    <div v-if="signupOpen">
+      <p>Sign Up</p>
+      <p>Handle</p>
+      <input class="border w-full" v-model="handleInput" />
+      <p>Email</p>
+      <input class="border w-full" v-model="emailInput" />
+      <p>Password</p>
+      <input class="border w-full" v-model="passwordInput" />
+      <button class="btn" @click="signUpEmail">Submit</button>
+      <button @click="toggleSignup" class="btn">Cancel</button>
+    </div>
+  <button v-if="!signinOpen" @click="toggleSignin" class="btn">Sign in</button>
+    <div v-if="signinOpen">
+      <p>Sign in</p>
+      <p>Email</p>
+      <input class="border w-full" v-model="emailInput" />
+      <p>Password</p>
+      <input class="border w-full" v-model="passwordInput" type="password" />
+      <button class="btn" @click="signIn">Sign in</button>
+      <button class="btn" @click="toggleSignin">Cancel</button>
+    </div>
   </div>
 </template>
 
 <script>
+import App from '../App.vue';
 import {signUpWithEmail, insertUserDetails, signOut, signIn, getUserDetails} from "../utilities/bridges/auth";
 export default {
+  components: { App },
   name: "player",
   data() {
     return {
+      // ui
+      signupOpen: false,
+      signinOpen: false,
+      // inputs
       handleInput: '',
       emailInput: 'alice@trustless.io',
       passwordInput: 'password',
     }
   },
   computed: {
+    user() {
+      return this.$store.state.user;
+    },
     email() {
       return this.$store.state.user.email;
     },
@@ -48,6 +65,12 @@ export default {
     }
   },
   methods: {
+    toggleSignup() {
+      this.signupOpen = !this.signupOpen
+    },
+    toggleSignin() {
+      this.signinOpen = !this.signinOpen
+    },
     async signUpEmail() {
       const {user, session, error} = await signUpWithEmail( this.emailInput, this.passwordInput)
       

@@ -19,7 +19,7 @@ export async function insertUserDetails(args) {
   console.log(args);
   const { id, handle, balance } = args;
   const { data, error2 } = await supabase
-    .from("user")
+    .from("users")
     .insert({ id, handle, balance });
 
   return { data, error2 };
@@ -32,7 +32,7 @@ export function currentUser() {
 
 export async function getUserDetails(id) {
   const { data, error } = await supabase
-    .from("user")
+    .from("users")
     .select("*")
     .match({ id });
 

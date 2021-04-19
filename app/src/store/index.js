@@ -18,7 +18,7 @@ export default new Vuex.Store({
     playersJoined: [],
     allPlayersJoined: false,
     error: "",
-    user: {},
+    user: null,
     userDetails: {},
     scores: [],
   },
