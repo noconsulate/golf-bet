@@ -13,16 +13,41 @@ my_player_num int;
 score_id_ret uuid;
 scores_var uuid[];
 participants_var uuid[];
+user_balance int8;
 begin
 	-- get info from match
-	select players, players_joined, scores, participants
+	select players, points, players_joined, scores, participants, balance
     from match
     where id = match_id
     into match_rec;
     
+    -- get user balance
+    select balance
+    from users
+    where id = player_id
+    into user_balance;
+    
+    if user_balance < match_rec.balance then
+    	raise exception 'insufficient user balance';
+    end if;
+    
     -- if there's room in the game, continue
     
     if match_rec.players_joined < match_rec.players then 	
+    
+    	-- check, new player is unique
+    	if array[player_id] <@ match_rec.participants then
+        	raise exception 'player already joined';
+        end if;
+        
+        -- trasfer tokens
+        update users
+        set balance = balance - match_rec.points
+        where id = player_id;
+        
+        update match
+        set balance = balance + match_rec.points
+        where id = match_id;
     
     	my_player_num = match_rec.players_joined + 1;
         players_joined_out = my_player_num;
@@ -57,3 +82,4 @@ begin
     
 end
 $$
+
