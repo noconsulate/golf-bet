@@ -35,7 +35,6 @@ export async function getUserDetails(id) {
     .from("user")
     .select("*")
     .match({ id });
-  console.log(data, error);
 
   return { data: data[0], error: error };
 }

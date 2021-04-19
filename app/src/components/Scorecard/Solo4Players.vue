@@ -200,6 +200,7 @@ export default {
     window.scores = data;
 
     const subscription = scoreListener();
+    
   }
 }
 </script>

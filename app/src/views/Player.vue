@@ -1,11 +1,13 @@
 <template>
   <div class="h-screen w-1/2 flex flex-col">
-    <p>Current user</p>
-    <p> {{handle}}</p>
-    <p> {{email}}</p>
-    <p>Balance</p>
-    <p>{{balance}}</p>
+    <div v-if="user">
+      <p>Current user</p>
+      <p> {{handle}}</p>
+      <p> {{email}}</p>
+      <p>Balance</p>
+      <p>{{balance}}</p>
     <button class="btn" @click="signOut">Sign out</button>
+    </div>
     <p>Sign Up</p>
     <p>Handle</p>
     <input class="border w-full" v-model="handleInput" />
@@ -24,23 +26,19 @@
 </template>
 
 <script>
-import {signUpWithEmail, insertUserDetails, signOut, signIn} from "../utilities/bridges/auth";
+import {signUpWithEmail, insertUserDetails, signOut, signIn, getUserDetails} from "../utilities/bridges/auth";
 export default {
   name: "player",
   data() {
     return {
-      handleInput: 'abraham',
-      emailInput: 'aali@bech.net',
-      passwordInput: 'shitfaced',
+      handleInput: '',
+      emailInput: 'alice@trustless.io',
+      passwordInput: 'password',
     }
   },
   computed: {
     email() {
-      if (this.$store.state.user) {
-        return this.$store.state.user.email
-      } else {
-        return "no user"
-      }
+      return this.$store.state.user.email;
     },
     handle() {
       return this.$store.state.userDetails.handle;
@@ -93,7 +91,17 @@ export default {
       const {user, session, error} = await signIn(this.emailInput, this.passwordInput)
 
       if (error) console.log(error);
-      if (user) this.$store.dispatch("setUser", user);
+      if (user) {
+        this.$store.dispatch("setUser", user);
+        const userDetails = await getUserDetails(user.id)
+        if (userDetails.error) {
+          console.log(userDetails.error)
+        }
+        if(userDetails.data) {
+          console.log(userDetails.data)
+          this.$store.dispatch("setUserDetails", userDetails.data)
+        }
+      }
     }
   }
 }
