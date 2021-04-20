@@ -76,28 +76,32 @@ export default {
 
     // get user from supabase.auth
     const user = currentUser();
+    
     if (user) {
-    this.$store.dispatch("setUser", user)
-
-     // get user details
-    const {data, error} = await getUserDetails(user.id)
-    if (error) {
-      console.error(error)
-    }
-    if (data) {
-      this.$store.dispatch("setUserDetails", data)
-
-      // set match in store in getMatch()
-      if (data.active_match) {
-        console.log(data.active_match)
-
-        const match = await getMatch(data.active_match)
+      this.$store.dispatch("setUser", user)
       
-        if (match.error) {
-          console.error(match.error)
-        }
+      // get user details
+      const {data, error} = await getUserDetails(user.id)
+      console.log(data, error)
+      if (error) {
+        console.error(error)
       }
-    }
+      if (data) {
+        this.$store.dispatch("setUserDetails", data)
+
+        // set match in store in getMatch()
+        if (data.active_match) {
+          console.log(data.active_match)
+
+          const match = await getMatch(data.active_match)
+        
+          if (match.error) {
+            console.error(match.error)
+          }
+        }
+       }
+    } else {
+      console.log('no user')
     }
     
     //just leaving this here to remind me i have this global property
