@@ -87,6 +87,7 @@ export default {
     if (data) {
       this.$store.dispatch("setUserDetails", data)
 
+      // set match in store in getMatch()
       if (data.active_match) {
         console.log(data.active_match)
 
