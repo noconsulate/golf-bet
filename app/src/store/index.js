@@ -13,7 +13,7 @@ export default new Vuex.Store({
     points: "20",
     holes: "18",
     scoringStyle: "solo",
-    matchId: 97,
+    matchId: "",
     playerNum: "1",
     playersJoined: [],
     allPlayersJoined: false,

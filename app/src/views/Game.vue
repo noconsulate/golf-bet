@@ -1,6 +1,6 @@
 <template>
   <div>
-    hi
+    <Create />
   </div>
 </template>
 
