@@ -40,7 +40,8 @@
 </template>
 
 <script>
-import {currentUser, getUserDetails} from "./utilities/bridges/auth"
+import {currentUser, getUserDetails } from "./utilities/bridges/auth"
+import {getMatch} from "./utilities/bridges/match"
 export default {
   name: "app",
   data() {
@@ -85,6 +86,13 @@ export default {
     }
     if (data) {
       this.$store.dispatch("setUserDetails", data)
+
+      if (data.active_match) {
+        console.log(data.active_match)
+
+        const match = await getMatch(data.active_match)
+        console.log(match)
+      }
     }
     }
     

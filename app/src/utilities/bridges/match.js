@@ -74,6 +74,7 @@ async function checkConfirmed(id) {
 }
 
 export async function getMatch(id) {
+  console.log(id);
   const { data, error } = await supabase
     .from("match")
     .select("*")
