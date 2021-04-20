@@ -82,6 +82,14 @@ export async function getMatch(id) {
 
   console.log(data, error);
 
+  const { players, points, is_18_holes, is_classic_scoring } = data[0];
+
+  store.dispatch("setMatchId", id);
+  store.dispatch("setPlayers", players);
+  store.dispatch("setPoints", points);
+  store.dispatch("setHoles", is_18_holes ? 18 : 9);
+  store.dispatch("setScoringStyle", is_classic_scoring ? "classic" : "solo");
+
   if (await checkConfirmed(id)) {
     console.log("player already present");
     store.dispatch("setController", "waitingForPlayers");
