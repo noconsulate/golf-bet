@@ -1,7 +1,18 @@
 <template>
   <div>
-    <GameFull v-if="gameFull" />
-    <PlayerJoin v-else />
+    <div v-if="!user">
+      No user, please sign in.
+    </div>
+    <div v-if="wrongMatch">
+      <p>You are already in a matchm, you can't join this one. :(</p>
+    </div>
+    <div v-else> 
+      <GameFull v-if="gameFull" />
+      <PlayerJoin v-else />
+      {{wrongMatch}}
+    </div>
+    
+    
   </div>
 </template>
 
@@ -22,12 +33,18 @@ export default {
     FinalScore,
   },
   computed: {
-  matchId() {
+    matchId() {
       return this.$route.query.match;
     },
     sequence() {
       return this.$store.state.sequence;
     },
+    user() {
+      return this.$store.getters.user;
+    },
+    wrongMatch() {
+      return this.$store.getters.inWrongMatch;
+    }
   },
   data() {
     return {
@@ -36,14 +53,13 @@ export default {
   },
   async created() {
     // let matchInfo = await joinMatch(this.matchId);
-    const {data, error} = await getMatch(this.matchId);
-    const {players, points, is_18_holes, is_classic_scoring} = data[0]
-    
-    this.$store.dispatch("setMatchId", this.matchId);
-    this.$store.dispatch("setPlayers", players);
-    this.$store.dispatch("setPoints", points);
-    this.$store.dispatch("setHoles", (is_18_holes ? 18 : 9));
-    this.$store.dispatch("setScoringStyle", (is_classic_scoring ? 'classic' : 'solo'));
+    if (this.user) {
+      const {data, error} = await getMatch(this.matchId);
+      console.log(data, error)
+    }
+
+    console.log(this.wrongMatch)
+  
   },
 };
 </script>

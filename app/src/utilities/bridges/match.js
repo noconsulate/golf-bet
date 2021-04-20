@@ -90,10 +90,10 @@ export async function getMatch(id) {
   store.dispatch("setHoles", is_18_holes ? 18 : 9);
   store.dispatch("setScoringStyle", is_classic_scoring ? "classic" : "solo");
 
-  if (await checkConfirmed(id)) {
-    console.log("player already present");
-    store.dispatch("setController", "waitingForPlayers");
-  }
+  // if (await checkConfirmed(id)) {
+  //   console.log("player already present");
+  //   store.dispatch("setController", "waitingForPlayers");
+  // }
 
   return { data, error };
 }

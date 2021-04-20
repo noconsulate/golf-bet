@@ -34,8 +34,17 @@ export default new Vuex.Store({
         // scoreObj[player_num] = item.player_num;
         scores.push(scoreObj);
       });
-
       return scores;
+    },
+    user: (state) => {
+      if (state.user) return state.user;
+      else return null;
+    },
+    inWrongMatch: (state) => {
+      console.log(state.userDetails.active_match, state.matchId);
+      if (!state.userDetails.active_match) return false;
+      if (state.userDetails.active_match == state.matchId) return false;
+      else if (state.userDetails.active_match != state.matchId) return true;
     },
   },
   mutations: {
