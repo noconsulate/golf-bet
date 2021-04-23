@@ -108,3 +108,5 @@ export async function confirmJoin(match_id, player_id) {
   console.log(data, error);
   return { data, error };
 }
+
+export async function forfeitMatch(match_id, player_id, score_id) {}

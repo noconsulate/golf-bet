@@ -5,6 +5,8 @@
     </div>
     <div v-if="wrongMatch">
       <p>You are already in a matchm, you can't join this one. :(</p>
+      <p>Join your match</p>
+      <p>Or Forfeit it</p>
     </div>
     <div v-else> 
       <GameFull v-if="gameFull" />
