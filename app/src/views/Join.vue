@@ -1,12 +1,13 @@
 <template>
   <div>
+    {{wrongMatch}}
     <div v-if="!user">
       No user, please sign in.
     </div>
     <div v-if="wrongMatch">
       <p>You are already in a matchm, you can't join this one. :(</p>
       <p>Join your match</p>
-      <p>Or Forfeit it</p>
+      <a href="#" @click="forfeit" class="underline text-blue-400">Or Forfeit it</a>
     </div>
     <div v-else> 
       <GameFull v-if="gameFull" />
@@ -19,7 +20,7 @@
 </template>
 
 <script>
-import { getMatch } from "../utilities/bridges/match";
+import { getMatch, forfeitMatch } from "../utilities/bridges/match";
 
 import PlayerJoin from "../components/Game/PlayerJoin";
 import GameFull from "../components/Game/GameFull";
@@ -52,6 +53,12 @@ export default {
     return {
       gameFull: false,
     };
+  },
+  methods: {
+    
+    async forfeit() {
+      const {data, error} = forfeitMatch
+    }
   },
   async created() {
     // let matchInfo = await joinMatch(this.matchId);

@@ -40,8 +40,8 @@
 </template>
 
 <script>
-import {currentUser, getUserDetails } from "./utilities/bridges/auth"
-import {getMatch} from "./utilities/bridges/match"
+import {currentUser, getUserDetails} from "./utilities/bridges/auth"
+import {getMatch, getScore} from "./utilities/bridges/match"
 export default {
   name: "app",
   data() {
@@ -98,6 +98,12 @@ export default {
           if (match.error) {
             console.error(match.error)
           }
+
+          const score = await getScore(data.active_match, user.id);
+
+          console.log(score.data[0].id)
+
+          this.$store.dispatch("setScoreId", score.data[0].id)
         }
        }
     } else {

@@ -109,4 +109,17 @@ export async function confirmJoin(match_id, player_id) {
   return { data, error };
 }
 
-export async function forfeitMatch(match_id, player_id, score_id) {}
+export async function forfeitMatch(score_id) {
+  const { data, error } = await supabase.rpc("forfeit_match", {
+    score_id,
+  });
+}
+
+export async function getScore(match_id, player_id) {
+  const { data, error } = await supabase
+    .from("score")
+    .select("id")
+    .match({ match_id, player_id });
+
+  return { data, error };
+}
