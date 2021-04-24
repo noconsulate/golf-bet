@@ -61,7 +61,6 @@ export default {
     }
   },
   async created() {
-    // let matchInfo = await joinMatch(this.matchId);
     if (this.user) {
       const {data, error} = await getMatch(this.matchId);
       console.log(data, error)

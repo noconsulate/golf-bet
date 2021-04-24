@@ -114,12 +114,3 @@ export async function forfeitMatch(score_id) {
     score_id,
   });
 }
-
-export async function getScore(match_id, player_id) {
-  const { data, error } = await supabase
-    .from("score")
-    .select("id")
-    .match({ match_id, player_id });
-
-  return { data, error };
-}
