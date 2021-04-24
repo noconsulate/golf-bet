@@ -45,13 +45,12 @@ export default {
     user() {
       return this.$store.getters.user;
     },
-    wrongMatch() {
-      return this.$store.getters.inWrongMatch;
-    }
+   
   },
   data() {
     return {
       gameFull: false,
+      wrongMatch: false,
     };
   },
   methods: {
@@ -61,6 +60,13 @@ export default {
     }
   },
   async created() {
+    console.log(this.user.active_match)
+
+    if (this.user.active_match != this.$route.query.match){
+      console.log('wrong match');
+      this.wrongMatch = true;
+    }
+
     if (this.user) {
       const {data, error} = await getMatch(this.matchId);
       console.log(data, error)

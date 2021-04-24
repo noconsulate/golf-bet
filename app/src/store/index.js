@@ -38,14 +38,10 @@ export default new Vuex.Store({
       return scores;
     },
     user: (state) => {
-      if (state.user) return state.user;
-      else return null;
-    },
-    inWrongMatch: (state) => {
-      console.log(state.userDetails.active_match, state.matchId);
-      if (!state.userDetails.active_match) return false;
-      if (state.userDetails.active_match == state.matchId) return false;
-      else if (state.userDetails.active_match != state.matchId) return true;
+      if (state.user) {
+        let user = { ...state.user, ...state.userDetails };
+        return user;
+      } else return null;
     },
   },
   mutations: {
