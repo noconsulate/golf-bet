@@ -35,7 +35,7 @@
 
 <script>
 import App from '../App.vue';
-import {signUpWithEmail, insertUserDetails, signOut, signIn, getUserDetails, getScoreId} from "../utilities/bridges/auth";
+import {signUpWithEmail, insertUserDetails, signOut, signIn, getUserDetails } from "../utilities/bridges/auth";
 export default {
   components: { App },
   name: "player",
@@ -123,11 +123,6 @@ export default {
         if(userDetails.data) {
           console.log(userDetails.data)
           this.$store.dispatch("setUserDetails", userDetails.data)
-
-          const scoreId = await getScoreId(userDetails.current_match, user.id)
-          console.log('scoreId: ' + scoreId, error)
-          
-          store.dispatch('setScoreId', scoreId.data[0].id)
         } 
       }
     }

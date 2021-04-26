@@ -40,7 +40,7 @@
 </template>
 
 <script>
-import {currentUser, getUserDetails, getScoreId} from "./utilities/bridges/auth"
+import {currentUser, getUserDetails} from "./utilities/bridges/auth"
 import {getMatch} from "./utilities/bridges/match"
 export default {
   name: "app",
@@ -92,15 +92,7 @@ export default {
         // set match in store in getMatch()
         if (data.active_match) {
           console.log(data.active_match)
-
-          const score = await getScoreId(data.active_match, user.id);
-
-          console.log(score.data[0].id)
-
-          this.$store.dispatch("setScoreId", score.data[0].id)
-
           this.$router.push(`/join?match=${data.active_match}`)
-          
         }
        }
     } else {
