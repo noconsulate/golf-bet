@@ -1,10 +1,22 @@
-create or replace function cancel_match(match_id text, player_id uuid, score_id uuid, OUT success bool)
+create or replace function cancel_match(player_id uuid, OUT success bool)
 language plpgsql as $$
 declare
+	match_id text;
+    score_id uuid;
 	match_rec record;
 --     participants uuid[];
     target uuid;
 begin
+	select active_match, active_score
+    from users
+    into match_id, score_id
+    where id = player_id;
+    
+--     select active_score
+--     from users
+--     into score_id
+--     where id = player_id;
+
 	select players, players_joined, creator, participants, scores, points
     from match
     where id = match_id
@@ -28,6 +40,8 @@ begin
             update score
             set status = 'cancel'
             where id = score_id;
+            
+            if match_rec.players_joined > 1 then
                       
             foreach target in array match_rec.participants
             loop
@@ -50,6 +64,8 @@ begin
                 set status = 'cancel'
                 where id = target;
             end loop;
+            
+            end if;
             
             update match
             set status = 'cancel'
