@@ -117,3 +117,12 @@ export async function forfeitMatch(score_id) {
 
   return { data, error };
 }
+
+export async function cancelMatch(player_id) {
+  console.log(player_id);
+  const { data, error } = await supabase.rpc("cancel_match", {
+    player_id,
+  });
+
+  return { data, error };
+}

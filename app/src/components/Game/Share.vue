@@ -10,17 +10,26 @@
     <p class="text-center text-xl">
       Waiting for {{ waitingForPlayers }} to join.
     </p>
+    <div class="flex justify-center">
+      <p v-if="cancelled" class="text-red-500">
+        MATCH CANCELLED
+      </p>
+      <button v-else class="btn w-24" @click="cancelMatch">
+        Cancel Match
+      </button>
+    </div>
   </div>
 </template>
 
 <script>
-import { playersJoinedListener } from "../../utilities/bridges/match";
+import { playersJoinedListener, cancelMatch } from "../../utilities/bridges/match";
 export default {
   name: "share",
   data() {
     return {
-      url: "http://localhost:8080",
-      // url: "https://golf-bets.web.app/",
+      url: this.$hostname,
+      cancelled: false
+      
     };
   },
   computed: {
@@ -44,6 +53,16 @@ export default {
     copy2Clipboard() {
       navigator.clipboard.writeText(this.link2Share);
     },
+    async cancelMatch() {
+      const {data, error} = await cancelMatch(this.$store.state.user.id)
+
+      if (error) {
+        console.error("cancel_match error", error)
+      }
+      if (data) {
+        this.cancelled = true;
+      }
+    }
   },
   async beforeMount() {
     const subscription = playersJoinedListener();
