@@ -56,13 +56,16 @@ export default {
   methods: {
     
     async forfeit() {
-      const {data, error} = forfeitMatch
+      const scoreId = this.$store.state.scoreId
+      console.log(scoreId)
+      const {data, error} = await forfeitMatch(this.scoreId)
+      console.log(data, error)
     }
   },
   async created() {
     console.log(this.user.active_match)
 
-    if (this.user.active_match != this.$route.query.match){
+    if (this.user.active_match && this.user.active_match != this.$route.query.match){
       console.log('wrong match');
       this.wrongMatch = true;
     }
@@ -72,8 +75,6 @@ export default {
       console.log(data, error)
     }
 
-    console.log(this.wrongMatch)
-  
   },
 };
 </script>

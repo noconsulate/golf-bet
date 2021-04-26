@@ -113,4 +113,6 @@ export async function forfeitMatch(score_id) {
   const { data, error } = await supabase.rpc("forfeit_match", {
     score_id,
   });
+
+  return data, error;
 }
