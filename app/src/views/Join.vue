@@ -55,8 +55,7 @@ export default {
   methods: {
     
     async forfeit() {
-      const scoreId = this.$store.state.scoreId
-      const {data, error} = await forfeitMatch(scoreId)
+      const {data, error} = await forfeitMatch(this.users.active_score)
       if (error) {
         console.error('forfeit() error', error)
       }

@@ -21,7 +21,6 @@ export default new Vuex.Store({
     user: null,
     userDetails: {},
     scores: [],
-    scoreId: "",
   },
   getters: {
     scores: (state) => {
@@ -102,9 +101,6 @@ export default new Vuex.Store({
       state.scores[index] = payload.score;
       state.scores = [...state.scores];
     },
-    UPDATE_SCORE_ID(state, payload) {
-      state.scoreId = payload;
-    },
   },
   actions: {
     toggleNavOpen(context) {
@@ -160,9 +156,6 @@ export default new Vuex.Store({
     },
     setScoreRow(context, value) {
       context.commit("UPDATE_SCORE_ROW", value);
-    },
-    setScoreId(context, value) {
-      context.commit("UPDATE_SCORE_ID", value);
     },
   },
 

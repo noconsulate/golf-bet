@@ -53,12 +53,3 @@ export async function signIn(email, password) {
 
   return { user, session, error };
 }
-
-export async function getScoreId(match_id, player_id) {
-  const { data, error } = await supabase
-    .from("score")
-    .select("id")
-    .match({ match_id, player_id });
-
-  return { data, error };
-}

@@ -82,10 +82,10 @@ export default {
       if (error) {
         console.error(error)
         return;
+      } else {
+        this.$store.dispatch("setPlayerNum", 1);
+        this.$router.push(`/join?match=${data.match_id}`)
       }
-      this.$store.dispatch("setMatchId", data.match_id);
-      this.$store.dispatch("setPlayerNum", 1);
-      this.$store.dispatch("setController", "waitingForPlayers");
     },
   },
 };
