@@ -1,6 +1,5 @@
 <template>
   <div>
-    {{wrongMatch}}
     <div v-if="!user">
       No user, please sign in.
     </div>
@@ -12,7 +11,6 @@
     <div v-else> 
       <GameFull v-if="gameFull" />
       <PlayerJoin v-else />
-      {{wrongMatch}}
     </div>
     
     
@@ -21,6 +19,7 @@
 
 <script>
 import { getMatch, forfeitMatch } from "../utilities/bridges/match";
+import {getUserDetails} from "../utilities/bridges/auth"
 
 import PlayerJoin from "../components/Game/PlayerJoin";
 import GameFull from "../components/Game/GameFull";
@@ -60,12 +59,23 @@ export default {
       console.log(scoreId)
       const {data, error} = await forfeitMatch(this.scoreId)
       console.log(data, error)
+      if (error) {
+        console.error('forfeit() error', error)
+      }
+      if (data) {
+        this.wrongMatch = false;
+      }
     }
   },
   async created() {
-    console.log(this.user.active_match)
+    console.log(this.user.active_match, this.$route.query.match)
 
-    if (this.user.active_match && this.user.active_match != this.$route.query.match){
+    // get user.activeMatch before anything else. this is bad design.
+    const userDetails = await getUserDetails(this.user.id)
+    console.log(userDetails.data.active_match)
+    const activeMatch = userDetails.data.active_match
+
+    if (activeMatch && activeMatch != this.$route.query.match){
       console.log('wrong match');
       this.wrongMatch = true;
     }

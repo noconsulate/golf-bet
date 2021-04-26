@@ -114,5 +114,7 @@ export async function forfeitMatch(score_id) {
     score_id,
   });
 
+  console.log(data, error);
+
   return data, error;
 }
