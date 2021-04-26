@@ -56,9 +56,7 @@ export default {
     
     async forfeit() {
       const scoreId = this.$store.state.scoreId
-      console.log(scoreId)
-      const {data, error} = await forfeitMatch(this.scoreId)
-      console.log(data, error)
+      const {data, error} = await forfeitMatch(scoreId)
       if (error) {
         console.error('forfeit() error', error)
       }
@@ -68,11 +66,9 @@ export default {
     }
   },
   async created() {
-    console.log(this.user.active_match, this.$route.query.match)
 
     // get user.activeMatch before anything else. this is bad design.
     const userDetails = await getUserDetails(this.user.id)
-    console.log(userDetails.data.active_match)
     const activeMatch = userDetails.data.active_match
 
     if (activeMatch && activeMatch != this.$route.query.match){
