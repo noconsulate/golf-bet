@@ -55,7 +55,9 @@ export default {
   methods: {
     async join() {
       const {data, error} = await confirmJoin(this.matchId, this.uuid)
-
+      if (error) {
+        console.error("confirmJoin error", error)
+      }
       // game is full according to database
       if (data.score_id == 0) {
         console.error('GAME FULL');
@@ -70,19 +72,6 @@ export default {
         console.log("All aboard! All players here");
         this.$store.dispatch("setAllPlayersJoined");
       }
-
-      // let joinGame = await playerConfirm(this.matchId);
-
-      // if (joinGame == 'doListen') {
-      //   console.log("joinGame success");
-      //   this.$store.dispatch("setController", "waitingForPlayers");
-      // } else if (joinGame == 'doNotListen') {
-      //   console.log("joingame success, going to /scorecard")
-      //   this.$store.dispatch("setAllPlayersJoined"); 
-      // } else {
-      //   this.$store.dispatch("setError", "joinError");
-      //   console.log("joinGame fail");
-      // }
     },
   },
 };

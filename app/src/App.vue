@@ -93,17 +93,14 @@ export default {
         if (data.active_match) {
           console.log(data.active_match)
 
-          const match = await getMatch(data.active_match)
-        
-          if (match.error) {
-            console.error(match.error)
-          }
-
           const score = await getScoreId(data.active_match, user.id);
 
           console.log(score.data[0].id)
 
           this.$store.dispatch("setScoreId", score.data[0].id)
+
+          this.$router.push(`/join?match=${data.active_match}`)
+          
         }
        }
     } else {

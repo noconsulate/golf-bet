@@ -70,10 +70,17 @@ export default {
     // get user.activeMatch before anything else. this is bad design.
     const userDetails = await getUserDetails(this.user.id)
     const activeMatch = userDetails.data.active_match
+    console.log(userDetails, activeMatch)
 
     if (activeMatch && activeMatch != this.$route.query.match){
       console.log('wrong match');
       this.wrongMatch = true;
+    }
+
+    // if already in match, send to waiting room
+    console.log(activeMatch && activeMatch, this.$route.query.match)
+    if (activeMatch && activeMatch == this.$route.query.match) {
+      this.$store.dispatch('setController', 'waitingForPlayers')
     }
 
     if (this.user) {
