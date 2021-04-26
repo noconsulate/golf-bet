@@ -59,6 +59,14 @@ begin
     
     	score_id = score_id_ret;
         
+        update users
+        set active_score = score_id_ret
+        where id = player_id;
+        
+        update users
+        set active_match = match_id
+        where id = player_id;
+        
         -- update players_joined in match 
         update match
         set players_joined = my_player_num
@@ -82,4 +90,3 @@ begin
     
 end
 $$
-

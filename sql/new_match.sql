@@ -42,14 +42,21 @@ begin
   
   score_id = score_id_ret;
   
-  -- insert score row id into match
+  update users
+  set active_score = score_id_ret
+  where id = creator;
   
---   insert into match(scores)
---   values( array[score_id_ret]);
+  -- insert score row id into match
   
   update match
   set scores = array[score_id_ret]
   where id = match_id_ret;
+  
+  -- activate match 
+ 
+  update users
+  set active_match = match_id_ret
+  where id = creator;
   
   -- transfer tokens
   update match
