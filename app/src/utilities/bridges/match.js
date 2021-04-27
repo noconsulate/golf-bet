@@ -24,6 +24,8 @@ export async function newMatch(
     creator,
   });
 
+  store.dispatch("setMatchStatus", "waiting");
+
   return { data, error };
 }
 
@@ -82,13 +84,14 @@ export async function getMatch(id) {
 
   console.log(data, error);
 
-  const { players, points, is_18_holes, is_classic_scoring } = data[0];
+  const { players, points, is_18_holes, is_classic_scoring, status } = data[0];
 
   store.dispatch("setMatchId", id);
   store.dispatch("setPlayers", players);
   store.dispatch("setPoints", points);
   store.dispatch("setHoles", is_18_holes ? 18 : 9);
   store.dispatch("setScoringStyle", is_classic_scoring ? "classic" : "solo");
+  store.dispatch("setMatchStatus", status);
 
   // if (await checkConfirmed(id)) {
   //   console.log("player already present");

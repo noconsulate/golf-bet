@@ -18,6 +18,7 @@
         Cancel Match
       </button>
     </div>
+    {{matchStatus}}
   </div>
 </template>
 
@@ -47,6 +48,9 @@ export default {
         " players"
       );
     },
+    matchStatus() {
+      return this.$store.state.matchStatus
+    },
     
   },
   methods: {
@@ -61,6 +65,7 @@ export default {
       }
       if (data) {
         this.cancelled = true;
+        // this.$store.dispatch("setMatchStatus", "cancelled")
       }
     }
   },

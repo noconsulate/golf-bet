@@ -37,6 +37,10 @@ begin
             set active_match = null
             where id = player_id;
             
+            update users
+            set active_score = null
+            where id = player_id;
+            
             update score
             set status = 'cancel'
             where id = score_id;
@@ -55,6 +59,10 @@ begin
                 
                 update users
                 set active_match = null
+                where id = target;
+                
+                update users
+                set active_score = null
                 where id = target;
             end loop;
             
@@ -82,7 +90,11 @@ begin
             where id = match_id;
             
             update users
-            set active_match = nuill
+            set active_match = null
+            where id = player_id;
+            
+            update users
+            set active_score = null
             where id = player_id;
             
             update match
@@ -100,7 +112,10 @@ begin
             where id = match_id;
             
         end if;
-        
+    
+    	update match
+        set status = 'cancelled'
+        where id = match_id;
     
     	success = true;
     
@@ -110,4 +125,3 @@ begin
     	
     
 end;
-$$

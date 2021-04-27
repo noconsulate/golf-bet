@@ -21,6 +21,7 @@ export default new Vuex.Store({
     user: null,
     userDetails: {},
     scores: [],
+    matchStatus: "",
   },
   getters: {
     scores: (state) => {
@@ -101,6 +102,9 @@ export default new Vuex.Store({
       state.scores[index] = payload.score;
       state.scores = [...state.scores];
     },
+    UPDATE_MATCH_STATUS(state, payload) {
+      state.matchStatus = payload;
+    },
   },
   actions: {
     toggleNavOpen(context) {
@@ -156,6 +160,9 @@ export default new Vuex.Store({
     },
     setScoreRow(context, value) {
       context.commit("UPDATE_SCORE_ROW", value);
+    },
+    setMatchStatus(context, value) {
+      context.commit("UPDATE_MATCH_STATUS", value);
     },
   },
 
