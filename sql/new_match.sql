@@ -68,6 +68,9 @@ begin
   set balance = balance - points_to_transfer
   where id = creator;
   
-
+  -- set status
+  update match
+  set status = 'waiting'
+  where id = match_id_ret;
 
 end; $$;
