@@ -1,6 +1,6 @@
 <template>
   <div class="space-y-4 flex flex-col py-2">
-    <div v-if="status == 'waiting'">
+    <div v-if="status == 'waiting'" class="space-y-3">
       <p class="text-center text-2xl">SHARE GAME</p>
       <p class="text-center">{{ link2Share }}</p>
       <div class="flex justify-center">
@@ -13,26 +13,22 @@
       </p>
     </div>
     <div class="flex justify-center">
-      <p v-if="status == 'cancelled'" class="text-red-500">
-        MATCH CANCELLED
-      </p>
+      <p v-if="status == 'cancelled'" class="text-red-500">MATCH CANCELLED</p>
       <button v-if="status == 'waiting'" class="btn w-24" @click="cancelMatch">
         Cancel Match
       </button>
     </div>
-    {{status}}
   </div>
 </template>
 
 <script>
-import {  matchListener, cancelMatch } from "../../utilities/bridges/match";
+import { matchListener, cancelMatch } from "../../utilities/bridges/match";
 export default {
   name: "share",
   data() {
     return {
       url: this.$hostname,
-      cancelled: false
-      
+      cancelled: false,
     };
   },
   computed: {
@@ -51,22 +47,20 @@ export default {
       );
     },
     status() {
-      return this.$store.state.matchStatus
+      return this.$store.state.matchStatus;
     },
-    
   },
   methods: {
     copy2Clipboard() {
       navigator.clipboard.writeText(this.link2Share);
     },
     async cancelMatch() {
-      const {data, error} = await cancelMatch(this.$store.state.user.id)
+      const { data, error } = await cancelMatch(this.$store.state.user.id);
 
       if (error) {
-        console.error("cancel_match error", error)
+        console.error("cancel_match error", error);
       }
-  
-    }
+    },
   },
   async beforeMount() {
     const subscription = matchListener();
