@@ -8,7 +8,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     navOpen: false,
-    controller: "confirmGame",
+    controller: "",
     players: "4",
     points: "20",
     holes: "18",

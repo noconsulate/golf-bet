@@ -87,12 +87,12 @@ export default {
   },
   methods: {},
   created() {
-    console.log();
-    if (this.$store.getters.user.active_match) {
-      this.$store.dispatch("setController", "waitingForPlayers");
-    } else {
-      this.$store.dispatch("setController", "confirmGame");
-    }
+    // console.log();
+    // if (this.$store.getters.user.active_match) {
+    //   this.$store.dispatch("setController", "waitingForPlayers");
+    // } else {
+    //   this.$store.dispatch("setController", "confirmGame");
+    // }
   },
 };
 </script>

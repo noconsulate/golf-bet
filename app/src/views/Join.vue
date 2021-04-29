@@ -1,8 +1,11 @@
 <template>
   <div>
-    <div v-if="showNoUser">Please sign in to continue</div>
-    <div v-if="showWrongMatch">You're already in a match</div>
-    <PlayerJoin v-if="showPlayerJoin" />
+    <div v-if="showNoUser" class="w-full text-center pt-8">
+      Please sign in to continue
+    </div>
+    <div v-if="showWrongMatch" class="w-full text-center pt-8">
+      You're already in a match
+    </div>
     <WaitingRoom v-if="showWaitingRoom" />
   </div>
 </template>
@@ -11,11 +14,10 @@
 import { getUserDetails } from "../utilities/bridges/auth";
 import { getMatch } from "../utilities/bridges/match";
 
-import PlayerJoin from "../components/Game/PlayerJoin";
 import WaitingRoom from "../components/Game/WaitingRoom";
 export default {
   name: "join",
-  components: { PlayerJoin, WaitingRoom },
+  components: { WaitingRoom },
   data() {
     return {
       activeMatch: null,
@@ -38,11 +40,12 @@ export default {
         return false;
       }
     },
-    showPlayerJoin() {
-      return false;
-    },
     showWaitingRoom() {
-      return true;
+      if (!this.inWrongMatch && this.matchId) {
+        return true;
+      } else {
+        return false;
+      }
     },
   },
   async created() {
@@ -68,10 +71,11 @@ export default {
     if (activeMatch && activeMatch == matchId) {
       console.log("in this match");
       this.$store.dispatch("setController", "waitingForPlayers");
-      const matchData = await getMatch(matchId)
+      const matchData = await getMatch(matchId);
     }
 
     if (!activeMatch) {
+      this.$store.dispatch("setController", "joinGame");
       const matchData = await getMatch(matchId);
     }
   },

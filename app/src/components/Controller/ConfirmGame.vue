@@ -3,9 +3,7 @@
     <div class="controller-title">Confirm Game</div>
 
     <div class="controller-panel">
-      <div class="controller-prev" @click="prev">
-        prev
-      </div>
+      <div class="controller-prev" @click="prev">prev</div>
       <div
         class="flex flex-grow cursor-pointer justify-center items-center text-4xl"
         @click="confirm"
@@ -18,7 +16,7 @@
 </template>
 
 <script>
-import { newMatch} from "../../utilities/bridges/match"
+import { newMatch } from "../../utilities/bridges/match";
 
 export default {
   name: "confirmGame",
@@ -29,7 +27,7 @@ export default {
         points: this.$store.state.points,
         holes: this.$store.state.holes,
         scoringStyle: this.$store.state.scoringStyle,
-        owner: this.$store.state.user.id
+        owner: this.$store.state.user.id,
       };
     },
     players() {
@@ -42,23 +40,19 @@ export default {
       return this.$store.state.holes;
     },
     is18Holes() {
-      if (this.$store.state.holes == 18) 
-      return true
-      else
-      return false
+      if (this.$store.state.holes == 18) return true;
+      else return false;
     },
     scoringStyle() {
       return this.$store.state.scoringStyle;
     },
     isClassicScoring() {
-      if (this.$store.state.scoringStyle == 'classic')
-      return true;
-      else
-      return false;
+      if (this.$store.state.scoringStyle == "classic") return true;
+      else return false;
     },
     creator() {
       return this.$store.state.user.id;
-    }
+    },
   },
   methods: {
     prev() {
@@ -75,16 +69,23 @@ export default {
         return;
       }
 
-      console.log(this.matchInfo)
-      const {data, error} = await newMatch(
-        this.players, this.points, this.is18Holes, this.isClassicScoring, this.creator
-      )
+      console.log(this.matchInfo);
+      const { data, error } = await newMatch(
+        this.players,
+        this.points,
+        this.is18Holes,
+        this.isClassicScoring,
+        this.creator
+      );
       if (error) {
-        console.error(error)
+        console.error(error);
         return;
       } else {
         this.$store.dispatch("setPlayerNum", 1);
-        this.$router.push(`/join?match=${data.match_id}`)
+        this.$store.dispatch("setMatchStatus", "waiting");
+        this.$store.dispatch("setMatchId", data.match_id);
+        this.$store.dispatch("setController", "waitingForPlayers");
+        // this.$router.push(`/join?match=${data.match_id}`)
       }
     },
   },
