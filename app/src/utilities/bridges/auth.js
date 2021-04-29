@@ -39,6 +39,15 @@ export async function getUserDetails(id) {
   return { data: data[0], error: error };
 }
 
+export async function getActiveMatch(id) {
+  const { data, error } = await supabase
+    .from("users")
+    .select("active_match")
+    .match({ id });
+
+  return { data, error };
+}
+
 export async function signOut() {
   const error = await supabase.auth.signOut();
 

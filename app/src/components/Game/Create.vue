@@ -64,7 +64,7 @@
 import Controller from "../Controller/Controller"
 import Share from "./Share";
 export default {
-  name: "game",
+  name: "create",
   components: {
     Controller,
     Share,

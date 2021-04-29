@@ -92,7 +92,7 @@ export default {
         // set match in store in getMatch()
         if (data.active_match) {
           console.log(data.active_match)
-          this.$router.push(`/join?match=${data.active_match}`)
+          // this.$router.push(`/join?match=${data.active_match}`)
         }
        }
     } else {
