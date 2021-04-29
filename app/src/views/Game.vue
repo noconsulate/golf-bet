@@ -1,34 +1,29 @@
 <template>
   <div>
-    <div v-if="showNoUser">
-      Please sign in to continue
-    </div>
+    <div v-if="showNoUser">Please sign in to continue</div>
     <Create v-if="showCreate" />
     <WaitingRoom v-if="showWaitingRoom" />
   </div>
 </template>
 
 <script>
-import Create from "../components/Game/Create"
-import WaitingRoom from "../components/Game/WaitingRoom"
-import {getMatch, matchListener} from "../utilities/bridges/match"
-import {getActiveMatch} from "../utilities/bridges/auth"
+import Create from "../components/Game/Create";
+import WaitingRoom from "../components/Game/WaitingRoom";
+import { getMatch, matchListener } from "../utilities/bridges/match";
+import { getActiveMatch } from "../utilities/bridges/auth";
 export default {
   name: "game",
   components: {
-    Create, WaitingRoom
+    Create,
+    WaitingRoom,
   },
   computed: {
     showCreate() {
-      if (
-        this.$store.state.matchId == "" &&
-        !this.showNoUser 
-       
-        ) {
-        return true
-      } else
-      {
-        return false
+      if (this.$store.state.matchId == "" && !this.showNoUser) {
+        this.$store.dispatch("setController", "confirmGame");
+        return true;
+      } else {
+        return false;
       }
     },
     showNoUser() {
@@ -39,27 +34,26 @@ export default {
       }
     },
     showWaitingRoom() {
-      if (
-        this.$store.state.matchId != "" 
-        ) {
+      if (this.$store.state.matchId != "") {
+        this.$store.dispatch("setController", "waitingForPlayers");
         return true;
       } else {
         return false;
-      }``
-    }
+      }
+    },
   },
   async beforeMount() {
-    const activeMatch = await getActiveMatch(this.$store.getters.user.id)
+    const activeMatch = await getActiveMatch(this.$store.getters.user.id);
     if (activeMatch.error) {
-      console.error("problem getting active match", activeMatch.error)
+      console.error("problem getting active match", activeMatch.error);
     }
 
-    const matchId = activeMatch.data[0].active_match
+    const matchId = activeMatch.data[0].active_match;
 
     if (matchId) {
-      console.log('match found', matchId)
-      const matchData = await getMatch(matchId)
+      console.log("match found", matchId);
+      const matchData = await getMatch(matchId);
     }
-  }
-}
+  },
+};
 </script>

@@ -22,6 +22,8 @@ export default new Vuex.Store({
     userDetails: {},
     scores: [],
     matchStatus: "",
+    // I should put all match stuff here and leave the specific ones for the forms in Create.vue's state
+    match: {},
   },
   getters: {
     scores: (state) => {
@@ -105,6 +107,9 @@ export default new Vuex.Store({
     UPDATE_MATCH_STATUS(state, payload) {
       state.matchStatus = payload;
     },
+    UPDATE_MATCH(state, payload) {
+      state.match = payload;
+    },
   },
   actions: {
     toggleNavOpen(context) {
@@ -163,6 +168,9 @@ export default new Vuex.Store({
     },
     setMatchStatus(context, value) {
       context.commit("UPDATE_MATCH_STATUS", value);
+    },
+    setMatch(context, value) {
+      context.commit("UPDATE_MATCH", value);
     },
   },
 

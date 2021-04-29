@@ -24,7 +24,7 @@
       </div>
       <div class="col-span-7 invisible">/</div>
 
-      <div class="col-span-3 " />
+      <div class="col-span-3" />
       <div
         :class="[group, controller == 'selectHoles' ? activeGroup : null]"
         @click="focus('selectHoles')"
@@ -48,20 +48,20 @@
     </div>
 
     <div class="py-8">
-      <div v-if="controller == 'confirmGame'" class=" flex flex-col">
+      <div v-if="controller == 'confirmGame'" class="flex flex-col">
         <p class="text-2xl flex justify-center">Let's go!!</p>
       </div>
       <Share v-if="controller == 'waitingForPlayers'" />
     </div>
-    <div class=" flex-grow"></div>
-    <div class=" h-40 object-none object-bottom">
+    <div class="flex-grow"></div>
+    <div class="h-40 object-none object-bottom">
       <Controller />
     </div>
   </div>
 </template>
 
 <script>
-import Controller from "../Controller/Controller"
+import Controller from "../Controller/Controller";
 import Share from "./Share";
 export default {
   name: "create",
@@ -100,6 +100,9 @@ export default {
       this.$store.dispatch("setController", group);
     },
   },
-  created() {},
+  created() {
+    // set Controller starting state
+    this.$store.dispatch("setController", "confirmGame");
+  },
 };
 </script>

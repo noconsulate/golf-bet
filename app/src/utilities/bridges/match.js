@@ -93,11 +93,8 @@ export async function getMatch(id) {
   store.dispatch("setHoles", is_18_holes ? 18 : 9);
   store.dispatch("setScoringStyle", is_classic_scoring ? "classic" : "solo");
   store.dispatch("setMatchStatus", status);
-
-  // if (await checkConfirmed(id)) {
-  //   console.log("player already present");
-  //   store.dispatch("setController", "waitingForPlayers");
-  // }
+  // put all match data in one object in store, get rid of the other ones
+  store.dispatch("setMatch", data[0]);
 
   return { data, error };
 }

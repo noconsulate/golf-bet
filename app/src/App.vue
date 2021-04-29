@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div class=" h-screen w-screen container mx-auto  md:w-1/2 lg:w-1/3">
+    <div class="h-screen w-screen container mx-auto md:w-1/2 lg:w-1/3">
       <button
         @click="tog()"
         class="text-black text-2xl p-2 font-bold absolute top-0 right-0"
@@ -13,9 +13,7 @@
         class="navbar w-64 absolute overflow-x-scroll bg-gray-100 top-0 h-screen"
       >
         <div class="flex pr-2 justify-end">
-          <button @click="tog()" class="p-2  text-xl font-bold">
-            &#9747;
-          </button>
+          <button @click="tog()" class="p-2 text-xl font-bold">&#9747;</button>
         </div>
         <div
           class="w-full grid grid-cols-4 gap-3 pl-4 justity-items-auto text-3xl"
@@ -26,7 +24,9 @@
           <div class="col-span-4 row-span-6 bg-yellow-300 invisible">X</div>
 
           <div class="col-span-1 justify-self-center">X</div>
-          <div class="col-span-3 cursor-pointer" @click="openPlayer">Player</div>
+          <div class="col-span-3 cursor-pointer" @click="openPlayer">
+            Player
+          </div>
           <div class="col-span-4 invisible">X</div>
           <div class="col-span-1 justify-self-center">X</div>
           <div class="col-span-3 cursor-pointer" @click="openSetup">Setup</div>
@@ -40,8 +40,8 @@
 </template>
 
 <script>
-import {currentUser, getUserDetails} from "./utilities/bridges/auth"
-import {getMatch} from "./utilities/bridges/match"
+import { currentUser, getUserDetails } from "./utilities/bridges/auth";
+import { getMatch } from "./utilities/bridges/match";
 export default {
   name: "app",
   data() {
@@ -61,14 +61,12 @@ export default {
       this.$store.dispatch("toggleNavOpen");
     },
     openPlayer() {
-      this.$router.push('/player');
+      this.$router.push("/player");
       this.$store.dispatch("toggleNavOpen");
-
     },
     openSetup() {
-      this.$router.push('/');
+      this.$router.push("/");
       this.$store.dispatch("toggleNavOpen");
-
     },
   },
   async created() {
@@ -76,32 +74,31 @@ export default {
 
     // get user from supabase.auth
     const user = currentUser();
-    
+
     if (user) {
-      this.$store.dispatch("setUser", user)
-      
+      this.$store.dispatch("setUser", user);
+
       // get user details
-      const {data, error} = await getUserDetails(user.id)
-      console.log(data, error)
+      const { data, error } = await getUserDetails(user.id);
+      console.log("GET USER DETAILS", data, error);
       if (error) {
-        console.error(error)
+        console.error(error);
       }
       if (data) {
-        this.$store.dispatch("setUserDetails", data)
+        this.$store.dispatch("setUserDetails", data);
 
         // set match in store in getMatch()
         if (data.active_match) {
-          console.log(data.active_match)
+          console.log("ACTIVE MATCH: " + data.active_match);
           // this.$router.push(`/join?match=${data.active_match}`)
         }
-       }
+      }
     } else {
-      console.log('no user')
+      console.log("no user");
     }
-    
+
     //just leaving this here to remind me i have this global property
     console.log(this.$hostname);
-   
   },
 };
 </script>
