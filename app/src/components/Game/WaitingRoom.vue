@@ -39,9 +39,6 @@
       There was an error joining the game.
     </div>
     <Share v-if="controller == 'waitingForPlayers'" />
-    <div v-if="status == 'waiting'" class="flex justify-center">
-      <button class="btn w-24" @click="cancelMatch">Cancel Match</button>
-    </div>
     <div class=" flex-grow"></div>
 
     <div class=" h-40 object-none object-bottom">
@@ -97,15 +94,10 @@ export default {
     },
   },
   methods: {
-    async cancelMatch() {
-      const {data, error} = await cancelMatch(this.$store.state.user.id);
-      if (error) {
-        console.error("cancel_match error", error)
-      }
-    },
+ 
   },
   created() {
-    this.$store.dispatch("setController", "joinGame");
+    this.$store.dispatch("setController", "waitingForPlayers");
   },
 };
 </script>

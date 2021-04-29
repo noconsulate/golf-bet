@@ -29,13 +29,14 @@ export async function newMatch(
   return { data, error };
 }
 
-export const playersJoinedListener = async function() {
+export const matchListener = async function() {
   const id = store.state.matchId;
   const players = store.state.players;
   const subscription = supabase
     .from(`match:id=eq.${id}`)
     .on("UPDATE", (payload) => {
       console.log("change received", payload);
+      store.dispatch("setMatchStatus", payload.new.status);
       if (payload.new.players_joined >= payload.new.players) {
         console.log("all playesr joined. do something and unsubscribe!");
         store.dispatch("setAllPlayersJoined");
@@ -43,7 +44,7 @@ export const playersJoinedListener = async function() {
       }
     })
     .subscribe();
-  console.log("subscribed to playersJoinedListener for match_id: " + id);
+  console.log("subscribed to matchListener for match_id: " + id);
   console.log(subscription);
 
   const unsubscribe = function() {

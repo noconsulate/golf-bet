@@ -1,29 +1,31 @@
 <template>
   <div class="space-y-4 flex flex-col py-2">
-    <p class="text-center text-2xl">SHARE GAME</p>
-    <p class="text-center">{{ link2Share }}</p>
-    <div class="flex justify-center">
-      <button class="btn w-24" @click="copy2Clipboard">
-        Copy to clipboard
-      </button>
+    <div v-if="status == 'waiting'">
+      <p class="text-center text-2xl">SHARE GAME</p>
+      <p class="text-center">{{ link2Share }}</p>
+      <div class="flex justify-center">
+        <button class="btn w-24" @click="copy2Clipboard">
+          Copy to clipboard
+        </button>
+      </div>
+      <p class="text-center text-xl">
+        Waiting for {{ waitingForPlayers }} to join.
+      </p>
     </div>
-    <p class="text-center text-xl">
-      Waiting for {{ waitingForPlayers }} to join.
-    </p>
     <div class="flex justify-center">
-      <p v-if="cancelled" class="text-red-500">
+      <p v-if="status == 'cancelled'" class="text-red-500">
         MATCH CANCELLED
       </p>
-      <button v-else class="btn w-24" @click="cancelMatch">
+      <button v-if="status == 'waiting'" class="btn w-24" @click="cancelMatch">
         Cancel Match
       </button>
     </div>
-    {{matchStatus}}
+    {{status}}
   </div>
 </template>
 
 <script>
-import { playersJoinedListener, cancelMatch } from "../../utilities/bridges/match";
+import {  matchListener, cancelMatch } from "../../utilities/bridges/match";
 export default {
   name: "share",
   data() {
@@ -48,7 +50,7 @@ export default {
         " players"
       );
     },
-    matchStatus() {
+    status() {
       return this.$store.state.matchStatus
     },
     
@@ -63,14 +65,11 @@ export default {
       if (error) {
         console.error("cancel_match error", error)
       }
-      if (data) {
-        this.cancelled = true;
-        // this.$store.dispatch("setMatchStatus", "cancelled")
-      }
+  
     }
   },
   async beforeMount() {
-    const subscription = playersJoinedListener();
+    const subscription = matchListener();
   },
 };
 </script>

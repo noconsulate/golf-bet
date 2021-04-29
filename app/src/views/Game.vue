@@ -11,7 +11,7 @@
 <script>
 import Create from "../components/Game/Create"
 import WaitingRoom from "../components/Game/WaitingRoom"
-import {getMatch} from "../utilities/bridges/match"
+import {getMatch, matchListener} from "../utilities/bridges/match"
 import {getActiveMatch} from "../utilities/bridges/auth"
 export default {
   name: "game",
@@ -59,7 +59,6 @@ export default {
     if (matchId) {
       console.log('match found', matchId)
       const matchData = await getMatch(matchId)
-      this.$store.dispatch('setController', 'waitingForPlayers')
     }
   }
 }
