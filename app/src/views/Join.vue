@@ -3,6 +3,7 @@
     <div v-if="showNoUser">Please sign in to continue</div>
     <div v-if="showWrongMatch">You're already in a match</div>
     <PlayerJoin v-if="showPlayerJoin" />
+    <WaitingRoom v-if="showWaitingRoom" />
   </div>
 </template>
 
@@ -11,9 +12,10 @@ import { getUserDetails } from "../utilities/bridges/auth";
 import { getMatch } from "../utilities/bridges/match";
 
 import PlayerJoin from "../components/Game/PlayerJoin";
+import WaitingRoom from "../components/Game/WaitingRoom";
 export default {
   name: "join",
-  components: { PlayerJoin },
+  components: { PlayerJoin, WaitingRoom },
   data() {
     return {
       activeMatch: null,
@@ -37,6 +39,9 @@ export default {
       }
     },
     showPlayerJoin() {
+      return false;
+    },
+    showWaitingRoom() {
       return true;
     },
   },
@@ -58,6 +63,12 @@ export default {
     if (activeMatch && activeMatch != matchId) {
       console.log("in wrong match");
       this.inWrongMatch = true;
+    }
+
+    if (activeMatch && activeMatch == matchId) {
+      console.log("in this match");
+      this.$store.dispatch("setController", "waitingForPlayers");
+      const matchData = await getMatch(matchId)
     }
 
     if (!activeMatch) {

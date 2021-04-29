@@ -3,33 +3,25 @@
     <div class="text-center pt-4">Welcome {{ email }}</div>
     <div class="grid grid-cols-7 pt-4">
       <div class="col-span-3" />
-      <div class="col-span-3">
-        Number of Players
-      </div>
+      <div class="col-span-3">Number of Players</div>
       <div class="">
         {{ players }}
       </div>
       <div class="col-span-7 invisible">/</div>
       <div class="col-span-3" />
-      <div class="col-span-3">
-        Number of Points
-      </div>
+      <div class="col-span-3">Number of Points</div>
       <div class="">
         {{ points }}
       </div>
       <div class="col-span-7 invisible">/</div>
       <div class="col-span-3" />
-      <div class="col-span-3">
-        Number of Holes
-      </div>
+      <div class="col-span-3">Number of Holes</div>
       <div class="">
         {{ holes }}
       </div>
       <div class="col-span-7 invisible">/</div>
       <div class="col-span-3" />
-      <div class="col-span-3">
-        Scoring Style
-      </div>
+      <div class="col-span-3">Scoring Style</div>
       <div class="">
         {{ scoringStyle }}
       </div>
@@ -39,9 +31,9 @@
       There was an error joining the game.
     </div>
     <Share v-if="controller == 'waitingForPlayers'" />
-    <div class=" flex-grow"></div>
+    <div class="flex-grow"></div>
 
-    <div class=" h-40 object-none object-bottom">
+    <div class="h-40 object-none object-bottom">
       <Controller />
     </div>
   </div>
@@ -93,11 +85,14 @@ export default {
       return this.$store.state.matchStatus;
     },
   },
-  methods: {
- 
-  },
+  methods: {},
   created() {
-    this.$store.dispatch("setController", "waitingForPlayers");
+    console.log();
+    if (this.$store.getters.user.active_match) {
+      this.$store.dispatch("setController", "waitingForPlayers");
+    } else {
+      this.$store.dispatch("setController", "confirmGame");
+    }
   },
 };
 </script>
