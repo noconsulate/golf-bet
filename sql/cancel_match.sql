@@ -73,11 +73,13 @@ begin
                 where id = target;
             end loop;
             
-            end if;
-            
             update match
             set status = 'cancel'
             where id = match_id;
+            
+            end if;
+            
+          
          
          -- player is not creator
          else
@@ -125,3 +127,4 @@ begin
     	
     
 end;
+$$
