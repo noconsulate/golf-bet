@@ -1,92 +1,68 @@
 <template>
   <div>
-    <div v-if="!user">
-      No user, please sign in.
-    </div>
-    <div v-if="wrongMatch">
-      <p>You are already in a matchm, you can't join this one. :(</p>
-      <p>Join your match</p>
-      <a href="#" @click="forfeit" class="underline text-blue-400">Or Forfeit it</a>
-    </div>
-    <div v-else> 
-      <GameFull v-if="gameFull" />
-      <PlayerJoin v-else />
-    </div>
-    
-    
+    <div v-if="showNoUser">Please sign in to continue</div>
+    <div v-if="showWrongMatch">You're already in a match</div>
+    <PlayerJoin v-if="showPlayerJoin" />
   </div>
 </template>
 
 <script>
-import { getMatch, forfeitMatch } from "../utilities/bridges/match";
-import {getUserDetails} from "../utilities/bridges/auth"
+import { getUserDetails } from "../utilities/bridges/auth";
+import { getMatch } from "../utilities/bridges/match";
 
 import PlayerJoin from "../components/Game/PlayerJoin";
-import GameFull from "../components/Game/GameFull";
-import Gameplay from "../components/Game/Gameplay";
-import FinalScore from "../components/Game/FinalScore";
-
 export default {
   name: "join",
-  components: {
-    PlayerJoin,
-    GameFull,
-    Gameplay,
-    FinalScore,
-  },
-  computed: {
-    matchId() {
-      return this.$route.query.match;
-    },
-    sequence() {
-      return this.$store.state.sequence;
-    },
-    user() {
-      return this.$store.getters.user;
-    },
-   
-  },
+  components: { PlayerJoin },
   data() {
     return {
-      gameFull: false,
-      wrongMatch: false,
+      activeMatch: null,
+      matchId: "",
+      inWrongMatch: false,
     };
   },
-  methods: {
-    
-    async forfeit() {
-      const {data, error} = await forfeitMatch(this.users.active_score)
-      if (error) {
-        console.error('forfeit() error', error)
+  computed: {
+    showNoUser() {
+      if (this.$store.state.user == null) {
+        return true;
+      } else {
+        return false;
       }
-      if (data) {
-        this.wrongMatch = false;
+    },
+    showWrongMatch() {
+      if (this.inWrongMatch) {
+        return true;
+      } else {
+        return false;
       }
-    }
+    },
+    showPlayerJoin() {
+      return true;
+    },
   },
   async created() {
+    // ** make sure user isn't in a different match. this logic should probably be handled some other way. **
+    if (!this.$store.state.user.id) return;
 
-    // get user.activeMatch before anything else. this is bad design.
-    const userDetails = await getUserDetails(this.user.id)
-    const activeMatch = userDetails.data.active_match
-    console.log(userDetails, activeMatch)
+    const matchId = this.$route.query.match;
+    this.matchId = matchId;
 
-    if (activeMatch && activeMatch != this.$route.query.match){
-      console.log('wrong match');
-      this.wrongMatch = true;
+    const userDetails = await getUserDetails(this.$store.state.user.id);
+    console.log(userDetails.data);
+    if (userDetails.error) {
+      console.log(userDetails.error);
     }
 
-    // if already in match, send to waiting room
-    console.log(activeMatch && activeMatch, this.$route.query.match)
-    if (activeMatch && activeMatch == this.$route.query.match) {
-      this.$store.dispatch('setController', 'waitingForPlayers')
+    const activeMatch = userDetails.data.active_match;
+    console.log(activeMatch);
+    if (activeMatch && activeMatch != matchId) {
+      console.log("in wrong match");
+      this.inWrongMatch = true;
     }
 
-    if (this.user) {
-      const {data, error} = await getMatch(this.matchId);
-      console.log(data, error)
+    if (!activeMatch) {
+      const matchData = await getMatch(matchId);
     }
-
   },
 };
 </script>
