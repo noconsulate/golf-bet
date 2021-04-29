@@ -74,7 +74,7 @@ begin
             end loop;
             
             update match
-            set status = 'cancel'
+            set status = 'cancelled'
             where id = match_id;
             
             end if;
@@ -114,10 +114,6 @@ begin
             where id = match_id;
             
         end if;
-    
-    	update match
-        set status = 'cancelled'
-        where id = match_id;
     
     	success = true;
     
