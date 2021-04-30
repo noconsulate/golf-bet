@@ -37,6 +37,7 @@ export const matchListener = async function() {
     .on("UPDATE", (payload) => {
       console.log("change received", payload);
       store.dispatch("setMatchStatus", payload.new.status);
+      store.dispatch("setPlayersJoined", payload.new.players_joined);
       if (payload.new.players_joined >= payload.new.players) {
         console.log("all playesr joined. do something and unsubscribe!");
         store.dispatch("setAllPlayersJoined");
@@ -85,7 +86,14 @@ export async function getMatch(id) {
 
   console.log(data, error);
 
-  const { players, points, is_18_holes, is_classic_scoring, status } = data[0];
+  const {
+    players,
+    points,
+    is_18_holes,
+    is_classic_scoring,
+    status,
+    players_joined,
+  } = data[0];
 
   store.dispatch("setMatchId", id);
   store.dispatch("setPlayers", players);
@@ -93,6 +101,7 @@ export async function getMatch(id) {
   store.dispatch("setHoles", is_18_holes ? 18 : 9);
   store.dispatch("setScoringStyle", is_classic_scoring ? "classic" : "solo");
   store.dispatch("setMatchStatus", status);
+  store.dispatch("setPlayersJoined", players_joined);
   // put all match data in one object in store, get rid of the other ones
   store.dispatch("setMatch", data[0]);
 

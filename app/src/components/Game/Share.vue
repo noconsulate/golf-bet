@@ -41,9 +41,7 @@ export default {
 
     waitingForPlayers() {
       return (
-        this.$store.state.players -
-        this.$store.state.playersJoined.length +
-        " players"
+        this.$store.state.players - this.$store.state.playersJoined + " players"
       );
     },
     status() {

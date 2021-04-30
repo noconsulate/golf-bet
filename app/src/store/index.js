@@ -15,7 +15,7 @@ export default new Vuex.Store({
     scoringStyle: "solo",
     matchId: "",
     playerNum: "1",
-    playersJoined: [],
+    playersJoined: 0,
     allPlayersJoined: false,
     error: "",
     user: null,
