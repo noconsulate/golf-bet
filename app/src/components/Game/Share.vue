@@ -13,7 +13,12 @@
       </p>
     </div>
     <div class="flex justify-center">
-      <p v-if="status == 'cancelled'" class="text-red-500">MATCH CANCELLED</p>
+      <div v-if="status == 'cancelled'" class="flex flex-col">
+        <p class="text-red-500">MATCH CANCELLED</p>
+        <button class="btn w-24 self-center mt-4" @click="newMatch">
+          New Match
+        </button>
+      </div>
       <button v-if="status == 'waiting'" class="btn w-24" @click="cancelMatch">
         Cancel Match
       </button>
@@ -60,6 +65,9 @@ export default {
       if (error) {
         console.error("cancel_match error", error);
       }
+    },
+    async newMatch() {
+      this.$store.dispatch("resetMatchValues");
     },
   },
   async beforeMount() {

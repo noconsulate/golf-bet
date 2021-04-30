@@ -110,6 +110,14 @@ export default new Vuex.Store({
     UPDATE_MATCH(state, payload) {
       state.match = payload;
     },
+    RESET_MATCH_VALUES(state) {
+      state.matchId = "";
+      state.players = null;
+      state.points = null;
+      state.holes = null;
+      state.scoringStyle == null;
+      state.controller = "selectPlayers";
+    },
   },
   actions: {
     toggleNavOpen(context) {
@@ -171,6 +179,9 @@ export default new Vuex.Store({
     },
     setMatch(context, value) {
       context.commit("UPDATE_MATCH", value);
+    },
+    resetMatchValues(context) {
+      context.commit("RESET_MATCH_VALUES");
     },
   },
 
