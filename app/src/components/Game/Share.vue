@@ -9,7 +9,7 @@
         </button>
       </div>
       <p class="text-center text-xl">
-        Waiting for {{ waitingForPlayers }} to join.
+        Waiting for {{ PlayersLeftToJoin }} to join.
       </p>
     </div>
     <div class="flex justify-center">
@@ -39,10 +39,12 @@ export default {
       return `${this.url}/join?match=${this.matchId}`;
     },
 
-    waitingForPlayers() {
-      return (
-        this.$store.state.players - this.$store.state.playersJoined + " players"
-      );
+    PlayersLeftToJoin() {
+      const playersLeft =
+        this.$store.state.players - this.$store.state.playersJoined;
+      const appendage = playersLeft > 1 ? "players" : "player";
+
+      return String(playersLeft + " " + appendage);
     },
     status() {
       return this.$store.state.matchStatus;
