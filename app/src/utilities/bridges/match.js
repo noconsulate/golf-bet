@@ -31,7 +31,6 @@ export async function newMatch(
 
 export const matchListener = async function() {
   const id = store.state.matchId;
-  const players = store.state.players;
   const subscription = supabase
     .from(`match:id=eq.${id}`)
     .on("UPDATE", (payload) => {
@@ -55,6 +54,13 @@ export const matchListener = async function() {
   };
 
   return subscription;
+};
+
+export const unsubscribeListener = function(subscription) {
+  console.log(subscription);
+  supabase.removeSubscription(subscription);
+  let subs = supabase.getSubscriptions();
+  console.log("sub removed?", subs);
 };
 
 async function checkConfirmed(id) {

@@ -27,13 +27,18 @@
 </template>
 
 <script>
-import { matchListener, cancelMatch } from "../../utilities/bridges/match";
+import {
+  matchListener,
+  cancelMatch,
+  unsubscribeListener,
+} from "../../utilities/bridges/match";
 export default {
   name: "share",
   data() {
     return {
       url: this.$hostname,
       cancelled: false,
+      subscription: {},
     };
   },
   computed: {
@@ -61,9 +66,13 @@ export default {
     },
     async cancelMatch() {
       const { data, error } = await cancelMatch(this.$store.state.user.id);
-
-      if (error) {
-        console.error("cancel_match error", error);
+      console.log(data);
+      if (data.success == false) {
+        console.error("cancel error");
+      }
+      if (data.success == true) {
+        console.log("successful cancel");
+        unsubscribeListener(this.subscription);
       }
     },
     async newMatch() {
@@ -71,7 +80,8 @@ export default {
     },
   },
   async beforeMount() {
-    const subscription = matchListener();
+    const subscription = await matchListener();
+    this.subscription = subscription;
   },
 };
 </script>
