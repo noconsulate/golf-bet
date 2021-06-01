@@ -43,6 +43,11 @@ export default {
     },
   },
   async beforeMount() {
+    const user = this.$store.getters.user;
+    if (!user) {
+      console.log("no user");
+      return;
+    }
     const activeMatch = await getActiveMatch(this.$store.getters.user.id);
     if (activeMatch.error) {
       console.error("problem getting active match", activeMatch.error);
