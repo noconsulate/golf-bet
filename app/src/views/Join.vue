@@ -50,7 +50,7 @@ export default {
   },
   async created() {
     // ** make sure user isn't in a different match. this logic should probably be handled some other way. **
-    if (!this.$store.state.user.id) return;
+    if (!this.$store.state.user) return;
 
     const matchId = this.$route.query.match;
     this.matchId = matchId;
