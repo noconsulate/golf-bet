@@ -81,8 +81,11 @@ export default {
     },
   },
   async beforeMount() {
-    const subscription = await matchListener();
-    this.subscription = subscription;
+    if (!this.$store.getters.allPlayersJoined) {
+      console.log("@#$%@#$#@");
+      const subscription = await matchListener();
+      this.subscription = subscription;
+    }
   },
 };
 </script>

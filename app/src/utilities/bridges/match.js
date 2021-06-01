@@ -90,8 +90,6 @@ export async function getMatch(id) {
     .select("*")
     .match({ id: id });
 
-  console.log(data, error);
-
   const {
     players,
     points,

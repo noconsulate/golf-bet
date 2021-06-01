@@ -45,6 +45,13 @@ export default new Vuex.Store({
         return user;
       } else return null;
     },
+    allPlayersJoined: (state) => {
+      let result;
+      state.match.players_joined == state.match.players
+        ? (result = true)
+        : (result = false);
+      return result;
+    },
   },
   mutations: {
     UPDATE_NAV_OPEN(state) {

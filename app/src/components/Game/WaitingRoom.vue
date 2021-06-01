@@ -86,13 +86,10 @@ export default {
     },
   },
   methods: {},
-  created() {
-    // console.log();
-    // if (this.$store.getters.user.active_match) {
-    //   this.$store.dispatch("setController", "waitingForPlayers");
-    // } else {
-    //   this.$store.dispatch("setController", "confirmGame");
-    // }
+  beforeMount() {
+    const allPlayersJoined = this.$store.getters.allPlayersJoined;
+    console.log(allPlayersJoined);
+    if (allPlayersJoined) this.$router.push("/scorecard");
   },
 };
 </script>
