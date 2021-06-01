@@ -45,9 +45,7 @@ import { getMatch } from "./utilities/bridges/match";
 export default {
   name: "app",
   data() {
-    return {
-      // open: false,
-    };
+    return {};
   },
   computed: {
     open() {

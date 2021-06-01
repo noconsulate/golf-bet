@@ -73,6 +73,7 @@ export default {
       if (data.success == true) {
         console.log("successful cancel");
         unsubscribeListener(this.subscription);
+        this.$store.dispatch("resetMatchValues");
       }
     },
     async newMatch() {
