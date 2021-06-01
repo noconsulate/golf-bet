@@ -20,7 +20,7 @@ export default {
   computed: {
     showCreate() {
       if (this.$store.state.matchId == "" && !this.showNoUser) {
-        this.$store.dispatch("setController", "confirmGame");
+        // this.$store.dispatch("setController", "confirmGame");
         return true;
       } else {
         return false;
