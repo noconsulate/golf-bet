@@ -1,0 +1,3 @@
+next thing to do:
+
+** !! keep all the match data in store.match. store.matchId is ok. store.players, store.points, etc. should just be for UI.
