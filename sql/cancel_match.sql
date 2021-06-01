@@ -4,7 +4,6 @@ declare
 	match_id text;
     score_id uuid;
 	match_rec record;
---     participants uuid[];
     target uuid;
 begin
 	select active_match, active_score
@@ -12,16 +11,12 @@ begin
     into match_id, score_id
     where id = player_id;
     
---     select active_score
---     from users
---     into score_id
---     where id = player_id;
-
 	select players, players_joined, creator, participants, scores, points
     from match
     where id = match_id
     into match_rec;
     
+    -- game hasn't started
     if match_rec.players_joined < match_rec.players then
     	-- if player_id is creator, remove entire match
         if match_rec.creator = player_id then
@@ -115,6 +110,7 @@ begin
     
     	success = true;
     
+    -- game has started; can't cancel
     else
     	success = false;
     end if;
