@@ -43,7 +43,7 @@ export default {
   },
   computed: {
     matchId() {
-      return this.$store.state.matchId;
+      return this.$store.state.match.id;
     },
     link2Share() {
       return `${this.url}/join?match=${this.matchId}`;

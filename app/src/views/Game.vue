@@ -19,7 +19,7 @@ export default {
   },
   computed: {
     showCreate() {
-      if (this.$store.state.matchId == "" && !this.showNoUser) {
+      if (this.$store.state.match.id == "" && !this.showNoUser) {
         // this.$store.dispatch("setController", "confirmGame");
         return true;
       } else {
@@ -34,7 +34,7 @@ export default {
       }
     },
     showWaitingRoom() {
-      if (this.$store.state.matchId != "") {
+      if (this.$store.state.match.id != "") {
         this.$store.dispatch("setController", "waitingForPlayers");
         return true;
       } else {

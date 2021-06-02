@@ -1,7 +1,7 @@
 <template>
   <div class="w-full h-screen flex flex-col">
     <div class="flex-grow min-w-full overflow-auto">
-      <div class="grid grid-cols-8" v-if="loaded" >
+      <div class="grid grid-cols-8" v-if="loaded">
         <div :class="cell" class="col-span-4">Handicap</div>
         <div :class="cell"></div>
         <div :class="cell"></div>
@@ -17,77 +17,85 @@
         <div :class="cell">P3</div>
         <div :class="cell">P4</div>
 
-        <template v-for="index in holes" >
-            <div 
+        <template v-for="index in holes">
+          <div
             :class="[index == activeHole ? activeRow : cell]"
             @click="selectRow(index)"
             :key="String(index) + '0'"
-            >
-              {{index}}
-            </div>
-            <div 
+          >
+            {{ index }}
+          </div>
+          <div
             :class="[index == activeHole ? activeRow : cell]"
             :key="String(index) + '1'"
-            >
-              H
-            </div>
-            <div 
+          >
+            H
+          </div>
+          <div
             :class="[index == activeHole ? activeRow : cell]"
             :key="String(index) + '2'"
-            >
-              T
-            </div>
-            <div 
+          >
+            T
+          </div>
+          <div
             :class="[index == activeHole ? activeRow : cell]"
             :key="String(index) + '3'"
-            >
-              P
-            </div>
-            <div 
+          >
+            P
+          </div>
+          <div
             class="cursor-pointer"
-            :class="[index == activeHole ? activeRow : cell,
-            index == activeHole && activePlayer == 1 ? activeCell : cell]"
+            :class="[
+              index == activeHole ? activeRow : cell,
+              index == activeHole && activePlayer == 1 ? activeCell : cell,
+            ]"
             @click="selectCell(1, index)"
             :key="String(index) + '4'"
-            >
-              {{scores[0][index]}}
-            </div>
-            <div
+          >
+            {{ scores[0][index] }}
+          </div>
+          <div
             class="cursor-pointer"
-            :class="[index == activeHole ? activeRow : cell,
-            index == activeHole && activePlayer == 2 ? activeCell : cell]"
+            :class="[
+              index == activeHole ? activeRow : cell,
+              index == activeHole && activePlayer == 2 ? activeCell : cell,
+            ]"
             @click="selectCell(2, index)"
             :key="String(index) + '5'"
-            >
-              {{scores[1][index]}}
-            </div>
-            <div 
+          >
+            {{ scores[1][index] }}
+          </div>
+          <div
             class="cursor-pointer"
-            :class="[index == activeHole ? activeRow : cell,
-            index == activeHole && activePlayer == 3 ? activeCell : cell]"
+            :class="[
+              index == activeHole ? activeRow : cell,
+              index == activeHole && activePlayer == 3 ? activeCell : cell,
+            ]"
             @click="selectCell(3, index)"
             :key="String(index) + '6'"
-            >
-              {{scores[2][index]}}
-            </div>
-            <div 
+          >
+            {{ scores[2][index] }}
+          </div>
+          <div
             class="cursor-pointer"
-            :class="[index == activeHole ? activeRow : cell,
-            index == activeHole && activePlayer == 4 ? activeCell : cell]"
+            :class="[
+              index == activeHole ? activeRow : cell,
+              index == activeHole && activePlayer == 4 ? activeCell : cell,
+            ]"
             @click="selectCell(4, index)"
             :key="String(index) + '7'"
-            >
-              {{scores[3][index]}}
-            </div>
+          >
+            {{ scores[3][index] }}
+          </div>
         </template>
-          <div :class="cell">Total</div>
+        <div :class="cell">Total</div>
         <div :class="cell">TT</div>
         <div :class="cell">PP</div>
         <div :class="cell">RR</div>
-        <div :class="cell">{{totalScore(1)}}</div>
-        <div :class="cell">{{totalScore(2)}}</div>
-        <div :class="cell">{{totalScore(3)}}</div>
-        <div :class="cell">{{totalScore(4)}}</div>
+        <div :class="cell">{{ totalScore(1) }}</div>
+        <div :class="cell">{{ totalScore(2) }}</div>
+        <div :class="cell">{{ totalScore(3) }}</div>
+        <div :class="cell">{{ totalScore(4) }}</div>
       </div>
     </div>
     <div class="flex flex-col border space-y-2 object-none object-bottom">
@@ -100,7 +108,12 @@
       <div class="flex justify-center">Player {{ activePlayer }}</div>
       <div class="flex justify-center space-x-1">
         <button @click="prevPlayer" class="btn">prev. player</button>
-        <input ref="score" type="number" class="border w-12" v-model="scoreInput" />
+        <input
+          ref="score"
+          type="number"
+          class="border w-12"
+          v-model="scoreInput"
+        />
         <button @click="nextPlayer" class="btn">next player</button>
       </div>
     </div>
@@ -108,7 +121,11 @@
 </template>
 
 <script>
-import {getScores, updateScore, scoreListener} from '../../utilities/bridges/score'
+import {
+  getScores,
+  updateScore,
+  scoreListener,
+} from "../../utilities/bridges/score";
 export default {
   name: "solo4Players",
   data() {
@@ -123,25 +140,25 @@ export default {
       key: 1,
       loaded: false,
       scoreInput: 3,
-    }
+    };
   },
   computed: {
     matchId() {
-      return this.$store.state.matchId;
+      return this.$store.state.match.id;
     },
     scores() {
       return this.$store.getters.scores;
     },
     holes() {
-      return Number(this.$store.state.holes);
+      return Number(this.$store.state.match.holes);
     },
     players() {
-      return this.$store.state.players;
-    }
+      return this.$store.state.match.players;
+    },
   },
   methods: {
     selectRow(hole) {
-      this.activeHole = hole
+      this.activeHole = hole;
     },
     selectCell(player, hole) {
       this.activePlayer = player;
@@ -149,10 +166,10 @@ export default {
     },
     totalScore(player) {
       const index = player - 1;
-      let total = 0
+      let total = 0;
       for (let i = 1; i <= this.holes; i++) {
         let value = this.scores[index][i];
-        if (Number.isFinite(value)) total += value
+        if (Number.isFinite(value)) total += value;
       }
       return total;
     },
@@ -163,8 +180,8 @@ export default {
     },
     nextHole() {
       if (this.activeHole < this.holes) {
-        this.activeHole++
-      } 
+        this.activeHole++;
+      }
     },
     prevPlayer() {
       if (this.activePlayer > 1) {
@@ -178,7 +195,7 @@ export default {
     },
     nextPlayer() {
       if (this.activePlayer < this.players) {
-        this.activePlayer++
+        this.activePlayer++;
       } else {
         if (this.activeHole < this.holes) {
           this.activePlayer = 1;
@@ -187,24 +204,27 @@ export default {
       }
     },
     enterScore() {
-      console.log('enter')
-      updateScore(this.matchId, this.activePlayer, this.activeHole, this.scoreInput)
-    }
+      console.log("enter");
+      updateScore(
+        this.matchId,
+        this.activePlayer,
+        this.activeHole,
+        this.scoreInput
+      );
+    },
   },
   async beforeMount() {
-    const {data, error} = await getScores(this.matchId);
+    const { data, error } = await getScores(this.matchId);
     if (error) console.error(error);
-    if (data) this.$store.dispatch("initScores", data)
+    if (data) this.$store.dispatch("initScores", data);
     this.loaded = true;
 
     window.scores = data;
 
     const subscription = scoreListener();
-    
-  }
-}
+  },
+};
 </script>
 
 <style scoped>
-
 </style>

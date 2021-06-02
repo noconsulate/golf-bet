@@ -55,22 +55,22 @@ export default {
   },
   computed: {
     playerNum() {
-      return this.$store.state.playerNum;
+      return this.$store.state.match.playerNum;
     },
     players() {
-      return this.$store.state.players;
+      return this.$store.state.match.players;
     },
     points() {
-      return this.$store.state.points;
+      return this.$store.state.match.points;
     },
     holes() {
-      return this.$store.state.holes;
+      return this.$store.state.match.holes;
     },
     scoringStyle() {
-      return this.$store.state.scoringStyle;
+      return this.$store.state.match.scoringStyle;
     },
     matchId() {
-      return this.$store.state.matchId;
+      return this.$store.state.match.id;
     },
     controller() {
       return this.$store.state.controller;

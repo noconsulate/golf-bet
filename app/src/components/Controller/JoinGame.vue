@@ -3,9 +3,7 @@
     <div class="controller-title">Join Game</div>
 
     <div class="controller-panel">
-      <div class="controller-prev invisible">
-        prev
-      </div>
+      <div class="controller-prev invisible">prev</div>
       <div
         class="flex flex-grow cursor-pointer justify-center items-center text-4xl"
         @click="join"
@@ -18,7 +16,7 @@
 </template>
 
 <script>
-import {confirmJoin} from "../../utilities/bridges/match"
+import { confirmJoin } from "../../utilities/bridges/match";
 
 export default {
   name: "confirmGame",
@@ -32,42 +30,42 @@ export default {
       };
     },
     players() {
-      return this.$store.state.players;
+      return this.$store.state.match.players;
     },
     points() {
-      return this.$store.state.points;
+      return this.$store.state.match.points;
     },
     holes() {
-      return this.$store.state.holes;
+      return this.$store.state.match.holes;
     },
     scoringStyle() {
-      return this.$store.state.scoringStyle;
+      return this.$store.state.match.scoringStyle;
     },
     matchId() {
-      return this.$store.state.matchId;
+      return this.$store.state.match.matchId;
     },
     uuid() {
-      console.log(this.$store.state.user.id)
+      console.log(this.$store.state.user.id);
 
       return this.$store.state.user.id;
-    }
+    },
   },
   methods: {
     async join() {
-      const {data, error} = await confirmJoin(this.matchId, this.uuid)
+      const { data, error } = await confirmJoin(this.matchId, this.uuid);
       if (error) {
-        console.error("confirmJoin error", error)
+        console.error("confirmJoin error", error);
       }
       // game is full according to database
       if (data.score_id == 0) {
-        console.error('GAME FULL');
+        console.error("GAME FULL");
         return;
       }
 
       if (data.players_joined_out < this.players) {
-        console.log('game confirmed');
+        console.log("game confirmed");
         this.$store.dispatch("setController", "waitingForPlayers");
-        this.$store.dispatch("setPlayerNum", data.players_joined_out)
+        this.$store.dispatch("setPlayerNum", data.players_joined_out);
       } else {
         console.log("All aboard! All players here");
         this.$store.dispatch("setAllPlayersJoined");
