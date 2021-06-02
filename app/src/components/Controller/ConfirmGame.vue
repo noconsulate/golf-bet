@@ -31,23 +31,23 @@ export default {
       };
     },
     players() {
-      return this.$store.state.match.players;
+      return this.$store.state.players;
     },
     points() {
-      return this.$store.state.match.points;
+      return this.$store.state.points;
     },
     holes() {
-      return this.$store.state.match.holes;
+      return this.$store.state.holes;
     },
     is18Holes() {
-      if (this.$store.state.match.holes == 18) return true;
+      if (this.$store.state.holes == 18) return true;
       else return false;
     },
     scoringStyle() {
-      return this.$store.state.match.scoringStyle;
+      return this.$store.state.scoringStyle;
     },
     isClassicScoring() {
-      if (this.$store.state.match.scoringStyle == "classic") return true;
+      if (this.$store.state.scoringStyle == "classic") return true;
       else return false;
     },
     creator() {
