@@ -24,6 +24,8 @@ export async function newMatch(
     creator,
   });
 
+  console.log(data);
+
   store.dispatch("setMatchStatus", "waiting");
 
   return { data, error };

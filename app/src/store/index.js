@@ -47,6 +47,7 @@ export default new Vuex.Store({
     },
     allPlayersJoined: (state) => {
       let result;
+      console.log(state.match.players_joined, state.match.players);
       state.match.players_joined == state.match.players
         ? (result = true)
         : (result = false);

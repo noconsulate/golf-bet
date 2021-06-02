@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import { newMatch } from "../../utilities/bridges/match";
+import { newMatch, getMatch } from "../../utilities/bridges/match";
 
 export default {
   name: "confirmGame",
@@ -81,10 +81,13 @@ export default {
         console.error(error);
         return;
       } else {
-        this.$store.dispatch("setPlayerNum", 1);
-        this.$store.dispatch("setMatchStatus", "waiting");
-        this.$store.dispatch("setMatchId", data.match_id);
-        this.$store.dispatch("setController", "waitingForPlayers");
+        const match = await getMatch(data.match_id);
+        // console.log(match);
+
+        // this.$store.dispatch("setPlayerNum", 1);
+        // this.$store.dispatch("setMatchStatus", "waiting");
+        // this.$store.dispatch("setMatchId", data.match_id);
+        // this.$store.dispatch("setController", "waitingForPlayers");
         // this.$router.push(`/join?match=${data.match_id}`)
       }
     },
