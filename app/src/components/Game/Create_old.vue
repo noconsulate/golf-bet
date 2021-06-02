@@ -24,7 +24,7 @@
       </div>
       <div class="col-span-7 invisible">/</div>
 
-      <div class="col-span-3 " />
+      <div class="col-span-3" />
       <div
         :class="[group, controller == 'selectHoles' ? activeGroup : null]"
         @click="focus('selectHoles')"
@@ -48,13 +48,13 @@
     </div>
 
     <div class="py-8">
-      <div v-if="controller == 'confirmGame'" class=" flex flex-col">
+      <div v-if="controller == 'confirmGame'" class="flex flex-col">
         <p class="text-2xl flex justify-center">Let's go!!</p>
       </div>
       <Share v-if="controller == 'waitingForPlayers'" />
     </div>
-    <div class=" flex-grow"></div>
-    <div class=" h-40 object-none object-bottom">
+    <div class="flex-grow"></div>
+    <div class="h-40 object-none object-bottom">
       <Controller />
     </div>
   </div>
@@ -83,16 +83,16 @@ export default {
       return this.$store.state.controller;
     },
     players() {
-      return this.$store.state.players;
+      return this.$store.state.match.players;
     },
     holes() {
-      return this.$store.state.holes;
+      return this.$store.state.match.holes;
     },
     points() {
-      return this.$store.state.points;
+      return this.$store.state.match.points;
     },
     scoringStyle() {
-      return this.$store.state.scoringStyle;
+      return this.$store.state.match.scoringStyle;
     },
   },
   methods: {

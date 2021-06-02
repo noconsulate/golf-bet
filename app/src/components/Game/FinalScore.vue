@@ -63,7 +63,7 @@ export default {
   name: "finalScore",
   computed: {
     holes() {
-      return Number(this.$store.state.holes);
+      return Number(this.$store.state.match.holes);
     },
     myScore() {
       return this.$store.state.myScore;

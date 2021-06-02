@@ -23,12 +23,14 @@ export default new Vuex.Store({
     scores: [],
     matchStatus: "",
     // I should put all match stuff here and leave the specific ones for the forms in Create.vue's state
-    match: {},
+    match: {
+      id: "",
+    },
   },
   getters: {
     scores: (state) => {
       let scores = [];
-      const holes = Number(state.holes);
+      const holes = Number(state.match.holes);
       state.scores.map((item) => {
         let scoreObj = { player_num: item.player_num };
         for (let i = 1; i <= holes; i++) {
@@ -62,13 +64,13 @@ export default new Vuex.Store({
       state.controller = payload;
     },
     UPDATE_PLAYERS(state, payload) {
-      state.players = payload;
+      state.match.players = payload;
     },
     UPDATE_POINTS(state, payload) {
-      state.points = payload;
+      state.match.points = payload;
     },
     UPDATE_HOLES(state, payload) {
-      state.holes = payload;
+      state.match.holes = payload;
     },
     INITIALIZE_SCORES(state, payload) {
       window.payload = payload;
@@ -78,9 +80,9 @@ export default new Vuex.Store({
       });
     },
     // RESET_VALUES(state) {
-    //   state.players = "";
-    //   state.points = "";
-    //   state.holes = "";
+    //   state.match.players = "";
+    //   state.match.points = "";
+    //   state.match.holes = "";
     //   state.scores = [];
     // },
     UPDATE_MATCH_ID(state, payload) {
@@ -90,13 +92,13 @@ export default new Vuex.Store({
       state.playerNum = payload;
     },
     UPDATE_PLAYERS_JOINED(state, payload) {
-      state.playersJoined = payload;
+      state.match.playersJoined = payload;
     },
     UPDATE_ALL_PLAYERS_JOINED(state) {
       state.allPlayersJoined = true;
     },
     UPDATE_SCORING_STYLE(state, payload) {
-      state.scoringStyle = payload;
+      state.match.scoringStyle = payload;
     },
     UPDATE_ERROR(state, payload) {
       state.error = payload;
@@ -121,10 +123,10 @@ export default new Vuex.Store({
     RESET_MATCH_VALUES(state) {
       state.match = {};
       // state.matchId = "";
-      // state.players = null;
-      // state.points = null;
-      // state.holes = null;
-      // state.scoringStyle == null;
+      // state.match.players = null;
+      // state.match.points = null;
+      // state.match.holes = null;
+      // state.match.scoringStyle == null;
       state.controller = "selectPlayers";
     },
   },

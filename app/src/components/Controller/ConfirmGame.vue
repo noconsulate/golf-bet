@@ -23,31 +23,31 @@ export default {
   computed: {
     matchInfo() {
       return {
-        players: this.$store.state.players,
-        points: this.$store.state.points,
-        holes: this.$store.state.holes,
-        scoringStyle: this.$store.state.scoringStyle,
+        players: this.$store.state.match.players,
+        points: this.$store.state.match.points,
+        holes: this.$store.state.match.holes,
+        scoringStyle: this.$store.state.match.scoringStyle,
         owner: this.$store.state.user.id,
       };
     },
     players() {
-      return this.$store.state.players;
+      return this.$store.state.match.players;
     },
     points() {
-      return this.$store.state.points;
+      return this.$store.state.match.points;
     },
     holes() {
-      return this.$store.state.holes;
+      return this.$store.state.match.holes;
     },
     is18Holes() {
-      if (this.$store.state.holes == 18) return true;
+      if (this.$store.state.match.holes == 18) return true;
       else return false;
     },
     scoringStyle() {
-      return this.$store.state.scoringStyle;
+      return this.$store.state.match.scoringStyle;
     },
     isClassicScoring() {
-      if (this.$store.state.scoringStyle == "classic") return true;
+      if (this.$store.state.match.scoringStyle == "classic") return true;
       else return false;
     },
     creator() {

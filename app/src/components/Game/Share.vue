@@ -51,7 +51,7 @@ export default {
 
     PlayersLeftToJoin() {
       const playersLeft =
-        this.$store.state.players - this.$store.state.playersJoined;
+        this.$store.state.match.players - this.$store.state.match.playersJoined;
       const appendage = playersLeft > 1 ? "players" : "player";
 
       return String(playersLeft + " " + appendage);

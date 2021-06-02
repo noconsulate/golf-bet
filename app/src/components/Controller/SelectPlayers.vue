@@ -35,12 +35,8 @@
           4
         </div>
       </div>
-      <div v-if="isReady" class="controller-next-ready" @click="next">
-        next
-      </div>
-      <div v-else class="controller-next-notReady" @click="next">
-        next
-      </div>
+      <div v-if="isReady" class="controller-next-ready" @click="next">next</div>
+      <div v-else class="controller-next-notReady" @click="next">next</div>
     </div>
   </div>
 </template>
@@ -55,7 +51,7 @@ export default {
   },
   computed: {
     players() {
-      return this.$store.state.players;
+      return this.$store.state.match.players;
     },
     isReady() {
       return this.players != "";

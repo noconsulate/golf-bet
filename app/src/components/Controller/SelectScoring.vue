@@ -2,9 +2,7 @@
   <div class="flex flex-col">
     <div class="controller-title">Select Scoring Style</div>
     <div class="controller-panel">
-      <div class="controller-prev" @click="prev">
-        prev
-      </div>
+      <div class="controller-prev" @click="prev">prev</div>
       <div class="flex-grow flex flex-col">
         <div
           :class="[scoringStyle == 'solo' ? activeClass : null, selectorClass]"
@@ -22,9 +20,7 @@
           Classic style
         </div>
       </div>
-      <div v-if="isReady" class="controller-next-ready" @click="next">
-        next
-      </div>
+      <div v-if="isReady" class="controller-next-ready" @click="next">next</div>
       <div v-else class="controller-next-notReady">next</div>
     </div>
   </div>
@@ -42,14 +38,14 @@ export default {
   },
   computed: {
     scoringStyle() {
-      return this.$store.state.scoringStyle;
+      return this.$store.state.match.scoringStyle;
     },
     isReady() {
       return (
-        this.$store.state.players != "" &&
-        this.$store.state.points != "" &&
-        this.$store.state.holes != "" &&
-        this.$store.state.scoringStyle != ""
+        this.$store.state.match.players != "" &&
+        this.$store.state.match.points != "" &&
+        this.$store.state.match.holes != "" &&
+        this.$store.state.match.scoringStyle != ""
       );
     },
   },

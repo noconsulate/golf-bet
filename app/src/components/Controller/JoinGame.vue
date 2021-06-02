@@ -23,10 +23,10 @@ export default {
   computed: {
     gameInfo() {
       return {
-        players: this.$store.state.players,
-        points: this.$store.state.points,
-        holes: this.$store.state.holes,
-        scoringStyle: this.$store.state.scoringStyle,
+        players: this.$store.state.match.players,
+        points: this.$store.state.match.points,
+        holes: this.$store.state.match.holes,
+        scoringStyle: this.$store.state.match.scoringStyle,
       };
     },
     players() {

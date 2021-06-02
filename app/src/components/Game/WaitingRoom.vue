@@ -86,10 +86,6 @@ export default {
     },
   },
   methods: {},
-  beforeMount() {
-    const allPlayersJoined = this.$store.getters.allPlayersJoined;
-    console.log(allPlayersJoined);
-    if (allPlayersJoined) this.$router.push("/scorecard");
-  },
+  beforeMount() {},
 };
 </script>

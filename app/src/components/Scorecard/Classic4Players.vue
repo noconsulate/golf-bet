@@ -135,10 +135,10 @@ export default {
       console.log();
     },
     holes() {
-      return Number(this.$store.state.holes);
+      return Number(this.$store.state.match.holes);
     },
     players() {
-      return this.$store.state.players;
+      return this.$store.state.match.players;
     },
     gameId() {
       return this.$store.state.gameId;
@@ -178,13 +178,13 @@ export default {
           316,
           118,
         ],
-        teesTotal: function() {
+        teesTotal: function () {
           let total = 0;
           this.tees.map((tee) => (total += tee));
           return total;
         },
         pars: [4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4],
-        parsTotal: function() {
+        parsTotal: function () {
           let total = 0;
           this.pars.map((par) => (total += par));
           return total;
@@ -209,7 +209,7 @@ export default {
           12,
           12,
         ],
-        ratingsTotal: function() {
+        ratingsTotal: function () {
           let total = 0;
           this.ratings.map((rating) => (total += rating));
           return total;
@@ -219,28 +219,28 @@ export default {
     totalScores() {
       return {
         scores: this.scores,
-        player1: function() {
+        player1: function () {
           let total = 0;
           this.scores.map((hole) => {
             total += Number(hole[0]);
           });
           return total;
         },
-        player2: function() {
+        player2: function () {
           let total = 0;
           this.scores.map((hole) => {
             total += Number(hole[1]);
           });
           return total;
         },
-        player3: function() {
+        player3: function () {
           let total = 0;
           this.scores.map((hole) => {
             total += Number(hole[2]);
           });
           return total;
         },
-        player4: function() {
+        player4: function () {
           let total = 0;
           this.scores.map((hole) => {
             total += Number(hole[3]);
@@ -324,10 +324,10 @@ export default {
     },
   },
   watch: {
-    activePlayer: function(neww, old) {
+    activePlayer: function (neww, old) {
       this.score = this.scoresObj[this.activeHole][this.activePlayer];
     },
-    activeHole: function(neww, old) {
+    activeHole: function (neww, old) {
       this.score = this.scoresObj[this.activeHole][this.activePlayer];
     },
   },

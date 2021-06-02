@@ -2,15 +2,11 @@
   <div class="flex flex-col">
     <div class="controller-title">Select Number of Points</div>
     <div class="controller-panel">
-      <div class="controller-prev" @click="prev">
-        prev
-      </div>
+      <div class="controller-prev" @click="prev">prev</div>
       <div class="flex-grow flex flex-wrap justify-center content-center">
         <input type="number" v-model="points" class="h-8 w-16 border" />
       </div>
-      <div v-if="isReady" class="controller-next-ready" @click="next">
-        next
-      </div>
+      <div v-if="isReady" class="controller-next-ready" @click="next">next</div>
       <div v-else class="controller-next-notReady">next</div>
     </div>
   </div>
@@ -27,7 +23,7 @@ export default {
   },
   computed: {
     isReady() {
-      return this.$store.state.players != "" && this.points != "";
+      return this.$store.state.match.players != "" && this.points != "";
     },
   },
   methods: {
@@ -44,7 +40,7 @@ export default {
     },
   },
   created() {
-    this.points = this.$store.state.points;
+    this.points = this.$store.state.match.points;
   },
 };
 </script>
