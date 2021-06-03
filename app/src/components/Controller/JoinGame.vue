@@ -19,7 +19,7 @@
 import { confirmJoin } from "../../utilities/bridges/match";
 
 export default {
-  name: "confirmGame",
+  name: "joinGame",
   computed: {
     gameInfo() {
       return {
@@ -42,7 +42,7 @@ export default {
       return this.$store.state.match.scoringStyle;
     },
     matchId() {
-      return this.$store.state.match.matchId;
+      return this.$store.state.match.id;
     },
     uuid() {
       console.log(this.$store.state.user.id);
