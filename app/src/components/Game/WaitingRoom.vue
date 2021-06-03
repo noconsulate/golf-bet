@@ -64,10 +64,10 @@ export default {
       return this.$store.state.match.points;
     },
     holes() {
-      return this.$store.state.match.holes;
+      return this.$store.getters.match.holes;
     },
     scoringStyle() {
-      return this.$store.state.match.scoringStyle;
+      return this.$store.getters.match.scoringStyle;
     },
     matchId() {
       return this.$store.state.match.id;

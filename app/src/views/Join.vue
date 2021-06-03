@@ -62,7 +62,7 @@ export default {
     }
 
     const activeMatch = userDetails.data.active_match;
-    console.log(activeMatch);
+    console.log("active match: " + activeMatch);
     if (activeMatch && activeMatch != matchId) {
       console.log("in wrong match");
       this.inWrongMatch = true;
