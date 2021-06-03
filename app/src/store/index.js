@@ -107,7 +107,7 @@ export default new Vuex.Store({
       state.playerNum = payload;
     },
     UPDATE_PLAYERS_JOINED(state, payload) {
-      state.match.playersJoined = payload;
+      state.match.players_joined = payload;
     },
     UPDATE_ALL_PLAYERS_JOINED(state) {
       state.allPlayersJoined = true;

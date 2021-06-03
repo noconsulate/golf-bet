@@ -82,12 +82,6 @@ export default {
       this.$store.dispatch("resetMatchValues");
     },
   },
-  async beforeMount() {
-    if (!this.$store.getters.allPlayersJoined) {
-      console.log("@#$%@#$#@");
-      const subscription = await matchListener();
-      this.subscription = subscription;
-    }
-  },
+  async beforeMount() {},
 };
 </script>
