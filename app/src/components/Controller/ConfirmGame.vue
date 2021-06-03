@@ -16,7 +16,11 @@
 </template>
 
 <script>
-import { newMatch, getMatch } from "../../utilities/bridges/match";
+import {
+  newMatch,
+  getMatch,
+  matchListener,
+} from "../../utilities/bridges/match";
 
 export default {
   name: "confirmGame",
@@ -83,6 +87,7 @@ export default {
         return;
       } else {
         const match = await getMatch(data.match_id);
+        matchListener();
         // console.log(match);
 
         // this.$store.dispatch("setPlayerNum", 1);

@@ -45,6 +45,9 @@ export const matchListener = async function() {
         store.dispatch("setAllPlayersJoined");
         unsubscribe();
       }
+      if (payload.new.status == "cancelled") {
+        unsubscribe();
+      }
     })
     .subscribe();
   console.log("subscribed to matchListener for match_id: " + id);

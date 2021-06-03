@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import { confirmJoin } from "../../utilities/bridges/match";
+import { confirmJoin, matchListener } from "../../utilities/bridges/match";
 
 export default {
   name: "joinGame",
@@ -67,6 +67,7 @@ export default {
         this.$store.dispatch("setController", "waitingForPlayers");
         this.$store.dispatch("setPlayerNum", data.players_joined_out);
         this.$store.dispatch("setPlayersJoined", data.players_joined_out);
+        matchListener();
       } else {
         console.log("All aboard! All players here");
         this.$store.dispatch("setAllPlayersJoined");
