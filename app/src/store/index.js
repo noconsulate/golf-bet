@@ -131,11 +131,11 @@ export default new Vuex.Store({
     },
     RESET_MATCH_VALUES(state) {
       state.match = {};
-      // state.matchId = "";
-      // state.match.players = null;
-      // state.match.points = null;
-      // state.match.holes = null;
-      // state.match.scoringStyle == null;
+      state.matchId = "";
+      state.players = null;
+      state.points = null;
+      state.holes = null;
+      state.scoringStyle == null;
       state.controller = "selectPlayers";
     },
   },

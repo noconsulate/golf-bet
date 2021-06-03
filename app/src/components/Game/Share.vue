@@ -58,7 +58,7 @@ export default {
       return String(playersLeft + " " + appendage);
     },
     status() {
-      return this.$store.state.matchStatus;
+      return this.$store.state.match.status;
     },
   },
   methods: {
@@ -74,11 +74,11 @@ export default {
       if (data.success == true) {
         console.log("successful cancel");
         unsubscribeListener(this.subscription);
-        this.$store.dispatch("resetMatchValues");
+        // this.$store.dispatch("resetMatchValues");
       }
     },
     async newMatch() {
-      this.$store.dispatch("resetMatchValues");
+      this.$store.dispatch("resetInputValues");
     },
   },
   async beforeMount() {

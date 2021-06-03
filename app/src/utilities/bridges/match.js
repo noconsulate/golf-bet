@@ -37,8 +37,9 @@ export const matchListener = async function() {
     .from(`match:id=eq.${id}`)
     .on("UPDATE", (payload) => {
       console.log("change received", payload);
-      store.dispatch("setMatchStatus", payload.new.status);
-      store.dispatch("setPlayersJoined", payload.new.players_joined);
+      store.dispatch("setMatch", payload.new);
+      // store.dispatch("setMatchStatus", payload.new.status);
+      // store.dispatch("setPlayersJoined", payload.new.players_joined);
       if (payload.new.players_joined >= payload.new.players) {
         console.log("all playesr joined. do something and unsubscribe!");
         store.dispatch("setAllPlayersJoined");
@@ -50,16 +51,17 @@ export const matchListener = async function() {
   console.log(subscription);
 
   const unsubscribe = function() {
+    console.log("unsubscribe in mathcListener");
     supabase.removeSubscription(subscription);
     let subs = supabase.getSubscriptions();
-    console.log("sub removed?", subs);
+    console.log("sub removed?", subs, "subscription: " + subscription);
   };
 
   return subscription;
 };
 
 export const unsubscribeListener = function(subscription) {
-  console.log(subscription);
+  console.log("unsubscribe function");
   supabase.removeSubscription(subscription);
   let subs = supabase.getSubscriptions();
   console.log("sub removed?", subs);
