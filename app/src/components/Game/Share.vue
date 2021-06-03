@@ -79,6 +79,7 @@ export default {
     },
     async newMatch() {
       this.$store.dispatch("resetInputValues");
+      this.$store.dispatch("resetMatchValues");
     },
   },
   async beforeMount() {

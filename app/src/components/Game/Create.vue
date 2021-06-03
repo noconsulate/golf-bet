@@ -83,16 +83,16 @@ export default {
       return this.$store.state.controller;
     },
     players() {
-      return this.$store.state.players;
+      return this.$store.state.input.players;
     },
     holes() {
-      return this.$store.state.holes;
+      return this.$store.state.input.holes;
     },
     points() {
-      return this.$store.state.points;
+      return this.$store.state.input.points;
     },
     scoringStyle() {
-      return this.$store.state.scoringStyle;
+      return this.$store.state.input.scoringStyle;
     },
   },
   methods: {

@@ -9,10 +9,16 @@ export default new Vuex.Store({
   state: {
     navOpen: false,
     controller: "",
-    players: "4",
-    points: "20",
-    holes: "18",
-    scoringStyle: "solo",
+    input: {
+      players: "4",
+      points: "20",
+      holes: "18",
+      scoringStyle: "solo",
+    },
+    // players: "4",
+    // points: "20",
+    // holes: "18",
+    // scoringStyle: "solo",
     matchId: "",
     playerNum: "1",
     playersJoined: 0,
@@ -130,13 +136,15 @@ export default new Vuex.Store({
       state.match = payload;
     },
     RESET_MATCH_VALUES(state) {
-      state.match = {};
-      state.matchId = "";
-      state.players = null;
-      state.points = null;
-      state.holes = null;
-      state.scoringStyle == null;
+      state.match = { id: "" };
+      // state.matchId = "";
       state.controller = "selectPlayers";
+    },
+    RESET_INPUT_VALUES(state) {
+      state.input.players = "";
+      state.input.points = "";
+      state.input.holes = "";
+      state.input.scoringStyle = "";
     },
   },
   actions: {
@@ -202,6 +210,9 @@ export default new Vuex.Store({
     },
     resetMatchValues(context) {
       context.commit("RESET_MATCH_VALUES");
+    },
+    resetInputValues(context) {
+      context.commit("RESET_INPUT_VALUES");
     },
   },
 

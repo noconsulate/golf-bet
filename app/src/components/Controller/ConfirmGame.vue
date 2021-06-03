@@ -21,6 +21,7 @@ import { newMatch, getMatch } from "../../utilities/bridges/match";
 export default {
   name: "confirmGame",
   computed: {
+    // is this nessessessaryy?
     matchInfo() {
       return {
         players: this.$store.state.match.players,
@@ -31,20 +32,20 @@ export default {
       };
     },
     players() {
-      return this.$store.state.players;
+      return this.$store.state.input.players;
     },
     points() {
-      return this.$store.state.points;
+      return this.$store.state.input.points;
     },
     holes() {
-      return this.$store.state.holes;
+      return this.$store.state.input.holes;
     },
     is18Holes() {
-      if (this.$store.state.holes == 18) return true;
+      if (this.$store.state.input.holes == 18) return true;
       else return false;
     },
     scoringStyle() {
-      return this.$store.state.scoringStyle;
+      return this.$store.state.input.scoringStyle;
     },
     isClassicScoring() {
       if (this.$store.state.scoringStyle == "classic") return true;
