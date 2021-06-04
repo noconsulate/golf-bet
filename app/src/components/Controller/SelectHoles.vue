@@ -35,7 +35,7 @@ export default {
   },
   computed: {
     holes() {
-      return this.$store.state.match.holes;
+      return this.$store.state.input.holes;
     },
     isReady() {
       return (

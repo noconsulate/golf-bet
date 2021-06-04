@@ -51,7 +51,7 @@ export default {
   },
   computed: {
     players() {
-      return this.$store.state.match.players;
+      return this.$store.state.input.players;
     },
     isReady() {
       return this.players != "";

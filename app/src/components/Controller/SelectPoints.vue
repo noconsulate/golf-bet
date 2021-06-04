@@ -40,7 +40,7 @@ export default {
     },
   },
   created() {
-    this.points = this.$store.state.match.points;
+    this.points = this.$store.state.input.points;
   },
 };
 </script>

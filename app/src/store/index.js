@@ -80,13 +80,13 @@ export default new Vuex.Store({
       state.controller = payload;
     },
     UPDATE_PLAYERS(state, payload) {
-      state.match.players = payload;
+      state.input.players = payload;
     },
     UPDATE_POINTS(state, payload) {
-      state.match.points = payload;
+      state.input.points = payload;
     },
     UPDATE_HOLES(state, payload) {
-      state.match.holes = payload;
+      state.inpout.holes = payload;
     },
     INITIALIZE_SCORES(state, payload) {
       window.payload = payload;
@@ -114,7 +114,7 @@ export default new Vuex.Store({
       state.allPlayersJoined = true;
     },
     UPDATE_SCORING_STYLE(state, payload) {
-      state.match.scoringStyle = payload;
+      state.input.scoringStyle = payload;
     },
     UPDATE_ERROR(state, payload) {
       state.error = payload;
