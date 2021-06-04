@@ -76,6 +76,7 @@ export default {
         unsubscribeListener(this.subscription);
         // this.$store.dispatch("resetMatchValues");
 
+        // if not creator, reset view
         if (this.$store.state.playerNum > 1) {
           this.$store.dispatch("setController", "joinGame");
         }

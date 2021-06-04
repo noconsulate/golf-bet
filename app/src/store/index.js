@@ -31,6 +31,7 @@ export default new Vuex.Store({
     // I should put all match stuff here and leave the specific ones for the forms in Create.vue's state
     match: {
       id: "",
+      status: "",
     },
   },
   getters: {
@@ -130,7 +131,7 @@ export default new Vuex.Store({
       state.scores = [...state.scores];
     },
     UPDATE_MATCH_STATUS(state, payload) {
-      state.matchStatus = payload;
+      state.match.status = payload;
     },
     UPDATE_MATCH(state, payload) {
       state.match = payload;
