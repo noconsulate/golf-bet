@@ -75,6 +75,10 @@ export default {
         console.log("successful cancel");
         unsubscribeListener(this.subscription);
         // this.$store.dispatch("resetMatchValues");
+
+        if (this.$store.state.playerNum > 1) {
+          this.$store.dispatch("setController", "joinGame");
+        }
       }
     },
     async newMatch() {
