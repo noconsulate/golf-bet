@@ -2,6 +2,7 @@
   <div v-if="matchStatus == 'waiting'">
     <p>You are waiting for match #{{ activeMatch }} to begin</p>
     <button v-if="isCreator" class="btn" @click="cancel">Cancel Match</button>
+    <button v-if="!isCreator" class="btn" @click="cancel">Leave Match</button>
   </div>
 </template>
 
@@ -29,7 +30,6 @@ export default {
       }
       if (data) {
         console.log("match cancelled", data);
-        // this.$store.dispatch()
       }
     },
   },

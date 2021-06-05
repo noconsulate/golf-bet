@@ -52,6 +52,7 @@ export const matchListener = async function() {
     .subscribe();
   console.log("subscribed to matchListener for match_id: " + id);
   console.log(subscription);
+  store.dispatch("setSubscription", subscription);
 
   const unsubscribe = function() {
     console.log("unsubscribe in mathcListener");
@@ -144,6 +145,9 @@ export async function cancelMatch(player_id) {
   const { data, error } = await supabase.rpc("cancel_match", {
     player_id,
   });
+
+  if (data.success == true) {
+  }
 
   return { data, error };
 }

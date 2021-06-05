@@ -82,6 +82,7 @@ export default {
         this.$store.dispatch("setController", "waitingForPlayers");
         this.$store.dispatch("setPlayerNum", data.players_joined_out);
         this.$store.dispatch("setPlayersJoined", data.players_joined_out);
+        this.$store.dispatch("setActiveMatch", this.matchId);
         matchListener();
       } else {
         console.log("All aboard! All players here");

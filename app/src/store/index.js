@@ -147,6 +147,12 @@ export default new Vuex.Store({
       state.input.holes = "";
       state.input.scoringStyle = "";
     },
+    UPDATE_ACTIVE_MATCH(state, payload) {
+      state.userDetails.active_match = payload;
+    },
+    UPDATE_SUBSCRIPTION(state, payload) {
+      state.subscription = payload;
+    },
   },
   actions: {
     toggleNavOpen(context) {
@@ -214,6 +220,12 @@ export default new Vuex.Store({
     },
     resetInputValues(context) {
       context.commit("RESET_INPUT_VALUES");
+    },
+    setActiveMatch(context, value) {
+      context.commit("UPDATE_ACTIVE_MATCH", value);
+    },
+    setSubscription(context, value) {
+      context.commit("UPDATE_SUBSCRIPTION", value);
     },
   },
 
