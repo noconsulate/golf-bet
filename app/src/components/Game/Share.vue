@@ -19,8 +19,19 @@
           New Match
         </button>
       </div>
-      <button v-if="status == 'waiting'" class="btn w-24" @click="cancelMatch">
+      <button
+        v-if="status == 'waiting' && isCreator"
+        class="btn w-24"
+        @click="cancelMatch"
+      >
         Cancel Match
+      </button>
+      <button
+        v-if="status == 'waiting' && !isCreator"
+        class="btn w-24"
+        @click="cancelMatch"
+      >
+        Leave Match
       </button>
     </div>
   </div>
@@ -38,6 +49,9 @@ export default {
     };
   },
   computed: {
+    isCreator() {
+      return this.$store.getters.user.id == this.$store.state.match.creator;
+    },
     url() {
       return process.env.VUE_APP_HOSTNAME;
     },
