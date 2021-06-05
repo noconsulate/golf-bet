@@ -90,6 +90,8 @@ export default {
       this.$store.dispatch("resetMatchValues");
     },
   },
-  async beforeMount() {},
+  async created() {
+    this.$store.dispatch("setController", "waitingForPlayers");
+  },
 };
 </script>

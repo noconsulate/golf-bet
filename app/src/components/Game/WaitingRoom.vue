@@ -30,7 +30,7 @@
     <div v-if="error == 'joinError'" class="text-red-600 text-center">
       There was an error joining the game.
     </div>
-    <Share v-if="controller == 'waitingForPlayers'" />
+    <Share v-if="controller == 'waitingForPlayers' || status == 'cancelled'" />
     <div class="flex-grow"></div>
 
     <div class="h-40 object-none object-bottom">
@@ -82,7 +82,7 @@ export default {
       return this.$store.state.user.email;
     },
     status() {
-      return this.$store.state.matchStatus;
+      return this.$store.state.match.status;
     },
   },
   methods: {},
