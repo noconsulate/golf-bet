@@ -5,9 +5,9 @@ import store from "./store";
 import "./index.css";
 
 Vue.config.productionTip = false;
-Vue.prototype.$hostname = Vue.config.productionTip
-  ? "https://golf-bets.web.app/"
-  : "http://localhost:8080";
+// Vue.prototype.$hostname = Vue.config.productionTip
+//   ? "https://golf-bets.web.app/"
+//   : "http://localhost:8080";
 
 new Vue({
   router,

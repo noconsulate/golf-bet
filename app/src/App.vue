@@ -96,9 +96,9 @@ export default {
     }
 
     //just leaving this here to remind me i have this global property
-    console.log(this.$hostname);
-    console.log(process.env.VUE_APP_HOSTNAME);
-    console.log(process.env.NODE_ENV);
+    // console.log(this.$hostname);
+    // console.log(process.env.VUE_APP_HOSTNAME);
+    // console.log(process.env.NODE_ENV);
   },
 };
 </script>

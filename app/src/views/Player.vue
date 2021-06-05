@@ -2,13 +2,16 @@
   <div class="h-screen w-1/2 flex flex-col">
     <div v-if="user">
       <p>Current user</p>
-      <p> {{handle}}</p>
-      <p> {{email}}</p>
+      <p>{{ handle }}</p>
+      <p>{{ email }}</p>
       <p>Balance</p>
-      <p>{{balance}}</p>
-    <button class="btn" @click="signOut">Sign out</button>
+      <p>{{ balance }}</p>
+      <button class="btn" @click="signOut">Sign out</button>
     </div>
-  <button v-if="!signupOpen" @click="toggleSignup" class="btn">Sign Up</button>
+    <MatchInfo />
+    <button v-if="!signupOpen" @click="toggleSignup" class="btn">
+      Sign Up
+    </button>
     <div v-if="signupOpen">
       <p>Sign Up</p>
       <p>Handle</p>
@@ -20,7 +23,9 @@
       <button class="btn" @click="signUpEmail">Submit</button>
       <button @click="toggleSignup" class="btn">Cancel</button>
     </div>
-  <button v-if="!signinOpen" @click="toggleSignin" class="btn">Sign in</button>
+    <button v-if="!signinOpen" @click="toggleSignin" class="btn">
+      Sign in
+    </button>
     <div v-if="signinOpen">
       <p>Sign in</p>
       <p>Email</p>
@@ -34,10 +39,17 @@
 </template>
 
 <script>
-import App from '../App.vue';
-import {signUpWithEmail, insertUserDetails, signOut, signIn, getUserDetails } from "../utilities/bridges/auth";
+import App from "../App.vue";
+import MatchInfo from "../components/Player/MatchInfo";
+import {
+  signUpWithEmail,
+  insertUserDetails,
+  signOut,
+  signIn,
+  getUserDetails,
+} from "../utilities/bridges/auth";
 export default {
-  components: { App },
+  components: { App, MatchInfo },
   name: "player",
   data() {
     return {
@@ -45,10 +57,10 @@ export default {
       signupOpen: false,
       signinOpen: false,
       // inputs
-      handleInput: '',
-      emailInput: 'alice@trustless.io',
-      passwordInput: 'password',
-    }
+      handleInput: "",
+      emailInput: "alice@trustless.io",
+      passwordInput: "password",
+    };
   },
   computed: {
     user() {
@@ -62,33 +74,38 @@ export default {
     },
     balance() {
       return this.$store.state.userDetails.balance;
-    }
+    },
   },
   methods: {
     toggleSignup() {
-      this.signupOpen = !this.signupOpen
+      this.signupOpen = !this.signupOpen;
     },
     toggleSignin() {
-      this.signinOpen = !this.signinOpen
+      this.signinOpen = !this.signinOpen;
     },
     async signUpEmail() {
-      const {user, session, error} = await signUpWithEmail( this.emailInput, this.passwordInput)
-      
+      const { user, session, error } = await signUpWithEmail(
+        this.emailInput,
+        this.passwordInput
+      );
+
       // todo: handle signup error
       if (error) console.log("signup login problem", error);
       if (user) this.$store.dispatch("setUser", user);
 
-      console.log(user, session, error)
-      
-      const BALANCE = 6000000
+      console.log(user, session, error);
 
-      const { data, error2} = await insertUserDetails({
-        id: user.id, handle: this.handleInput, balance: BALANCE
-      })
+      const BALANCE = 6000000;
 
-      console.log(data, error2)
+      const { data, error2 } = await insertUserDetails({
+        id: user.id,
+        handle: this.handleInput,
+        balance: BALANCE,
+      });
 
-      if (error2) console.error("user details insert problem", error2)
+      console.log(data, error2);
+
+      if (error2) console.error("user details insert problem", error2);
 
       if (data) {
         const userDetails = {
@@ -96,39 +113,39 @@ export default {
           email: user.email,
           handle: data.handle,
           userDetailsId: data.id,
-          balance: data.balance
-        }
+          balance: data.balance,
+        };
         this.$store.dispatch("setUserDetails", userDetails);
       }
-
     },
     async signOut() {
-      const {error} = await signOut();
-      console.log(error)  
+      const { error } = await signOut();
+      console.log(error);
       if (!error) {
-        console.log('no error returned from signOut()')
-        this.$store.dispatch("setUser", null)
+        console.log("no error returned from signOut()");
+        this.$store.dispatch("setUser", null);
       }
     },
     async signIn() {
-      const {user, session, error} = await signIn(this.emailInput, this.passwordInput)
+      const { user, session, error } = await signIn(
+        this.emailInput,
+        this.passwordInput
+      );
 
       if (error) console.log(error);
       if (user) {
         this.$store.dispatch("setUser", user);
-        const userDetails = await getUserDetails(user.id)
+        const userDetails = await getUserDetails(user.id);
         if (userDetails.error) {
-          console.log(userDetails.error)
+          console.log(userDetails.error);
         }
-        if(userDetails.data) {
-          console.log(userDetails.data)
-          this.$store.dispatch("setUserDetails", userDetails.data)
-        } 
+        if (userDetails.data) {
+          console.log(userDetails.data);
+          this.$store.dispatch("setUserDetails", userDetails.data);
+        }
       }
-    }
+    },
   },
-  async beforeMount() {
-    
-  }
-}
+  async beforeMount() {},
+};
 </script>

@@ -1,7 +1,7 @@
 <template>
   <div>
     <p>You are currently in</p>
-    <p>Match #{{ active_match }}</p>
+    <p>Match #{{ activeMatch }}</p>
   </div>
 </template>
 
@@ -12,6 +12,9 @@ export default {
     activeMatch() {
       return this.$store.getters.user.active_match;
     },
+  },
+  created() {
+    console.log(this.$store.getters.user);
   },
 };
 </script>
