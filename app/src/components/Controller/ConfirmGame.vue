@@ -87,7 +87,7 @@ export default {
         return;
       } else {
         const match = await getMatch(data.match_id);
-        matchListener();
+        // matchListener();
         // console.log(match);
 
         // this.$store.dispatch("setPlayerNum", 1);

@@ -55,13 +55,13 @@ export default {
     const matchId = this.$route.query.match;
     this.matchId = matchId;
 
-    const userDetails = await getUserDetails(this.$store.state.user.id);
-    console.log(userDetails.data);
-    if (userDetails.error) {
-      console.log(userDetails.error);
-    }
+    // const userDetails = await getUserDetails(this.$store.state.user.id);
+    // console.log(userDetails.data);
+    // if (userDetails.error) {
+    //   console.log(userDetails.error);
+    // }
 
-    const activeMatch = userDetails.data.active_match;
+    const activeMatch = this.$store.getters.user.active_match;
     console.log("active match: " + activeMatch);
     if (activeMatch && activeMatch != matchId) {
       console.log("in wrong match");
@@ -72,7 +72,7 @@ export default {
       console.log("in this match");
       this.$store.dispatch("setController", "waitingForPlayers");
       const matchData = await getMatch(matchId);
-      await matchListener();
+      //   await matchListener();
     }
 
     if (!activeMatch) {
