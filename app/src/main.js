@@ -6,7 +6,7 @@ import "./index.css";
 
 Vue.config.productionTip = false;
 Vue.prototype.$hostname = Vue.config.productionTip
-  ? "https://hostname"
+  ? "https://golf-bets.web.app/"
   : "http://localhost:8080";
 
 new Vue({

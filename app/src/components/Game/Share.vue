@@ -36,12 +36,15 @@ export default {
   name: "share",
   data() {
     return {
-      url: this.$hostname,
+      // url: this.$hostname,
       cancelled: false,
       subscription: {},
     };
   },
   computed: {
+    url() {
+      return process.env.VUE_APP_HOSTNAME;
+    },
     matchId() {
       return this.$store.state.match.id;
     },
