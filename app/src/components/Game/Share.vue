@@ -27,11 +27,7 @@
 </template>
 
 <script>
-import {
-  matchListener,
-  cancelMatch,
-  unsubscribeListener,
-} from "../../utilities/bridges/match";
+import { matchListener, cancelMatch } from "../../utilities/bridges/match";
 export default {
   name: "share",
   data() {

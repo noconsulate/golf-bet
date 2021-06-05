@@ -64,12 +64,12 @@ export const matchListener = async function() {
   return subscription;
 };
 
-export const unsubscribeListener = function(subscription) {
-  console.log("unsubscribe function");
-  supabase.removeSubscription(subscription);
-  let subs = supabase.getSubscriptions();
-  console.log("sub removed?", subs);
-};
+// export const unsubscribeListener = function(subscription) {
+//   console.log("unsubscribe function");
+//   supabase.removeSubscription(subscription);
+//   let subs = supabase.getSubscriptions();
+//   console.log("sub removed?", subs);
+// };
 
 async function checkConfirmed(id) {
   if (!id) return false;
@@ -150,6 +150,7 @@ export async function cancelMatch(player_id) {
     console.log("cancelMatch");
     store.dispatch("setController", "joinGame");
     store.dispatch("setActiveMatch", null);
+    store.dispatch("setMatchStatus", "cancelled");
 
     supabase.removeSubscription(store.state.subscription);
     store.dispatch("setSubscription", {});
