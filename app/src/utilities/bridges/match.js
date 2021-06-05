@@ -117,6 +117,8 @@ export async function getMatch(id) {
   // put all match data in one object in store, get rid of the other ones
   store.dispatch("setMatch", data[0]);
 
+  // matchListener();
+
   return { data, error };
 }
 

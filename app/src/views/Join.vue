@@ -12,7 +12,7 @@
 
 <script>
 import { getUserDetails } from "../utilities/bridges/auth";
-import { getMatch } from "../utilities/bridges/match";
+import { getMatch, matchListener } from "../utilities/bridges/match";
 
 import WaitingRoom from "../components/Game/WaitingRoom";
 export default {
@@ -72,11 +72,17 @@ export default {
       console.log("in this match");
       this.$store.dispatch("setController", "waitingForPlayers");
       const matchData = await getMatch(matchId);
+      await matchListener();
     }
 
     if (!activeMatch) {
       this.$store.dispatch("setController", "joinGame");
       const matchData = await getMatch(matchId);
+
+      if (this.$store.state.match.status == "cancelled") {
+        console.log("match cancelled!");
+        this.$store.dispatch("setController", "waitingForPlayers");
+      }
     }
   },
 };

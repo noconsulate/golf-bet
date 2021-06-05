@@ -87,6 +87,9 @@ export default {
   },
   created() {
     this.$store.dispatch("setController", "joinGame");
+
+    const status = this.$store.state.match.status;
+    console.log(status);
   },
 };
 </script>
