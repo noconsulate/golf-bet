@@ -71,18 +71,8 @@ export default {
     async cancelMatch() {
       const { data, error } = await cancelMatch(this.$store.state.user.id);
       console.log(data);
-      if (data.success == false) {
+      if (!data.success || error) {
         console.error("cancel error");
-      }
-      if (data.success == true) {
-        console.log("successful cancel");
-        unsubscribeListener(this.subscription);
-        // this.$store.dispatch("resetMatchValues");
-
-        // if not creator, reset view
-        if (this.$store.state.playerNum > 1) {
-          this.$store.dispatch("setController", "joinGame");
-        }
       }
     },
     async newMatch() {

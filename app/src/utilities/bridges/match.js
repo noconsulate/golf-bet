@@ -147,6 +147,14 @@ export async function cancelMatch(player_id) {
   });
 
   if (data.success == true) {
+    console.log("cancelMatch");
+    store.dispatch("setController", "joinGame");
+    store.dispatch("setActiveMatch", null);
+
+    supabase.removeSubscription(store.state.subscription);
+    store.dispatch("setSubscription", {});
+    let subs = supabase.getSubscriptions();
+    console.log("subs unsubbed?", subs);
   }
 
   return { data, error };
