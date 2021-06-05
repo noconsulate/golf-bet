@@ -58,6 +58,13 @@ export default {
     if (matchId) {
       console.log("match found", matchId);
       const matchData = await getMatch(matchId);
+
+      if (matchData.error) {
+        console.error(matchData.error);
+      }
+      if (matchData.data) {
+        await matchListener();
+      }
     }
   },
 };
