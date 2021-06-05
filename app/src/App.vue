@@ -70,36 +70,36 @@ export default {
   async created() {
     document.title = "Golf Bets";
 
-    // get user from supabase.auth
-    const user = currentUser();
+    // // get user from supabase.auth
+    // const user = currentUser();
 
-    if (user) {
-      this.$store.dispatch("setUser", user);
+    // if (user) {
+    //   this.$store.dispatch("setUser", user);
 
-      // get user details
-      const { data, error } = await getUserDetails(user.id);
-      console.log("GET USER DETAILS", data, error);
-      if (error) {
-        console.error(error);
-      }
-      if (data) {
-        this.$store.dispatch("setUserDetails", data);
+    //   // get user details
+    //   const { data, error } = await getUserDetails(user.id);
+    //   console.log("GET USER DETAILS", data, error);
+    //   if (error) {
+    //     console.error(error);
+    //   }
+    //   if (data) {
+    //     this.$store.dispatch("setUserDetails", data);
 
-        // set match in store in getMatch()
-        if (data.active_match) {
-          console.log("ACTIVE MATCH: " + data.active_match);
-          // this.$router.push(`/join?match=${data.active_match}`)
-        }
-      }
-    } else {
-      console.log("no user");
-    }
-
-    //just leaving this here to remind me i have this global property
-    // console.log(this.$hostname);
-    // console.log(process.env.VUE_APP_HOSTNAME);
-    // console.log(process.env.NODE_ENV);
+    //     // set match in store in getMatch()
+    //     if (data.active_match) {
+    //       console.log("ACTIVE MATCH: " + data.active_match);
+    //       // this.$router.push(`/join?match=${data.active_match}`)
+    //     }
+    //   }
+    // } else {
+    //   console.log("no user");
   },
+
+  //just leaving this here to remind me i have this global property
+  // console.log(this.$hostname);
+  // console.log(process.env.VUE_APP_HOSTNAME);
+  // console.log(process.env.NODE_ENV);
+  // },
 };
 </script>
 
