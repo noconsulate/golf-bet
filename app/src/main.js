@@ -14,7 +14,7 @@ Vue.config.productionTip = false;
 
 async function init() {
   const user = currentUser();
-  console.log(user);
+  // console.log(user);
 
   if (user) {
     store.dispatch("setUser", user);

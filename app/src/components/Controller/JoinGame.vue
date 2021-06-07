@@ -5,7 +5,13 @@
     <div class="controller-panel">
       <div class="controller-prev invisible">prev</div>
       <div
-        class="flex flex-grow cursor-pointer justify-center items-center text-4xl"
+        class="
+          flex flex-grow
+          cursor-pointer
+          justify-center
+          items-center
+          text-4xl
+        "
         @click="join"
       >
         LET'S GO!!
@@ -83,7 +89,7 @@ export default {
         this.$store.dispatch("setPlayerNum", data.players_joined_out);
         this.$store.dispatch("setPlayersJoined", data.players_joined_out);
         this.$store.dispatch("setActiveMatch", this.matchId);
-        matchListener();
+        // matchListener();
       } else {
         console.log("All aboard! All players here");
         this.$store.dispatch("setAllPlayersJoined");

@@ -24,8 +24,10 @@ export default new Vuex.Store({
     playersJoined: 0,
     allPlayersJoined: false,
     error: "",
-    user: null,
-    userDetails: {},
+    user: {},
+    userDetails: {
+      activeMatch: null,
+    },
     scores: [],
     matchStatus: "",
     // I should put all match stuff here and leave the specific ones for the forms in Create.vue's state
