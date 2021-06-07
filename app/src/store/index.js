@@ -155,6 +155,10 @@ export default new Vuex.Store({
     UPDATE_SUBSCRIPTION(state, payload) {
       state.subscription = payload;
     },
+    CLEAR_USER(state) {
+      state.user = {};
+      state.userDetails = {};
+    },
   },
   actions: {
     toggleNavOpen(context) {
@@ -228,6 +232,9 @@ export default new Vuex.Store({
     },
     setSubscription(context, value) {
       context.commit("UPDATE_SUBSCRIPTION", value);
+    },
+    setClearUser(context) {
+      context.commit("CLEAR_USER");
     },
   },
 

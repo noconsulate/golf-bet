@@ -1,7 +1,6 @@
 <template>
   <div class="h-screen w-1/2 flex flex-col">
-    <div v-if="user">
-      <p>Current user</p>
+    <div v-if="user.id">
       <p>{{ handle }}</p>
       <p>{{ email }}</p>
       <p>Balance</p>
@@ -9,7 +8,19 @@
       <button class="btn" @click="signOut">Sign out</button>
     </div>
     <MatchInfo />
-    <button v-if="!signupOpen" @click="toggleSignup" class="btn">
+    <button v-if="!signinOpen && !user.id" @click="toggleSignin" class="btn">
+      Sign in
+    </button>
+    <div v-if="signinOpen">
+      <p>Sign in</p>
+      <p>Email</p>
+      <input class="border w-full" v-model="emailInput" />
+      <p>Password</p>
+      <input class="border w-full" v-model="passwordInput" type="password" />
+      <button class="btn" @click="signIn">Sign in</button>
+      <button class="btn" @click="toggleSignin">Cancel</button>
+    </div>
+    <button v-if="!signupOpen && !user.id" @click="toggleSignup" class="btn">
       Sign Up
     </button>
     <div v-if="signupOpen">
@@ -22,18 +33,6 @@
       <input class="border w-full" v-model="passwordInput" />
       <button class="btn" @click="signUpEmail">Submit</button>
       <button @click="toggleSignup" class="btn">Cancel</button>
-    </div>
-    <button v-if="!signinOpen" @click="toggleSignin" class="btn">
-      Sign in
-    </button>
-    <div v-if="signinOpen">
-      <p>Sign in</p>
-      <p>Email</p>
-      <input class="border w-full" v-model="emailInput" />
-      <p>Password</p>
-      <input class="border w-full" v-model="passwordInput" type="password" />
-      <button class="btn" @click="signIn">Sign in</button>
-      <button class="btn" @click="toggleSignin">Cancel</button>
     </div>
   </div>
 </template>
@@ -64,7 +63,7 @@ export default {
   },
   computed: {
     user() {
-      return this.$store.state.user;
+      return this.$store.getters.user;
     },
     email() {
       return this.$store.state.user.email;
@@ -123,7 +122,7 @@ export default {
       console.log(error);
       if (!error) {
         console.log("no error returned from signOut()");
-        this.$store.dispatch("setUser", null);
+        this.$store.dispatch("setClearUser");
       }
     },
     async signIn() {
