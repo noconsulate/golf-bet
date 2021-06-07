@@ -27,9 +27,12 @@ export async function newMatch(
   console.log(data);
 
   store.dispatch("setMatchStatus", "waiting");
+  store.dispatch("setPlayerNum", 1);
 
   return { data, error };
 }
+
+const startMatch = async function() {};
 
 export const matchListener = async function() {
   const id = store.state.match.id;
@@ -43,6 +46,7 @@ export const matchListener = async function() {
       if (payload.new.players_joined >= payload.new.players) {
         console.log("all playesr joined. do something and unsubscribe!");
         store.dispatch("setAllPlayersJoined");
+
         unsubscribe();
       }
       if (payload.new.status == "cancelled") {

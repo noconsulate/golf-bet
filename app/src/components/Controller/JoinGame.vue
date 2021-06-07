@@ -70,8 +70,7 @@ export default {
       ) {
         console.error("GAME FULL");
         return;
-      }
-      if (
+      } else if (
         data.score_id == "00000000-0000-0000-0000-000000000000" &&
         data.players_joined_out == 8
       ) {
@@ -82,17 +81,13 @@ export default {
       }
 
       // game was cancelled by creator according to DB
-
-      if (data.players_joined_out < this.players) {
+      else {
         console.log("game confirmed");
         this.$store.dispatch("setController", "waitingForPlayers");
         this.$store.dispatch("setPlayerNum", data.players_joined_out);
         this.$store.dispatch("setPlayersJoined", data.players_joined_out);
         this.$store.dispatch("setActiveMatch", this.matchId);
         // matchListener();
-      } else {
-        console.log("All aboard! All players here");
-        this.$store.dispatch("setAllPlayersJoined");
       }
     },
   },

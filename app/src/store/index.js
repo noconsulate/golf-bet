@@ -20,7 +20,7 @@ export default new Vuex.Store({
     // holes: "18",
     // scoringStyle: "solo",
     matchId: "",
-    playerNum: "1",
+    playerNum: null,
     playersJoined: 0,
     allPlayersJoined: false,
     error: "",
