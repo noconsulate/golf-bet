@@ -64,33 +64,6 @@ export const matchListener = async function() {
   return subscription;
 };
 
-// export const unsubscribeListener = function(subscription) {
-//   console.log("unsubscribe function");
-//   supabase.removeSubscription(subscription);
-//   let subs = supabase.getSubscriptions();
-//   console.log("sub removed?", subs);
-// };
-
-async function checkConfirmed(id) {
-  if (!id) return false;
-
-  const player = store.state.user.id;
-  console.log(player, id);
-
-  // to be handled better when no user is generally handled
-  if (!player) return false;
-
-  let { data, error } = await supabase
-    .from("score")
-    .select("*")
-    .match({ match_id: id, player_id: player });
-
-  console.log(data, error);
-
-  if (data.length == 0) return false;
-  else return true;
-}
-
 export async function getMatch(id) {
   console.log(id);
   const { data, error } = await supabase
@@ -107,14 +80,6 @@ export async function getMatch(id) {
     players_joined,
   } = data[0];
 
-  // store.dispatch("setMatchId", id);
-  // store.dispatch("setPlayers", players);
-  // store.dispatch("setPoints", points);
-  // store.dispatch("setHoles", is_18_holes ? 18 : 9);
-  // store.dispatch("setScoringStyle", is_classic_scoring ? "classic" : "solo");
-  // store.dispatch("setMatchStatus", status);
-  // store.dispatch("setPlayersJoined", players_joined);
-  // put all match data in one object in store, get rid of the other ones
   store.dispatch("setMatch", data[0]);
 
   matchListener();
