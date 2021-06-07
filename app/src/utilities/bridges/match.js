@@ -32,7 +32,15 @@ export async function newMatch(
   return { data, error };
 }
 
-const startMatch = async function() {};
+const startMatch = async function(id) {
+  console.log("updating match status");
+  const { data, error } = await supabase
+    .from("match")
+    .update({ status: "started" }, { returning: "minimal" })
+    .match({ id: id });
+
+  console.log(data, error);
+};
 
 export const matchListener = async function() {
   const id = store.state.match.id;
@@ -46,6 +54,10 @@ export const matchListener = async function() {
       if (payload.new.players_joined >= payload.new.players) {
         console.log("all playesr joined. do something and unsubscribe!");
         store.dispatch("setAllPlayersJoined");
+
+        if (store.state.playerNum === 1) {
+          startMatch(id);
+        }
 
         unsubscribe();
       }

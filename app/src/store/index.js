@@ -10,7 +10,7 @@ export default new Vuex.Store({
     navOpen: false,
     controller: "",
     input: {
-      players: "4",
+      players: "2",
       points: "20",
       holes: "18",
       scoringStyle: "solo",
