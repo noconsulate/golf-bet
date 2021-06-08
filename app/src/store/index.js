@@ -2,6 +2,7 @@ import Vue from "vue";
 import Vuex from "vuex";
 
 import router from "../router/";
+import { getUserDetails } from "../utilities/bridges/auth";
 
 Vue.use(Vuex);
 
@@ -197,6 +198,7 @@ export default new Vuex.Store({
     },
     setAllPlayersJoined(context) {
       context.commit("UPDATE_ALL_PLAYERS_JOINED");
+      context.commit("UPDATE_MATCH_STATIUS", "started");
       router.push("/scorecard");
     },
     setScoringStyle(context, value) {
@@ -235,6 +237,18 @@ export default new Vuex.Store({
     },
     setClearUser(context) {
       context.commit("CLEAR_USER");
+    },
+
+    // trying to move all fetches here
+    async getAndSetUserDetails(context, userId) {
+      const { data, error } = await getUserDetails(userId);
+      if (error) {
+        console.log(error);
+      }
+
+      if (data) {
+        context.commit("UPDATE_USER_DETAILS", data);
+      }
     },
   },
 
