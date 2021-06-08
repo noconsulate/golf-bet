@@ -3,7 +3,7 @@ import Vuex from "vuex";
 
 import router from "../router/";
 import { getUserDetails } from "../utilities/bridges/auth";
-
+import { newMatch } from "../utilities/bridges/match";
 Vue.use(Vuex);
 
 export default new Vuex.Store({
@@ -248,6 +248,18 @@ export default new Vuex.Store({
 
       if (data) {
         context.commit("UPDATE_USER_DETAILS", data);
+      }
+    },
+
+    async getAndSetNewMatch(context, values) {
+      const { data, error } = await newMatch(values);
+
+      if (error) {
+        console.error(error);
+      }
+      if (data) {
+        context.commit("UPDATE_MATCH_STATUS", "waiting");
+        context.commit("UPDATE_PLAYER_NUM", 1);
       }
     },
   },

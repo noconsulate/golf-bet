@@ -9,13 +9,9 @@ const supabase = createClient(
 // FOR DEV
 window.supabase = supabase;
 
-export async function newMatch(
-  players,
-  points,
-  is_18_holes,
-  is_classic_scoring,
-  creator
-) {
+export async function newMatch(values) {
+  const { players, points, is_18_holes, is_classic_scoring, creator } = values;
+
   const { data, error } = await supabase.rpc("new_match", {
     players,
     points,
@@ -25,9 +21,6 @@ export async function newMatch(
   });
 
   console.log(data);
-
-  store.dispatch("setMatchStatus", "waiting");
-  store.dispatch("setPlayerNum", 1);
 
   return { data, error };
 }

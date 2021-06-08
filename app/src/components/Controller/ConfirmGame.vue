@@ -5,7 +5,13 @@
     <div class="controller-panel">
       <div class="controller-prev" @click="prev">prev</div>
       <div
-        class="flex flex-grow cursor-pointer justify-center items-center text-4xl"
+        class="
+          flex flex-grow
+          cursor-pointer
+          justify-center
+          items-center
+          text-4xl
+        "
         @click="confirm"
       >
         LET'S GO!!
@@ -28,11 +34,11 @@ export default {
     // is this nessessessaryy?
     matchInfo() {
       return {
-        players: this.$store.state.match.players,
-        points: this.$store.state.match.points,
-        holes: this.$store.state.match.holes,
-        scoringStyle: this.$store.state.match.scoringStyle,
-        owner: this.$store.state.user.id,
+        players: this.$store.state.input.players,
+        points: this.$store.state.input.points,
+        is_18_holes: this.is18Holes,
+        is_classic_scoring: this.isClassicScoring,
+        creator: this.$store.state.user.id,
       };
     },
     players() {
@@ -75,26 +81,12 @@ export default {
       }
 
       console.log(this.matchInfo);
-      const { data, error } = await newMatch(
-        this.players,
-        this.points,
-        this.is18Holes,
-        this.isClassicScoring,
-        this.creator
-      );
+      const { data, error } = await newMatch(this.matchInfo);
       if (error) {
         console.error(error);
         return;
       } else {
         const match = await getMatch(data.match_id);
-        // matchListener();
-        // console.log(match);
-
-        // this.$store.dispatch("setPlayerNum", 1);
-        // this.$store.dispatch("setMatchStatus", "waiting");
-        // this.$store.dispatch("setMatchId", data.match_id);
-        // this.$store.dispatch("setController", "waitingForPlayers");
-        // this.$router.push(`/join?match=${data.match_id}`)
       }
     },
   },
