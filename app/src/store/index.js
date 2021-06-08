@@ -3,7 +3,7 @@ import Vuex from "vuex";
 
 import router from "../router/";
 import { getUserDetails } from "../utilities/bridges/auth";
-import { newMatch } from "../utilities/bridges/match";
+import { newMatch, getMatch, matchListener } from "../utilities/bridges/match";
 Vue.use(Vuex);
 
 export default new Vuex.Store({
@@ -260,6 +260,18 @@ export default new Vuex.Store({
       if (data) {
         context.commit("UPDATE_MATCH_STATUS", "waiting");
         context.commit("UPDATE_PLAYER_NUM", 1);
+
+        const matchInfo = await getMatch(data.match_id);
+
+        console.log(matchInfo);
+
+        if (matchInfo.error) {
+          console.error(matchInfo.error);
+        }
+        if (matchInfo.data) {
+          context.commit("UPDATE_MATCH", matchInfo.data[0]);
+          matchListener();
+        }
       }
     },
   },

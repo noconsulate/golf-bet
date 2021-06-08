@@ -80,14 +80,7 @@ export default {
         return;
       }
 
-      console.log(this.matchInfo);
-      const { data, error } = await newMatch(this.matchInfo);
-      if (error) {
-        console.error(error);
-        return;
-      } else {
-        const match = await getMatch(data.match_id);
-      }
+      this.$store.dispatch("getAndSetNewMatch", this.matchInfo);
     },
   },
 };

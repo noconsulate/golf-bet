@@ -74,25 +74,13 @@ export const matchListener = async function() {
 };
 
 export async function getMatch(id) {
-  console.log(id);
+  console.log("getMatch", id);
   const { data, error } = await supabase
     .from("match")
     .select("*")
     .match({ id: id });
 
-  const {
-    players,
-    points,
-    is_18_holes,
-    is_classic_scoring,
-    status,
-    players_joined,
-  } = data[0];
-
-  store.dispatch("setMatch", data[0]);
-
-  matchListener();
-
+  console.log(data, error);
   return { data, error };
 }
 
