@@ -274,6 +274,17 @@ export default new Vuex.Store({
         }
       }
     },
+
+    async getAndSetMatch(context, matchId) {
+      const { data, error } = await getMatch(matchId);
+      if (error) {
+        console.error(error);
+      }
+      if (data) {
+        context.commit("UPDATE_MATCH", data[0]);
+        matchListener();
+      }
+    },
   },
 
   modules: {},

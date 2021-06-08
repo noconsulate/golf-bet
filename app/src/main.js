@@ -28,8 +28,7 @@ async function init() {
 
       // if active match, get match now
       if (data.active_match) {
-        console.log("ATTN DEV: GET MATCH INFO HERE?");
-        await getMatch(data.active_match);
+        store.dispatch("getAndSetMatch", data.active_match);
       }
     }
   } else {
