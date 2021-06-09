@@ -1,25 +1,29 @@
 -- ** need to check to see if anyone else has forfeit
-
-create or replace function forfeit_match(score_id uuid, OUT success bool)
-language plpgsql
-as $$
-declare 
-	user_id_ret uuid;
-begin
-	select player_id
-    from score
-    where id = score_id
-    into user_id_ret;
-    
-	update users
-    set active_match = null
-    where id = user_id_ret;
-    
-    update score
-    set forfeited = true
-    where id = score_id;
-    
-    success = true;
-end;
+-- ** needs a lot of work
+CREATE OR REPLACE FUNCTION forfeit_match (score_id uuid, OUT success bool)
+LANGUAGE plpgsql
+AS $$
+DECLARE
+    user_id_ret uuid;
+BEGIN
+    SELECT
+        player_id
+    FROM
+        score
+    WHERE
+        id = score_id INTO user_id_ret;
+    UPDATE
+        users
+    SET
+        active_match = NULL
+    WHERE
+        id = user_id_ret;
+    UPDATE
+        score
+    SET
+        forfeited = TRUE
+    WHERE
+        id = score_id;
+    success = TRUE;
+END;
 $$
-    
