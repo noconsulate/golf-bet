@@ -32,7 +32,7 @@ const startMatch = async function(id) {
     .update({ status: "started" }, { returning: "minimal" })
     .match({ id: id });
 
-  console.log(data, error);
+  console.log("START MATCH, DO SOMETHING", data, error);
 };
 
 export const matchListener = async function(id) {
@@ -46,6 +46,7 @@ export const matchListener = async function(id) {
       // store.dispatch("setPlayersJoined", payload.new.players_joined);
       if (payload.new.players_joined >= payload.new.players) {
         console.log("all playesr joined. do something and unsubscribe!");
+        //Should be new action that incorporates startGame()
         store.dispatch("setAllPlayersJoined");
 
         if (store.state.playerNum === 1) {

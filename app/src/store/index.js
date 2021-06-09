@@ -3,7 +3,12 @@ import Vuex from "vuex";
 
 import router from "../router/";
 import { getUser, getUserDetails } from "../utilities/bridges/auth";
-import { newMatch, getMatch, matchListener } from "../utilities/bridges/match";
+import {
+  newMatch,
+  getMatch,
+  matchListener,
+  confirmJoin,
+} from "../utilities/bridges/match";
 Vue.use(Vuex);
 
 export default new Vuex.Store({
@@ -153,6 +158,9 @@ export default new Vuex.Store({
     UPDATE_ACTIVE_MATCH(state, payload) {
       state.userDetails.active_match = payload;
     },
+    UPDATE_MATCH_STATIUS(state, payload) {
+      state.match.status = payload;
+    },
     UPDATE_SUBSCRIPTION(state, payload) {
       state.subscription = payload;
     },
@@ -240,6 +248,27 @@ export default new Vuex.Store({
     },
 
     // trying to move all fetches here
+    async initOnLoad(context) {
+      const user = await getUser();
+      if (!user) {
+        return;
+      }
+      context.commit("UPDATE_USER", user);
+      // context.dispatch("getAndSetUserDetails", user.id);
+
+      const { data, error } = await getUserDetails(user.id);
+      if (error) {
+        console.log(error);
+      }
+
+      if (data) {
+        context.commit("UPDATE_USER_DETAILS", data);
+
+        if (data.active_match)
+          context.dispatch("getAndSetMatch", data.active_match);
+      }
+    },
+
     async getAndSetUserDetails(context, userId) {
       const { data, error } = await getUserDetails(userId);
       if (error) {
@@ -286,27 +315,37 @@ export default new Vuex.Store({
       }
     },
 
-    async initOnLoad(context) {
-      const user = await getUser();
-      if (!user) {
-        return;
-      }
-      context.commit("UPDATE_USER", user);
-      // context.dispatch("getAndSetUserDetails", user.id);
-
-      const { data, error } = await getUserDetails(user.id);
+    async joinMatch(context, values) {
+      const { data, error } = await confirmJoin(
+        context.state.match.id,
+        context.state.user.id
+      );
       if (error) {
-        console.log(error);
+        console.error("confirmJoin error", error);
       }
 
-      if (data) {
-        context.commit("UPDATE_USER_DETAILS", data);
-
-        if (data.active_match)
-          context.dispatch("getAndSetMatch", data.active_match);
+      if (
+        data.score_id == "00000000-0000-0000-0000-000000000000" &&
+        data.players_joined_out == 9
+      ) {
+        console.error("GAME FULL");
+        return;
+      } else if (
+        data.score_id == "00000000-0000-0000-0000-000000000000" &&
+        data.players_joined_out == 8
+      ) {
+        console.log("GAME CANCELLED");
+        context.dispatch("setMatchStatus", "cancelled");
+        context.dispatch("setController", "waitingForPlayers");
+        return;
+      } else {
+        console.log("game confirmed");
+        context.dispatch("setController", "waitingForPlayers");
+        context.dispatch("setPlayerNum", data.players_joined_out);
+        context.dispatch("setPlayersJoined", data.players_joined_out);
+        context.dispatch("setActiveMatch", this.matchId);
       }
     },
   },
-
   modules: {},
 });
