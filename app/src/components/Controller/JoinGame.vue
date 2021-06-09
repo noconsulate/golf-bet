@@ -22,8 +22,6 @@
 </template>
 
 <script>
-import { confirmJoin, matchListener } from "../../utilities/bridges/match";
-
 export default {
   name: "joinGame",
   computed: {
@@ -59,38 +57,6 @@ export default {
   methods: {
     async join() {
       this.$store.dispatch("joinMatch");
-
-      //   const { data, error } = await confirmJoin(this.matchId, this.uuid);
-      //   if (error) {
-      //     console.error("confirmJoin error", error);
-      //   }
-
-      //   // game is full according to database
-      //   if (
-      //     data.score_id == "00000000-0000-0000-0000-000000000000" &&
-      //     data.players_joined_out == 9
-      //   ) {
-      //     console.error("GAME FULL");
-      //     return;
-      //   } else if (
-      //     data.score_id == "00000000-0000-0000-0000-000000000000" &&
-      //     data.players_joined_out == 8
-      //   ) {
-      //     console.log("GAME CANCELLED");
-      //     this.$store.dispatch("setMatchStatus", "cancelled");
-      //     this.$store.dispatch("setController", "waitingForPlayers");
-      //     return;
-      //   }
-
-      //   // game was cancelled by creator according to DB
-      //   else {
-      //     console.log("game confirmed");
-      //     this.$store.dispatch("setController", "waitingForPlayers");
-      //     this.$store.dispatch("setPlayerNum", data.players_joined_out);
-      //     this.$store.dispatch("setPlayersJoined", data.players_joined_out);
-      //     this.$store.dispatch("setActiveMatch", this.matchId);
-      //     // matchListener();
-      //   }
     },
   },
 };
