@@ -13,27 +13,7 @@ Vue.config.productionTip = false;
 //   : "http://localhost:8080";
 
 async function init() {
-  const user = currentUser();
-  // console.log(user);
-
-  if (user) {
-    store.dispatch("setUser", user);
-
-    const { data, error } = await getUserDetails(user.id);
-    if (error) {
-      console.error(error);
-    }
-    if (data) {
-      store.dispatch("setUserDetails", data);
-
-      // if active match, get match now
-      if (data.active_match) {
-        store.dispatch("getAndSetMatch", data.active_match);
-      }
-    }
-  } else {
-    console.log("no user");
-  }
+  store.dispatch("getAndSetUser");
 
   new Vue({
     router,

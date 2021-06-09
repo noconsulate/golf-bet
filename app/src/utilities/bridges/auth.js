@@ -25,7 +25,7 @@ export async function insertUserDetails(args) {
   return { data, error2 };
 }
 
-export function currentUser() {
+export function getUser() {
   const user = supabase.auth.user();
   return user;
 }

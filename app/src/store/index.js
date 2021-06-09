@@ -2,7 +2,7 @@ import Vue from "vue";
 import Vuex from "vuex";
 
 import router from "../router/";
-import { getUserDetails } from "../utilities/bridges/auth";
+import { getUser, getUserDetails } from "../utilities/bridges/auth";
 import { newMatch, getMatch, matchListener } from "../utilities/bridges/match";
 Vue.use(Vuex);
 
@@ -283,6 +283,22 @@ export default new Vuex.Store({
       if (data) {
         context.commit("UPDATE_MATCH", data[0]);
         matchListener();
+      }
+    },
+
+    async getAndSetUser(context) {
+      const user = await getUser();
+      context.commit("UPDATE_USER", user);
+
+      const { data, error } = await getUserDetails(user.id);
+      if (error) {
+        console.log(error);
+      }
+
+      if (data) {
+        context.commit("UPDATE_USER_DETAILS", data);
+
+        context.dispatch("getAndSetMatch", data.active_match);
       }
     },
   },
