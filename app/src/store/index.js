@@ -8,6 +8,8 @@ import {
   getMatch,
   matchListener,
   confirmJoin,
+  forfeitMatch,
+  cancelMatch,
 } from "../utilities/bridges/match";
 Vue.use(Vuex);
 
@@ -299,7 +301,7 @@ export default new Vuex.Store({
         }
         if (matchInfo.data) {
           context.commit("UPDATE_MATCH", matchInfo.data[0]);
-          matchListener();
+          matchListener(matchInfo.data[0].id);
         }
       }
     },
@@ -344,6 +346,20 @@ export default new Vuex.Store({
         context.dispatch("setPlayerNum", data.players_joined_out);
         context.dispatch("setPlayersJoined", data.players_joined_out);
         context.dispatch("setActiveMatch", this.matchId);
+      }
+    },
+
+    async forfeitMatch(context) {
+      const { data, error } = await forfeitMatch(
+        context.getters.user.active_score
+      );
+      console.log(data, error);
+      if (!data.success || error) {
+        console.log(data.success, error);
+      }
+
+      if (data.success) {
+        context.dispatch("getAndSetUserDetails", context.getters.user.id);
       }
     },
   },

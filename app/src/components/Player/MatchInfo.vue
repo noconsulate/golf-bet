@@ -46,18 +46,7 @@ export default {
       }
     },
     async forfeit() {
-      const { data, error } = await forfeitMatch(
-        this.$store.getters.user.active_score
-      );
-
-      console.log(data, error);
-
-      if (data) {
-        this.$store.dispatch(
-          "getAndSetUserDetails",
-          this.$store.getters.user.id
-        );
-      }
+      this.$store.dispatch("forfeitMatch");
     },
   },
   created() {},

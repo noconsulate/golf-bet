@@ -97,7 +97,6 @@ export async function confirmJoin(match_id, player_id) {
 }
 
 export async function forfeitMatch(score_id) {
-  console.log(score_id);
   const { data, error } = await supabase.rpc("forfeit_match", {
     score_id,
   });
