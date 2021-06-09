@@ -38,7 +38,6 @@
 </template>
 
 <script>
-import { matchListener, cancelMatch } from "../../utilities/bridges/match";
 export default {
   name: "share",
   data() {
@@ -79,11 +78,7 @@ export default {
       navigator.clipboard.writeText(this.link2Share);
     },
     async cancelMatch() {
-      const { data, error } = await cancelMatch(this.$store.state.user.id);
-      console.log(data);
-      if (!data.success || error) {
-        console.error("cancel error");
-      }
+      this.$store.dispatch("cancelMatch");
     },
     async newMatch() {
       this.$store.dispatch("resetInputValues");

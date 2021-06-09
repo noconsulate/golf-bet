@@ -10,6 +10,7 @@ import {
   confirmJoin,
   forfeitMatch,
   cancelMatch,
+  unsubscribe,
 } from "../utilities/bridges/match";
 Vue.use(Vuex);
 
@@ -350,9 +351,7 @@ export default new Vuex.Store({
     },
 
     async forfeitMatch(context) {
-      const { data, error } = await forfeitMatch(
-        context.getters.user.active_score
-      );
+      const { data, error } = await forfeitMatch();
       console.log(data, error);
       if (!data.success || error) {
         console.log(data.success, error);
@@ -360,6 +359,21 @@ export default new Vuex.Store({
 
       if (data.success) {
         context.dispatch("getAndSetUserDetails", context.getters.user.id);
+      }
+    },
+
+    async cancelMatch(context) {
+      const { data, error } = await cancelMatch();
+      if (!data.success || error) {
+        console.log(error, "success: " + data.success);
+      }
+      if (data.success == true) {
+        console.log("match cancelled");
+        // unsubscribe();
+        context.commit("UPDATE_CONTROLLER", "joinGame");
+        context.commit("UPDATE_ACTIVE_MATCH", null);
+        context.commit("UPDATE_MATCH_STATUS", "cancelled");
+        context.commit("UPDATE_SUBSCRIPTION", {});
       }
     },
   },

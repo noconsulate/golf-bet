@@ -96,7 +96,8 @@ export async function confirmJoin(match_id, player_id) {
   return { data, error };
 }
 
-export async function forfeitMatch(score_id) {
+export async function forfeitMatch() {
+  const score_id = store.getters.user.active_score;
   const { data, error } = await supabase.rpc("forfeit_match", {
     score_id,
   });
@@ -104,23 +105,16 @@ export async function forfeitMatch(score_id) {
   return { data, error };
 }
 
-export async function cancelMatch(player_id) {
+export async function cancelMatch() {
+  const player_id = store.getters.user.id;
   console.log(player_id);
   const { data, error } = await supabase.rpc("cancel_match", {
     player_id,
   });
 
-  if (data.success == true) {
-    console.log("cancelMatch");
-    store.dispatch("setController", "joinGame");
-    store.dispatch("setActiveMatch", null);
-    store.dispatch("setMatchStatus", "cancelled");
-
-    supabase.removeSubscription(store.state.subscription);
-    store.dispatch("setSubscription", {});
-    let subs = supabase.getSubscriptions();
-    console.log("subs unsubbed?", subs);
-  }
-
   return { data, error };
+}
+
+export async function unsubscribe() {
+  supabase.removeSubscription(store.state.subscription);
 }

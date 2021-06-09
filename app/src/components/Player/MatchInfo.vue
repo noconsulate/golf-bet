@@ -13,8 +13,6 @@
 </template>
 
 <script>
-import { cancelMatch, forfeitMatch } from "../../utilities/bridges/match";
-
 export default {
   name: "MatchInfo",
   computed: {
@@ -40,10 +38,7 @@ export default {
   },
   methods: {
     async cancel() {
-      const { data, error } = await cancelMatch(this.$store.getters.user.id);
-      if (!data.success || error) {
-        console.error(error);
-      }
+      this.$store.dispatch("cancelMatch");
     },
     async forfeit() {
       this.$store.dispatch("forfeitMatch");
