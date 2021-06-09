@@ -9,8 +9,6 @@
 <script>
 import Create from "../components/Game/Create";
 import WaitingRoom from "../components/Game/WaitingRoom";
-import { getMatch, matchListener } from "../utilities/bridges/match";
-import { getActiveMatch } from "../utilities/bridges/auth";
 export default {
   name: "game",
   components: {
@@ -42,30 +40,5 @@ export default {
       }
     },
   },
-  // async beforeMount() {
-  //   const user = this.$store.getters.user;
-  //   if (!user) {
-  //     console.log("no user");
-  //     return;
-  //   }
-  //   const activeMatch = await getActiveMatch(this.$store.getters.user.id);
-  //   if (activeMatch.error) {
-  //     console.error("problem getting active match", activeMatch.error);
-  //   }
-
-  //   const matchId = activeMatch.data[0].active_match;
-
-  //   if (matchId) {
-  //     console.log("match found", matchId);
-  //     const matchData = await getMatch(matchId);
-
-  //     if (matchData.error) {
-  //       console.error(matchData.error);
-  //     }
-  //     if (matchData.data) {
-  //       // await matchListener();
-  //     }
-  //   }
-  // },
 };
 </script>
