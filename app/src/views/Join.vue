@@ -11,9 +11,6 @@
 </template>
 
 <script>
-import { getUserDetails } from "../utilities/bridges/auth";
-import { getMatch, matchListener } from "../utilities/bridges/match";
-
 import WaitingRoom from "../components/Game/WaitingRoom";
 export default {
   name: "join",
