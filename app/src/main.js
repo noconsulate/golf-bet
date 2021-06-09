@@ -13,7 +13,7 @@ Vue.config.productionTip = false;
 //   : "http://localhost:8080";
 
 async function init() {
-  store.dispatch("getAndSetUser");
+  store.dispatch("initOnLoad");
 
   new Vue({
     router,
