@@ -6,7 +6,7 @@
     <div v-if="showWrongMatch" class="w-full text-center pt-8">
       You're already in a match
     </div>
-    <WaitingRoom v-if="showWaitingRoom" />
+    <WaitingRoom v-if="showWaitingRoom && !this.loading" />
   </div>
 </template>
 
@@ -23,6 +23,7 @@ export default {
       activeMatch: null,
       matchId: "",
       inWrongMatch: false,
+      loading: true,
     };
   },
   computed: {
@@ -41,14 +42,19 @@ export default {
       }
     },
     showWaitingRoom() {
-      if (!this.inWrongMatch && this.matchId && this.$store.state.user.id) {
+      if (
+        !this.inWrongMatch &&
+        this.matchId &&
+        this.$store.state.user.id &&
+        !this.loading
+      ) {
         return true;
       } else {
         return false;
       }
     },
   },
-  async created() {
+  async beforeMount() {
     // ** make sure user isn't in a different match. this logic should probably be handled some other way. **
     // if (!this.$store.state.user.id) return;
 
@@ -70,20 +76,26 @@ export default {
 
     if (activeMatch && activeMatch == matchId) {
       console.log("in this match");
+      this.$store.dispatch("getAndSetMatch", matchId);
       this.$store.dispatch("setController", "waitingForPlayers");
-      const matchData = await getMatch(matchId);
+      // const matchData = await getMatch(matchId);
       //   await matchListener();
     }
 
     if (!activeMatch) {
+      console.log("!activeMatch", matchId);
       this.$store.dispatch("setController", "joinGame");
-      const matchData = await getMatch(matchId);
+      console.log("loading: " + this.loading, this.$store.state.match);
+      await this.$store.dispatch("getAndSetMatch", matchId);
+      this.loading = false;
+      console.log("loading: " + this.loading, this.$store.state.match);
+      // const matchData = await getMatch(matchId);
 
       if (this.$store.state.match.status == "cancelled") {
         console.log("match cancelled!");
-        this.$store.dispatch("setController", "waitingForPlayers");
+        this.$store.dispatch("setController", "waitingForP    layers");
       }
     }
   },
 };
-</script>
+</script>   

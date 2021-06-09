@@ -288,6 +288,9 @@ export default new Vuex.Store({
 
     async initOnLoad(context) {
       const user = await getUser();
+      if (!user) {
+        return;
+      }
       context.commit("UPDATE_USER", user);
       // context.dispatch("getAndSetUserDetails", user.id);
 
