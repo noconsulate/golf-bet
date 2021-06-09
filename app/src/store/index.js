@@ -282,7 +282,7 @@ export default new Vuex.Store({
       }
       if (data) {
         context.commit("UPDATE_MATCH", data[0]);
-        matchListener();
+        matchListener(matchId);
       }
     },
 
@@ -302,7 +302,8 @@ export default new Vuex.Store({
       if (data) {
         context.commit("UPDATE_USER_DETAILS", data);
 
-        context.dispatch("getAndSetMatch", data.active_match);
+        if (data.active_match)
+          context.dispatch("getAndSetMatch", data.active_match);
       }
     },
   },

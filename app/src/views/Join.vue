@@ -56,16 +56,9 @@ export default {
   },
   async beforeMount() {
     // ** make sure user isn't in a different match. this logic should probably be handled some other way. **
-    // if (!this.$store.state.user.id) return;
 
     const matchId = this.$route.query.match;
     this.matchId = matchId;
-
-    // const userDetails = await getUserDetails(this.$store.state.user.id);
-    // console.log(userDetails.data);
-    // if (userDetails.error) {
-    //   console.log(userDetails.error);
-    // }
 
     const activeMatch = this.$store.getters.user.active_match;
     console.log("active match: " + activeMatch);
@@ -76,24 +69,22 @@ export default {
 
     if (activeMatch && activeMatch == matchId) {
       console.log("in this match");
-      this.$store.dispatch("getAndSetMatch", matchId);
+      await this.$store.dispatch("getAndSetMatch", matchId);
+      this.loading = false;
       this.$store.dispatch("setController", "waitingForPlayers");
-      // const matchData = await getMatch(matchId);
-      //   await matchListener();
     }
 
     if (!activeMatch) {
       console.log("!activeMatch", matchId);
-      this.$store.dispatch("setController", "joinGame");
-      console.log("loading: " + this.loading, this.$store.state.match);
+      // console.log("loading: " + this.loading, this.$store.state.match);
       await this.$store.dispatch("getAndSetMatch", matchId);
       this.loading = false;
-      console.log("loading: " + this.loading, this.$store.state.match);
-      // const matchData = await getMatch(matchId);
+      this.$store.dispatch("setController", "joinGame");
+      // console.log("loading: " + this.loading, this.$store.state.match);
 
       if (this.$store.state.match.status == "cancelled") {
         console.log("match cancelled!");
-        this.$store.dispatch("setController", "waitingForP    layers");
+        this.$store.dispatch("setController", "waitingForPlayers");
       }
     }
   },
