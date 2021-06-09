@@ -10,7 +10,15 @@
       <router-view :class="open ? 'opacity-25' : 'opacity-100'" />
       <nav
         :class="open ? 'navbar-open' : 'navbar-close'"
-        class="navbar w-64 absolute overflow-x-scroll bg-gray-100 top-0 h-screen"
+        class="
+          navbar
+          w-64
+          absolute
+          overflow-x-scroll
+          bg-gray-100
+          top-0
+          h-screen
+        "
       >
         <div class="flex pr-2 justify-end">
           <button @click="tog()" class="p-2 text-xl font-bold">&#9747;</button>
@@ -40,8 +48,6 @@
 </template>
 
 <script>
-import { currentUser, getUserDetails } from "./utilities/bridges/auth";
-import { getMatch } from "./utilities/bridges/match";
 export default {
   name: "app",
   data() {
@@ -69,37 +75,7 @@ export default {
   },
   async created() {
     document.title = "Golf Bets";
-
-    // // get user from supabase.auth
-    // const user = currentUser();
-
-    // if (user) {
-    //   this.$store.dispatch("setUser", user);
-
-    //   // get user details
-    //   const { data, error } = await getUserDetails(user.id);
-    //   console.log("GET USER DETAILS", data, error);
-    //   if (error) {
-    //     console.error(error);
-    //   }
-    //   if (data) {
-    //     this.$store.dispatch("setUserDetails", data);
-
-    //     // set match in store in getMatch()
-    //     if (data.active_match) {
-    //       console.log("ACTIVE MATCH: " + data.active_match);
-    //       // this.$router.push(`/join?match=${data.active_match}`)
-    //     }
-    //   }
-    // } else {
-    //   console.log("no user");
   },
-
-  //just leaving this here to remind me i have this global property
-  // console.log(this.$hostname);
-  // console.log(process.env.VUE_APP_HOSTNAME);
-  // console.log(process.env.NODE_ENV);
-  // },
 };
 </script>
 

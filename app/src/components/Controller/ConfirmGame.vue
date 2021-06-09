@@ -22,12 +22,6 @@
 </template>
 
 <script>
-import {
-  newMatch,
-  getMatch,
-  matchListener,
-} from "../../utilities/bridges/match";
-
 export default {
   name: "confirmGame",
   computed: {

@@ -42,30 +42,30 @@ export default {
       }
     },
   },
-  async beforeMount() {
-    const user = this.$store.getters.user;
-    if (!user) {
-      console.log("no user");
-      return;
-    }
-    const activeMatch = await getActiveMatch(this.$store.getters.user.id);
-    if (activeMatch.error) {
-      console.error("problem getting active match", activeMatch.error);
-    }
+  // async beforeMount() {
+  //   const user = this.$store.getters.user;
+  //   if (!user) {
+  //     console.log("no user");
+  //     return;
+  //   }
+  //   const activeMatch = await getActiveMatch(this.$store.getters.user.id);
+  //   if (activeMatch.error) {
+  //     console.error("problem getting active match", activeMatch.error);
+  //   }
 
-    const matchId = activeMatch.data[0].active_match;
+  //   const matchId = activeMatch.data[0].active_match;
 
-    if (matchId) {
-      console.log("match found", matchId);
-      const matchData = await getMatch(matchId);
+  //   if (matchId) {
+  //     console.log("match found", matchId);
+  //     const matchData = await getMatch(matchId);
 
-      if (matchData.error) {
-        console.error(matchData.error);
-      }
-      if (matchData.data) {
-        // await matchListener();
-      }
-    }
-  },
+  //     if (matchData.error) {
+  //       console.error(matchData.error);
+  //     }
+  //     if (matchData.data) {
+  //       // await matchListener();
+  //     }
+  //   }
+  // },
 };
 </script>
