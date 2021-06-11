@@ -12,6 +12,8 @@ import {
   cancelMatch,
   unsubscribe,
 } from "../utilities/bridges/match";
+
+import { user } from "./user";
 Vue.use(Vuex);
 
 export default new Vuex.Store({
@@ -377,5 +379,5 @@ export default new Vuex.Store({
       }
     },
   },
-  modules: {},
+  modules: { user },
 });
