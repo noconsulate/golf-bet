@@ -24,8 +24,8 @@ export const match = {
     UPDATE_MATCH_ID(state, payload) {
       state.matchId = payload;
     },
-    UPDATE_MATCH_STATUS(state, payload) {
-      state.match.status = payload;
+    UPDATE_MATCH(state, payload) {
+      state.match = payload;
     },
     UPDATE_MATCH_STATUS(state, payload) {
       state.match.status = payload;
