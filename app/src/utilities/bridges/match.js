@@ -36,7 +36,7 @@ const startMatch = async function(id) {
 };
 
 export const matchListener = async function(id) {
-  // const id = store.state.match.id;
+  // const id = store.state.match.match.id;
   const subscription = supabase
     .from(`match:id=eq.${id}`)
     .on("UPDATE", (payload) => {

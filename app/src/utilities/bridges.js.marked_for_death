@@ -65,9 +65,9 @@ export async function playerConfirm(matchId) {
 
       store.dispatch("setPlayerNum", maxPlayer);
 
-      console.log(maxPlayer, store.state.match.players);
+      console.log(maxPlayer, store.state.match.match.players);
 
-      if (maxPlayer >= store.state.match.players) {
+      if (maxPlayer >= store.state.match.match.players) {
         return "doNotListen";
       }
       return "doListen";
@@ -85,7 +85,7 @@ export async function playerConfirm(matchId) {
 
 // this requires some learnin'/thinkin/
 export async function playersJoinedListener(matchId) {
-  const players = store.state.match.players;
+  const players = store.state.match.match.players;
 
   const Match = Parse.Object.extend("Match");
   const query = new Parse.Query("Match");

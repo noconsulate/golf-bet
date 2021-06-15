@@ -135,10 +135,10 @@ export default {
       console.log();
     },
     holes() {
-      return Number(this.$store.state.match.holes);
+      return Number(this.$store.state.match.match.holes);
     },
     players() {
-      return this.$store.state.match.players;
+      return this.$store.state.match.match.players;
     },
     gameId() {
       return this.$store.state.gameId;
@@ -159,24 +159,8 @@ export default {
     courseData() {
       return {
         tees: [
-          232,
-          234,
-          126,
-          666,
-          696,
-          313,
-          216,
-          316,
-          118,
-          232,
-          234,
-          126,
-          666,
-          696,
-          313,
-          216,
-          316,
-          118,
+          232, 234, 126, 666, 696, 313, 216, 316, 118, 232, 234, 126, 666, 696,
+          313, 216, 316, 118,
         ],
         teesTotal: function () {
           let total = 0;
@@ -190,23 +174,7 @@ export default {
           return total;
         },
         ratings: [
-          12,
-          18,
-          12,
-          12,
-          12,
-          12,
-          12,
-          12,
-          12,
-          12,
-          12,
-          12,
-          12,
-          12,
-          12,
-          12,
-          12,
+          12, 18, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12,
           12,
         ],
         ratingsTotal: function () {
@@ -262,12 +230,10 @@ export default {
     },
     async enterScore() {
       let scores = {};
-      scores[this.scoringFor[0]] = this.scoresObj[this.activeHole][
-        this.scoringFor[0]
-      ];
-      scores[this.scoringFor[1]] = this.scoresObj[this.activeHole][
-        this.scoringFor[1]
-      ];
+      scores[this.scoringFor[0]] =
+        this.scoresObj[this.activeHole][this.scoringFor[0]];
+      scores[this.scoringFor[1]] =
+        this.scoresObj[this.activeHole][this.scoringFor[1]];
 
       const result = await checkAndSubmitScores(
         this.gameId,

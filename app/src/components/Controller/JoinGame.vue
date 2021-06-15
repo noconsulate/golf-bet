@@ -27,26 +27,26 @@ export default {
   computed: {
     gameInfo() {
       return {
-        players: this.$store.state.match.players,
-        points: this.$store.state.match.points,
-        holes: this.$store.state.match.holes,
-        scoringStyle: this.$store.state.match.scoringStyle,
+        players: this.$store.state.match.match.players,
+        points: this.$store.state.match.match.points,
+        holes: this.$store.state.match.match.holes,
+        scoringStyle: this.$store.state.match.match.scoringStyle,
       };
     },
     players() {
-      return this.$store.state.match.players;
+      return this.$store.state.match.match.players;
     },
     points() {
-      return this.$store.state.match.points;
+      return this.$store.state.match.match.points;
     },
     holes() {
-      return this.$store.state.match.holes;
+      return this.$store.state.match.match.holes;
     },
     scoringStyle() {
-      return this.$store.state.match.scoringStyle;
+      return this.$store.state.match.match.scoringStyle;
     },
     matchId() {
-      return this.$store.state.match.id;
+      return this.$store.state.match.match.id;
     },
     uuid() {
       console.log(this.$store.state.user.id);

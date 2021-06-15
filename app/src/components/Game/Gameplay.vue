@@ -40,7 +40,7 @@ export default {
   },
   computed: {
     holes() {
-      return Number(this.$store.state.match.holes);
+      return Number(this.$store.state.match.match.holes);
     },
   },
   methods: {

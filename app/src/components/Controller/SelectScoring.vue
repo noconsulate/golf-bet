@@ -42,10 +42,10 @@ export default {
     },
     isReady() {
       return (
-        this.$store.state.match.players != "" &&
-        this.$store.state.match.points != "" &&
-        this.$store.state.match.holes != "" &&
-        this.$store.state.match.scoringStyle != ""
+        this.$store.state.match.match.players != "" &&
+        this.$store.state.match.match.points != "" &&
+        this.$store.state.match.match.holes != "" &&
+        this.$store.state.match.match.scoringStyle != ""
       );
     },
   },

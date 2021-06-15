@@ -27,8 +27,8 @@ export async function updateScore(match_id, player_num, hole, score) {
 }
 
 export const playersJoinedListener = async function() {
-  const id = store.state.match.id;
-  const players = store.state.match.players;
+  const id = store.state.match.match.id;
+  const players = store.state.match.match.players;
   const subscription = supabase
     .from(`match:id=eq.${id}`)
     .on("UPDATE", (payload) => {
@@ -53,7 +53,7 @@ export const playersJoinedListener = async function() {
 };
 
 export async function scoreListener() {
-  const match_id = store.state.match.id;
+  const match_id = store.state.match.match.id;
 
   const subscription = supabase
     .from(`score:match_id=eq.${match_id}`)

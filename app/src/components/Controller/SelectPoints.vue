@@ -23,7 +23,7 @@ export default {
   },
   computed: {
     isReady() {
-      return this.$store.state.match.players != "" && this.points != "";
+      return this.$store.state.match.match.players != "" && this.points != "";
     },
   },
   methods: {

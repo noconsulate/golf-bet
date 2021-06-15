@@ -18,10 +18,10 @@ export default {
   },
   computed: {
     players() {
-      return this.$store.state.match.players;
+      return this.$store.state.match.match.players;
     },
     scoringStyle() {
-      return this.$store.state.match.scoringStyle;
+      return this.$store.state.match.match.scoringStyle;
     },
     playerNum() {
       return this.$store.state.playerNum;

@@ -55,22 +55,22 @@ export default {
   },
   computed: {
     playerNum() {
-      return this.$store.state.match.playerNum;
+      return this.$store.state.match.match.playerNum;
     },
     players() {
-      return this.$store.state.match.players;
+      return this.$store.state.match.match.players;
     },
     points() {
-      return this.$store.state.match.points;
+      return this.$store.state.match.match.points;
     },
     holes() {
-      return this.$store.state.match.holes;
+      return this.$store.state.match.match.holes;
     },
     scoringStyle() {
-      return this.$store.state.match.scoringStyle;
+      return this.$store.state.match.match.scoringStyle;
     },
     matchId() {
-      return this.$store.state.match.id;
+      return this.$store.state.match.match.id;
     },
     controller() {
       return this.$store.state.controller;
@@ -88,7 +88,7 @@ export default {
   created() {
     this.$store.dispatch("setController", "joinGame");
 
-    const status = this.$store.state.match.status;
+    const status = this.$store.state.match.match.status;
     console.log(status);
   },
 };

@@ -30,10 +30,12 @@ export default {
       return this.$store.getters.user.active_match;
     },
     matchStatus() {
-      return this.$store.state.match.status;
+      return this.$store.state.match.match.status;
     },
     isCreator() {
-      return this.$store.state.match.creator == this.$store.getters.user.id;
+      return (
+        this.$store.state.match.match.creator == this.$store.getters.user.id
+      );
     },
   },
   methods: {

@@ -55,13 +55,13 @@ export default {
   },
   computed: {
     playerNum() {
-      return this.$store.state.match.playerNum;
+      return this.$store.state.match.match.playerNum;
     },
     players() {
-      return this.$store.state.match.players;
+      return this.$store.state.match.match.players;
     },
     points() {
-      return this.$store.state.match.points;
+      return this.$store.state.match.match.points;
     },
     holes() {
       return this.$store.getters.match.holes;
@@ -70,7 +70,7 @@ export default {
       return this.$store.getters.match.scoringStyle;
     },
     matchId() {
-      return this.$store.state.match.id;
+      return this.$store.state.match.match.id;
     },
     controller() {
       return this.$store.state.controller;
@@ -82,7 +82,7 @@ export default {
       return this.$store.state.user.email;
     },
     status() {
-      return this.$store.state.match.status;
+      return this.$store.state.match.match.status;
     },
   },
   methods: {},

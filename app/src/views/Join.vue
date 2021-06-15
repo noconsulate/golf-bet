@@ -73,13 +73,13 @@ export default {
 
     if (!activeMatch) {
       console.log("!activeMatch", matchId);
-      // console.log("loading: " + this.loading, this.$store.state.match);
+      // console.log("loading: " + this.loading, this.$store.state.match.match);
       await this.$store.dispatch("getAndSetMatch", matchId);
       this.loading = false;
       this.$store.dispatch("setController", "joinGame");
-      // console.log("loading: " + this.loading, this.$store.state.match);
+      // console.log("loading: " + this.loading, this.$store.state.match.match);
 
-      if (this.$store.state.match.status == "cancelled") {
+      if (this.$store.state.match.match.status == "cancelled") {
         console.log("match cancelled!");
         this.$store.dispatch("setController", "waitingForPlayers");
       }

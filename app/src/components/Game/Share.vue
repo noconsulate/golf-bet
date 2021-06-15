@@ -49,13 +49,15 @@ export default {
   },
   computed: {
     isCreator() {
-      return this.$store.getters.user.id == this.$store.state.match.creator;
+      return (
+        this.$store.getters.user.id == this.$store.state.match.match.creator
+      );
     },
     url() {
       return process.env.VUE_APP_HOSTNAME;
     },
     matchId() {
-      return this.$store.state.match.id;
+      return this.$store.state.match.match.id;
     },
     link2Share() {
       return `${this.url}/join?match=${this.matchId}`;
@@ -63,14 +65,14 @@ export default {
 
     PlayersLeftToJoin() {
       const playersLeft =
-        this.$store.state.match.players -
-        this.$store.state.match.players_joined;
+        this.$store.state.match.match.players -
+        this.$store.state.match.match.players_joined;
       const appendage = playersLeft > 1 ? "players" : "player";
 
       return String(playersLeft + " " + appendage);
     },
     status() {
-      return this.$store.state.match.status;
+      return this.$store.state.match.match.status;
     },
   },
   methods: {

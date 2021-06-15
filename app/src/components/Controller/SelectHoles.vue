@@ -39,9 +39,9 @@ export default {
     },
     isReady() {
       return (
-        this.$store.state.match.players != "" &&
-        this.$store.state.match.points != "" &&
-        this.$store.state.match.holes != ""
+        this.$store.state.match.match.players != "" &&
+        this.$store.state.match.match.points != "" &&
+        this.$store.state.match.match.holes != ""
       );
     },
   },
@@ -55,15 +55,15 @@ export default {
     next() {
       if (
         this.holes != "" &&
-        this.$store.state.match.players != "" &&
-        this.$store.state.match.points != ""
+        this.$store.state.match.match.players != "" &&
+        this.$store.state.match.match.points != ""
       ) {
         this.$store.dispatch("setController", "selectScoring");
       }
     },
   },
   created() {
-    // this.holes = this.$store.state.match.holes;
+    // this.holes = this.$store.state.match.match.holes;
   },
 };
 </script>

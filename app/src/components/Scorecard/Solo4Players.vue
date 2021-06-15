@@ -144,16 +144,16 @@ export default {
   },
   computed: {
     matchId() {
-      return this.$store.state.match.id;
+      return this.$store.state.match.match.id;
     },
     scores() {
       return this.$store.getters.scores;
     },
     holes() {
-      return Number(this.$store.state.match.holes);
+      return Number(this.$store.state.match.match.holes);
     },
     players() {
-      return this.$store.state.match.players;
+      return this.$store.state.match.match.players;
     },
   },
   methods: {
