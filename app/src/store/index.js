@@ -13,6 +13,7 @@ import {
 } from "../utilities/bridges/match";
 
 import { user } from "./userModule";
+import { match } from "./matchModule";
 Vue.use(Vuex);
 
 export default new Vuex.Store({
@@ -25,18 +26,18 @@ export default new Vuex.Store({
       holes: "18",
       scoringStyle: "solo",
     },
-    matchId: "",
+    // matchId: "",
     playerNum: null,
     playersJoined: 0,
     allPlayersJoined: false,
     error: "",
     scores: [],
-    matchStatus: "",
+    // matchStatus: "",
     // I should put all match stuff here and leave the specific ones for the forms in Create.vue's state
-    match: {
-      id: "",
-      status: "",
-    },
+    // match: {
+    //   id: "",
+    //   status: "",
+    // },
   },
   getters: {
     scores: (state) => {
@@ -58,15 +59,15 @@ export default new Vuex.Store({
         : (result = false);
       return result;
     },
-    match: (state) => {
-      let holes, scoringStyle;
-      state.match.is_18_holes ? (holes = 18) : (holes = 9);
-      state.match.is_classic_scoring
-        ? (scoringStyle = "classic")
-        : (scoringStyle = "solo");
+    // match: (state) => {
+    //   let holes, scoringStyle;
+    //   state.match.is_18_holes ? (holes = 18) : (holes =    // setActiveMatch(context, value) {
+    //   context.commit("UPDATE_ACTIVE_MATCH", value);
+    // },
+    //     : (scoringStyle = "solo");
 
-      return { holes, scoringStyle };
-    },
+    //   return { holes, scoringStyle };
+    // },
   },
   mutations: {
     UPDATE_NAV_OPEN(state) {
@@ -90,9 +91,9 @@ export default new Vuex.Store({
         state.scores.push(item);
       });
     },
-    UPDATE_MATCH_ID(state, payload) {
-      state.matchId = payload;
-    },
+    // UPDATE_MATCH_ID(state, payload) {
+    //   state.matchId = payload;
+    // },
     UPDATE_PLAYER_NUM(state, payload) {
       state.playerNum = payload;
     },
@@ -113,17 +114,17 @@ export default new Vuex.Store({
       state.scores[index] = payload.score;
       state.scores = [...state.scores];
     },
-    UPDATE_MATCH_STATUS(state, payload) {
-      state.match.status = payload;
-    },
-    UPDATE_MATCH(state, payload) {
-      state.match = payload;
-    },
-    RESET_MATCH_VALUES(state) {
-      state.match = { id: "" };
-      // state.matchId = "";
-      state.controller = "selectPlayers";
-    },
+    // UPDATE_MATCH_STATUS(state, payload) {
+    //   state.match.status = payload;
+    // },
+    // UPDATE_MATCH(state, payload) {
+    //   state.match = payload;
+    // },
+    // RESET_MATCH_VALUES(state) {
+    //   state.match = { id: "" };
+    //   // state.matchId = "";
+    //   state.controller = "selectPlayers";
+    // },
     RESET_INPUT_VALUES(state) {
       state.input.players = "";
       state.input.points = "";
@@ -131,9 +132,9 @@ export default new Vuex.Store({
       state.input.scoringStyle = "";
     },
 
-    UPDATE_MATCH_STATIUS(state, payload) {
-      state.match.status = payload;
-    },
+    // UPDATE_MATCH_STATIUS(state, payload) {
+    //   state.match.status = payload;
+    // },
     UPDATE_SUBSCRIPTION(state, payload) {
       state.subscription = payload;
     },
@@ -160,9 +161,9 @@ export default new Vuex.Store({
     initScores(context, value) {
       context.commit("INITIALIZE_SCORES", value);
     },
-    setMatchId(context, value) {
-      context.commit("UPDATE_MATCH_ID", value);
-    },
+    // setMatchId(context, value) {
+    //   context.commit("UPDATE_MATCH_ID", value);
+    // },
     setPlayerNum(context, value) {
       context.commit("UPDATE_PLAYER_NUM", value);
     },
@@ -185,21 +186,21 @@ export default new Vuex.Store({
     setScoreRow(context, value) {
       context.commit("UPDATE_SCORE_ROW", value);
     },
-    setMatchStatus(context, value) {
-      context.commit("UPDATE_MATCH_STATUS", value);
-    },
-    setMatch(context, value) {
-      context.commit("UPDATE_MATCH", value);
-    },
-    resetMatchValues(context) {
-      context.commit("RESET_MATCH_VALUES");
-    },
+    // setMatchStatus(context, value) {
+    //   context.commit("UPDATE_MATCH_STATUS", value);
+    // },
+    // setMatch(context, value) {
+    //   context.commit("UPDATE_MATCH", value);
+    // },
+    // resetMatchValues(context) {
+    //   context.commit("RESET_MATCH_VALUES");
+    // },
     resetInputValues(context) {
       context.commit("RESET_INPUT_VALUES");
     },
-    setActiveMatch(context, value) {
-      context.commit("UPDATE_ACTIVE_MATCH", value);
-    },
+    // setActiveMatch(context, value) {
+    //   context.commit("UPDATE_ACTIVE_MATCH", value);
+    // },
     setSubscription(context, value) {
       context.commit("UPDATE_SUBSCRIPTION", value);
     },
@@ -331,6 +332,7 @@ export default new Vuex.Store({
     },
   },
   modules: {
-    user: user,
+    user,
+    match,
   },
 });
