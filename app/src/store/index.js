@@ -379,5 +379,7 @@ export default new Vuex.Store({
       }
     },
   },
-  modules: { user },
+  modules: {
+    userModule: user,
+  },
 });
