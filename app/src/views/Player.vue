@@ -141,6 +141,7 @@ export default {
         if (userDetails.data) {
           console.log(userDetails.data);
           this.$store.dispatch("setUserDetails", userDetails.data);
+          this.signinOpen = false;
         }
       }
     },
