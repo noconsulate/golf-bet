@@ -10,7 +10,6 @@ import {
   confirmJoin,
   forfeitMatch,
   cancelMatch,
-  unsubscribe,
 } from "../utilities/bridges/match";
 
 import { user } from "./user";
@@ -26,19 +25,11 @@ export default new Vuex.Store({
       holes: "18",
       scoringStyle: "solo",
     },
-    // players: "4",
-    // points: "20",
-    // holes: "18",
-    // scoringStyle: "solo",
     matchId: "",
     playerNum: null,
     playersJoined: 0,
     allPlayersJoined: false,
     error: "",
-    // user: {},
-    // userDetails: {
-    //   activeMatch: null,
-    // },
     scores: [],
     matchStatus: "",
     // I should put all match stuff here and leave the specific ones for the forms in Create.vue's state
@@ -56,20 +47,12 @@ export default new Vuex.Store({
         for (let i = 1; i <= holes; i++) {
           scoreObj[i] = item[i];
         }
-        // scoreObj[player_num] = item.player_num;
         scores.push(scoreObj);
       });
       return scores;
     },
-    // user: (state) => {
-    //   if (state.user) {
-    //     let user = { ...state.user, ...state.userDetails };
-    //     return user;
-    //   } else return null;
-    // },
     allPlayersJoined: (state) => {
       let result;
-      // console.log(state.match.players_joined, state.match.players);
       state.match.players_joined == state.match.players
         ? (result = true)
         : (result = false);
@@ -105,15 +88,8 @@ export default new Vuex.Store({
       window.payload = payload;
       payload.map((item) => {
         state.scores.push(item);
-        // Vue.set(state.scores, item.index, item);
       });
     },
-    // RESET_VALUES(state) {
-    //   state.match.players = "";
-    //   state.match.points = "";
-    //   state.match.holes = "";
-    //   state.scores = [];
-    // },
     UPDATE_MATCH_ID(state, payload) {
       state.matchId = payload;
     },
@@ -132,12 +108,6 @@ export default new Vuex.Store({
     UPDATE_ERROR(state, payload) {
       state.error = payload;
     },
-    // UPDATE_USER(state, payload) {
-    //   state.user = payload;
-    // },
-    // UPDATE_USER_DETAILS(state, payload) {
-    //   state.userDetails = payload;
-    // },
     UPDATE_SCORE_ROW(state, payload) {
       const index = payload.player - 1;
       state.scores[index] = payload.score;
@@ -167,10 +137,6 @@ export default new Vuex.Store({
     UPDATE_SUBSCRIPTION(state, payload) {
       state.subscription = payload;
     },
-    // CLEAR_USER(state) {
-    //   state.user = {};
-    //   state.userDetails = {};
-    // },
   },
   actions: {
     toggleNavOpen(context) {
@@ -194,9 +160,6 @@ export default new Vuex.Store({
     initScores(context, value) {
       context.commit("INITIALIZE_SCORES", value);
     },
-    // resetValues(context) {
-    //   context.commit("RESET_VALUES");
-    // },
     setMatchId(context, value) {
       context.commit("UPDATE_MATCH_ID", value);
     },
@@ -219,12 +182,6 @@ export default new Vuex.Store({
     setError(context, value) {
       context.commit("UPDATE_ERROR", value);
     },
-    // setUser(context, value) {
-    //   context.commit("UPDATE_USER", value);
-    // },
-    // setUserDetails(context, value) {
-    //   context.commit("UPDATE_USER_DETAILS", value);
-    // },
     setScoreRow(context, value) {
       context.commit("UPDATE_SCORE_ROW", value);
     },
@@ -246,9 +203,6 @@ export default new Vuex.Store({
     setSubscription(context, value) {
       context.commit("UPDATE_SUBSCRIPTION", value);
     },
-    // setClearUser(context) {
-    //   context.commit("CLEAR_USER");
-    // },
 
     // trying to move all fetches here
     async initOnLoad(context) {
@@ -257,7 +211,6 @@ export default new Vuex.Store({
         return;
       }
       context.commit("UPDATE_USER", user);
-      // context.dispatch("getAndSetUserDetails", user.id);
 
       const { data, error } = await getUserDetails(user.id);
       if (error) {
