@@ -35,10 +35,10 @@ export default new Vuex.Store({
     playersJoined: 0,
     allPlayersJoined: false,
     error: "",
-    user: {},
-    userDetails: {
-      activeMatch: null,
-    },
+    // user: {},
+    // userDetails: {
+    //   activeMatch: null,
+    // },
     scores: [],
     matchStatus: "",
     // I should put all match stuff here and leave the specific ones for the forms in Create.vue's state
@@ -61,12 +61,12 @@ export default new Vuex.Store({
       });
       return scores;
     },
-    user: (state) => {
-      if (state.user) {
-        let user = { ...state.user, ...state.userDetails };
-        return user;
-      } else return null;
-    },
+    // user: (state) => {
+    //   if (state.user) {
+    //     let user = { ...state.user, ...state.userDetails };
+    //     return user;
+    //   } else return null;
+    // },
     allPlayersJoined: (state) => {
       let result;
       // console.log(state.match.players_joined, state.match.players);
@@ -132,12 +132,12 @@ export default new Vuex.Store({
     UPDATE_ERROR(state, payload) {
       state.error = payload;
     },
-    UPDATE_USER(state, payload) {
-      state.user = payload;
-    },
-    UPDATE_USER_DETAILS(state, payload) {
-      state.userDetails = payload;
-    },
+    // UPDATE_USER(state, payload) {
+    //   state.user = payload;
+    // },
+    // UPDATE_USER_DETAILS(state, payload) {
+    //   state.userDetails = payload;
+    // },
     UPDATE_SCORE_ROW(state, payload) {
       const index = payload.player - 1;
       state.scores[index] = payload.score;
@@ -160,19 +160,17 @@ export default new Vuex.Store({
       state.input.holes = "";
       state.input.scoringStyle = "";
     },
-    UPDATE_ACTIVE_MATCH(state, payload) {
-      state.userDetails.active_match = payload;
-    },
+
     UPDATE_MATCH_STATIUS(state, payload) {
       state.match.status = payload;
     },
     UPDATE_SUBSCRIPTION(state, payload) {
       state.subscription = payload;
     },
-    CLEAR_USER(state) {
-      state.user = {};
-      state.userDetails = {};
-    },
+    // CLEAR_USER(state) {
+    //   state.user = {};
+    //   state.userDetails = {};
+    // },
   },
   actions: {
     toggleNavOpen(context) {
@@ -221,12 +219,12 @@ export default new Vuex.Store({
     setError(context, value) {
       context.commit("UPDATE_ERROR", value);
     },
-    setUser(context, value) {
-      context.commit("UPDATE_USER", value);
-    },
-    setUserDetails(context, value) {
-      context.commit("UPDATE_USER_DETAILS", value);
-    },
+    // setUser(context, value) {
+    //   context.commit("UPDATE_USER", value);
+    // },
+    // setUserDetails(context, value) {
+    //   context.commit("UPDATE_USER_DETAILS", value);
+    // },
     setScoreRow(context, value) {
       context.commit("UPDATE_SCORE_ROW", value);
     },
@@ -248,13 +246,12 @@ export default new Vuex.Store({
     setSubscription(context, value) {
       context.commit("UPDATE_SUBSCRIPTION", value);
     },
-    setClearUser(context) {
-      context.commit("CLEAR_USER");
-    },
+    // setClearUser(context) {
+    //   context.commit("CLEAR_USER");
+    // },
 
     // trying to move all fetches here
     async initOnLoad(context) {
-      context.commit("TEST_MUTATION");
       const user = await getUser();
       if (!user) {
         return;
@@ -381,6 +378,6 @@ export default new Vuex.Store({
     },
   },
   modules: {
-    userModule: user,
+    user: user,
   },
 });

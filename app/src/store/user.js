@@ -30,6 +30,13 @@ export const user = {
     TEST_MUTATION(state) {
       console.log("test mutation reached");
     },
+    UPDATE_ACTIVE_MATCH(state, payload) {
+      state.userDetails.active_match = payload;
+    },
+    CLEAR_USER(state) {
+      state.user = {};
+      state.userDetails = {};
+    },
   },
   actions: {
     setUser(context, value) {
