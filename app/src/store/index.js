@@ -254,6 +254,7 @@ export default new Vuex.Store({
 
     // trying to move all fetches here
     async initOnLoad(context) {
+      context.commit("TEST_MUTATION");
       const user = await getUser();
       if (!user) {
         return;

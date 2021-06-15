@@ -27,6 +27,9 @@ export const user = {
       state.user = {};
       state.userDetails = {};
     },
+    TEST_MUTATION(state) {
+      console.log("test mutation reached");
+    },
   },
   actions: {
     setUser(context, value) {
