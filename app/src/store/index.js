@@ -12,7 +12,7 @@ import {
   cancelMatch,
 } from "../utilities/bridges/match";
 
-import { user } from "./user";
+import { user } from "./userModule";
 Vue.use(Vuex);
 
 export default new Vuex.Store({
