@@ -25,7 +25,7 @@ export default {
       }
     },
     showNoUser() {
-      if (this.$store.state.user == null) {
+      if (this.$store.state.user.user == null) {
         return true;
       } else {
         return false;

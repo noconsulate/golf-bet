@@ -66,13 +66,13 @@ export default {
       return this.$store.getters.user;
     },
     email() {
-      return this.$store.state.user.email;
+      return this.$store.state.user.user.email;
     },
     handle() {
-      return this.$store.state.userDetails.handle;
+      return this.$store.state.user.userDetails.handle;
     },
     balance() {
-      return this.$store.state.userDetails.balance;
+      return this.$store.state.user.userDetails.balance;
     },
   },
   methods: {

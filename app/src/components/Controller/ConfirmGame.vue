@@ -32,7 +32,7 @@ export default {
         points: this.$store.state.input.points,
         is_18_holes: this.is18Holes,
         is_classic_scoring: this.isClassicScoring,
-        creator: this.$store.state.user.id,
+        creator: this.$store.state.user.user.id,
       };
     },
     players() {
@@ -56,7 +56,7 @@ export default {
       else return false;
     },
     creator() {
-      return this.$store.state.user.id;
+      return this.$store.state.user.user.id;
     },
   },
   methods: {
