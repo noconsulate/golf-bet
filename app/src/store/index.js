@@ -3,14 +3,6 @@ import Vuex from "vuex";
 
 import router from "../router/";
 import { getUser, getUserDetails } from "../utilities/bridges/auth";
-import {
-  newMatch,
-  getMatch,
-  matchListener,
-  confirmJoin,
-  forfeitMatch,
-  cancelMatch,
-} from "../utilities/bridges/match";
 
 import { user } from "./userModule";
 import { match } from "./matchModule";
@@ -26,18 +18,11 @@ export default new Vuex.Store({
       holes: "18",
       scoringStyle: "solo",
     },
-    // matchId: "",
     playerNum: null,
     playersJoined: 0,
     allPlayersJoined: false,
     error: "",
     scores: [],
-    // matchStatus: "",
-    // I should put all match stuff here and leave the specific ones for the forms in Create.vue's state
-    // match: {
-    //   id: "",
-    //   status: "",
-    // },
   },
   getters: {
     scores: (state) => {
@@ -59,15 +44,6 @@ export default new Vuex.Store({
         : (result = false);
       return result;
     },
-    // match: (state) => {
-    //   let holes, scoringStyle;
-    //   state.match.is_18_holes ? (holes = 18) : (holes =    // setActiveMatch(context, value) {
-    //   context.commit("UPDATE_ACTIVE_MATCH", value);
-    // },
-    //     : (scoringStyle = "solo");
-
-    //   return { holes, scoringStyle };
-    // },
   },
   mutations: {
     UPDATE_NAV_OPEN(state) {
@@ -91,9 +67,7 @@ export default new Vuex.Store({
         state.scores.push(item);
       });
     },
-    // UPDATE_MATCH_ID(state, payload) {
-    //   state.matchId = payload;
-    // },
+
     UPDATE_PLAYER_NUM(state, payload) {
       state.playerNum = payload;
     },
@@ -114,17 +88,7 @@ export default new Vuex.Store({
       state.scores[index] = payload.score;
       state.scores = [...state.scores];
     },
-    // UPDATE_MATCH_STATUS(state, payload) {
-    //   state.match.status = payload;
-    // },
-    // UPDATE_MATCH(state, payload) {
-    //   state.match = payload;
-    // },
-    // RESET_MATCH_VALUES(state) {
-    //   state.match = { id: "" };
-    //   // state.matchId = "";
-    //   state.controller = "selectPlayers";
-    // },
+
     RESET_INPUT_VALUES(state) {
       state.input.players = "";
       state.input.points = "";
@@ -132,9 +96,6 @@ export default new Vuex.Store({
       state.input.scoringStyle = "";
     },
 
-    // UPDATE_MATCH_STATIUS(state, payload) {
-    //   state.match.status = payload;
-    // },
     UPDATE_SUBSCRIPTION(state, payload) {
       state.subscription = payload;
     },
@@ -161,9 +122,7 @@ export default new Vuex.Store({
     initScores(context, value) {
       context.commit("INITIALIZE_SCORES", value);
     },
-    // setMatchId(context, value) {
-    //   context.commit("UPDATE_MATCH_ID", value);
-    // },
+
     setPlayerNum(context, value) {
       context.commit("UPDATE_PLAYER_NUM", value);
     },
@@ -186,21 +145,11 @@ export default new Vuex.Store({
     setScoreRow(context, value) {
       context.commit("UPDATE_SCORE_ROW", value);
     },
-    // setMatchStatus(context, value) {
-    //   context.commit("UPDATE_MATCH_STATUS", value);
-    // },
-    // setMatch(context, value) {
-    //   context.commit("UPDATE_MATCH", value);
-    // },
-    // resetMatchValues(context) {
-    //   context.commit("RESET_MATCH_VALUES");
-    // },
+
     resetInputValues(context) {
       context.commit("RESET_INPUT_VALUES");
     },
-    // setActiveMatch(context, value) {
-    //   context.commit("UPDATE_ACTIVE_MATCH", value);
-    // },
+
     setSubscription(context, value) {
       context.commit("UPDATE_SUBSCRIPTION", value);
     },
@@ -223,111 +172,6 @@ export default new Vuex.Store({
 
         if (data.active_match)
           context.dispatch("getAndSetMatch", data.active_match);
-      }
-    },
-
-    async getAndSetUserDetails(context, userId) {
-      const { data, error } = await getUserDetails(userId);
-      if (error) {
-        console.log(error);
-      }
-
-      if (data) {
-        context.commit("UPDATE_USER_DETAILS", data);
-      }
-    },
-
-    async getAndSetNewMatch(context, values) {
-      const { data, error } = await newMatch(values);
-
-      if (error) {
-        console.error(error);
-      }
-      if (data) {
-        context.commit("UPDATE_MATCH_STATUS", "waiting");
-        context.commit("UPDATE_PLAYER_NUM", 1);
-
-        const matchInfo = await getMatch(data.match_id);
-
-        console.log(matchInfo);
-
-        if (matchInfo.error) {
-          console.error(matchInfo.error);
-        }
-        if (matchInfo.data) {
-          context.commit("UPDATE_MATCH", matchInfo.data[0]);
-          matchListener(matchInfo.data[0].id);
-        }
-      }
-    },
-
-    async getAndSetMatch(context, matchId) {
-      const { data, error } = await getMatch(matchId);
-      if (error) {
-        console.error(error);
-      }
-      if (data) {
-        context.commit("UPDATE_MATCH", data[0]);
-        matchListener(matchId);
-      }
-    },
-
-    async joinMatch(context, values) {
-      const { data, error } = await confirmJoin(
-        context.state.match.id,
-        context.state.user.id
-      );
-      if (error) {
-        console.error("confirmJoin error", error);
-      }
-
-      if (
-        data.score_id == "00000000-0000-0000-0000-000000000000" &&
-        data.players_joined_out == 9
-      ) {
-        console.error("GAME FULL");
-        return;
-      } else if (
-        data.score_id == "00000000-0000-0000-0000-000000000000" &&
-        data.players_joined_out == 8
-      ) {
-        console.log("GAME CANCELLED");
-        context.dispatch("setMatchStatus", "cancelled");
-        context.dispatch("setController", "waitingForPlayers");
-        return;
-      } else {
-        console.log("game confirmed");
-        context.dispatch("setController", "waitingForPlayers");
-        context.dispatch("setPlayerNum", data.players_joined_out);
-        context.dispatch("setPlayersJoined", data.players_joined_out);
-        context.dispatch("setActiveMatch", this.matchId);
-      }
-    },
-
-    async forfeitMatch(context) {
-      const { data, error } = await forfeitMatch();
-      console.log(data, error);
-      if (!data.success || error) {
-        console.log(data.success, error);
-      }
-
-      if (data.success) {
-        context.dispatch("getAndSetUserDetails", context.getters.user.id);
-      }
-    },
-
-    async cancelMatch(context) {
-      const { data, error } = await cancelMatch();
-      if (!data.success || error) {
-        console.log(error, "success: " + data.success);
-      }
-      if (data.success == true) {
-        console.log("match cancelled");
-        // unsubscribe();
-        context.commit("UPDATE_CONTROLLER", "joinGame");
-        context.commit("UPDATE_ACTIVE_MATCH", null);
-        context.commit("UPDATE_MATCH_STATUS", "cancelled");
-        context.commit("UPDATE_SUBSCRIPTION", {});
       }
     },
   },
