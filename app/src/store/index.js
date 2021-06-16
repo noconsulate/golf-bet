@@ -12,29 +12,16 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    scores: [],
+    // scores: [],
   },
-  getters: {
-    scores: (state) => {
-      let scores = [];
-      const holes = Number(state.match.holes);
-      state.scores.map((item) => {
-        let scoreObj = { player_num: item.player_num };
-        for (let i = 1; i <= holes; i++) {
-          scoreObj[i] = item[i];
-        }
-        scores.push(scoreObj);
-      });
-      return scores;
-    },
-  },
+  getters: {},
   mutations: {
-    INITIALIZE_SCORES(state, payload) {
-      window.payload = payload;
-      payload.map((item) => {
-        state.scores.push(item);
-      });
-    },
+    // INITIALIZE_SCORES(state, payload) {
+    //   window.payload = payload;
+    //   payload.map((item) => {
+    //     state.scores.push(item);
+    //   });
+    // },
     UPDATE_ALL_PLAYERS_JOINED(state) {
       state.allPlayersJoined = true;
     },

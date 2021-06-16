@@ -1,16 +1,45 @@
 import { getScores } from "../utilities/bridges/score";
 
 export const scores = {
-  state: {},
+  state: {
+    scores: [],
+  },
 
-  getters: {},
+  getters: {
+    scores: (state, getters, rootState) => {
+      let scores = [];
+      const holes = Number(getters.match.holes);
+      console.log(holes, state);
+      state.scores.map((item) => {
+        let scoreObj = { player_num: item.player_num };
+        for (let i = 1; i <= holes; i++) {
+          scoreObj[i] = item[i];
+        }
+        scores.push(scoreObj);
+      });
+      return scores;
+    },
+  },
 
-  mutuations: {},
+  mutations: {
+    INITIALIZE_SCORES(state, payload) {
+      payload.map((item) => {
+        state.scores.push(item);
+      });
+    },
+  },
   actions: {
     async initScores(context) {
       const matchId = context.rootState.match.match.id;
-      console.log(matchId);
-      const { data, error } = await getScores();
+      const { data, error } = await getScores(matchId);
+      console.log(data, error);
+
+      if (error) {
+        console.log(error);
+      }
+      if (data) {
+        context.commit("INITIALIZE_SCORES", data);
+      }
     },
   },
 };

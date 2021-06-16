@@ -150,7 +150,7 @@ export default {
       return this.$store.getters.scores;
     },
     holes() {
-      return Number(this.$store.state.match.match.holes);
+      return Number(this.$store.getters.match.holes);
     },
     players() {
       return this.$store.state.match.match.players;
