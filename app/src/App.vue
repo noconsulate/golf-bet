@@ -64,6 +64,9 @@ export default {
   watch: {
     allPlayersJoined: function (newVal, oldVal) {
       console.log(newVal);
+      if (newVal) {
+        this.$router.push("/scorecard");
+      }
     },
   },
   methods: {
@@ -83,7 +86,6 @@ export default {
   },
   async created() {
     document.title = "Golf Bets";
-    console.log(this.allPlayersJoined);
   },
 };
 </script>

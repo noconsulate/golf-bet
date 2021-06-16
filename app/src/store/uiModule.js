@@ -16,6 +16,9 @@ export const ui = {
   },
   getters: {
     allPlayersJoined: (state, getters, rootState) => {
+      if (rootState.match.match.id == "") {
+        return false
+      }
       let result;
       rootState.match.match.players_joined == rootState.match.match.players
         ? (result = true)
