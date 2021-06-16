@@ -58,9 +58,22 @@ export async function scoreListener() {
   const match_id = store.state.match.match.id;
   console.log(match_id);
 
+  const subscription = supabase.from("*").on("*", (payload) => {
+    console.log("score change");
+  });
+
+  console.log("scoreListener subscribed");
+  return subscription;
+}
+
+export async function scoreListenerBroken() {
+  const match_id = store.state.match.match.id;
+  console.log(match_id);
+
   const subscription = supabase
-    .from(`score:match_id=eq.${match_id}`)
-    .on("UPDATE", (payload) => {
+    // .from(`score:match_id=eq.${match_id}`)
+    .from("score")
+    .on("*", (payload) => {
       console.log("score change", payload);
       const { player_num } = payload.new;
       console.log(store.state.scores[player_num - 1]);
