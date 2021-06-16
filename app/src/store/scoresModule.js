@@ -23,6 +23,7 @@ export const scores = {
 
   mutations: {
     INITIALIZE_SCORES(state, payload) {
+      state.scores = [];
       payload.map((item) => {
         state.scores.push(item);
       });
@@ -41,7 +42,7 @@ export const scores = {
       }
       if (data) {
         context.commit("INITIALIZE_SCORES", data);
-        // context.commit("UPDATE_LOADED");
+        context.commit("UPDATE_LOADED");
       }
     },
     async setScore(context, values) {

@@ -94,8 +94,8 @@
         <div :class="cell">RR</div>
         <div :class="cell">{{ totalScore(1) }}</div>
         <div :class="cell">{{ totalScore(2) }}</div>
-        <div :class="cell">{{ totalScore(3) }}</div>
-        <div :class="cell">{{ totalScore(4) }}</div>
+        <div :class="cell" class="invisible"></div>
+        <div :class="cell" class="invisible"></div>
       </div>
     </div>
     <div class="flex flex-col border space-y-2 object-none object-bottom">
@@ -168,6 +168,8 @@ export default {
       this.activeHole = hole;
     },
     totalScore(player) {
+      console.log(this.scores);
+      // return "peepe";
       const index = player - 1;
       let total = 0;
       for (let i = 1; i <= this.holes; i++) {
