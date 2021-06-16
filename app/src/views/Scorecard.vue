@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Solo4Players v-if="players == 1 && scoringStyle == 'solo'" />
+    <Solo2Players v-if="players == 2 && scoringStyle == 'solo'" />
     <Solo4Players
       v-if="players == '4' && scoringStyle == 'solo' && playerNum == '1'"
     />
@@ -15,6 +15,7 @@ import Solo4Players from "../components/Scorecard/Solo4Players";
 export default {
   name: "scoredcard",
   components: {
+    Solo2Players,
     Classic4Players,
     Solo4Players,
   },
@@ -23,7 +24,7 @@ export default {
       return this.$store.state.match.match.players;
     },
     scoringStyle() {
-      return this.$store.state.match.match.scoringStyle;
+      return this.$store.getters.match.scoringStyle;
     },
     playerNum() {
       return this.$store.state.ui.playerNum;

@@ -6,6 +6,7 @@ import { getUser, getUserDetails } from "../utilities/bridges/auth";
 import { user } from "./userModule";
 import { match } from "./matchModule";
 import { ui } from "./uiModule";
+import { scores } from "./scoresModule";
 
 Vue.use(Vuex);
 
@@ -44,9 +45,9 @@ export default new Vuex.Store({
     },
   },
   actions: {
-    initScores(context, value) {
-      context.commit("INITIALIZE_SCORES", value);
-    },
+    // initScores(context, value) {
+    //   context.commit("INITIALIZE_SCORES", value);
+    // },
     setScoreRow(context, value) {
       context.commit("UPDATE_SCORE_ROW", value);
     },
@@ -75,5 +76,6 @@ export default new Vuex.Store({
     user,
     match,
     ui,
+    scores,
   },
 });

@@ -63,8 +63,7 @@ export default {
   },
   watch: {
     allPlayersJoined: function (newVal, oldVal) {
-      console.log(newVal);
-      if (newVal) {
+      if (newVal && this.$route.name != "scorecard") {
         this.$router.push("/scorecard");
       }
     },
