@@ -212,11 +212,13 @@ export default {
       console.log("enter");
 
       const values = {
-        matchId: this.matchID,
-        activePlayer: this.ActivePlayer,
-        activeHole: this.activeHole,
+        matchId: this.matchId,
+        player: this.activePlayer,
+        hole: this.activeHole,
         score: this.scoreInput,
       };
+
+      console.log(values);
 
       this.$store.dispatch("setScore", values);
 

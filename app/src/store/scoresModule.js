@@ -46,9 +46,8 @@ export const scores = {
       }
     },
     async setScore(context, values) {
-      const { match_id, player_num, hole, score } = values;
-
-      const { data, error } = updateScore(match_id, player_num, hole, score);
+      const { matchId, player, hole, score } = values;
+      const { data, error } = await updateScore(matchId, player, hole, score);
 
       console.log(data, error);
     },
