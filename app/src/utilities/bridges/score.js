@@ -24,6 +24,8 @@ export async function updateScore(match_id, player_num, hole, score) {
     .match({ match_id, player_num });
 
   console.log(data, error);
+
+  return { data, error };
 }
 
 export const playersJoinedListener = async function() {
@@ -54,6 +56,7 @@ export const playersJoinedListener = async function() {
 
 export async function scoreListener() {
   const match_id = store.state.match.match.id;
+  console.log(match_id);
 
   const subscription = supabase
     .from(`score:match_id=eq.${match_id}`)
@@ -62,13 +65,14 @@ export async function scoreListener() {
       const { player_num } = payload.new;
       console.log(store.state.scores[player_num - 1]);
       console.log(payload.new);
-      store.dispatch("setScoreRow", { player: player_num, score: payload.new });
+      // store.dispatch("setScoreRow", { player: player_num, score: payload.new });
     })
     // .from("*")
     // .on("*", (payload) => {
     //   console.log("change", payload);
     // })
     .subscribe();
+  console.log("subscribed to score listener");
 
   return subscription;
 }

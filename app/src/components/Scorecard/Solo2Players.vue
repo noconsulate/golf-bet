@@ -168,8 +168,6 @@ export default {
       this.activeHole = hole;
     },
     totalScore(player) {
-      console.log(this.scores);
-      // return "peepe";
       const index = player - 1;
       let total = 0;
       for (let i = 1; i <= this.holes; i++) {
@@ -209,8 +207,6 @@ export default {
       }
     },
     enterScore() {
-      console.log("enter");
-
       const values = {
         matchId: this.matchId,
         player: this.activePlayer,
@@ -221,13 +217,6 @@ export default {
       console.log(values);
 
       this.$store.dispatch("setScore", values);
-
-      // updateScore(
-      //   this.matchId,
-      //   this.activePlayer,
-      //   this.activeHole,
-      //   this.scoreInput
-      // );
     },
   },
   async beforeMount() {

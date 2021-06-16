@@ -1,9 +1,14 @@
-import { getScores, updateScore } from "../utilities/bridges/score";
+import {
+  getScores,
+  updateScore,
+  scoreListener,
+} from "../utilities/bridges/score";
 
 export const scores = {
   state: {
     scores: [],
     loaded: false,
+    subscription: null,
   },
 
   getters: {
@@ -31,9 +36,15 @@ export const scores = {
     UPDATE_LOADED(state) {
       state.loaded = true;
     },
+    UPDATE_SUBSCRIPTION(state, payload) {
+      state.subscription = payload;
+    },
   },
   actions: {
     async initScores(context) {
+      if (context.state.subscription != null) {
+        console.log("subscription found");
+      }
       const matchId = context.rootState.match.match.id;
       const { data, error } = await getScores(matchId);
 
@@ -43,6 +54,9 @@ export const scores = {
       if (data) {
         context.commit("INITIALIZE_SCORES", data);
         context.commit("UPDATE_LOADED");
+
+        const subscription = await scoreListener();
+        context.commit("UPDATE_SUBSCRIPTION", subscription);
       }
     },
     async setScore(context, values) {
