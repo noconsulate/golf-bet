@@ -85,7 +85,9 @@ export const match = {
         }
         if (matchInfo.data) {
           context.commit("UPDATE_MATCH", matchInfo.data[0]);
-          matchListener(matchInfo.data[0].id);
+          if (matchInfo.data[0].status == "waiting") {
+            matchListener(matchInfo.data[0].id);
+          }
         }
       }
     },
@@ -97,7 +99,9 @@ export const match = {
       }
       if (data) {
         context.commit("UPDATE_MATCH", data[0]);
-        matchListener(matchId);
+        if (data[0].status == "waiting") {
+          matchListener(data[0].id);
+        }
       }
     },
 
