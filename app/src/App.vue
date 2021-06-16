@@ -57,6 +57,14 @@ export default {
     open() {
       return this.$store.state.ui.navOpen;
     },
+    allPlayersJoined() {
+      return this.$store.getters.allPlayersJoined;
+    },
+  },
+  watch: {
+    allPlayersJoined: function (newVal, oldVal) {
+      console.log(newVal);
+    },
   },
   methods: {
     tog() {
@@ -75,6 +83,7 @@ export default {
   },
   async created() {
     document.title = "Golf Bets";
+    console.log(this.allPlayersJoined);
   },
 };
 </script>

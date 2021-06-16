@@ -15,9 +15,9 @@ export const ui = {
     subscription: {},
   },
   getters: {
-    allPlayersJoined: (state) => {
+    allPlayersJoined: (state, getters, rootState) => {
       let result;
-      state.match.players_joined == state.match.players
+      rootState.match.match.players_joined == rootState.match.match.players
         ? (result = true)
         : (result = false);
       return result;
@@ -45,7 +45,7 @@ export const ui = {
       state.playerNum = payload;
     },
     UPDATE_PLAYERS_JOINED(state, payload) {
-      state.match.players_joined = payload;
+      rootState.match.match.players_joined = payload;
     },
     UPDATE_SCORING_STYLE(state, payload) {
       state.input.scoringStyle = payload;

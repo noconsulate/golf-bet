@@ -39,6 +39,14 @@ export default {
         return false;
       }
     },
+    allPlayersJoined() {
+      return this.$store.getters.allPlayersJoined;
+    },
+  },
+  created() {
+    if (this.allPlayersJoined) {
+      this.$router.push("/scorecard");
+    }
   },
 };
 </script>

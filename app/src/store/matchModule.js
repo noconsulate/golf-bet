@@ -104,7 +104,7 @@ export const match = {
     async joinMatch(context, values) {
       const { data, error } = await confirmJoin(
         context.state.match.id,
-        context.state.user.id
+        context.rootState.user.user.id
       );
       if (error) {
         console.error("confirmJoin error", error);

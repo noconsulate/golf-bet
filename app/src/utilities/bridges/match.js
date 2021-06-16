@@ -47,7 +47,7 @@ export const matchListener = async function(id) {
       if (payload.new.players_joined >= payload.new.players) {
         console.log("all playesr joined. do something and unsubscribe!");
         //Should be new action that incorporates startGame()
-        store.dispatch("setAllPlayersJoined");
+        // store.dispatch("setAllPlayersJoined");
 
         if (store.state.ui.playerNum === 1) {
           startMatch(id);

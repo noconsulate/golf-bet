@@ -25,7 +25,7 @@ export default {
   },
   computed: {
     showNoUser() {
-      if (this.$store.state.user.id == null) {
+      if (this.$store.state.user.user.id == null) {
         return true;
       } else {
         return false;
@@ -42,7 +42,7 @@ export default {
       if (
         !this.inWrongMatch &&
         this.matchId &&
-        this.$store.state.user.id &&
+        this.$store.state.user.user.id &&
         !this.loading
       ) {
         return true;
@@ -50,8 +50,14 @@ export default {
         return false;
       }
     },
+    allPlayersJoined() {
+      return this.$store.getters.allPlayersJoined;
+    },
   },
   async beforeMount() {
+    if (this.allPlayersJoined) {
+      this.$router.push("/scorecard");
+    }
     // ** make sure user isn't in a different match. this logic should probably be handled some other way. **
 
     const matchId = this.$route.query.match;
