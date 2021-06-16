@@ -138,7 +138,7 @@ export default {
       activeHole: 1,
       activePlayer: 1,
       key: 1,
-      loaded: false,
+      // loaded: false,
       scoreInput: 3,
     };
   },
@@ -154,6 +154,9 @@ export default {
     },
     players() {
       return this.$store.state.match.match.players;
+    },
+    loaded() {
+      return this.$store.state.scores.loaded;
     },
   },
   methods: {

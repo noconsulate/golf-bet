@@ -3,13 +3,13 @@ import { getScores } from "../utilities/bridges/score";
 export const scores = {
   state: {
     scores: [],
+    loaded: false,
   },
 
   getters: {
     scores: (state, getters, rootState) => {
       let scores = [];
       const holes = Number(getters.match.holes);
-      console.log(holes, state);
       state.scores.map((item) => {
         let scoreObj = { player_num: item.player_num };
         for (let i = 1; i <= holes; i++) {
@@ -27,18 +27,21 @@ export const scores = {
         state.scores.push(item);
       });
     },
+    UPDATE_LOADED(state) {
+      state.loaded = true;
+    },
   },
   actions: {
     async initScores(context) {
       const matchId = context.rootState.match.match.id;
       const { data, error } = await getScores(matchId);
-      console.log(data, error);
 
       if (error) {
         console.log(error);
       }
       if (data) {
         context.commit("INITIALIZE_SCORES", data);
+        context.commit("UPDATE_LOADED");
       }
     },
   },
