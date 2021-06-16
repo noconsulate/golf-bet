@@ -49,7 +49,7 @@ export const matchListener = async function(id) {
         //Should be new action that incorporates startGame()
         store.dispatch("setAllPlayersJoined");
 
-        if (store.state.playerNum === 1) {
+        if (store.state.ui.playerNum === 1) {
           startMatch(id);
         }
 
@@ -116,5 +116,5 @@ export async function cancelMatch() {
 }
 
 export async function unsubscribe() {
-  supabase.removeSubscription(store.state.subscription);
+  supabase.removeSubscription(store.state.ui.subscription);
 }

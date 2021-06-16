@@ -29,7 +29,7 @@ export default {
   },
   computed: {
     controller() {
-      return this.$store.state.controller;
+      return this.$store.state.ui.controller;
     },
   },
 };

@@ -55,7 +55,7 @@ export default {
   },
   computed: {
     open() {
-      return this.$store.state.navOpen;
+      return this.$store.state.ui.navOpen;
     },
   },
   methods: {

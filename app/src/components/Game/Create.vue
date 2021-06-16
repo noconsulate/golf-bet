@@ -80,19 +80,19 @@ export default {
   },
   computed: {
     controller() {
-      return this.$store.state.controller;
+      return this.$store.state.ui.controller;
     },
     players() {
-      return this.$store.state.input.players;
+      return this.$store.state.ui.input.players;
     },
     holes() {
-      return this.$store.state.input.holes;
+      return this.$store.state.ui.input.holes;
     },
     points() {
-      return this.$store.state.input.points;
+      return this.$store.state.ui.input.points;
     },
     scoringStyle() {
-      return this.$store.state.input.scoringStyle;
+      return this.$store.state.ui.input.scoringStyle;
     },
   },
   methods: {

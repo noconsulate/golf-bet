@@ -80,7 +80,7 @@ export default {
   },
   computed: {
     controller() {
-      return this.$store.state.controller;
+      return this.$store.state.ui.controller;
     },
     players() {
       return this.$store.state.match.match.players;

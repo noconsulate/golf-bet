@@ -38,7 +38,7 @@ export default {
   },
   computed: {
     scoringStyle() {
-      return this.$store.state.input.scoringStyle;
+      return this.$store.state.ui.input.scoringStyle;
     },
     isReady() {
       return (

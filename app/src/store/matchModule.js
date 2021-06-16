@@ -42,6 +42,7 @@ export const match = {
     RESET_MATCH_VALUES(state) {
       state.match = { id: "" };
       // state.matchId = "";
+      console.log("CHECK HERE FOR VUEX ISSUE");
       state.controller = "selectPlayers";
     },
     UPDATE_MATCH_STATIUS(state, payload) {

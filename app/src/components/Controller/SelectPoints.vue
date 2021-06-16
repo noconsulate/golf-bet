@@ -40,7 +40,7 @@ export default {
     },
   },
   created() {
-    this.points = this.$store.state.input.points;
+    this.points = this.$store.state.ui.input.points;
   },
 };
 </script>

@@ -24,7 +24,7 @@ export default {
       return this.$store.state.match.match.scoringStyle;
     },
     playerNum() {
-      return this.$store.state.playerNum;
+      return this.$store.state.ui.playerNum;
     },
   },
 };

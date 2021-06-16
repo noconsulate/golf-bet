@@ -28,28 +28,28 @@ export default {
     // is this nessessessaryy?
     matchInfo() {
       return {
-        players: this.$store.state.input.players,
-        points: this.$store.state.input.points,
+        players: this.$store.state.ui.input.players,
+        points: this.$store.state.ui.input.points,
         is_18_holes: this.is18Holes,
         is_classic_scoring: this.isClassicScoring,
         creator: this.$store.state.user.user.id,
       };
     },
     players() {
-      return this.$store.state.input.players;
+      return this.$store.state.ui.input.players;
     },
     points() {
-      return this.$store.state.input.points;
+      return this.$store.state.ui.input.points;
     },
     holes() {
-      return this.$store.state.input.holes;
+      return this.$store.state.ui.input.holes;
     },
     is18Holes() {
-      if (this.$store.state.input.holes == 18) return true;
+      if (this.$store.state.ui.input.holes == 18) return true;
       else return false;
     },
     scoringStyle() {
-      return this.$store.state.input.scoringStyle;
+      return this.$store.state.ui.input.scoringStyle;
     },
     isClassicScoring() {
       if (this.$store.state.scoringStyle == "classic") return true;

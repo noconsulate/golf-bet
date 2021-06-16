@@ -144,7 +144,7 @@ export default {
       return this.$store.state.gameId;
     },
     scoringFor() {
-      const thisPlayer = this.$store.state.playerNum;
+      const thisPlayer = this.$store.state.ui.playerNum;
       switch (thisPlayer) {
         case 1:
           return [1, 2];

@@ -73,10 +73,10 @@ export default {
       return this.$store.state.match.match.id;
     },
     controller() {
-      return this.$store.state.controller;
+      return this.$store.state.ui.controller;
     },
     error() {
-      return this.$store.state.error;
+      return this.$store.state.ui.error;
     },
     email() {
       return this.$store.getters.user.email;

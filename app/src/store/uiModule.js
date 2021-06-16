@@ -9,7 +9,7 @@ export const ui = {
       scoringStyle: "solo",
     },
     playerNum: null,
-    playersJoined: 0,
+    // playersJoined: 0,
     //  allPlayersJoined: false,
     error: "",
     subscription: {},
