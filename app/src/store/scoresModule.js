@@ -1,4 +1,4 @@
-import { getScores } from "../utilities/bridges/score";
+import { getScores, updateScore } from "../utilities/bridges/score";
 
 export const scores = {
   state: {
@@ -41,8 +41,15 @@ export const scores = {
       }
       if (data) {
         context.commit("INITIALIZE_SCORES", data);
-        context.commit("UPDATE_LOADED");
+        // context.commit("UPDATE_LOADED");
       }
+    },
+    async setScore(context, values) {
+      const { match_id, player_num, hole, score } = values;
+
+      const { data, error } = updateScore(match_id, player_num, hole, score);
+
+      console.log(data, error);
     },
   },
 };

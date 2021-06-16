@@ -5,8 +5,8 @@
         <div :class="cell" class="col-span-4">Handicap</div>
         <div :class="cell"></div>
         <div :class="cell"></div>
-        <div :class="cell"></div>
-        <div :class="cell"></div>
+        <div :class="cell" class="invisible"></div>
+        <div :class="cell" class="invisible"></div>
 
         <div :class="cell">Hole</div>
         <div :class="cell">Tee</div>
@@ -14,8 +14,8 @@
         <div :class="cell">HR</div>
         <div :class="cell">P1</div>
         <div :class="cell">P2</div>
-        <div :class="cell">P3</div>
-        <div :class="cell">P4</div>
+        <div :class="cell" class="invisible">P3</div>
+        <div :class="cell" class="invisible">P4</div>
 
         <template v-for="index in holes">
           <div
@@ -66,7 +66,7 @@
             {{ scores[1][index] }}
           </div>
           <div
-            class="cursor-pointer"
+            class="cursor-pointer invisible"
             :class="[
               index == activeHole ? activeRow : cell,
               index == activeHole && activePlayer == 3 ? activeCell : cell,
@@ -74,10 +74,10 @@
             @click="selectCell(3, index)"
             :key="String(index) + '6'"
           >
-            {{ scores[2][index] }}
+            <!-- {{ scores[2][index] }} -->
           </div>
           <div
-            class="cursor-pointer"
+            class="cursor-pointer invisible"
             :class="[
               index == activeHole ? activeRow : cell,
               index == activeHole && activePlayer == 4 ? activeCell : cell,
@@ -85,7 +85,7 @@
             @click="selectCell(4, index)"
             :key="String(index) + '7'"
           >
-            {{ scores[3][index] }}
+            <!-- {{ scores[3][index] }} -->
           </div>
         </template>
         <div :class="cell">Total</div>
@@ -208,12 +208,22 @@ export default {
     },
     enterScore() {
       console.log("enter");
-      updateScore(
-        this.matchId,
-        this.activePlayer,
-        this.activeHole,
-        this.scoreInput
-      );
+
+      const values = {
+        matchId: this.matchID,
+        activePlayer: this.ActivePlayer,
+        activeHole: this.activeHole,
+        score: this.scoreInput,
+      };
+
+      this.$store.dispatch("setScore", values);
+
+      // updateScore(
+      //   this.matchId,
+      //   this.activePlayer,
+      //   this.activeHole,
+      //   this.scoreInput
+      // );
     },
   },
   async beforeMount() {
