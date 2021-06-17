@@ -50,9 +50,7 @@
             @click="selectCell(3, index)"
             :key="String(index) + '6'"
           >
-            <p v-if="players > 2">
-              <!-- {{ scores[2][index] }} -->
-            </p>
+            {{ scores[2][index] }}
           </div>
           <div
             class="cursor-pointer"
@@ -60,7 +58,7 @@
             @click="selectCell(4, index)"
             :key="String(index) + '7'"
           >
-            <!-- {{ scores[3][index] }} -->
+            {{ scores[3][index] }}
           </div>
         </template>
         <div :class="cell">Total</div>
@@ -97,7 +95,7 @@
 
 <script>
 export default {
-  name: "SoloMaster",
+  name: "solo4Players",
   data() {
     return {
       // styles
