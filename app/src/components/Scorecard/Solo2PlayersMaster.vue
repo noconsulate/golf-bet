@@ -132,7 +132,6 @@ export default {
   },
   methods: {
     stylePicker(p, i, a) {
-      console.log(p, i, a);
       if (i == this.activeHole) {
         if (a == this.activePlayer) {
           return this.activeCell;
@@ -140,18 +139,6 @@ export default {
           return this.activeRow(p);
         }
       } else return this.cell(p);
-
-      // switch (p) {
-      //   case 1: {
-      //     // return i == this.activeHole ? this.activeRow(p) : this.cell(p);
-      //     if (i == this.activeHole) {
-      //       if (a == this.activePlayer) {
-      //         return this.activeCell;
-      //       } else {
-      //         return this.activeRow(p);
-      //       }
-      //     } else return this.cell(p);
-      //   }
     },
     cell(p) {
       switch (p) {
