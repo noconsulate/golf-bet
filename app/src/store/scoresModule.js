@@ -39,13 +39,9 @@ export const scores = {
     UPDATE_SUBSCRIPTION(state, payload) {
       state.subscription = payload;
     },
-    UPDATE_SCORE_ROW(state, payload) {
-      const index = payload.player_num - 1;
-      const holes = payload.holes;
-
-      for (let i = 1; i <= holes; i++) {
-        state.scores[index][i] = payload[i];
-      }
+    UPDATE_SCORE_CELL(state, payload) {
+      const { player, hole, newScore } = payload;
+      state.scores[player - 1][hole] = newScore;
     },
   },
   actions: {
@@ -73,10 +69,25 @@ export const scores = {
 
       console.log(data, error);
     },
-    setScoreRow(context, value) {
+    setScoreCell(context, value) {
+      let player = value.player_num;
       const holes = context.getters.match.holes;
       value.holes = holes;
-      context.commit("UPDATE_SCORE_ROW", value);
+      // context.commit("UPDATE_SCORE_ROW", value);
+
+      for (let i = 1; i <= 18; i++) {
+        if (context.state.scores[player - 1][i] !== value[i]) {
+          console.log(
+            "hole " + i + " player " + player + " changed to " + value[i]
+          );
+          const payload = {
+            player,
+            hole: i,
+            newScore: value[i],
+          };
+          context.commit("UPDATE_SCORE_CELL", payload);
+        }
+      }
     },
   },
 };

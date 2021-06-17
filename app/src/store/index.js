@@ -11,34 +11,14 @@ import { scores } from "./scoresModule";
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-  state: {
-    // scores: [],
-  },
+  state: {},
   getters: {},
   mutations: {
-    // INITIALIZE_SCORES(state, payload) {
-    //   window.payload = payload;
-    //   payload.map((item) => {
-    //     state.scores.push(item);
-    //   });
-    // },
     UPDATE_ALL_PLAYERS_JOINED(state) {
       state.allPlayersJoined = true;
     },
-    // UPDATE_SCORE_ROW(state, payload) {
-    //   const index = payload.player - 1;
-    //   state.scores[index] = payload.score;
-    //   state.scores = [...state.scores];
-    // },
   },
   actions: {
-    // initScores(context, value) {
-    //   context.commit("INITIALIZE_SCORES", value);
-    // },
-    // setScoreRow(context, value) {
-    //   context.commit("UPDATE_SCORE_ROW", value);
-    // },
-
     async initOnLoad(context) {
       const user = await getUser();
       if (!user) {
