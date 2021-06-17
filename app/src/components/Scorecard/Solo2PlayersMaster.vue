@@ -2,43 +2,43 @@
   <div class="w-full h-screen flex flex-col">
     <div class="flex-grow min-w-full overflow-auto">
       <div class="grid grid-cols-8" v-if="loaded">
-        <div :class="cell" class="col-span-4">Handicap</div>
-        <div :class="cell"></div>
-        <div :class="cell"></div>
-        <div :class="cell" class="invisible"></div>
-        <div :class="cell" class="invisible"></div>
+        <div :class="cell(1)" class="col-span-4">Handicap</div>
+        <div :class="cell(1)"></div>
+        <div :class="cell(1)"></div>
+        <div :class="cell(1)" class="invisible"></div>
+        <div :class="cell(1)" class="invisible"></div>
 
-        <div :class="cell">Hole</div>
-        <div :class="cell">Tee</div>
-        <div :class="cell">Par</div>
-        <div :class="cell">HR</div>
-        <div :class="cell">P1</div>
-        <div :class="cell">P2</div>
-        <div :class="cell" class="invisible">P3</div>
-        <div :class="cell" class="invisible">P4</div>
+        <div :class="cell(1)">Hole</div>
+        <div :class="cell(1)">Tee</div>
+        <div :class="cell(1)">Par</div>
+        <div :class="cell(1)">HR</div>
+        <div :class="cell(1)">P1</div>
+        <div :class="cell(2)">P2</div>
+        <div :class="cell(3)" class="">P3</div>
+        <div :class="cell(4)">P4</div>
 
         <template v-for="index in holes">
           <div
-            :class="[index == activeHole ? activeRow : cell]"
+            :class="[index == activeHole ? activeRow(1) : cell(1)]"
             @click="selectRow(index)"
             :key="String(index) + '0'"
           >
             {{ index }}
           </div>
           <div
-            :class="[index == activeHole ? activeRow : cell]"
+            :class="[index == activeHole ? activeRow(1) : cell(1)]"
             :key="String(index) + '1'"
           >
             H
           </div>
           <div
-            :class="[index == activeHole ? activeRow : cell]"
+            :class="[index == activeHole ? activeRow(1) : cell(1)]"
             :key="String(index) + '2'"
           >
             T
           </div>
           <div
-            :class="[index == activeHole ? activeRow : cell]"
+            :class="[index == activeHole ? activeRow(1) : cell(1)]"
             :key="String(index) + '3'"
           >
             P
@@ -46,7 +46,7 @@
           <div
             class="cursor-pointer"
             :class="[
-              index == activeHole ? activeRow : cell,
+              index == activeHole ? activeRow(1) : cell(1),
               index == activeHole && activePlayer == 1 ? activeCell : cell,
             ]"
             @click="selectCell(1, index)"
@@ -57,7 +57,7 @@
           <div
             class="cursor-pointer"
             :class="[
-              index == activeHole ? activeRow : cell,
+              index == activeHole ? activeRow(2) : cell(2),
               index == activeHole && activePlayer == 2 ? activeCell : cell,
             ]"
             @click="selectCell(2, index)"
@@ -66,9 +66,9 @@
             {{ scores[1][index] }}
           </div>
           <div
-            class="cursor-pointer invisible"
+            class="cursor-pointer"
             :class="[
-              index == activeHole ? activeRow : cell,
+              index == activeHole ? activeRow(3) : cell(3),
               index == activeHole && activePlayer == 3 ? activeCell : cell,
             ]"
             @click="selectCell(3, index)"
@@ -77,9 +77,9 @@
             <!-- {{ scores[2][index] }} -->
           </div>
           <div
-            class="cursor-pointer invisible"
+            class="cursor-pointer"
             :class="[
-              index == activeHole ? activeRow : cell,
+              index == activeHole ? activeRow(4) : cell(4),
               index == activeHole && activePlayer == 4 ? activeCell : cell,
             ]"
             @click="selectCell(4, index)"
@@ -131,8 +131,8 @@ export default {
   data() {
     return {
       // styles
-      cell: "border",
-      activeRow: "border bg-gray-100",
+      cellStyle: "border",
+      activeRowStyle: "border bg-gray-100",
       activeCell: "border bg-blue-100",
       // other
       activeHole: 1,
@@ -143,6 +143,9 @@ export default {
     };
   },
   computed: {
+    visibilityP3() {
+      if (this.players < 3) return "invisible";
+    },
     matchId() {
       return this.$store.state.match.match.id;
     },
@@ -160,6 +163,44 @@ export default {
     },
   },
   methods: {
+    cell(p) {
+      switch (p) {
+        case undefined: {
+          return this.cellStyle;
+        }
+        case 1: {
+          return this.cellStyle;
+        }
+        case 2: {
+          return this.players < 2 ? "invisible" : this.cellStyle;
+        }
+        case 3: {
+          return this.players < 3 ? "invisible" : this.cellStyle;
+        }
+        case 4: {
+          return this.players < 4 ? "invisible" : this.cellStyle;
+        }
+      }
+    },
+    activeRow(p) {
+      switch (p) {
+        case undefined: {
+          return this.activeRowStyle;
+        }
+        case 1: {
+          return this.activeRowStyle;
+        }
+        case 2: {
+          return this.players < 2 ? "invisible" : this.activeRowStyle;
+        }
+        case 3: {
+          return this.players < 3 ? "invisible" : this.activeRowStyle;
+        }
+        case 4: {
+          return this.players < 4 ? "invisible" : this.activeRowStyle;
+        }
+      }
+    },
     selectRow(hole) {
       this.activeHole = hole;
     },

@@ -19,36 +19,18 @@
 
         <template v-for="index in holes">
           <div
-            :class="[index == activeHole ? activeRow : cell]"
+            :class="cell"
             @click="selectRow(index)"
             :key="String(index) + '0'"
           >
             {{ index }}
           </div>
-          <div
-            :class="[index == activeHole ? activeRow : cell]"
-            :key="String(index) + '1'"
-          >
-            H
-          </div>
-          <div
-            :class="[index == activeHole ? activeRow : cell]"
-            :key="String(index) + '2'"
-          >
-            T
-          </div>
-          <div
-            :class="[index == activeHole ? activeRow : cell]"
-            :key="String(index) + '3'"
-          >
-            P
-          </div>
+          <div :class="cell" :key="String(index) + '1'">H</div>
+          <div :class="cell" :key="String(index) + '2'">T</div>
+          <div :class="cell" :key="String(index) + '3'">P</div>
           <div
             class="cursor-pointer"
-            :class="[
-              index == activeHole ? activeRow : cell,
-              index == activeHole && activePlayer == 1 ? activeCell : cell,
-            ]"
+            :class="cell"
             @click="selectCell(1, index)"
             :key="String(index) + '4'"
           >
@@ -56,10 +38,7 @@
           </div>
           <div
             class="cursor-pointer"
-            :class="[
-              index == activeHole ? activeRow : cell,
-              index == activeHole && activePlayer == 2 ? activeCell : cell,
-            ]"
+            :class="cell"
             @click="selectCell(2, index)"
             :key="String(index) + '5'"
           >
@@ -67,10 +46,7 @@
           </div>
           <div
             class="cursor-pointer invisible"
-            :class="[
-              index == activeHole ? activeRow : cell,
-              index == activeHole && activePlayer == 3 ? activeCell : cell,
-            ]"
+            :class="cell"
             @click="selectCell(3, index)"
             :key="String(index) + '6'"
           >
@@ -78,10 +54,7 @@
           </div>
           <div
             class="cursor-pointer invisible"
-            :class="[
-              index == activeHole ? activeRow : cell,
-              index == activeHole && activePlayer == 4 ? activeCell : cell,
-            ]"
+            :class="cell"
             @click="selectCell(4, index)"
             :key="String(index) + '7'"
           >
