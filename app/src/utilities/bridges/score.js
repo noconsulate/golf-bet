@@ -25,32 +25,6 @@ export async function updateScore(match_id, player_num, hole, score) {
   return { data, error };
 }
 
-// export const playersJoinedListener = async function() {
-//   const id = store.state.match.match.id;
-//   const players = store.state.match.match.players;
-//   const subscription = supabase
-//     .from(`match:id=eq.${id}`)
-//     .on("UPDATE", (payload) => {
-//       console.log("change received", payload);
-//       if (payload.new.players_joined >= payload.new.players) {
-//         console.log("all playesr joined. do something and unsubscribe!");
-//         store.dispatch("setAllPlayersJoined");
-//         unsubscribe();
-//       }
-//     })
-//     .subscribe();
-//   console.log("subscribed to playersJoinedListener for match_id: " + id);
-//   console.log(subscription);
-
-//   const unsubscribe = function() {
-//     supabase.removeSubscription(subscription);
-//     let subs = supabase.getSubscriptions();
-//     console.log("sub removed?", subs);
-//   };
-
-//   return subscription;
-// };
-
 export async function scoreListener() {
   const match_id = store.state.match.match.id;
   console.log(match_id);

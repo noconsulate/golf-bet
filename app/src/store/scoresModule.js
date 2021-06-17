@@ -46,16 +46,30 @@ export const scores = {
   },
   actions: {
     async initScores(context) {
+      const matchId = context.rootState.match.match.id;
+      const players = context.rootState.match.match.players;
+      const holes = context.getters.match.holes;
+
       if (context.state.subscription != null) {
         console.log("subscription found");
       }
-      const matchId = context.rootState.match.match.id;
+
       const { data, error } = await getScores(matchId);
 
       if (error) {
         console.log(error);
       }
       if (data) {
+        let n = 4 - players;
+
+        for (let i = 1; i <= n; i++) {
+          let row = {};
+          for (let j = 1; j <= holes; j++) {
+            row[j] = null;
+          }
+          data.push(row);
+        }
+
         context.commit("INITIALIZE_SCORES", data);
         context.commit("UPDATE_LOADED");
 
