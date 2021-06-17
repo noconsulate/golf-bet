@@ -217,19 +217,11 @@ export default {
       console.log(values);
 
       this.$store.dispatch("setScore", values);
+      this.nextPlayer();
     },
   },
   async beforeMount() {
     this.$store.dispatch("initScores");
-
-    // const { data, error } = await getScores(this.matchId);
-    // if (error) console.error(error);
-    // if (data) this.$store.dispatch("initScores", data);
-    // this.loaded = true;
-
-    // window.scores = data;
-
-    // const subscription = scoreListener();
   },
 };
 </script>
