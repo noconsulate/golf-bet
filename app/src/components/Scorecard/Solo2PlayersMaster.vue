@@ -19,36 +19,18 @@
 
         <template v-for="index in holes">
           <div
-            :class="[index == activeHole ? activeRow(1) : cell(1)]"
+            :class="stylePicker(1, index)"
             @click="selectRow(index)"
             :key="String(index) + '0'"
           >
             {{ index }}
           </div>
-          <div
-            :class="[index == activeHole ? activeRow(1) : cell(1)]"
-            :key="String(index) + '1'"
-          >
-            H
-          </div>
-          <div
-            :class="[index == activeHole ? activeRow(1) : cell(1)]"
-            :key="String(index) + '2'"
-          >
-            T
-          </div>
-          <div
-            :class="[index == activeHole ? activeRow(1) : cell(1)]"
-            :key="String(index) + '3'"
-          >
-            P
-          </div>
+          <div :class="stylePicker(1, index)" :key="String(index) + '1'">H</div>
+          <div :class="stylePicker(1, index)" :key="String(index) + '2'">T</div>
+          <div :class="stylePicker(1, index)" :key="String(index) + '3'">P</div>
           <div
             class="cursor-pointer"
-            :class="[
-              index == activeHole ? activeRow(1) : cell(1),
-              index == activeHole && activePlayer == 1 ? activeCell : cell,
-            ]"
+            :class="stylePicker(1, index, 1)"
             @click="selectCell(1, index)"
             :key="String(index) + '4'"
           >
@@ -56,10 +38,7 @@
           </div>
           <div
             class="cursor-pointer"
-            :class="[
-              index == activeHole ? activeRow(2) : cell(2),
-              index == activeHole && activePlayer == 2 ? activeCell : cell,
-            ]"
+            :class="stylePicker(2, index, 2)"
             @click="selectCell(2, index)"
             :key="String(index) + '5'"
           >
@@ -67,10 +46,7 @@
           </div>
           <div
             class="cursor-pointer"
-            :class="[
-              index == activeHole ? activeRow(3) : cell(3),
-              index == activeHole && activePlayer == 3 ? activeCell : cell,
-            ]"
+            :class="stylePicker(3, index, 3)"
             @click="selectCell(3, index)"
             :key="String(index) + '6'"
           >
@@ -78,10 +54,7 @@
           </div>
           <div
             class="cursor-pointer"
-            :class="[
-              index == activeHole ? activeRow(4) : cell(4),
-              index == activeHole && activePlayer == 4 ? activeCell : cell,
-            ]"
+            :class="stylePicker(4, index, 4)"
             @click="selectCell(4, index)"
             :key="String(index) + '7'"
           >
@@ -121,11 +94,6 @@
 </template>
 
 <script>
-import {
-  getScores,
-  updateScore,
-  scoreListener,
-} from "../../utilities/bridges/score";
 export default {
   name: "solo4Players",
   data() {
@@ -163,6 +131,28 @@ export default {
     },
   },
   methods: {
+    stylePicker(p, i, a) {
+      console.log(p, i, a);
+      if (i == this.activeHole) {
+        if (a == this.activePlayer) {
+          return this.activeCell;
+        } else {
+          return this.activeRow(p);
+        }
+      } else return this.cell(p);
+
+      // switch (p) {
+      //   case 1: {
+      //     // return i == this.activeHole ? this.activeRow(p) : this.cell(p);
+      //     if (i == this.activeHole) {
+      //       if (a == this.activePlayer) {
+      //         return this.activeCell;
+      //       } else {
+      //         return this.activeRow(p);
+      //       }
+      //     } else return this.cell(p);
+      //   }
+    },
     cell(p) {
       switch (p) {
         case undefined: {
