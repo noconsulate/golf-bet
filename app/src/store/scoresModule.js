@@ -39,6 +39,14 @@ export const scores = {
     UPDATE_SUBSCRIPTION(state, payload) {
       state.subscription = payload;
     },
+    UPDATE_SCORE_ROW(state, payload) {
+      const index = payload.player_num - 1;
+      const holes = payload.holes;
+
+      for (let i = 1; i <= holes; i++) {
+        state.scores[index][i] = payload[i];
+      }
+    },
   },
   actions: {
     async initScores(context) {
@@ -64,6 +72,11 @@ export const scores = {
       const { data, error } = await updateScore(matchId, player, hole, score);
 
       console.log(data, error);
+    },
+    setScoreRow(context, value) {
+      const holes = context.getters.match.holes;
+      value.holes = holes;
+      context.commit("UPDATE_SCORE_ROW", value);
     },
   },
 };

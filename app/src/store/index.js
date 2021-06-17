@@ -25,19 +25,19 @@ export default new Vuex.Store({
     UPDATE_ALL_PLAYERS_JOINED(state) {
       state.allPlayersJoined = true;
     },
-    UPDATE_SCORE_ROW(state, payload) {
-      const index = payload.player - 1;
-      state.scores[index] = payload.score;
-      state.scores = [...state.scores];
-    },
+    // UPDATE_SCORE_ROW(state, payload) {
+    //   const index = payload.player - 1;
+    //   state.scores[index] = payload.score;
+    //   state.scores = [...state.scores];
+    // },
   },
   actions: {
     // initScores(context, value) {
     //   context.commit("INITIALIZE_SCORES", value);
     // },
-    setScoreRow(context, value) {
-      context.commit("UPDATE_SCORE_ROW", value);
-    },
+    // setScoreRow(context, value) {
+    //   context.commit("UPDATE_SCORE_ROW", value);
+    // },
 
     async initOnLoad(context) {
       const user = await getUser();

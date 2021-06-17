@@ -61,7 +61,10 @@ export async function scoreListener() {
   const subscription = supabase
     .from(`score:match_id=eq.${match_id}`)
     .on("UPDATE", (payload) => {
-      console.log("score change");
+      console.log("score change", payload);
+      const { player_num } = payload.new;
+      // store.dispatch("setScoreRow", { player: player_num, score: payload.new });
+      store.dispatch("setScoreRow", payload.new);
     })
     .subscribe();
 
