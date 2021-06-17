@@ -213,10 +213,11 @@ export default {
         hole: this.activeHole,
         score: this.scoreInput,
       };
-
-      console.log(values);
-
       this.$store.dispatch("setScore", values);
+
+      if (this.activePlayer === this.players && this.activeHole == this.holes) {
+        console.log("game over??");
+      }
       this.nextPlayer();
     },
   },

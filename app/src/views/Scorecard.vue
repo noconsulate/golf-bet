@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Solo2Players v-if="players == 2 && scoringStyle == 'solo'" />
+    <Solo2PlayersMaster v-if="renderPicker() === 'Solo2PlayerMaster'" />
     <Solo4Players
       v-if="players == '4' && scoringStyle == 'solo' && playerNum == '1'"
     />
@@ -9,13 +9,13 @@
 </template>
 
 <script>
-import Solo2Players from "../components/Scorecard/Solo2Players.vue";
+import Solo2PlayersMaster from "../components/Scorecard/Solo2PlayersMaster.vue";
 import Classic4Players from "../components/Scorecard/Classic4Players.vue";
 import Solo4Players from "../components/Scorecard/Solo4Players";
 export default {
   name: "scoredcard",
   components: {
-    Solo2Players,
+    Solo2PlayersMaster,
     Classic4Players,
     Solo4Players,
   },
@@ -27,7 +27,17 @@ export default {
       return this.$store.getters.match.scoringStyle;
     },
     playerNum() {
-      return this.$store.state.ui.playerNum;
+      return this.$store.getters.user.player_num;
+    },
+  },
+  methods: {
+    renderPicker() {
+      if (
+        this.players === 2 &&
+        this.scoringStyle === "solo" &&
+        this.playerNum === 1
+      )
+        return "Solo2PlayerMaster";
     },
   },
 };
