@@ -5,17 +5,17 @@
         <div :class="cell(1)" class="col-span-4">Handicap</div>
         <div :class="cell(1)"></div>
         <div :class="cell(1)"></div>
-        <div :class="cell(1)" class="invisible"></div>
-        <div :class="cell(1)" class="invisible"></div>
+        <div :class="cell(1)"></div>
+        <div :class="cell(1)"></div>
 
         <div :class="cell(1)">Hole</div>
         <div :class="cell(1)">Tee</div>
         <div :class="cell(1)">Par</div>
         <div :class="cell(1)">HR</div>
         <div :class="cell(1)">P1</div>
-        <div :class="cell(2)">P2</div>
-        <div :class="cell(3)" class="">P3</div>
-        <div :class="cell(4)">P4</div>
+        <div :class="cell(1)">P2</div>
+        <div :class="cell(1)">P3</div>
+        <div :class="cell(1)">P4</div>
 
         <template v-for="index in holes">
           <div
@@ -69,17 +69,20 @@
             {{ scores[3][index] }}
           </div>
         </template>
-        <div :class="cell">Total</div>
-        <div :class="cell">TT</div>
-        <div :class="cell">PP</div>
-        <div :class="cell">RR</div>
-        <div :class="cell">{{ totalScore(1) }}</div>
-        <div :class="cell">{{ totalScore(2) }}</div>
-        <div :class="cell" class="invisible"></div>
-        <div :class="cell" class="invisible"></div>
+        <div :class="cell(1)">Total</div>
+        <div :class="cell(1)">TT</div>
+        <div :class="cell(1)">PP</div>
+        <div :class="cell(1)">RR</div>
+        <div :class="cell(1)">{{ totalScore(1) }}</div>
+        <div :class="cell(1)">{{ totalScore(2) }}</div>
+        <div :class="cell(1)"></div>
+        <div :class="cell(1)"></div>
       </div>
     </div>
-    <div class="flex flex-col border space-y-2 object-none object-bottom">
+    <div
+      v-if="isMaster"
+      class="flex flex-col border space-y-2 object-none object-bottom"
+    >
       <div class="flex justify-center space-x-1">
         <button @click="prevHole" class="btn">previous hole</button>
         <button @click="enterScore" class="btn">enter score</button>
@@ -155,6 +158,7 @@ export default {
       } else return this.cell(p);
     },
     cell(p) {
+      return this.cellStyle;
       switch (p) {
         case undefined: {
           return this.cellStyle;
