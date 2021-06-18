@@ -210,7 +210,7 @@ export default {
         let value = this.scores[index][i];
         if (Number.isFinite(value)) total += value;
       }
-      return total;
+      return total > 0 ? total : null;
     },
     prevHole() {
       if (this.activeHole > 1) {

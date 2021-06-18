@@ -1,15 +1,15 @@
 <template>
   <div>
-    <SoloMaster />
+    <Solo />
   </div>
 </template>
 
 <script>
-import SoloMaster from "../components/Scorecard/SoloMaster.vue";
+import Solo from "../components/Scorecard/Solo.vue";
 export default {
   name: "scoredcard",
   components: {
-    SoloMaster,
+    Solo,
   },
   computed: {
     players() {
