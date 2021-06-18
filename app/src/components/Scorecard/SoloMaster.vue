@@ -3,10 +3,10 @@
     <div class="flex-grow min-w-full overflow-auto">
       <div class="grid grid-cols-8" v-if="loaded">
         <div :class="cell(1)" class="col-span-4">Handicap</div>
-        <div :class="cell(1)"></div>
-        <div :class="cell(1)"></div>
-        <div :class="cell(1)"></div>
-        <div :class="cell(1)"></div>
+        <div :class="cell(1)" class="invisible"></div>
+        <div :class="cell(1)" class="invisible"></div>
+        <div :class="cell(1)" class="invisible"></div>
+        <div :class="cell(1)" class="invisible"></div>
 
         <div :class="cell(1)">Hole</div>
         <div :class="cell(1)">Tee</div>
