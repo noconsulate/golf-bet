@@ -82,18 +82,20 @@ export const scores = {
       }
     },
     async setScore(context, values) {
+      console.log(values);
       const { matchId, player, hole, score } = values;
       const { data, error } = await updateScore(matchId, player, hole, score);
 
       console.log(data, error);
     },
     setScoreCell(context, value) {
+      console.log(value);
       let player = value.player_num;
       const holes = context.getters.match.holes;
       value.holes = holes;
       // context.commit("UPDATE_SCORE_ROW", value);
 
-      for (let i = 1; i <= 18; i++) {
+      for (let i = 1; i <= holes; i++) {
         if (context.state.scores[player - 1][i] !== value[i]) {
           console.log(
             "hole " + i + " player " + player + " changed to " + value[i]
@@ -108,6 +110,8 @@ export const scores = {
       }
     },
     fillScores(context) {
+      const matchId = context.rootState.match.match.id;
+      console.log(matchId);
       const holes = context.getters.match.holes;
       let scores = context.state.scores;
       function randInt() {
@@ -115,17 +119,19 @@ export const scores = {
         return x;
       }
 
-      scores.map((player) => {
+      scores.map(async (player) => {
         console.log(player);
         for (let i = 1; i <= holes; i++) {
           if (!player.player_num) break;
           let x = randInt();
           const payload = {
+            matchId: matchId,
             player: player.player_num,
             hole: i,
-            newScore: randInt(),
+            score: x,
           };
-          context.commit("UPDATE_SCORE_CELL", payload);
+          await context.dispatch("setScore", payload);
+          // context.commit("UPDATE_SCORE_CELL", payload);
         }
       });
     },
