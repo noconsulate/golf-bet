@@ -24,8 +24,9 @@ export const match = {
       state.match.is_classic_scoring
         ? (scoringStyle = "classic")
         : (scoringStyle = "solo");
+      const status = state.match.status;
 
-      return { holes, scoringStyle };
+      return { holes, scoringStyle, status };
     },
   },
 
@@ -35,6 +36,7 @@ export const match = {
     },
     UPDATE_MATCH(state, payload) {
       state.match = payload;
+      console.log("match updated", state.match.id);
     },
     UPDATE_MATCH_STATUS(state, payload) {
       state.match.status = payload;
@@ -94,13 +96,19 @@ export const match = {
 
     async getAndSetMatch(context, matchId) {
       const { data, error } = await getMatch(matchId);
+      console.log("got getAndSetMatch");
       if (error) {
         console.error(error);
       }
       if (data) {
         context.commit("UPDATE_MATCH", data[0]);
+
         if (data[0].status == "waiting") {
           matchListener(data[0].id);
+        }
+        if (data[0].status === "playing") {
+          console.log("status: playing");
+          context.dispatch("initScores");
         }
       }
     },

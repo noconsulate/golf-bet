@@ -8,6 +8,11 @@ Vue.config.productionTip = false;
 
 async function init() {
   await store.dispatch("initOnLoad");
+  console.log(store.getters.match, store.state.match.match);
+  if (store.getters.match.status === "playing") {
+    console.log("match status: playing");
+    // stores.dispatch("initScores");
+  }
 
   new Vue({
     router,

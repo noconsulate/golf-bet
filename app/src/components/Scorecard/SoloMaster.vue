@@ -240,7 +240,7 @@ export default {
     },
   },
   async beforeMount() {
-    this.$store.dispatch("initScores");
+    // this.$store.dispatch("initScores");
   },
 };
 </script>

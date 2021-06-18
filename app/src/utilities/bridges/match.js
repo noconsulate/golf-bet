@@ -29,7 +29,7 @@ const startMatch = async function(id) {
   console.log("updating match status");
   const { data, error } = await supabase
     .from("match")
-    .update({ status: "started" }, { returning: "minimal" })
+    .update({ status: "playing" }, { returning: "minimal" })
     .match({ id: id });
 
   console.log("START MATCH, DO SOMETHING", data, error);

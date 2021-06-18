@@ -5,7 +5,7 @@
       <button v-if="isCreator" class="btn" @click="cancel">Cancel Match</button>
       <button v-if="!isCreator" class="btn" @click="cancel">Leave Match</button>
     </div>
-    <div v-if="started">
+    <div v-if="playing">
       <p>You are playing in match #{{ activeMatch }}</p>
       <button class="btn" @click="forfeit">Forfeit Match</button>
     </div>
@@ -21,8 +21,8 @@ export default {
         return true;
       else return false;
     },
-    started() {
-      if (this.activeMatch != null && this.matchStatus == "started")
+    playing() {
+      if (this.activeMatch != null && this.matchStatus == "playing")
         return true;
       else return false;
     },

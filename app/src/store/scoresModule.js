@@ -46,6 +46,7 @@ export const scores = {
   },
   actions: {
     async initScores(context) {
+      console.log("starting initScores", context.rootState.match.match.id);
       const matchId = context.rootState.match.match.id;
       const players = context.rootState.match.match.players;
       const holes = context.getters.match.holes;
@@ -54,7 +55,11 @@ export const scores = {
         console.log("subscription found");
       }
 
+      console.log(matchId);
+
       const { data, error } = await getScores(matchId);
+
+      console.log(data, error);
 
       if (error) {
         console.log(error);
