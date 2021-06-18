@@ -111,8 +111,11 @@ export default {
     };
   },
   computed: {
-    visibilityP3() {
-      if (this.players < 3) return "invisible";
+    // visibilityP3() {
+    //   if (this.players < 3) return "invisible";
+    // },
+    isMaster() {
+      return this.$store.getters.user.player_num === 1 ? true : false;
     },
     matchId() {
       return this.$store.state.match.match.id;
@@ -132,6 +135,9 @@ export default {
   },
   methods: {
     stylePicker(p, i, a) {
+      if (!this.isMaster) {
+        return this.cellStyle;
+      }
       if (i == this.activeHole) {
         if (a == this.activePlayer) {
           return this.activeCell;
