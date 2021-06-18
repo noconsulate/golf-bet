@@ -82,9 +82,13 @@ export default {
       this.$router.push("/");
       this.$store.dispatch("toggleNavOpen");
     },
+    fillScores() {
+      this.$store.dispatch("fillScores");
+    },
   },
   async created() {
     document.title = "Golf Bets";
+    window.fillScores = this.fillScores;
   },
 };
 </script>

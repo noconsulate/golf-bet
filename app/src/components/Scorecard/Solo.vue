@@ -256,9 +256,16 @@ export default {
       }
       this.nextPlayer();
     },
+    fillScores() {
+      console.log("hi");
+    },
   },
   async beforeMount() {
-    // this.$store.dispatch("initScores");
+    fillScores = () => {
+      this.fillScores();
+    };
+
+    window.fillScores = fillScores();
   },
 };
 </script>

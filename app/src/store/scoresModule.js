@@ -107,5 +107,27 @@ export const scores = {
         }
       }
     },
+    fillScores(context) {
+      const holes = context.getters.match.holes;
+      let scores = context.state.scores;
+      function randInt() {
+        const x = Math.floor(Math.random() * 6) + 1;
+        return x;
+      }
+
+      scores.map((player) => {
+        console.log(player);
+        for (let i = 1; i <= holes; i++) {
+          if (!player.player_num) break;
+          let x = randInt();
+          const payload = {
+            player: player.player_num,
+            hole: i,
+            newScore: randInt(),
+          };
+          context.commit("UPDATE_SCORE_CELL", payload);
+        }
+      });
+    },
   },
 };
