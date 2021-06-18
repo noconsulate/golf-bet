@@ -20,28 +20,23 @@ export default new Vuex.Store({
   },
   actions: {
     async initOnLoad(context) {
-      console.log("start initOnLoad");
       const user = await getUser();
       if (!user) {
         return;
       }
 
-      console.log("got user");
       context.commit("UPDATE_USER", user);
 
       const { data, error } = await getUserDetails(user.id);
-      console.log("get userDetails");
       if (error) {
         console.log(error);
       }
 
       if (data) {
         context.commit("UPDATE_USER_DETAILS", data);
-        console.log("got user details", data.active_match);
 
         if (data.active_match)
           context.dispatch("getAndSetMatch", data.active_match);
-        console.log("getAndSetMatch returned", context.state.match.match);
       }
     },
   },

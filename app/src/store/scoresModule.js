@@ -46,7 +46,6 @@ export const scores = {
   },
   actions: {
     async initScores(context) {
-      console.log("starting initScores", context.rootState.match.match.id);
       const matchId = context.rootState.match.match.id;
       const players = context.rootState.match.match.players;
       const holes = context.getters.match.holes;

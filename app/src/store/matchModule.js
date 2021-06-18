@@ -96,7 +96,6 @@ export const match = {
 
     async getAndSetMatch(context, matchId) {
       const { data, error } = await getMatch(matchId);
-      console.log("got getAndSetMatch");
       if (error) {
         console.error(error);
       }
@@ -107,7 +106,6 @@ export const match = {
           matchListener(data[0].id);
         }
         if (data[0].status === "playing") {
-          console.log("status: playing");
           context.dispatch("initScores");
         }
       }
