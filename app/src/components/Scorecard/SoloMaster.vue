@@ -29,32 +29,40 @@
           <div :class="stylePicker(1, index)" :key="String(index) + '2'">T</div>
           <div :class="stylePicker(1, index)" :key="String(index) + '3'">P</div>
           <div
-            class="cursor-pointer"
-            :class="stylePicker(1, index, 1)"
+            :class="[
+              stylePicker(1, index, 1),
+              isMaster ? 'cursor-pointer' : null,
+            ]"
             @click="selectCell(1, index)"
             :key="String(index) + '4'"
           >
             {{ scores[0][index] }}
           </div>
           <div
-            class="cursor-pointer"
-            :class="stylePicker(2, index, 2)"
+            :class="[
+              stylePicker(2, index, 2),
+              isMaster ? 'cursor-pointer' : null,
+            ]"
             @click="selectCell(2, index)"
             :key="String(index) + '5'"
           >
             {{ scores[1][index] }}
           </div>
           <div
-            class="cursor-pointer"
-            :class="stylePicker(3, index, 3)"
+            :class="[
+              stylePicker(3, index, 3),
+              isMaster ? 'cursor-pointer' : null,
+            ]"
             @click="selectCell(3, index)"
             :key="String(index) + '6'"
           >
             {{ scores[2][index] }}
           </div>
           <div
-            class="cursor-pointer"
-            :class="stylePicker(4, index, 4)"
+            :class="[
+              stylePicker(4, index, 4),
+              isMaster ? 'cursor-pointer' : null,
+            ]"
             @click="selectCell(4, index)"
             :key="String(index) + '7'"
           >
