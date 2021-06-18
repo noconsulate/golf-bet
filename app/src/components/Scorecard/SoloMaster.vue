@@ -75,8 +75,8 @@
         <div :class="cell(1)">RR</div>
         <div :class="cell(1)">{{ totalScore(1) }}</div>
         <div :class="cell(1)">{{ totalScore(2) }}</div>
-        <div :class="cell(1)"></div>
-        <div :class="cell(1)"></div>
+        <div :class="cell(1)">{{ totalScore(3) }}</div>
+        <div :class="cell(1)">{{ totalScore(4) }}</div>
       </div>
     </div>
     <div
