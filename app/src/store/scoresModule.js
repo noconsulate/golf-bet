@@ -9,6 +9,7 @@ export const scores = {
     scores: [],
     loaded: false,
     subscription: null,
+    tally: 0,
   },
 
   getters: {
@@ -23,6 +24,13 @@ export const scores = {
         scores.push(scoreObj);
       });
       return scores;
+    },
+    isScoringComplete: (state, getters) => {
+      const holes = getters.match.holes;
+      const players = getters.match.players;
+      const total = holes * players;
+
+      return state.tally === total ? true : false;
     },
   },
 
@@ -42,6 +50,9 @@ export const scores = {
     UPDATE_SCORE_CELL(state, payload) {
       const { player, hole, newScore } = payload;
       state.scores[player - 1][hole] = newScore;
+    },
+    UPDATE_TALLY(state) {
+      state.tally++;
     },
   },
   actions: {
@@ -82,8 +93,11 @@ export const scores = {
       }
     },
     async setScore(context, values) {
-      console.log(values);
       const { matchId, player, hole, score } = values;
+      const currentValue = context.state.scores[player - 1][hole];
+      if (currentValue === null) {
+        context.commit("UPDATE_TALLY");
+      }
       const { data, error } = await updateScore(matchId, player, hole, score);
 
       console.log(data, error);

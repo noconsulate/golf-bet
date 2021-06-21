@@ -25,8 +25,9 @@ export const match = {
         ? (scoringStyle = "classic")
         : (scoringStyle = "solo");
       const status = state.match.status;
+      const players = state.match.players;
 
-      return { holes, scoringStyle, status };
+      return { holes, scoringStyle, status, players };
     },
   },
 
