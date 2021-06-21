@@ -1,6 +1,7 @@
 import {
   getScores,
   updateScore,
+  toggleConfirmScores,
   scoreListener,
 } from "../utilities/bridges/score";
 
@@ -10,6 +11,7 @@ export const scores = {
     loaded: false,
     subscription: null,
     tally: 0,
+    confirmScores: false,
   },
 
   getters: {
@@ -56,6 +58,9 @@ export const scores = {
     },
     INCREMENT_TALLY(state) {
       state.tally++;
+    },
+    TOGGLE_CONFIRM_SCORES(state) {
+      state.confirmScores = !state.confirmScores;
     },
   },
   actions: {
@@ -162,6 +167,10 @@ export const scores = {
           // context.commit("UPDATE_SCORE_CELL", payload);
         }
       });
+    },
+    setConfirmScores(context) {
+      const score_id = context.getters.user.active_score;
+      toggleConfirmScores();
     },
   },
 };

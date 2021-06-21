@@ -25,6 +25,30 @@ export async function updateScore(match_id, player_num, hole, score) {
   return { data, error };
 }
 
+export async function toggleConfirmScores() {
+  const id = store.getters.user.active_score;
+  const fetch = await supabase
+    .from("score")
+    .select("confirm")
+    .match({ id: id });
+
+  console.log(fetch);
+  if (fetch.error) {
+    console.error(fetch.error);
+    return;
+  }
+
+  const state = fetch.data[0].confirm;
+  console.log(state);
+
+  const { data, error } = await supabase
+    .from("score")
+    .update({ confirm: !state }, { returning: "minimal" })
+    .match({ id: id });
+
+  console.log(data, error);
+}
+
 export async function scoreListener() {
   const match_id = store.state.match.match.id;
   console.log(match_id);
