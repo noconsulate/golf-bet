@@ -79,6 +79,7 @@
         <div :class="cell(1)">{{ totalScore(4) }}</div>
       </div>
     </div>
+    <div v-if="isScoringComplete">Scoring complete</div>
     <div
       v-if="isMaster"
       class="flex flex-col border space-y-2 object-none object-bottom"
@@ -142,6 +143,9 @@ export default {
     },
     loaded() {
       return this.$store.state.scores.loaded;
+    },
+    isScoringComplete() {
+      return this.$store.getters.isScoringComplete;
     },
   },
   methods: {

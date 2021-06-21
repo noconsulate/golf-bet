@@ -51,7 +51,10 @@ export const scores = {
       const { player, hole, newScore } = payload;
       state.scores[player - 1][hole] = newScore;
     },
-    UPDATE_TALLY(state) {
+    UPDATE_TALLY(state, payload) {
+      state.tally = payload;
+    },
+    INCREMENT_TALLY(state) {
       state.tally++;
     },
   },
@@ -75,6 +78,17 @@ export const scores = {
         console.log(error);
       }
       if (data) {
+        // count tally
+        let tally = 0;
+        for (let i = 0; i < players; i++) {
+          for (let j = 1; j <= holes; j++) {
+            data[i][j] !== null ? tally++ : null;
+          }
+        }
+        console.log(tally);
+        context.commit("UPDATE_TALLY", tally);
+
+        // fill in blank scores for vacant player slots
         let n = 4 - players;
 
         for (let i = 1; i <= n; i++) {
@@ -96,7 +110,7 @@ export const scores = {
       const { matchId, player, hole, score } = values;
       const currentValue = context.state.scores[player - 1][hole];
       if (currentValue === null) {
-        context.commit("UPDATE_TALLY");
+        context.commit("INCREMENT_TALLY");
       }
       const { data, error } = await updateScore(matchId, player, hole, score);
 
