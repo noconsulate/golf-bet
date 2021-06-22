@@ -13,6 +13,7 @@ export const scores = {
     subscription: null,
     tally: 0,
     confirmScores: false,
+    results: [],
   },
 
   getters: {
@@ -169,12 +170,35 @@ export const scores = {
         }
       });
     },
-    // setConfirmScores(context) {
-    //   // const score_id = context.getters.user.active_score;
-    //   // toggleConfirmScores();
-    //   // context.commit("TOGGLE_CONFIRM_SCORES");
+    setResults(context, totals) {
+      console.log(totals);
+      const players = totals.length;
 
-    //   pickWinner();
-    // },
+      let winner = 0;
+      let ties = [];
+      let losers = [];
+      let results = totals;
+
+      for (let i = 1; i < players; i++) {
+        if (results[i].total < results[winner].total) {
+          winner = i;
+        }
+      }
+      console.log("winner: " + winner);
+
+      for (let i = 0; i < players; i++) {
+        if (results[i].total === results[winner].total && i !== winner) {
+          ties.push(i);
+        }
+      }
+      if (ties.length === 0) {
+      }
+      console.log("ties: " + ties);
+
+      for (let i = 0; i < players; i++) {
+        if (results[i].total > results[winner].total) losers.push(i);
+      }
+      console.log("losers: " + losers);
+    },
   },
 };
