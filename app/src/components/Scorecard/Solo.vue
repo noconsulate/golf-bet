@@ -287,7 +287,7 @@ export default {
       let totals = [];
       for (let i = 0; i < this.players; i++) {
         // totals.push(this.totalScore(i));
-        totals[i] = { total: this.totalScore(i + 1) };
+        totals[i] = { total: this.totalScore(i + 1), payments: [] };
       }
       this.$store.dispatch("setResults", totals);
 

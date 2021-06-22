@@ -173,6 +173,7 @@ export const scores = {
     setResults(context, totals) {
       console.log(totals);
       const players = totals.length;
+      const points = context.rootState.match.match.points;
 
       let winner = 0;
       let winners = [];
@@ -199,6 +200,33 @@ export const scores = {
         if (results[i].total > results[winner].total) losers.push(i);
       }
       console.log("losers: " + losers);
+
+      switch (players) {
+        case 2: {
+        }
+        case 3: {
+          switch (winners.length) {
+            case 1: {
+              results.map((player, index) => {
+                console.log(player, index);
+                if (winners.includes(index)) {
+                  player.payment = 2 * points;
+                  losers.map((loser) => {
+                    player.payments.push({ player: loser, amount: points });
+                  });
+                } else {
+                  player.payment = -1 * points;
+                  player.payments.push({ player: winner, amount: -1 * points });
+                }
+              });
+              break;
+            }
+            case 2: {
+            }
+          }
+        }
+      }
+      console.log(results);
     },
   },
 };
