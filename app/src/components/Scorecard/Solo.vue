@@ -225,6 +225,7 @@ export default {
     selectCell(player, hole) {
       this.activePlayer = player;
       this.activeHole = hole;
+      this.scoreInput = this.scores[player - 1][hole];
     },
     totalScore(player) {
       const index = player - 1;
@@ -326,6 +327,12 @@ export default {
 
         message = `Player ${winner + 1} wins the match.`;
         switch (losers.length) {
+          case 1: {
+            message += ` Player ${
+              losers[0] + 1
+            } owes ${payoutPerPlayer} to player ${winner + 1}`;
+            break;
+          }
           case 2: {
             message += ` Players ${losers[0] + 1} and ${
               losers[1] + 1
