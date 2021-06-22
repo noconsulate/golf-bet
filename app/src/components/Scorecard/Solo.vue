@@ -78,11 +78,17 @@
         <div :class="cell(1)">{{ totalScore(3) }}</div>
         <div :class="cell(1)">{{ totalScore(4) }}</div>
       </div>
-      <div v-if="isScoringComplete" class="flex flex-col space-y-2">
+      <div
+        v-if="isScoringComplete && message === ''"
+        class="flex flex-col space-y-2"
+      >
         <p class="flex justify-center">Scoring complete?</p>
         <div class="flex justify-center">
           <button class="btn" @click="toggleConfirmScores">confirm</button>
         </div>
+      </div>
+      <div class="flex flex-col space-y-2" v-if="message != ''">
+        <p class="flex justify-center">{{ message }}</p>
       </div>
     </div>
     <div
@@ -125,6 +131,7 @@ export default {
       key: 1,
       // loaded: false,
       scoreInput: 3,
+      message: "",
     };
   },
   computed: {
@@ -152,6 +159,7 @@ export default {
     isScoringComplete() {
       return this.$store.getters.isScoringComplete;
     },
+
     // isConfirmScores() {
     //   return this.$store.state.scores.confirmScores;
     // },
@@ -277,6 +285,32 @@ export default {
         totals.push(this.totalScore(i));
       }
       console.log(totals);
+
+      let winner = 0;
+      let ties = [];
+
+      for (let i = 1; i < this.players; i++) {
+        if (totals[i] > totals[winner]) {
+          winner = i;
+        }
+      }
+      for (let i = 0; i < this.players; i++) {
+        if (totals[i] === totals[winner]) {
+          ties.push(i);
+        }
+      }
+
+      console.log(winner, ties);
+
+      let message;
+
+      if (ties.length == 2) {
+        message = `players ${ties[0] + 1} and ${ties[1] + 1} tied the match`;
+      } else {
+        message = `player ${winner + 1} wins the match`;
+      }
+
+      this.message = message;
     },
   },
   async beforeMount() {
