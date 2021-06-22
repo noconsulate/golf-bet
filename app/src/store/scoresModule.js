@@ -175,7 +175,7 @@ export const scores = {
       const players = totals.length;
 
       let winner = 0;
-      let ties = [];
+      let winners = [];
       let losers = [];
       let results = totals;
 
@@ -187,13 +187,13 @@ export const scores = {
       console.log("winner: " + winner);
 
       for (let i = 0; i < players; i++) {
-        if (results[i].total === results[winner].total && i !== winner) {
-          ties.push(i);
+        if (results[i].total === results[winner].total) {
+          winners.push(i);
         }
       }
-      if (ties.length === 0) {
+      if (winners.length === 0) {
       }
-      console.log("ties: " + ties);
+      console.log("winners: " + winners);
 
       for (let i = 0; i < players; i++) {
         if (results[i].total > results[winner].total) losers.push(i);
