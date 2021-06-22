@@ -153,6 +153,9 @@ export default {
     players() {
       return this.$store.state.match.match.players;
     },
+    points() {
+      return this.$store.state.match.match.points;
+    },
     loaded() {
       return this.$store.state.scores.loaded;
     },
@@ -288,17 +291,28 @@ export default {
 
       let winner = 0;
       let ties = [];
+      let losers = [];
+      let payoutPerPlayer;
 
       for (let i = 1; i < this.players; i++) {
-        if (totals[i] > totals[winner]) {
+        if (totals[i] < totals[winner]) {
           winner = i;
         }
       }
       for (let i = 0; i < this.players; i++) {
-        if (totals[i] === totals[winner]) {
+        if (totals[i] === totals[winner] && i !== winner) {
           ties.push(i);
         }
       }
+      if (ties.length === 0) {
+        for (let i = 0; i < this.players; i++) {
+          console.log(i, winner);
+          if (i != winner) {
+            losers.push(i);
+          }
+        }
+      }
+      console.log("losers: " + losers);
 
       console.log(winner, ties);
 
@@ -307,7 +321,23 @@ export default {
       if (ties.length == 2) {
         message = `players ${ties[0] + 1} and ${ties[1] + 1} tied the match`;
       } else {
-        message = `player ${winner + 1} wins the match`;
+        payoutPerPlayer = this.points / (this.players - 1);
+        console.log(payoutPerPlayer);
+
+        message = `Player ${winner + 1} wins the match.`;
+        switch (losers.length) {
+          case 2: {
+            message += ` Players ${losers[0] + 1} and ${
+              losers[1] + 1
+            } owe ${payoutPerPlayer} points to player ${winner + 1}.`;
+            break;
+          }
+          case 3: {
+            message += ` Players ${losers[0] + 1}, ${losers[1] + 1}, and ${
+              losers[2]
+            } each owe ${payoutPerPlayer} to player ${winner + 1}.`;
+          }
+        }
       }
 
       this.message = message;
