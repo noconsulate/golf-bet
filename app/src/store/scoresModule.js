@@ -210,11 +210,13 @@ export const scores = {
               results.map((player, index) => {
                 console.log(player, index);
                 if (winners.includes(index)) {
+                  player.winner = true;
                   player.payment = 2 * points;
                   losers.map((loser) => {
                     player.payments.push({ player: loser, amount: points });
                   });
                 } else {
+                  player.winner = false;
                   player.payment = -1 * points;
                   player.payments.push({ player: winner, amount: -1 * points });
                 }
@@ -222,6 +224,7 @@ export const scores = {
               break;
             }
             case 2: {
+              console.log("two winnerse");
             }
           }
         }
