@@ -289,8 +289,6 @@ export default {
         // totals.push(this.totalScore(i));
         totals[i] = { total: this.totalScore(i + 1) };
       }
-      console.log(totals);
-
       this.$store.dispatch("setResults", totals);
 
       // let totals = [];
