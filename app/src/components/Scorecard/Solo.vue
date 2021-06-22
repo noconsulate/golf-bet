@@ -79,17 +79,9 @@
         <div :class="cell(1)">{{ totalScore(4) }}</div>
       </div>
       <div v-if="isScoringComplete" class="flex flex-col space-y-2">
-        <div v-if="!isConfirmScores">
-          <p class="flex justify-center">Scoring complete?</p>
-          <div class="flex justify-center">
-            <button class="btn" @click="toggleConfirmScores">confirm</button>
-          </div>
-        </div>
-        <div v-else>
-          <p class="flex justify-center">Scores confirmed</p>
-          <div class="flex justify-center">
-            <button class="btn" @click="toggleConfirmScores">cancel</button>
-          </div>
+        <p class="flex justify-center">Scoring complete?</p>
+        <div class="flex justify-center">
+          <button class="btn" @click="toggleConfirmScores">confirm</button>
         </div>
       </div>
     </div>
@@ -160,9 +152,9 @@ export default {
     isScoringComplete() {
       return this.$store.getters.isScoringComplete;
     },
-    isConfirmScores() {
-      return this.$store.state.scores.confirmScores;
-    },
+    // isConfirmScores() {
+    //   return this.$store.state.scores.confirmScores;
+    // },
   },
   methods: {
     stylePicker(p, i, a) {
@@ -280,7 +272,11 @@ export default {
       console.log("hi");
     },
     toggleConfirmScores() {
-      this.$store.dispatch("setConfirmScores");
+      let totals = [];
+      for (let i = 1; i <= this.players; i++) {
+        totals.push(this.totalScore(i));
+      }
+      console.log(totals);
     },
   },
   async beforeMount() {

@@ -4,6 +4,7 @@ import {
   toggleConfirmScores,
   scoreListener,
 } from "../utilities/bridges/score";
+import { pickWinner } from "../utilities/functions";
 
 export const scores = {
   state: {
@@ -59,9 +60,9 @@ export const scores = {
     INCREMENT_TALLY(state) {
       state.tally++;
     },
-    TOGGLE_CONFIRM_SCORES(state) {
-      state.confirmScores = !state.confirmScores;
-    },
+    // TOGGLE_CONFIRM_SCORES(state) {
+    //   state.confirmScores = !state.confirmScores;
+    // },
   },
   actions: {
     async initScores(context) {
@@ -168,9 +169,12 @@ export const scores = {
         }
       });
     },
-    setConfirmScores(context) {
-      const score_id = context.getters.user.active_score;
-      toggleConfirmScores();
-    },
+    // setConfirmScores(context) {
+    //   // const score_id = context.getters.user.active_score;
+    //   // toggleConfirmScores();
+    //   // context.commit("TOGGLE_CONFIRM_SCORES");
+
+    //   pickWinner();
+    // },
   },
 };
