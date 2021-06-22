@@ -293,31 +293,25 @@ export default {
       let winner = 0;
       let ties = [];
       let losers = [];
-      let payoutPerPlayer;
+      let payoutPerPlayer = 0;
+      let message = "";
 
       for (let i = 1; i < this.players; i++) {
         if (totals[i] < totals[winner]) {
           winner = i;
         }
       }
+      console.log("winner: " + winner);
       for (let i = 0; i < this.players; i++) {
         if (totals[i] === totals[winner] && i !== winner) {
           ties.push(i);
         }
       }
-      if (ties.length === 0) {
-        for (let i = 0; i < this.players; i++) {
-          console.log(i, winner);
-          if (i != winner) {
-            losers.push(i);
-          }
-        }
+      console.log("ties: " + ties);
+      for (let i = 0; i < this.players; i++) {
+        if (totals[i] > totals[winner]) losers.push(i);
       }
       console.log("losers: " + losers);
-
-      console.log(winner, ties);
-
-      let message;
 
       if (ties.length == 2) {
         message = `players ${ties[0] + 1} and ${ties[1] + 1} tied the match`;
