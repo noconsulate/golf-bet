@@ -313,32 +313,68 @@ export default {
       }
       console.log("losers: " + losers);
 
+      switch (ties.length) {
+        case 0: {
+          payoutPerPlayer = (this.points * this.players) / (this.players - 1);
+          console.log("payoutperplayer: " + payoutPerPlayer);
+          message = `Player ${winner + 1} wins the match.`;
+          switch (losers.length) {
+            case 1: {
+              message += ` Player ${
+                losers[0] + 1
+              } owes ${payoutPerPlayer} to player ${winner + 1}`;
+              break;
+            }
+
+            case 3: {
+              message += ` Players ${losers[0] + 1}, ${losers[1] + 1}, and ${
+                losers[2]
+              } each owe ${payoutPerPlayer} to player ${winner + 1}.`;
+            }
+          }
+          break;
+        }
+        case 2: {
+          payoutPerPlayer = this.points / (this.players - 2);
+          switch (losers.length) {
+            case 0: {
+              message = "Tied match, everyone wins! Nobody pays";
+              break;
+            }
+            case 1: {
+              message = `Player ${losers[1]} pays ${payoutPerPerson} to players ${winners[0]} and ${winners[1]} each.`;
+            }
+            case 2: {
+            }
+          }
+        }
+      }
+
       if (ties.length == 2) {
         message = `players ${ties[0] + 1} and ${ties[1] + 1} tied the match`;
       } else {
-        payoutPerPlayer = this.points / (this.players - 1);
-        console.log(payoutPerPlayer);
-
-        message = `Player ${winner + 1} wins the match.`;
-        switch (losers.length) {
-          case 1: {
-            message += ` Player ${
-              losers[0] + 1
-            } owes ${payoutPerPlayer} to player ${winner + 1}`;
-            break;
-          }
-          case 2: {
-            message += ` Players ${losers[0] + 1} and ${
-              losers[1] + 1
-            } owe ${payoutPerPlayer} points to player ${winner + 1}.`;
-            break;
-          }
-          case 3: {
-            message += ` Players ${losers[0] + 1}, ${losers[1] + 1}, and ${
-              losers[2]
-            } each owe ${payoutPerPlayer} to player ${winner + 1}.`;
-          }
-        }
+        // payoutPerPlayer = this.points / (this.players - 1);
+        // console.log(payoutPerPlayer);
+        // message = `Player ${winner + 1} wins the match.`;
+        // switch (losers.length) {
+        //   case 1: {
+        //     message += ` Player ${
+        //       losers[0] + 1
+        //     } owes ${payoutPerPlayer} to player ${winner + 1}`;
+        //     break;
+        //   }
+        //   case 2: {
+        //     message += ` Players ${losers[0] + 1} and ${
+        //       losers[1] + 1
+        //     } owe ${payoutPerPlayer} points to player ${winner + 1}.`;
+        //     break;
+        //   }
+        //   case 3: {
+        //     message += ` Players ${losers[0] + 1}, ${losers[1] + 1}, and ${
+        //       losers[2]
+        //     } each owe ${payoutPerPlayer} to player ${winner + 1}.`;
+        //   }
+        // }
       }
 
       this.message = message;
