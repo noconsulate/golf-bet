@@ -88,7 +88,9 @@ export default {
   },
   async created() {
     document.title = "Golf Bets";
-    window.fillScores = this.fillScores;
+    if (process.env.NODE_ENV === "development") {
+      window.fillScores = this.fillScores;
+    }
   },
 };
 </script>

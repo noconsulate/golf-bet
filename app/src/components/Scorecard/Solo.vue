@@ -118,7 +118,7 @@
 
 <script>
 export default {
-  name: "solo4Players",
+  name: "solo",
   data() {
     return {
       // styles
@@ -386,13 +386,6 @@ export default {
 
       // this.message = message;
     },
-  },
-  async beforeMount() {
-    fillScores = () => {
-      this.fillScores();
-    };
-
-    window.fillScores = fillScores();
   },
 };
 </script>
