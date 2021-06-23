@@ -24,10 +24,7 @@ export function pickWinner() {
 }
 
 export function makeResults(totals, points) {
-  console.log("results");
-  console.log(totals);
   const players = totals.length;
-  const totalPoints = points * players;
 
   let winner = 0;
   let winners = [];
