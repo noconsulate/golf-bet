@@ -55,6 +55,30 @@ export function makeResults(totals, points) {
   }
   console.log("losers: " + losers);
 
+  results.map((player, index) => {
+    if (winners.includes(index)) {
+      player.winner = true;
+      player.netProfit = (points * losers.length) / winners.length;
+      losers.map((loser) => {
+        player.payments.push({
+          player: loser,
+          payments: points / winners.length,
+        });
+      });
+    } else {
+      player.winner = false;
+      player.netProfit = points * -1;
+      winners.map((winner) => {
+        player.payments.push({
+          player: winner,
+          payments: (points / winners.length) * -1,
+        });
+      });
+    }
+  });
+
+  return results;
+
   switch (players) {
     case 2: {
       switch (winners.length) {
@@ -152,6 +176,8 @@ export function makeResults(totals, points) {
         }
       }
       break;
+    }
+    case 4: {
     }
   }
 
