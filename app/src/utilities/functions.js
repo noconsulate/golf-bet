@@ -106,6 +106,15 @@ export function makeResults(totals, points) {
               });
             }
           });
+          break;
+        }
+        case 3: {
+          console.log("3 winnars");
+          results.map((player, index) => {
+            player.winner = true;
+            player.netProfit = 0;
+          });
+          break;
         }
       }
     }
