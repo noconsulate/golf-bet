@@ -82,6 +82,13 @@ export function makeResults(totals, points) {
           });
           break;
         }
+        case 2: {
+          results.map((player, index) => {
+            player.winner = true;
+            player.netProfit = 0;
+          });
+          break;
+        }
       }
       break;
     }
