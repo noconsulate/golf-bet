@@ -61,9 +61,11 @@ export const scores = {
     INCREMENT_TALLY(state) {
       state.tally++;
     },
-    // TOGGLE_CONFIRM_SCORES(state) {
-    //   state.confirmScores = !state.confirmScores;
-    // },
+    UPDATE_RESULTS(state, payload) {
+      payload.map((result) => {
+        state.results.push(result);
+      });
+    },
   },
   actions: {
     async initScores(context) {
@@ -175,6 +177,7 @@ export const scores = {
       console.log(totals, points);
       const results = makeResults(totals, points);
       console.log(results);
+      context.commit("UPDATE_RESULTS", results);
     },
   },
 };
