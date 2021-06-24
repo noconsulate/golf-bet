@@ -1,15 +1,18 @@
 <template>
   <div>
-    <Solo />
+    <Solo v-if="renderPicker() == 'card'" />
+    <Results v-if="renderPicker() == 'results'" />
   </div>
 </template>
 
 <script>
 import Solo from "../components/Scorecard/Solo.vue";
+import Results from "../components/Scorecard/Results.vue";
 export default {
   name: "scoredcard",
   components: {
     Solo,
+    Results,
   },
   computed: {
     players() {
@@ -21,10 +24,13 @@ export default {
     playerNum() {
       return this.$store.getters.user.player_num;
     },
+    results() {
+      return this.$store.state.scores.results;
+    },
   },
   methods: {
     renderPicker() {
-      return "";
+      return this.results.length == 0 ? "card" : "results";
     },
   },
 };
