@@ -1,23 +1,19 @@
 <template>
-  <div class="h-screen w-screen flex flex-col bg-blue-200">
-    <div class="grid grid-cols-7 grid-rows-9 gap-1 pt-8 p-2 h-full">
-      <div
-        class="col-span-2 place-self-start bg-red-200 border-2 border-black-200"
-      >
-        **
+  <div class="h-screen w-screen flex flex-col">
+    <div class="grid grid-cols-9 gap-1 h-full">
+      <div class="col-span-9 row-start-1 row-end-2 border">
+        <div
+          class="flex justify-center items-center h-full border border-dashed"
+        >
+          <p class="inline-block">Confirm Totals</p>
+        </div>
       </div>
-      <div class="col-span-3 justify-self-center place-self-start bg-red-400">
-        <p class="">Confirm Totals</p>
+      <div class="col-span-9 border max-h-full bg-pink-300">
+        <p class="z-10">Player 1</p>
       </div>
-      <div class="col-span-2 place-self-start bg-red-200" />
-      <div :class="card">
-        <grid class="grid-cols-9 grid-rows-3">
-          <div class="col-span-3">Player 1</div>
-        </grid>
-      </div>
-      <div :class="card">player 1 bla bla bla</div>
-      <div :class="card">player 1 bla bla bla</div>
-      <div :class="card">player 1 bla bla bla</div>
+      <div class="col-span-9 border border-black bg-green-400 h-full"></div>
+      <div class="border border-black bg-green-400"></div>
+      <div class="border border-black bg-green-400"></div>
     </div>
   </div>
 </template>
@@ -27,7 +23,7 @@ export default {
   name: "Results",
   data() {
     return {
-      card: " row-span-6 col-span-full place-self-stretch bg-green-100 border shadow shadow-lg",
+      card: "h-full border shadow shadow-lg mx-2",
     };
   },
 };
