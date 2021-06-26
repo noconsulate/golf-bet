@@ -1,25 +1,22 @@
 <template>
-  <div class="h-screen w-screen flex flex-col">
-    <div class="grid grid-cols-9 gap-1 h-full">
-      <div class="col-span-9 row-start-1 row-end-2 border">
-        <div
-          class="flex justify-center items-center h-full border border-dashed"
-        >
-          <p class="inline-block">Confirm Totals</p>
-        </div>
+  <div class="h-screen w-screen">
+    <div class="grid grid-cols-2 grid-rows-9-static gap-2 h-full bg-pink-200">
+      <div class="col-span-2 row-span-1 bg-red-800">*</div>
+      <div class="col-span-2 row-span-2 bg-green-200"></div>
+      <div class="row-span-2 bg-green-200">
+        <p>hehe</p>
+        <p>NTMA</p>
       </div>
-      <div class="col-span-9 border max-h-full bg-pink-300">
-        <p class="z-10">Player 1</p>
-      </div>
-      <div class="col-span-9 border border-black bg-green-400 h-full"></div>
-      <div class="border border-black bg-green-400"></div>
-      <div class="border border-black bg-green-400"></div>
+      <div class="row-span-2 bg-green-200"></div>
+      <div class="row-span-2 bg-green-200"></div>
     </div>
   </div>
 </template>
 
 <script>
+import App from "../../App.vue";
 export default {
+  components: { App },
   name: "Results",
   data() {
     return {
