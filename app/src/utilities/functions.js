@@ -1,4 +1,5 @@
 import store from "../store/";
+import { setStatus } from "../utilities/bridges/match";
 
 export function pickWinner() {
   const scores = store.state.scores.scores;
@@ -23,9 +24,10 @@ export function pickWinner() {
   return winner;
 }
 
-export function makeResults(totals, points) {
+export async function makeResults(totals, points) {
   const players = totals.length;
   const scores = store.state.scores.scores;
+  const match = store.getters.match.id;
 
   let winner = 0;
   let winners = [];

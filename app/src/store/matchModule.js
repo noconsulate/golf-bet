@@ -26,8 +26,9 @@ export const match = {
         : (scoringStyle = "solo");
       const status = state.match.status;
       const players = state.match.players;
+      const id = state.match.id;
 
-      return { holes, scoringStyle, status, players };
+      return { holes, scoringStyle, status, players, id };
     },
   },
 

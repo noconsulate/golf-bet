@@ -35,6 +35,15 @@ const startMatch = async function(id) {
   console.log("START MATCH, DO SOMETHING", data, error);
 };
 
+export const setStatus = async function(id, status) {
+  const { data, error } = await supabase
+    .from("match")
+    .update({ status: status }, { returning: "minimal" })
+    .match({ id: id });
+
+  return { data, error };
+};
+
 export const matchListener = async function(id) {
   // const id = store.state.match.match.id;
   const subscription = supabase

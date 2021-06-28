@@ -30,7 +30,7 @@ export default {
   },
   methods: {
     renderPicker() {
-      return this.results.length == 0 ? "card" : "results";
+      return "card";
     },
   },
 };
