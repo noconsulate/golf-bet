@@ -1,6 +1,6 @@
 <template>
-  <div class="col-span-2 row-span-2 bg-green-200 grid grid-cols-5 mx-2">
-    <div class="col-span-2 flex flex-col justify-center bg-blue-300">
+  <div class="col-span-2 row-span-2 grid grid-cols-5 mx-2">
+    <div class="col-span-2 flex flex-col justify-center">
       <p>Player {{ playerNum + 1 }}</p>
       <p>{{ results[playerNum].handle }}</p>
       <p>Handicap xx</p>
@@ -12,7 +12,6 @@
         justify-center
         items-center
         divide-y divide-black
-        bg-yellow-200
       "
     >
       <p>Net</p>
@@ -25,7 +24,6 @@
         justify-center
         items-center
         divide-y divide-black
-        bg-yellow-200
       "
     >
       <p>Gross</p>
@@ -38,7 +36,6 @@
         justify-center
         items-center
         divide-y divide-black
-        bg-yellow-200
       "
     >
       <p>Total</p>

@@ -77,5 +77,7 @@ export function makeResults(totals, points) {
     }
   });
 
+  store.dispatch("setController", "confirmResults");
+
   return results;
 }

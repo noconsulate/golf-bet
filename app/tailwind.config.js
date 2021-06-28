@@ -8,7 +8,7 @@ module.exports = {
     extend: {
       gridTemplateRows: {
         "9-static": "repeat(9, 1fr)",
-        "11-static": "repeat(11, 1fr)",
+        "12-static": "repeat(12, 1fr)",
       },
     },
   },

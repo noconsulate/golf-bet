@@ -25,6 +25,9 @@ export const ui = {
         : (result = false);
       return result;
     },
+    controller(state) {
+      return state.controller;
+    },
   },
 
   mutations: {

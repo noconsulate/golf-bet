@@ -1,8 +1,8 @@
 <template>
   <div class="h-screen w-screen">
-    <div class="grid grid-cols-2 grid-rows-11-static gap-2 h-full bg-pink-200">
-      <div class="col-span-2 row-span-1 bg-red-800">
-        <div class="flex justify-center items-center h-full bg-pink-700">
+    <div class="grid grid-cols-2 grid-rows-12-static gap-2 h-full">
+      <div class="col-span-2 row-span-1">
+        <div class="flex justify-center items-center h-full">
           <p>Confirm Totals</p>
         </div>
       </div>
@@ -10,14 +10,16 @@
       <PlayerCard :playerNum="1" />
       <PlayerCard :playerNum="2" />
       <PlayerCard :playerNum="3" />
+      <Controller />
     </div>
   </div>
 </template>
 
 <script>
 import PlayerCard from "./PlayerCard.vue";
+import Controller from "../Controller/Controller-grid.vue";
 export default {
-  components: { PlayerCard },
+  components: { PlayerCard, Controller },
   name: "Results",
   data() {
     return {
