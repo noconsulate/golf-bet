@@ -73,6 +73,9 @@ export const scores = {
         state.results.push(result);
       });
     },
+    RESET_RESULTS(state) {
+      state.results = [];
+    },
   },
   actions: {
     async initScores(context) {
@@ -123,6 +126,7 @@ export const scores = {
       }
     },
     async setScore(context, values) {
+      newVal;
       const { matchId, player, hole, score } = values;
       const currentValue = context.state.scores[player - 1][hole];
       if (currentValue === null) {
@@ -185,6 +189,9 @@ export const scores = {
       const results = makeResults(totals, points);
       console.log(results);
       context.commit("UPDATE_RESULTS", results);
+    },
+    resetResults(context) {
+      context.commit("RESET_RESULTS");
     },
   },
 };

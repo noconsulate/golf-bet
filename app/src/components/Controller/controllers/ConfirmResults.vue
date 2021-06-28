@@ -5,7 +5,7 @@
         h-full
         flex flex-col
         space-y-2
-        justfiy-center
+        justify-center
         items-center
         bg-purple-200
       "
@@ -14,7 +14,7 @@
       <button class="btn">Confirm Totals</button>
       <p>Something doesn't look right</p>
       <div class="flex space-x-2">
-        <button class="btn">Back</button>
+        <button class="btn" @click="back">Back</button>
         <p>to edit</p>
       </div>
     </div>
@@ -24,5 +24,10 @@
 <script>
 export default {
   name: "ConfirmResults",
+  methods: {
+    back() {
+      this.$store.dispatch("resetResults");
+    },
+  },
 };
 </script>

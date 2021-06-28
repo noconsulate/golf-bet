@@ -1,7 +1,7 @@
 <template>
   <div>
-    <Solo v-if="renderPicker() == 'card'" />
-    <Results v-if="renderPicker() == 'results'" />
+    <Solo v-if="renderPicker == 'card'" />
+    <Results v-if="renderPicker == 'results'" />
   </div>
 </template>
 
@@ -13,6 +13,11 @@ export default {
   components: {
     Solo,
     Results,
+  },
+  data() {
+    return {
+      renderPicker: "card",
+    };
   },
   computed: {
     players() {
@@ -29,8 +34,16 @@ export default {
     },
   },
   methods: {
-    renderPicker() {
-      return this.$store.getters.results.length > 0 ? "results" : "card";
+    // renderPicker() {
+    //   return this.$store.getters.results.length > 0 ? "results" : "card";
+    // },
+  },
+  watch: {
+    results(oldVal, newVal) {
+      console.log(this.results);
+      this.results.length > 0
+        ? (this.renderPicker = "results")
+        : (this.renderPicker = "card");
     },
   },
 };
