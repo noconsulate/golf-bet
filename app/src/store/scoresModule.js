@@ -36,6 +36,13 @@ export const scores = {
 
       return state.tally === total ? true : false;
     },
+    results: (state) => {
+      let res = state.results;
+      res.map((result) => {
+        result.netProfit = result.netProfit.toFixed(2);
+      });
+      return res;
+    },
   },
 
   mutations: {
