@@ -7,9 +7,14 @@
         </div>
       </div>
       <PlayerCard :playerNum="0" />
-      <PlayerCard :playerNum="1" />
-      <PlayerCard :playerNum="2" />
-      <PlayerCard :playerNum="3" />
+      <PlayerCard v-if="results.length > 1" :playerNum="1" />
+      <div v-else class="col-span-2 row-span-2"></div>
+
+      <PlayerCard v-if="results.length > 2" :playerNum="2" />
+      <div v-else class="col-span-2 row-span-2"></div>
+      <PlayerCard v-if="results.length > 3" :playerNum="3" />
+      <div v-else class="col-span-2 row-span-2"></div>
+
       <Controller />
     </div>
   </div>

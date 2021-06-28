@@ -30,7 +30,7 @@ export default {
   },
   methods: {
     renderPicker() {
-      return "card";
+      return this.$store.getters.results.length > 0 ? "results" : "card";
     },
   },
 };

@@ -24,7 +24,7 @@ export function pickWinner() {
   return winner;
 }
 
-export async function makeResults(totals, points) {
+export function makeResults(totals, points) {
   const players = totals.length;
   const scores = store.state.scores.scores;
   const match = store.getters.match.id;
