@@ -1,6 +1,6 @@
 <template>
-  <div class="col-span-2 row-span-2 grid grid-cols-5 mx-2">
-    <div class="col-span-2 flex flex-col justify-center">
+  <div class="col-span-2 row-span-2 grid grid-cols-5 mx-2 border shadow">
+    <div class="col-span-2 flex flex-col justify-center mx-2">
       <p>Player {{ playerNum + 1 }}</p>
       <p>{{ results[playerNum].handle }}</p>
       <p>Handicap xx</p>
