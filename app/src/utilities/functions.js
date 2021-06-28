@@ -25,6 +25,7 @@ export function pickWinner() {
 
 export function makeResults(totals, points) {
   const players = totals.length;
+  const scores = store.state.scores.scores;
 
   let winner = 0;
   let winners = [];
@@ -54,6 +55,7 @@ export function makeResults(totals, points) {
 
   results.map((player, index) => {
     if (winners.includes(index)) {
+      player.handle = scores[index].player_id.handle;
       player.winner = true;
       player.netProfit = (points * losers.length) / winners.length;
       losers.map((loser) => {
@@ -63,6 +65,7 @@ export function makeResults(totals, points) {
         });
       });
     } else {
+      player.handle = scores[index].player_id.handle;
       player.winner = false;
       player.netProfit = points * -1;
       winners.map((winner) => {
