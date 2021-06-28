@@ -9,7 +9,7 @@ const supabase = createClient(
 export async function getScores(match_id) {
   const { data, error } = await supabase
     .from("score")
-    .select("*")
+    .select(`*, player_id ( handle )`)
     .match({ match_id })
     .order("player_num", { ascending: true });
 
