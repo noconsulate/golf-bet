@@ -129,3 +129,19 @@ export async function cancelMatch() {
 export async function unsubscribe() {
   supabase.removeSubscription(store.state.ui.subscription);
 }
+
+export async function leaveMatch(user_id) {
+  const { data, error } = await supabase
+    .from("users")
+    .update(
+      {
+        active_match: null,
+        active_score: null,
+        player_num: null,
+      },
+      { returning: "minimal" }
+    )
+    .match({ id: user_id });
+
+  return { data, error };
+}

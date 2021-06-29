@@ -1,42 +1,49 @@
 <template>
   <div class="h-screen">
-    <div v-if="isWinner" class="grid grid-cols-1 grid-rows-9-static h-full">
-      <div class="row-span-1"></div>
-      <div class="row-span-3">
-        <div class="flex flex-col justify-center items-center h-full">
-          <p>Contrats</p>
-          <p>Player {{ player.player_num }}</p>
-          <p>{{ player.handle }}</p>
+    <div class="grid grid-cols-1 grid-rows-9-static h-full">
+      <template v-if="isWinner">
+        <div class="row-span-1"></div>
+        <div class="row-span-3">
+          <div class="flex flex-col justify-center items-center h-full">
+            <p>Contrats</p>
+            <p>Player {{ player.player_num }}</p>
+            <p>{{ player.handle }}</p>
+          </div>
         </div>
-      </div>
-      <div class="row-span-3">
-        <div class="flex flex-col h-full justify-center items-center">
-          <p>You won ${{ netProfit }}</p>
-          <p>**</p>
-          <p v-for="payment in payments" :key="payment.player">
-            ${{ payment.payment }} from {{ playerHandle(payment.player) }},
-            Player {{ payment.player }}
-          </p>
+        <div class="row-span-3">
+          <div class="flex flex-col h-full justify-center items-center">
+            <p>You won ${{ netProfit }}</p>
+            <p>**</p>
+            <p v-for="payment in payments" :key="payment.player">
+              ${{ payment.payment }} from {{ playerHandle(payment.player) }},
+              Player {{ payment.player }}
+            </p>
+          </div>
         </div>
-      </div>
-    </div>
-    <div v-else class="grid grid-cols-1 grid-rows-9-static h-full">
-      <div class="row-span-1"></div>
-      <div class="row-span-3">
-        <div class="flex flex-col justify-center items-center h-full">
-          <p>Bummer</p>
-          <p>Player {{ player.player_num }}</p>
-          <p>{{ player.handle }}</p>
+      </template>
+      <template v-else>
+        <div class="row-span-1"></div>
+        <div class="row-span-3">
+          <div class="flex flex-col justify-center items-center h-full">
+            <p>Bummer</p>
+            <p>Player {{ player.player_num }}</p>
+            <p>{{ player.handle }}</p>
+          </div>
         </div>
-      </div>
-      <div class="row-span-3">
-        <div class="flex flex-col h-full justify-center items-center">
-          <p>You lost ${{ netProfit }}</p>
-          <p>**</p>
-          <p v-for="payment in payments" :key="payment.player">
-            ${{ -1 * payment.payment }} to {{ playerHandle(payment.player) }},
-            Player {{ payment.player }}
-          </p>
+        <div class="row-span-3">
+          <div class="flex flex-col h-full justify-center items-center">
+            <p>You lost ${{ netProfit }}</p>
+            <p>**</p>
+            <p v-for="payment in payments" :key="payment.player">
+              ${{ -1 * payment.payment }} to {{ playerHandle(payment.player) }},
+              Player {{ payment.player }}
+            </p>
+          </div>
+        </div>
+      </template>
+      <div class="row-span-2">
+        <div class="flex flex-col justify-center items-center">
+          <button class="btn" @click="leave">Leave Match</button>
         </div>
       </div>
     </div>
@@ -71,6 +78,9 @@ export default {
   methods: {
     playerHandle(player) {
       return this.scores[player - 1].handle;
+    },
+    leave() {
+      this.$store.dispatch("leaveMatch", this.player.id);
     },
   },
 };

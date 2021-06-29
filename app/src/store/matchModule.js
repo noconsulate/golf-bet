@@ -5,6 +5,7 @@ import {
   confirmJoin,
   forfeitMatch,
   cancelMatch,
+  leaveMatch,
 } from "../utilities/bridges/match";
 
 export const match = {
@@ -173,6 +174,13 @@ export const match = {
         context.commit("UPDATE_MATCH_STATUS", "cancelled");
         context.commit("UPDATE_SUBSCRIPTION", {});
       }
+    },
+
+    // just a gross way to do this with no settlements
+    async leaveMatch(context, user) {
+      const { data, error } = await leaveMatch(user);
+
+      console.log(data, error, "left match idunno whatever");
     },
   },
 };
