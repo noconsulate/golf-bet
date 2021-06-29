@@ -22,7 +22,11 @@ export const scores = {
       let scores = [];
       const holes = Number(getters.match.holes);
       state.scores.map((item) => {
-        let scoreObj = { player_num: item.player_num };
+        let handle = item.player_id ? item.player_id.handle : null;
+        let scoreObj = {
+          player_num: item.player_num,
+          handle: handle,
+        };
         for (let i = 1; i <= holes; i++) {
           scoreObj[i] = item[i];
         }

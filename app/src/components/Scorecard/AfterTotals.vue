@@ -12,6 +12,16 @@
           <p>{{ player.handle }}</p>
         </div>
       </div>
+      <div class="row-span-3 bg-yellow-400">
+        <div class="flex flex-col h-full justify-center items-center">
+          <p>You won ${{ netProfit }}</p>
+          <p>**</p>
+          <p v-for="payment in payments" :key="payment.player">
+            ${{ payment.payment }} from {{ playerHandle(payment.player) }},
+            Player {{ payment.player }}
+          </p>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -30,6 +40,20 @@ export default {
     },
     isWinner() {
       return this.results[this.player.player_num - 1].winner ? true : false;
+    },
+    netProfit() {
+      return this.results[this.player.player_num - 1].netProfit;
+    },
+    payments() {
+      return this.results[this.player.player_num - 1].payments;
+    },
+    scores() {
+      return this.$store.getters.scores;
+    },
+  },
+  methods: {
+    playerHandle(player) {
+      return this.scores[player - 1].handle;
     },
   },
 };

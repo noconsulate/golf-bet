@@ -65,7 +65,7 @@ export function makeResults(totals, points) {
       losers.map((loser) => {
         player.payments.push({
           player: loser + 1,
-          payments: points / winners.length,
+          payment: points / winners.length,
         });
       });
     } else {
@@ -74,7 +74,7 @@ export function makeResults(totals, points) {
       winners.map((winner) => {
         player.payments.push({
           player: winner + 1,
-          payments: (points / winners.length) * -1,
+          payment: (points / winners.length) * -1,
         });
       });
     }
