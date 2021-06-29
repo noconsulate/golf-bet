@@ -127,7 +127,6 @@ export const scores = {
       }
     },
     async setScore(context, values) {
-      newVal;
       const { matchId, player, hole, score } = values;
       const currentValue = context.state.scores[player - 1][hole];
       if (currentValue === null) {
