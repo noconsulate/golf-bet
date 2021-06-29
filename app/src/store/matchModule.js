@@ -38,7 +38,7 @@ export const match = {
     },
     UPDATE_MATCH(state, payload) {
       state.match = payload;
-      console.log("match updated", state.match.id);
+      console.log("match updated", state.match);
     },
     UPDATE_MATCH_STATUS(state, payload) {
       state.match.status = payload;
@@ -108,6 +108,9 @@ export const match = {
           matchListener(data[0].id);
         }
         if (data[0].status === "playing") {
+          context.dispatch("initScores");
+        }
+        if (data[0].status === "gameover") {
           context.dispatch("initScores");
         }
       }

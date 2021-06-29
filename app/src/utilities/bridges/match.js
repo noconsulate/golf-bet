@@ -35,12 +35,14 @@ const startMatch = async function(id) {
   console.log("START MATCH, DO SOMETHING", data, error);
 };
 
-export const setStatus = async function(id, status) {
+export const setStatus = async function(status) {
+  const id = store.getters.match.id;
   const { data, error } = await supabase
     .from("match")
     .update({ status: status }, { returning: "minimal" })
     .match({ id: id });
 
+  console.log(data, error);
   return { data, error };
 };
 

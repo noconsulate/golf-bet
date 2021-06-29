@@ -20,7 +20,7 @@ export default {
       this.$store.dispatch("resetResults");
     },
     confirm() {
-      // this.$store.dispatch("confirmResults");
+      this.$store.dispatch("confirmResults");
       this.$store.dispatch("setController", "afterTotals");
     },
   },

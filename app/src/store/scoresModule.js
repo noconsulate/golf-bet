@@ -5,6 +5,7 @@ import {
   scoreListener,
   setSettlements,
 } from "../utilities/bridges/score";
+import { setStatus } from "../utilities/bridges/match";
 import { makeResults } from "../utilities/functions";
 
 export const scores = {
@@ -197,8 +198,9 @@ export const scores = {
     resetResults(context) {
       context.commit("RESET_RESULTS");
     },
-    confirmResults(context) {
-      setSettlements();
+    async confirmResults(context) {
+      let { data, error } = await setStatus("gameover");
+      console.log(data, error);
     },
   },
 };
