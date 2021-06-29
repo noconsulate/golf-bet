@@ -9,7 +9,7 @@ const supabase = createClient(
 export async function getScores(match_id) {
   const { data, error } = await supabase
     .from("score")
-    .select(`*, player_id ( handle )`)
+    .select(`*, player_id ( handle, id )`)
     .match({ match_id })
     .order("player_num", { ascending: true });
 
@@ -64,4 +64,20 @@ export async function scoreListener() {
 
   console.log("scoreListener subscribed");
   return subscription;
+}
+
+export async function setSettlements() {
+  const results = store.getters.results;
+  const match_id = store.getters.match.id;
+
+  results.map(async (result) => {
+    console.log(result);
+
+    let { data, error } = await supabase
+      .from("score")
+      .update({ settlement: result.netProfit * 100 }, { returning: "minimal" })
+      .match({ id: result.score_id });
+
+    console.log(data, error);
+  });
 }

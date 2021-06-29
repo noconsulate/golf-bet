@@ -56,8 +56,10 @@ export function makeResults(totals, points) {
   console.log("losers: " + losers);
 
   results.map((player, index) => {
+    player.handle = scores[index].player_id.handle;
+    player.id = scores[index].player_id.id;
+    player.score_id = scores[index].id;
     if (winners.includes(index)) {
-      player.handle = scores[index].player_id.handle;
       player.winner = true;
       player.netProfit = (points * losers.length) / winners.length;
       losers.map((loser) => {
@@ -67,7 +69,6 @@ export function makeResults(totals, points) {
         });
       });
     } else {
-      player.handle = scores[index].player_id.handle;
       player.winner = false;
       player.netProfit = points * -1;
       winners.map((winner) => {

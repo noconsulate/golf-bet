@@ -3,6 +3,7 @@ import {
   updateScore,
   toggleConfirmScores,
   scoreListener,
+  setSettlements,
 } from "../utilities/bridges/score";
 import { makeResults } from "../utilities/functions";
 
@@ -192,6 +193,9 @@ export const scores = {
     },
     resetResults(context) {
       context.commit("RESET_RESULTS");
+    },
+    confirmResults(context) {
+      setSettlements();
     },
   },
 };
