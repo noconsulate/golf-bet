@@ -17,10 +17,11 @@ export default {
   name: "ConfirmResults",
   methods: {
     back() {
-      // this.$store.dispatch("resetResults");
+      this.$store.dispatch("resetResults");
     },
     confirm() {
-      this.$store.dispatch("confirmResults");
+      // this.$store.dispatch("confirmResults");
+      this.$store.dispatch("setController", "afterTotals");
     },
   },
 };

@@ -2,21 +2,24 @@
   <div>
     <Solo v-if="renderPicker == 'card'" />
     <Results v-if="renderPicker == 'results'" />
+    <AfterTotals v-if="renderPicker == 'afterResults'" />
   </div>
 </template>
 
 <script>
 import Solo from "../components/Scorecard/Solo.vue";
 import Results from "../components/Scorecard/Results.vue";
+import AfterTotals from "../components/Scorecard/AfterTotals.vue";
 export default {
   name: "scoredcard",
   components: {
     Solo,
     Results,
+    AfterTotals,
   },
   data() {
     return {
-      renderPicker: "card",
+      // renderPicker: "card",
     };
   },
   computed: {
@@ -32,19 +35,34 @@ export default {
     results() {
       return this.$store.state.scores.results;
     },
+    controller() {
+      return this.$store.getters.controller;
+    },
+    renderPicker() {
+      switch (this.controller) {
+        case "confirmResults": {
+          return "results";
+        }
+        case "afterTotals": {
+          return "afterResults";
+        }
+        default: {
+          return "card";
+        }
+      }
+    },
   },
   methods: {
     // renderPicker() {
-    //   return this.$store.getters.results.length > 0 ? "results" : "card";
     // },
   },
   watch: {
-    results(oldVal, newVal) {
-      console.log(this.results);
-      this.results.length > 0
-        ? (this.renderPicker = "results")
-        : (this.renderPicker = "card");
-    },
+    // results(oldVal, newVal) {
+    //   console.log(this.results);
+    //   this.results.length > 0
+    //     ? (this.renderPicker = "results")
+    //     : (this.renderPicker = "card");
+    // },
   },
 };
 </script>
