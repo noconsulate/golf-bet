@@ -111,6 +111,7 @@
           v-model="scoreInput"
         />
         <button @click="nextPlayer" class="btn">next player</button>
+        <button @click="fillScores" class="btn">fill scores*</button>
       </div>
     </div>
   </div>
@@ -281,7 +282,7 @@ export default {
       this.nextPlayer();
     },
     fillScores() {
-      console.log("hi");
+      window.fillScores();
     },
     toggleConfirmScores() {
       let totals = [];
