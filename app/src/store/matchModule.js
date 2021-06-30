@@ -116,7 +116,9 @@ export const match = {
           matchListener(data[0].id);
         }
         if (data[0].status === "playing") {
+          console.log("status == playing");
           await context.dispatch("initScores");
+          matchListener(data[0].id);
         }
         if (data[0].status === "gameover") {
           await context.dispatch("initScores");

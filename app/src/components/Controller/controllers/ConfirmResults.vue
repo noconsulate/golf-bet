@@ -21,7 +21,7 @@ export default {
     },
     confirm() {
       this.$store.dispatch("confirmResults");
-      // this.$store.dispatch("setController", "afterTotals");
+      this.$store.dispatch("setController", "afterTotals");
     },
   },
 };

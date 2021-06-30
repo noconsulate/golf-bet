@@ -73,7 +73,7 @@ export const matchListener = async function(id) {
       }
       // master has confirmed totals
       if (payload.new.status === "gameover") {
-        store.dispatch("setController", "afterTotals");
+        // store.dispatch("setController", "afterTotals");
         unsubscribe();
       }
     })

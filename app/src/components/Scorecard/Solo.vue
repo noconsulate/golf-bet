@@ -161,6 +161,9 @@ export default {
     // isConfirmScores() {
     //   return this.$store.state.scores.confirmScores;
     // },
+    status() {
+      return this.$store.getters.match.status;
+    },
   },
   methods: {
     stylePicker(p, i, a) {
@@ -285,6 +288,15 @@ export default {
         totals[i] = { total: this.totalScore(i + 1), payments: [] };
       }
       this.$store.dispatch("setResults", totals);
+    },
+  },
+  watch: {
+    status(newVal, oldVal) {
+      console.log("status changed: " + newVal);
+      if (newVal === "gameover") {
+        this.toggleConfirmScores();
+        this.$store.dispatch("setController", "afterTotals");
+      }
     },
   },
   mounted() {
