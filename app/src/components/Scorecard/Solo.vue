@@ -78,17 +78,11 @@
         <div :class="cell(1)">{{ totalScore(3) }}</div>
         <div :class="cell(1)">{{ totalScore(4) }}</div>
       </div>
-      <div
-        v-if="isScoringComplete && message === ''"
-        class="flex flex-col space-y-2"
-      >
+      <div v-if="isScoringComplete && isMaster" class="flex flex-col space-y-2">
         <p class="flex justify-center">Scoring complete?</p>
         <div class="flex justify-center">
           <button class="btn" @click="toggleConfirmScores">confirm</button>
         </div>
-      </div>
-      <div class="flex flex-col space-y-2" v-if="message != ''">
-        <p class="flex justify-center">{{ message }}</p>
       </div>
     </div>
     <div
@@ -132,7 +126,7 @@ export default {
       key: 1,
       // loaded: false,
       scoreInput: 3,
-      message: "",
+      // message: "",
     };
   },
   computed: {
@@ -297,6 +291,7 @@ export default {
     // skip over to gameover stuff
     const status = this.$store.getters.match.status;
     console.log(status);
+    console.log(this.$store.getters.match);
     if (status === "gameover") {
       this.toggleConfirmScores();
       this.$store.dispatch("setController", "afterTotals");
