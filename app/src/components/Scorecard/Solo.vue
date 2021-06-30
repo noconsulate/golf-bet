@@ -291,7 +291,6 @@ export default {
     // skip over to gameover stuff
     const status = this.$store.getters.match.status;
     console.log(status);
-    console.log(this.$store.getters.match);
     if (status === "gameover") {
       this.toggleConfirmScores();
       this.$store.dispatch("setController", "afterTotals");

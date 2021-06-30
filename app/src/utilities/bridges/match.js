@@ -64,9 +64,16 @@ export const matchListener = async function(id) {
           startMatch(id);
         }
 
+        // keep subscription because match status can change during game
+        // unsubscribe();
+      }
+
+      if (payload.new.status == "cancelled") {
         unsubscribe();
       }
-      if (payload.new.status == "cancelled") {
+      // master has confirmed totals
+      if (payload.new.status === "gameover") {
+        store.dispatch("setController", "afterTotals");
         unsubscribe();
       }
     })
