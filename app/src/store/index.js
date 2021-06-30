@@ -36,7 +36,7 @@ export default new Vuex.Store({
         context.commit("UPDATE_USER_DETAILS", data);
 
         if (data.active_match)
-          context.dispatch("getAndSetMatch", data.active_match);
+          await context.dispatch("getAndSetMatch", data.active_match);
       }
     },
   },

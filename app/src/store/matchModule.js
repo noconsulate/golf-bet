@@ -116,10 +116,10 @@ export const match = {
           matchListener(data[0].id);
         }
         if (data[0].status === "playing") {
-          context.dispatch("initScores");
+          await context.dispatch("initScores");
         }
         if (data[0].status === "gameover") {
-          context.dispatch("initScores");
+          await context.dispatch("initScores");
         }
       }
     },
