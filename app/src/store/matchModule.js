@@ -53,6 +53,9 @@ export const match = {
     UPDATE_MATCH_STATIUS(state, payload) {
       state.match.status = payload;
     },
+    UPDATE_PLAYERS_JOINED(state, payload) {
+      state.match.players_joined = payload;
+    },
   },
 
   actions: {
@@ -70,6 +73,10 @@ export const match = {
     },
     setActiveMatch(context, value) {
       context.commit("UPDATE_ACTIVE_MATCH", value);
+    },
+    setPlayersJoined(context, payload) {
+      context.commit("UPDATE_PLAYERS_JOINED", payload);
+      console.log("setPlayersJoined");
     },
     async getAndSetNewMatch(context, values) {
       const { data, error } = await newMatch(values);

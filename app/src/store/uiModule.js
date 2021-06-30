@@ -50,9 +50,9 @@ export const ui = {
     UPDATE_PLAYER_NUM(state, payload) {
       state.playerNum = payload;
     },
-    UPDATE_PLAYERS_JOINED(state, payload) {
-      rootState.match.match.players_joined = payload;
-    },
+    // UPDATE_PLAYERS_JOINED(state, payload) {
+    //   rootState.match.match.players_joined = payload;
+    // },
     UPDATE_SCORING_STYLE(state, payload) {
       state.input.scoringStyle = payload;
     },
@@ -93,10 +93,10 @@ export const ui = {
     setPlayerNum(context, value) {
       context.commit("UPDATE_PLAYER_NUM", value);
     },
-    setPlayersJoined(context, payload) {
-      context.commit("UPDATE_PLAYERS_JOINED", payload);
-      console.log("setPlayersJoined");
-    },
+    // setPlayersJoined(context, payload) {
+    //   context.commit("UPDATE_PLAYERS_JOINED", payload);
+    //   console.log("setPlayersJoined");
+    // },
     setScoringStyle(context, value) {
       context.commit("UPDATE_SCORING_STYLE", value);
       console.log("scoringstyle action", value);
