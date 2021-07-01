@@ -55,7 +55,10 @@ export const matchListener = async function(id) {
       store.dispatch("setMatch", payload.new);
       // store.dispatch("setMatchStatus", payload.new.status);
       // store.dispatch("setPlayersJoined", payload.new.players_joined);
-      if (payload.new.players_joined >= payload.new.players) {
+      if (
+        payload.new.players_joined >= payload.new.players &&
+        payload.new.status === "waiting"
+      ) {
         console.log("all playesr joined. do something and unsubscribe!");
         //Should be new action that incorporates startGame()
         // store.dispatch("setAllPlayersJoined");
