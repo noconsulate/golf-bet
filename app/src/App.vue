@@ -62,11 +62,11 @@ export default {
     },
   },
   watch: {
-    allPlayersJoined: function (newVal, oldVal) {
+    allPlayersJoined: async function (newVal, oldVal) {
       if (newVal && this.$route.name != "scorecard") {
         console.log("all players joined");
-        this.$store.dispatch("getUserDetails");
-        this.$store.dispatch("initScores");
+        await this.$store.dispatch("getUserDetails");
+        await this.$store.dispatch("initScores");
         this.$router.push("/scorecard");
       }
     },

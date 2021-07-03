@@ -64,5 +64,11 @@ export default {
     //     : (this.renderPicker = "card");
     // },
   },
+  created() {
+    if (!this.players) {
+      console.log("no match");
+      this.$router.push("/");
+    }
+  },
 };
 </script>

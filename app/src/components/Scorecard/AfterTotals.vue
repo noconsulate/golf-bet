@@ -43,7 +43,10 @@
       </template>
       <div class="row-span-2">
         <div class="flex flex-col justify-center items-center">
-          <button class="btn" @click="leave">Leave Match</button>
+          <button v-if="!hasLeft || !activeMatch" class="btn" @click="leave">
+            Leave Match
+          </button>
+          <button v-else class="btn" @click="newMatch">New Match</button>
         </div>
       </div>
     </div>
@@ -55,6 +58,11 @@ import App from "../../App.vue";
 export default {
   components: { App },
   name: "AfterTotals",
+  data() {
+    return {
+      hasLeft: false,
+    };
+  },
   computed: {
     player() {
       return this.$store.getters.user;
@@ -74,6 +82,9 @@ export default {
     scores() {
       return this.$store.getters.scores;
     },
+    activeMatch() {
+      return this.$store.getters.user.active_match;
+    },
   },
   methods: {
     playerHandle(player) {
@@ -81,6 +92,13 @@ export default {
     },
     leave() {
       this.$store.dispatch("leaveMatch", this.player.id);
+      this.hasLeft = true;
+    },
+    newMatch() {
+      this.$store.dispatch("resetInputValues");
+      this.$store.dispatch("resetMatchValues");
+      this.$store.dispatch("setController", "selectPlayers");
+      this.$router.push("/");
     },
   },
 };
