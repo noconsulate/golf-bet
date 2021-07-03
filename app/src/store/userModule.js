@@ -1,3 +1,5 @@
+import { getUserDetails } from "../utilities/bridges/auth";
+
 export const user = {
   state: {
     user: {},
@@ -48,7 +50,8 @@ export const user = {
     setClearUser(context) {
       context.commit("CLEAR_USER");
     },
-    async getAndSetUserDetails(context, userId) {
+    async getAndSetUserDetails(context) {
+      const userId = context.getters.user.id;
       const { data, error } = await getUserDetails(userId);
       if (error) {
         console.log(error);

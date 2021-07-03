@@ -43,7 +43,7 @@
       </template>
       <div class="row-span-2">
         <div class="flex flex-col justify-center items-center">
-          <button v-if="!hasLeft || !activeMatch" class="btn" @click="leave">
+          <button v-if="!hasLeft || activeMatch" class="btn" @click="leave">
             Leave Match
           </button>
           <button v-else class="btn" @click="newMatch">New Match</button>
@@ -94,7 +94,8 @@ export default {
       this.$store.dispatch("leaveMatch", this.player.id);
       this.hasLeft = true;
     },
-    newMatch() {
+    async newMatch() {
+      await this.$store.dispatch("initOnLoad");
       this.$store.dispatch("resetInputValues");
       this.$store.dispatch("resetMatchValues");
       this.$store.dispatch("setController", "selectPlayers");

@@ -65,7 +65,7 @@ export default {
     allPlayersJoined: async function (newVal, oldVal) {
       if (newVal && this.$route.name != "scorecard") {
         console.log("all players joined");
-        await this.$store.dispatch("getUserDetails");
+        await this.$store.dispatch("getAndSetUserDetails");
         await this.$store.dispatch("initScores");
         this.$router.push("/scorecard");
       }
