@@ -43,7 +43,7 @@
       </template>
       <div class="row-span-2">
         <div class="flex flex-col justify-center items-center">
-          <button v-if="!hasLeft || activeMatch" class="btn" @click="leave">
+          <button v-if="!hasLeft" class="btn" @click="leave">
             Leave Match
           </button>
           <button v-else class="btn" @click="newMatch">New Match</button>
