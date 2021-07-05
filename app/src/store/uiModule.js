@@ -63,7 +63,7 @@ export const ui = {
       state.input.players = "";
       state.input.points = "";
       state.input.holes = "";
-      state.input.scoringStyle = "";
+      state.input.scoringStyle = "solo";
     },
 
     UPDATE_SUBSCRIPTION(state, payload) {

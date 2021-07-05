@@ -11,6 +11,18 @@
           I'll keep track
         </div>
         <div
+          class="
+            text-opacity-25
+            line-through
+            flex-auto flex
+            justify-center
+            items-center
+          "
+        >
+          Classic style
+        </div>
+        <!-- <div
+         
           :class="[
             scoringStyle == 'classic' ? activeClass : null,
             selectorClass,
@@ -18,7 +30,7 @@
           @click="select('classic')"
         >
           Classic style
-        </div>
+        </div> -->
       </div>
       <div v-if="isReady" class="controller-next-ready" @click="next">next</div>
       <div v-else class="controller-next-notReady">next</div>
