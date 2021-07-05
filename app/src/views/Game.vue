@@ -25,7 +25,7 @@ export default {
       }
     },
     showNoUser() {
-      if (this.$store.state.user.user == null) {
+      if (this.$store.getters.user.id == null) {
         return true;
       } else {
         return false;
