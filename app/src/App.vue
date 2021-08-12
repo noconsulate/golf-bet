@@ -1,14 +1,17 @@
 <template>
   <div id="app">
-    <div class="max-w-screen-sm border border-black">
+    <div class="max-w-screen-sm md:border border-black relative">
       <button
         @click="tog()"
-        class="text-black text-2xl p-2 font-bold absolute top-0 right-0"
+        class="text-black text-2xl p-2 absolute top-0 right-0"
       >
         &#9776;
       </button>
-      <router-view :class="open ? 'opacity-25' : 'opacity-100'" />
-      <!-- <nav
+      <router-view
+        class="clear-right"
+        :class="open ? 'opacity-25' : 'opacity-100'"
+      />
+      <nav
         :class="open ? 'navbar-open' : 'navbar-close'"
         class="
           navbar
@@ -42,7 +45,7 @@
           <div class="col-span-1 justify-self-center">X</div>
           <div class="col-span-3">Scorecard</div>
         </div>
-      </nav> -->
+      </nav>
     </div>
   </div>
 </template>
