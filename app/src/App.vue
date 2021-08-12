@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div class="h-screen w-screen container mx-auto md:w-1/2 lg:w-1/3">
+    <div class="max-w-screen-sm border border-black">
       <button
         @click="tog()"
         class="text-black text-2xl p-2 font-bold absolute top-0 right-0"
@@ -8,7 +8,7 @@
         &#9776;
       </button>
       <router-view :class="open ? 'opacity-25' : 'opacity-100'" />
-      <nav
+      <!-- <nav
         :class="open ? 'navbar-open' : 'navbar-close'"
         class="
           navbar
@@ -42,7 +42,7 @@
           <div class="col-span-1 justify-self-center">X</div>
           <div class="col-span-3">Scorecard</div>
         </div>
-      </nav>
+      </nav> -->
     </div>
   </div>
 </template>
