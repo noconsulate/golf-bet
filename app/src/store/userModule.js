@@ -17,6 +17,10 @@ export const user = {
         return null;
       }
     },
+    isUser: (state) => {
+      if (Object.keys(state.user).length === 0) return false;
+      else return true;
+    },
   },
   mutations: {
     UPDATE_USER(state, payload) {

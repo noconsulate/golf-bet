@@ -1,5 +1,5 @@
 <template>
-  <div class="h-screen w-screen flex flex-col">
+  <div class="h-screen flex flex-col">
     <div class="text-center pt-4">Welcome {{ email }}</div>
     <div class="grid grid-cols-7 pt-4">
       <div class="col-span-3" />
