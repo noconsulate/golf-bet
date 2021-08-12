@@ -40,10 +40,10 @@
           </div>
           <div class="col-span-4 invisible">X</div>
           <div class="col-span-1 justify-self-center">X</div>
-          <div class="col-span-3 cursor-pointer" @click="openSetup">Setup</div>
+          <div class="col-span-3 cursor-pointer" @click="openSetup">Match</div>
           <div class="col-span-4 invisible">X</div>
           <div class="col-span-1 justify-self-center">X</div>
-          <div class="col-span-3">Scorecard</div>
+          <div class="col-span-3 cursor-pointer" @click="openHelp">Help</div>
         </div>
       </nav>
     </div>
@@ -86,6 +86,10 @@ export default {
     },
     openSetup() {
       this.$router.push("/");
+      this.$store.dispatch("toggleNavOpen");
+    },
+    openHelp() {
+      this.$router.push("/help");
       this.$store.dispatch("toggleNavOpen");
     },
     fillScores() {

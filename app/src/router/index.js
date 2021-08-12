@@ -4,6 +4,7 @@ import Join from "../views/Join.vue";
 import Scorecard from "../views/Scorecard.vue";
 import Game from "../views/Game.vue";
 import Player from "../views/Player.vue";
+import Help from "../views/Help.vue"
 
 Vue.use(VueRouter);
 
@@ -28,6 +29,11 @@ const routes = [
     name: "player",
     component: Player,
   },
+  {
+    path: "/help",
+    name: "help",
+    component: Help
+  }
 ];
 
 const router = new VueRouter({
