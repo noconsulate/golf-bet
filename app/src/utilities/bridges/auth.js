@@ -62,3 +62,11 @@ export async function signIn(email, password) {
 
   return { user, session, error };
 }
+
+export async function resetUser(userId) {
+  const { data, error } = await supabase
+    .from("users")
+    .insert({ active_match: null, active_score: null, player_num: null });
+
+  return { data, error };
+}

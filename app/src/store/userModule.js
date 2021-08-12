@@ -1,4 +1,4 @@
-import { getUserDetails } from "../utilities/bridges/auth";
+import { getUserDetails, resetUser } from "../utilities/bridges/auth";
 
 export const user = {
   state: {
@@ -64,6 +64,12 @@ export const user = {
       if (data) {
         context.commit("UPDATE_USER_DETAILS", data);
       }
+    },
+    async resetUser(context) {
+      const userId = context.getters.user.id;
+      let { data, error } = await resetUser(userId);
+
+      console.log(data, error);
     },
   },
 };
