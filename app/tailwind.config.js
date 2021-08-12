@@ -5,6 +5,9 @@ module.exports = {
     fontFamily: {
       sans: ["Montserrat"],
     },
+    scale: {
+      "10": ".10",
+    },
     extend: {
       gridTemplateRows: {
         "9-static": "repeat(9, 1fr)",
