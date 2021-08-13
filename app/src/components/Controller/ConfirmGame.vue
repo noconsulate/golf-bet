@@ -70,7 +70,7 @@ export default {
         this.points == "" ||
         this.scoringStyle == ""
       ) {
-        alert("finish setting up game, loser");
+        alert("Please finish setting up the game.");
         return;
       }
 

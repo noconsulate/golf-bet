@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div class="h-screen max-w-screen-sm md:border border-black relative">
+    <div class="h-screen md:max-w-screen-sm md:border border-black relative">
       <button
         @click="tog()"
         class="text-black text-2xl p-2 absolute top-0 right-0"
