@@ -69,6 +69,7 @@ export const scores = {
       state.scores[player - 1][hole] = newScore;
     },
     UPDATE_TALLY(state, payload) {
+      console.log("UPDATE_TALLY", payload);
       state.tally = payload;
     },
     INCREMENT_TALLY(state) {
@@ -162,16 +163,20 @@ export const scores = {
         }
       }
     },
-    fillScores(context) {
+    resetTally(context) {
+      context.commit("UPDATE_TALLY", 0);
+    },
+    async fillScores(context) {
+      console.log("fillScores action");
       const matchId = context.rootState.match.match.id;
       console.log(matchId);
       const holes = context.getters.match.holes;
+      let players = context.getters.match.players;
       let scores = context.state.scores;
       function randInt() {
         const x = Math.floor(Math.random() * 6) + 1;
         return x;
       }
-
       scores.map(async (player) => {
         console.log(player);
         for (let i = 1; i <= holes; i++) {
@@ -187,6 +192,9 @@ export const scores = {
           // context.commit("UPDATE_SCORE_CELL", payload);
         }
       });
+
+      // context.commit("UPDATE_TALLY", holes * players);
+      // console.log("should have updated tally to: " + holes * players);
     },
     setResults(context, totals) {
       const points = context.rootState.match.match.points;

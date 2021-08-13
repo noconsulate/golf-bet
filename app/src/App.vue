@@ -101,6 +101,7 @@ export default {
     if (process.env.NODE_ENV === "development") {
       window.fillScores = this.fillScores;
     }
+    window.fillScores = this.fillScores;
   },
 };
 </script>
