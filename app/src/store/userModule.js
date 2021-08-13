@@ -1,4 +1,5 @@
 import { getUserDetails, resetUser } from "../utilities/bridges/auth";
+import router from "../router/";
 
 export const user = {
   state: {
@@ -70,6 +71,12 @@ export const user = {
       let { data, error } = await resetUser(userId);
 
       console.log(data, error);
+
+      context.dispatch("initOnLoad");
+      context.commit("UPDATE_ACTIVE_MATCH", null);
+      context.commit("UPDATE_SUBSCRIPTION", {});
+      context.commit("RESET_MATCH_VALUES");
+      router.push("/");
     },
   },
 };

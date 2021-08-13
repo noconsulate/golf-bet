@@ -38,6 +38,11 @@
       scores. Once the scoring is done you can confirm the scores and the
       winner(s) and loser(s) are calculated.
     </p>
+    <p>
+      IF something gets stuck and you can't do anything it's surely a bug
+      somewhere. Please go to the Player section and click "Reset user". This
+      will reset your user to its default state and start everything over.
+    </p>
     <p>Thanks for taking the time.</p>
     <p>Janssen Kuhn, 2021</p>
     <a href="mailto:janssenkuhn@mailbox.org"><Email /></a>
