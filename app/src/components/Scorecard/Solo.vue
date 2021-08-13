@@ -105,6 +105,8 @@
           v-model="scoreInput"
         />
         <button @click="nextPlayer" class="btn">next player</button>
+      </div>
+      <div class="flex justify-center space-x-1">
         <button @click="fillScores" class="btn">fill scores*</button>
       </div>
     </div>
