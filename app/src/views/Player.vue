@@ -1,11 +1,12 @@
 <template>
-  <div class="h-screen w-1/2 flex flex-col">
+  <div class="h-screen flex flex-col p-8">
     <div v-if="user.id">
       <p>{{ handle }}</p>
       <p>{{ email }}</p>
       <p>Balance</p>
       <p>{{ balance }}</p>
-      <button class="btn" @click="signOut">Sign out</button>
+      <button class="btn block" @click="signOut">Sign out</button>
+      <button class="btn" @click="resetUser">Reset user</button>
     </div>
     <MatchInfo />
     <button v-if="!signinOpen && !user.id" @click="toggleSignin" class="btn">
@@ -144,6 +145,9 @@ export default {
           this.signinOpen = false;
         }
       }
+    },
+    resetUser() {
+      this.$store.dispatch("resetUser");
     },
   },
   async beforeMount() {},

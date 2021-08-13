@@ -1,4 +1,5 @@
-import { getUserDetails } from "../utilities/bridges/auth";
+import { getUserDetails, resetUser } from "../utilities/bridges/auth";
+import router from "../router/";
 
 export const user = {
   state: {
@@ -16,6 +17,10 @@ export const user = {
       } else {
         return null;
       }
+    },
+    isUser: (state) => {
+      if (Object.keys(state.user).length === 0) return false;
+      else return true;
     },
   },
   mutations: {
@@ -60,6 +65,18 @@ export const user = {
       if (data) {
         context.commit("UPDATE_USER_DETAILS", data);
       }
+    },
+    async resetUser(context) {
+      const userId = context.getters.user.id;
+      let { data, error } = await resetUser(userId);
+
+      console.log(data, error);
+
+      context.dispatch("initOnLoad");
+      context.commit("UPDATE_ACTIVE_MATCH", null);
+      context.commit("UPDATE_SUBSCRIPTION", {});
+      context.commit("RESET_MATCH_VALUES");
+      router.push("/");
     },
   },
 };

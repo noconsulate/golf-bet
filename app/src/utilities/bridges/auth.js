@@ -62,3 +62,17 @@ export async function signIn(email, password) {
 
   return { user, session, error };
 }
+
+export async function resetUser(id) {
+  const { data, error } = await supabase
+    .from("users")
+    .update({
+      active_match: null,
+      active_score: null,
+      player_num: null,
+      balance: 6000000,
+    })
+    .match({ id });
+
+  return { data, error };
+}

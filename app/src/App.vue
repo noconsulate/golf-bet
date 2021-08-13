@@ -1,13 +1,16 @@
 <template>
   <div id="app">
-    <div class="h-screen w-screen container mx-auto md:w-1/2 lg:w-1/3">
+    <div class="h-screen max-w-screen-sm md:border border-black relative">
       <button
         @click="tog()"
-        class="text-black text-2xl p-2 font-bold absolute top-0 right-0"
+        class="text-black text-2xl p-2 absolute top-0 right-0"
       >
         &#9776;
       </button>
-      <router-view :class="open ? 'opacity-25' : 'opacity-100'" />
+      <router-view
+        class="clear-right"
+        :class="open ? 'opacity-25' : 'opacity-100'"
+      />
       <nav
         :class="open ? 'navbar-open' : 'navbar-close'"
         class="
@@ -37,10 +40,10 @@
           </div>
           <div class="col-span-4 invisible">X</div>
           <div class="col-span-1 justify-self-center">X</div>
-          <div class="col-span-3 cursor-pointer" @click="openSetup">Setup</div>
+          <div class="col-span-3 cursor-pointer" @click="openSetup">Match</div>
           <div class="col-span-4 invisible">X</div>
           <div class="col-span-1 justify-self-center">X</div>
-          <div class="col-span-3">Scorecard</div>
+          <div class="col-span-3 cursor-pointer" @click="openHelp">Help</div>
         </div>
       </nav>
     </div>
@@ -83,6 +86,10 @@ export default {
     },
     openSetup() {
       this.$router.push("/");
+      this.$store.dispatch("toggleNavOpen");
+    },
+    openHelp() {
+      this.$router.push("/help");
       this.$store.dispatch("toggleNavOpen");
     },
     fillScores() {
