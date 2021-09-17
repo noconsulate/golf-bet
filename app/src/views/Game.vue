@@ -1,6 +1,9 @@
 <template>
   <div>
-    <div v-if="showNoUser">Please sign in to continue</div>
+    <div v-if="showNoUser">
+      Please <a href="" class="underline" @click="handleSignin">sign in</a> to
+      continue
+    </div>
     <Create v-if="showCreate" />
     <WaitingRoom v-if="showWaitingRoom" />
   </div>
@@ -15,6 +18,7 @@ export default {
     Create,
     WaitingRoom,
   },
+
   computed: {
     showCreate() {
       if (this.$store.state.match.match.id == "" && !this.showNoUser) {
@@ -41,6 +45,11 @@ export default {
     },
     allPlayersJoined() {
       return this.$store.getters.allPlayersJoined;
+    },
+  },
+  methods: {
+    handleSignin() {
+      this.$router.push("player");
     },
   },
   created() {
