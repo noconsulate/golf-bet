@@ -20,6 +20,12 @@
       <input class="border w-full" v-model="passwordInput" type="password" />
       <button class="btn" @click="signIn">Sign in</button>
       <button class="btn" @click="toggleSignin">Cancel</button>
+      <p class="italic text-sm">
+        For demonstration purposes you can sign in with the users
+        alice@trustless.io, bob@trustless.io, cory@trustless.io, or
+        diane@trustless.io; all with password "password". Or you can make your
+        own user.
+      </p>
     </div>
     <button v-if="!signupOpen && !user.id" @click="toggleSignup" class="btn">
       Sign Up
